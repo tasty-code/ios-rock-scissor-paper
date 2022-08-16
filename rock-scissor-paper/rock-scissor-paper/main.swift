@@ -14,8 +14,7 @@ func printMenu() {
 
 func getUserNumber() -> Int {
     let userNumber: Int = Int(readLine() ?? "") ?? -1
-    
-    return 0
+    return userNumber
 }
 
 func isValidNumber(userNumber: Int) -> Bool {
@@ -42,3 +41,5 @@ func judgeNumber(computerNumber: Int, userNumber: Int) -> Void {
         print("이겼습니다!")
     }
 }
+
+printMenu()
