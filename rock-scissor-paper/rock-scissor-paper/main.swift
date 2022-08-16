@@ -2,6 +2,14 @@ import Foundation
 
 func printMenu() {
     print("가위(1), 바위(2), 보(3)! <종료 : 0> : ", terminator: "")
+    let userNumber: Int = getUserNumber()
+    
+    if isValidNumber(userNumber: userNumber) == false {
+        return
+    }
+    
+    let computerNumber: Int = Int.random(in: 1...3)
+    judgeNumber(computerNumber: computerNumber, userNumber: userNumber)
 }
 
 func getUserNumber() -> Int {
