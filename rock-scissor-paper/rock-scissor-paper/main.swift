@@ -14,3 +14,9 @@ func isValidNumber(userNumber: Int) -> Bool {
     
     return true
 }
+
+func judgeNumber(computerNumber: Int, userNumber: Int) -> Void {
+    if (computerNumber == 1 && userNumber == 3) || userNumber < computerNumber {
+        print("졌습니다!")
+    }
+}
