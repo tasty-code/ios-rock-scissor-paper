@@ -5,13 +5,12 @@ func printMenu() {
 }
 
 func getUserNumber() -> Int {
-    let userNumber: Int? = Int(readLine() ?? "")
+    let userNumber: Int = Int(readLine() ?? "") ?? -1
     
     return 0
 }
 
-func isValidNumber(userNumber: Int?) -> Bool {
-    
+func isValidNumber(userNumber: Int) -> Bool {
     
     return true
 }
