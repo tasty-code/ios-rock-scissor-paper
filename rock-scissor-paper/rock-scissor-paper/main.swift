@@ -9,3 +9,9 @@ func getUserNumber() -> Int {
     
     return 0
 }
+
+func isValidNumber(userNumber: Int?) -> Bool {
+    
+    
+    return true
+}
