@@ -11,6 +11,16 @@ func getUserNumber() -> Int {
 }
 
 func isValidNumber(userNumber: Int) -> Bool {
+    switch userNumber {
+    case 0:
+        print("게임 종료")
+        return false
+    case 1...3:
+        break
+    default:
+        print("잘못된 입력입니다. 다시 시도해주세요.")
+        printMenu()
+    }
     
     return true
 }
