@@ -5,13 +5,18 @@ func printMenu() {
 }
 
 func getUserNumber() -> Int {
-    let userNumber: Int? = Int(readLine() ?? "")
+    let userNumber: Int = Int(readLine() ?? "") ?? -1
     
     return 0
 }
 
-func isValidNumber(userNumber: Int?) -> Bool {
-    
+func isValidNumber(userNumber: Int) -> Bool {
     
     return true
+}
+
+func judgeNumber(computerNumber: Int, userNumber: Int) -> Void {
+    if (computerNumber == 1 && userNumber == 3) || userNumber < computerNumber {
+        print("졌습니다!")
+    }
 }
