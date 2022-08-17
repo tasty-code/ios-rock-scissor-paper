@@ -60,6 +60,5 @@ func startGame() {
     inputGameValue()
 }
 
-
-
 startGame()
+
