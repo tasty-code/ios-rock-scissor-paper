@@ -12,6 +12,7 @@ func checkUserValue(_ userValue: Int?) -> Int? {
         return userValue
     default:
         print("잘못된 입력입니다. 다시 시도해주세요.")
+        startGame()
     }
     
     return nil
@@ -37,6 +38,7 @@ func checkWinOrLose(_ userValue: Int?) {
         print("이겼습니다!")
     } else if userValue == computerValue {
         print("비겼습니다!")
+        startGame()
     } else {
         print("졌습니다!")
     }
