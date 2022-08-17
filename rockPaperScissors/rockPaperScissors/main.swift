@@ -2,6 +2,7 @@ import Foundation
 
 func makeComputerValue() -> Int {
     let randomComputerValue = Int.random(in: 1...3)
+    
     return randomComputerValue
 }
 
@@ -20,11 +21,11 @@ func checkUserValue(_ userValue: Int?) -> Int? {
 }
 
 func inputUserValue() -> Int? {
-    let userValue = readLine() ?? "nil"
-    var integerUserValue: Int? = 0
+    let userValue = readLine()
+    var integerUserValue: Int?
     
-    if let value = Int(userValue) {
-        integerUserValue = value
+    if let value = userValue {
+        integerUserValue = Int(value)
     }
     
     integerUserValue = checkUserValue(integerUserValue)
