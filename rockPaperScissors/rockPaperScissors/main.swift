@@ -1,7 +1,9 @@
 import Foundation
 
 func makeComputerValue() -> Int {
-    return Int.random(in: 1...3)
+    let randomComputerValue = Int.random(in: 1...3)
+    
+    return randomComputerValue
 }
 
 func checkUserValue(_ userValue: Int?) -> Int? {
@@ -12,18 +14,18 @@ func checkUserValue(_ userValue: Int?) -> Int? {
         return userValue
     default:
         print("잘못된 입력입니다. 다시 시도해주세요.")
-        startGame()
+        inputGameValue()
     }
     
     return nil
 }
 
 func inputUserValue() -> Int? {
-    let userValue = readLine() ?? "nil"
-    var integerUserValue: Int? = 0
+    let userValue = readLine()
+    var integerUserValue: Int?
     
-    if let value = Int(userValue) {
-        integerUserValue = value
+    if let value = userValue {
+        integerUserValue = Int(value)
     }
     
     integerUserValue = checkUserValue(integerUserValue)
@@ -31,28 +33,29 @@ func inputUserValue() -> Int? {
     return integerUserValue
 }
 
-func checkWinOrLose(_ userValue: Int?) {
-    let computerValue = makeComputerValue()
+func checkWinOrLose(_ userValue: Int,_ computerValue: Int) {
+    let winCaseValue = userValue - computerValue
     
-    if userValue == 1 && computerValue == 3 || userValue == 2 && computerValue == 1 || userValue == 3 && computerValue == 2 {
+    switch winCaseValue {
+    case -2, 1:
         print("이겼습니다!")
-    } else if userValue == computerValue {
+    case 0:
         print("비겼습니다!")
-        startGame()
-    } else {
+        inputGameValue()
+    default:
         print("졌습니다!")
     }
 }
 
-func startGame() {
+func inputGameValue() {
     print("가위(1), 바위(2), 보(3)! <종료 : 0> : ", terminator: "")
     
-    let userValue: Int? = inputUserValue()
-    guard let _ = userValue else {
+    let computerValue = makeComputerValue()
+    
+    guard let userValue = inputUserValue() else {
         return
     }
     
-    checkWinOrLose(userValue)
+    checkWinOrLose(userValue, computerValue)
 }
-
-startGame()
+inputGameValue()
