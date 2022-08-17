@@ -10,6 +10,7 @@ func printMenu() {
     
     let computerNumber: Int = Int.random(in: 1...3)
     judgeNumber(computerNumber: computerNumber, userNumber: userNumber)
+    print()
     printMenu()
 }
 
@@ -35,11 +36,11 @@ func isValidNumber(userNumber: Int) -> Bool {
 
 func judgeNumber(computerNumber: Int, userNumber: Int) -> Void {
     if (computerNumber == 1 && userNumber == 3) || userNumber < computerNumber {
-        print("졌습니다!\n")
+        print("졌습니다!")
     } else if computerNumber == userNumber {
-        print("비겼습니다!\n")
+        print("비겼습니다!")
     } else {
-        print("이겼습니다!\n")
+        print("이겼습니다!")
     }
 }
 
