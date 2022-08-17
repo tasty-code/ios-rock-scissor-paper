@@ -1,7 +1,8 @@
 import Foundation
 
 func makeComputerValue() -> Int {
-    return Int.random(in: 1...3)
+    let randomComputerValue = Int.random(in: 1...3)
+    return randomComputerValue
 }
 
 func checkUserValue(_ userValue: Int?) -> Int? {
