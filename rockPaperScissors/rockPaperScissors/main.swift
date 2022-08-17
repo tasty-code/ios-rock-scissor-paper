@@ -4,10 +4,6 @@ func makeComputerValue() -> Int {
     return Int.random(in: 1...3)
 }
 
-func startGame() {
-    print("가위(1), 바위(2), 보(3)! <종료 : 0> : ", terminator: " ")
-}
-
 func checkUserValue(_ userValue: Int?) -> Int? {
     switch userValue {
     case 0:
@@ -21,7 +17,7 @@ func checkUserValue(_ userValue: Int?) -> Int? {
     return nil
 }
 
-func inputUserValue() {
+func inputUserValue() -> Int? {
     let userValue = readLine() ?? "nil"
     var integerUserValue: Int? = 0
     
@@ -31,7 +27,7 @@ func inputUserValue() {
     
     integerUserValue = checkUserValue(integerUserValue)
     
-    print(integerUserValue)
+    return integerUserValue
 }
 
 func checkWinOrLose(_ userValue: Int?) {
@@ -46,4 +42,15 @@ func checkWinOrLose(_ userValue: Int?) {
     }
 }
 
-inputUserValue()
+func startGame() {
+    print("가위(1), 바위(2), 보(3)! <종료 : 0> : ", terminator: "")
+    
+    let userValue: Int? = inputUserValue()
+    guard let _ = userValue else {
+        return
+    }
+    
+    checkWinOrLose(userValue)
+}
+
+startGame()
