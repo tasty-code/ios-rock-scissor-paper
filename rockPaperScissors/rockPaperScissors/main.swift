@@ -20,10 +20,10 @@ func checkUserValue(_ userValue: Int?) -> Int? {
     
     return nil
 }
+
 func inputUserValue() {
     let userValue = readLine() ?? "nil"
     var integerUserValue: Int? = 0
-    
     
     if let value = Int(userValue) {
         integerUserValue = value
@@ -32,6 +32,18 @@ func inputUserValue() {
     integerUserValue = checkUserValue(integerUserValue)
     
     print(integerUserValue)
+}
+
+func checkWinOrLose(_ userValue: Int?) {
+    let computerValue = makeComputerValue()
+    
+    if userValue == 1 && computerValue == 3 || userValue == 2 && computerValue == 1 || userValue == 3 && computerValue == 2 {
+        print("이겼습니다!")
+    } else if userValue == computerValue {
+        print("비겼습니다!")
+    } else {
+        print("졌습니다!")
+    }
 }
 
 inputUserValue()
