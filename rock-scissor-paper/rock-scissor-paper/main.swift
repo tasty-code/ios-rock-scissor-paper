@@ -15,8 +15,8 @@ func printMenu() {
 }
 
 func getUserNumber() -> Int {
-    if let test: Int = Int(readLine() ?? "") {
-        return test
+    if let userNumber: Int = Int(readLine() ?? "") {
+        return userNumber
     }
     
     return -1
