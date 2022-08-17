@@ -14,7 +14,7 @@ func checkUserValue(_ userValue: Int?) -> Int? {
         return userValue
     default:
         print("잘못된 입력입니다. 다시 시도해주세요.")
-        startGame()
+        inputGameValue()
     }
     
     return nil
@@ -41,7 +41,7 @@ func checkWinOrLose(_ userValue: Int,_ computerValue: Int) {
         print("이겼습니다!")
     case 0:
         print("비겼습니다!")
-        startGame()
+        inputGameValue()
     default:
         print("졌습니다!")
     }
@@ -58,10 +58,4 @@ func inputGameValue() {
     
     checkWinOrLose(userValue, computerValue)
 }
-
-func startGame() {
-    inputGameValue()
-}
-
-startGame()
-
+inputGameValue()
