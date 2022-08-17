@@ -33,9 +33,7 @@ func inputUserValue() -> Int? {
     return integerUserValue
 }
 
-func checkWinOrLose(_ userValue: Int?) {
-    let computerValue = makeComputerValue()
-    
+func checkWinOrLose(_ userValue: Int?,_ computerValue: Int) {
     if userValue == 1 && computerValue == 3 || userValue == 2 && computerValue == 1 || userValue == 3 && computerValue == 2 {
         print("이겼습니다!")
     } else if userValue == computerValue {
@@ -46,15 +44,22 @@ func checkWinOrLose(_ userValue: Int?) {
     }
 }
 
-func startGame() {
+func inputGameValue() {
     print("가위(1), 바위(2), 보(3)! <종료 : 0> : ", terminator: "")
     
+    let computerValue = makeComputerValue()
     let userValue: Int? = inputUserValue()
     guard let _ = userValue else {
         return
     }
     
-    checkWinOrLose(userValue)
+    checkWinOrLose(userValue, computerValue)
 }
+
+func startGame() {
+    inputGameValue()
+}
+
+
 
 startGame()
