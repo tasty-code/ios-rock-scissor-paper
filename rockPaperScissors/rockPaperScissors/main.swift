@@ -33,13 +33,16 @@ func inputUserValue() -> Int? {
     return integerUserValue
 }
 
-func checkWinOrLose(_ userValue: Int?,_ computerValue: Int) {
-    if userValue == 1 && computerValue == 3 || userValue == 2 && computerValue == 1 || userValue == 3 && computerValue == 2 {
+func checkWinOrLose(_ userValue: Int,_ computerValue: Int) {
+    let winCaseValue = userValue - computerValue
+    
+    switch winCaseValue {
+    case -2, 1:
         print("이겼습니다!")
-    } else if userValue == computerValue {
+    case 0:
         print("비겼습니다!")
         startGame()
-    } else {
+    default:
         print("졌습니다!")
     }
 }
@@ -49,11 +52,12 @@ func inputGameValue() {
     
     let computerValue = makeComputerValue()
     let userValue: Int? = inputUserValue()
-    guard let _ = userValue else {
+    
+    guard let value = userValue else {
         return
     }
     
-    checkWinOrLose(userValue, computerValue)
+    checkWinOrLose(value, computerValue)
 }
 
 func startGame() {
