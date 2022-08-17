@@ -28,6 +28,7 @@ func isValidNumber(userNumber: Int) -> Bool {
     default:
         print("잘못된 입력입니다. 다시 시도해주세요.\n")
         printMenu()
+        return false
     }
     
     return true
