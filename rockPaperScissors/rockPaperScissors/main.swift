@@ -51,13 +51,12 @@ func inputGameValue() {
     print("가위(1), 바위(2), 보(3)! <종료 : 0> : ", terminator: "")
     
     let computerValue = makeComputerValue()
-    let userValue: Int? = inputUserValue()
     
-    guard let value = userValue else {
+    guard let userValue = inputUserValue() else {
         return
     }
     
-    checkWinOrLose(value, computerValue)
+    checkWinOrLose(userValue, computerValue)
 }
 
 func startGame() {
