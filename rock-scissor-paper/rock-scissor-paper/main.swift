@@ -51,12 +51,15 @@ func invalidInputHandling() {
 }
 
 func judgeNumber(computerNumber: Int, userNumber: Int) -> Void {
-    if (computerNumber == 1 && userNumber == 3) || userNumber < computerNumber {
-        print("졌습니다!\n")
-    } else if computerNumber == userNumber {
-        print("비겼습니다!\n")
-    } else {
+    let numberDictionary: [Int: Int] = [computerNumber: userNumber]
+    
+    switch numberDictionary {
+    case [1: 2], [2: 3], [3: 1]:
         print("이겼습니다!\n")
+    case [1: 3], [2: 1], [3: 2]:
+        print("졌습니다!\n")
+    default:
+        print("비겼습니다!\n")
     }
 }
 
