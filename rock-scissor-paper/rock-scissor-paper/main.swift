@@ -48,9 +48,9 @@ func invalidInputHandling() {
 }
 
 func judgeNumber(computerNumber: Int, userNumber: Int) -> Void {
-    let numberDictionary: [Int: Int] = [computerNumber: userNumber]
+    let computerAndUserNumber: [Int: Int] = [computerNumber: userNumber]
     
-    switch numberDictionary {
+    switch computerAndUserNumber {
     case [1: 2], [2: 3], [3: 1]:
         print("이겼습니다!\n")
     case [1: 3], [2: 1], [3: 2]:
