@@ -29,12 +29,16 @@ func isValidNumber(userNumber: Int) -> Bool {
     case cardNumbersRange:
         break
     default:
-        print("잘못된 입력입니다. 다시 시도해주세요.\n")
-        printMenu()
+        invalidInputHandling()
         return false
     }
     
     return true
+}
+
+func invalidInputHandling() {
+    print("잘못된 입력입니다. 다시 시도해주세요.\n")
+    printMenu()
 }
 
 func judgeNumber(computerNumber: Int, userNumber: Int) -> Void {
