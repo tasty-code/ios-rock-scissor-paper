@@ -9,9 +9,13 @@ func printMenu() {
         return
     }
     
-    let computerNumber: Int = Int.random(in: cardNumbersRange)
     judgeNumber(computerNumber: computerNumber, userNumber: userNumber)
     printMenu()
+}
+
+func makeComputerNumber() -> Int {
+    let computerNumber: Int = Int.random(in: cardNumbersRange)
+    return computerNumber
 }
 
 func getUserNumber() -> Int {
