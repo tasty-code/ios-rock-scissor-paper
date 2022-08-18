@@ -1,20 +1,28 @@
 import Foundation
 
 let cardNumbersRange = 1...3
-func printMenu() {
-    print("가위(1), 바위(2), 보(3)! <종료 : 0> : ", terminator: "")
+func startGame() {
+    printMenu()
+    let computerNumber: Int = makeComputerNumber()
+    let userNumber: Int = manageUserNumber()
     judgeNumber(computerNumber: computerNumber, userNumber: userNumber)
     printMenu()
 }
+
+func printMenu() {
+    print("가위(1), 바위(2), 보(3)! <종료 : 0> : ", terminator: "")
+   }
 
 func makeComputerNumber() -> Int {
     let computerNumber: Int = Int.random(in: cardNumbersRange)
     return computerNumber
 }
 
-func manageUserNumber() {
+func manageUserNumber() -> Int {
     let userNumber: Int = getUserNumber()
-    isValidNumber(userNumber: userNumber)
+    if isValidNumber(userNumber: userNumber)  {
+    
+    }
 }
 
 func getUserNumber() -> Int {
@@ -25,7 +33,7 @@ func getUserNumber() -> Int {
     return -1
 }
 
-func isValidNumber(userNumber: Int) -> Void {
+func isValidNumber(userNumber: Int) -> Bool {
     var isValidBool: Bool = true
     switch userNumber {
     case 0:
@@ -37,9 +45,7 @@ func isValidNumber(userNumber: Int) -> Void {
         isValidBool = false
     }
     
-    if isValidBool == false {
-        return
-    }
+    return isValidBool
 }
 
 func invalidInputHandling() {
@@ -48,9 +54,9 @@ func invalidInputHandling() {
 }
 
 func judgeNumber(computerNumber: Int, userNumber: Int) -> Void {
-    let numberDictionary: [Int: Int] = [computerNumber: userNumber]
+    let computerAndUserNumber: [Int: Int] = [computerNumber: userNumber]
     
-    switch numberDictionary {
+    switch computerAndUserNumber {
     case [1: 2], [2: 3], [3: 1]:
         print("이겼습니다!\n")
     case [1: 3], [2: 1], [3: 2]:
