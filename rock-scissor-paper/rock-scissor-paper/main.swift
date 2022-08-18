@@ -2,18 +2,17 @@ import Foundation
 
 var isDone: Bool = false
 
+func showMenu() {
+     print("가위(1), 바위(2), 보(3)! <종료 : 0> : ", terminator: "")
+}
+
 func getMenuInput() -> Int {
-    
-    print("가위(1), 바위(2), 보(3)! <종료 : 0> : ", terminator: "")
-    
-    guard let input = readLine() else {
-        return Int()
+    func getMenuInput() -> Int {
+        guard let userInput = readLine(), let input = Int(userInput) else {
+            return Int()
+        }
+        return input
     }
-    
-    guard let intInput = Int(input) else {
-        return Int()
-    }
-    return intInput
 }
 
 func createRandomNumber() -> Int {
