@@ -7,12 +7,10 @@ func showMenu() {
 }
 
 func getMenuInput() -> Int {
-    func getMenuInput() -> Int {
-        guard let userInput = readLine(), let input = Int(userInput) else {
-            return Int()
-        }
-        return input
+    guard let userInput = readLine(), let input = Int(userInput) else {
+        return Int()
     }
+    return input
 }
 
 func createRandomNumber() -> Int {
