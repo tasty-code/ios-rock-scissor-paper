@@ -41,6 +41,11 @@ func analysisUserInput(userInput: Int) {
     }
 }
 
-while !isDone {
-    analysisUserInput(userInput: getMenuInput())
+func startGame() {
+    while !isDone {
+        analysisUserInput(userInput: getMenuInput())
+    }
 }
+
+startGame()
+
