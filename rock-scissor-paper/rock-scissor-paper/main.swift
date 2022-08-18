@@ -3,7 +3,6 @@ import Foundation
 let cardNumbersRange = 1...3
 func printMenu() {
     print("가위(1), 바위(2), 보(3)! <종료 : 0> : ", terminator: "")
-    let userNumber: Int = getUserNumber()
     
     if isValidNumber(userNumber: userNumber) == false {
         return
@@ -16,6 +15,11 @@ func printMenu() {
 func makeComputerNumber() -> Int {
     let computerNumber: Int = Int.random(in: cardNumbersRange)
     return computerNumber
+}
+
+func manageUserNumber() {
+    let userNumber: Int = getUserNumber()
+    isValidUserNumber(userNumber)
 }
 
 func getUserNumber() -> Int {
