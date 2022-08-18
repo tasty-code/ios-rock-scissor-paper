@@ -1,5 +1,6 @@
 import Foundation
 
+let cardNumbersRange = 1...3
 func printMenu() {
     print("가위(1), 바위(2), 보(3)! <종료 : 0> : ", terminator: "")
     let userNumber: Int = getUserNumber()
@@ -8,7 +9,7 @@ func printMenu() {
         return
     }
     
-    let computerNumber: Int = Int.random(in: 1...3)
+    let computerNumber: Int = Int.random(in: cardNumbersRange)
     judgeNumber(computerNumber: computerNumber, userNumber: userNumber)
     print()
     printMenu()
@@ -26,7 +27,7 @@ func isValidNumber(userNumber: Int) -> Bool {
     switch userNumber {
     case 0:
         return false
-    case 1...3:
+    case cardNumbersRange:
         break
     default:
         print("잘못된 입력입니다. 다시 시도해주세요.\n")
