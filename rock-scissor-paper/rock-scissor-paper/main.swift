@@ -14,13 +14,7 @@ func makeComputerNumber() -> Int {
 
 func manageUserNumber() {
     let userNumber: Int = getUserNumber()
-    isValidUserNumber(userNumber)
-}
-
-func isValidUserNumber(userNumber: Int) {
-    if isValidNumber(userNumber: userNumber) == false {
-        return
-    }
+    isValidNumber(userNumber: userNumber)
 }
 
 func getUserNumber() -> Int {
@@ -31,18 +25,21 @@ func getUserNumber() -> Int {
     return -1
 }
 
-func isValidNumber(userNumber: Int) -> Bool {
+func isValidNumber(userNumber: Int) -> Void {
+    var isValidBool: Bool = true
     switch userNumber {
     case 0:
-        return false
+        isValidBool = false
     case cardNumbersRange:
         break
     default:
         invalidInputHandling()
-        return false
+        isValidBool = false
     }
     
-    return true
+    if isValidBool == false {
+        return
+    }
 }
 
 func invalidInputHandling() {
