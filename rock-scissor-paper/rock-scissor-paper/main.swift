@@ -14,7 +14,10 @@ func getMenuInput() -> Int {
 }
 
 func createRandomNumber() -> Int {
-    let computerRandomNumber = Int.random(in: 1...3)
+    enum Rockscissorpaper: Int {
+        case scissor = 1, rock, paper
+    }       
+    let computerRandomNumber = Int.random(in: Rockscissorpaper.scissor.rawValue...Rockscissorpaper.paper.rawValue)
     
     return computerRandomNumber
 }
@@ -40,6 +43,7 @@ func analyzeUserInput(userNumber: Int) {
 
 func startGame() {
     while !isDone {
+        showMenu()
         analyzeUserInput(userNumber: getMenuInput())
     }
 }
