@@ -21,7 +21,7 @@ func checkUserValue(_ userValue: Int?) -> Int? {
         return userValue
     default:
         print("잘못된 입력입니다. 다시 시도해주세요.")
-        inputGameValue()
+        startGame()
     }
     
     return nil
@@ -44,6 +44,8 @@ func checkWinOrLose(_ userValue: Int,_ computerValue: Int) {
     let compareValue = (userValue, computerValue)
     
     switch compareValue {
+    case (0, _):
+        break
     case (RockScissorPaper.scissor.rawValue, RockScissorPaper.paper.rawValue):
         print("이겼습니다!")
     case (RockScissorPaper.scissor.rawValue, RockScissorPaper.rock.rawValue):
@@ -58,19 +60,22 @@ func checkWinOrLose(_ userValue: Int,_ computerValue: Int) {
         print("졌습니다!")
     default:
         print("비겼습니다!")
-        inputGameValue()
+        startGame()
     }
 }
 
-func inputGameValue() {
+func gameMenu() {
     print("가위(1), 바위(2), 보(3)! <종료 : 0> : ", terminator: "")
-    
+}
+
+func startGame() {
+    gameMenu()
     let computerValue = makeComputerValue()
-    
     guard let userValue = inputUserValue() else {
         return
     }
     
     checkWinOrLose(userValue, computerValue)
 }
-inputGameValue()
+
+startGame()
