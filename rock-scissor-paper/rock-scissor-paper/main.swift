@@ -1,6 +1,8 @@
 import Foundation
 
 let cardNumbersRange = 1...3
+let player: [String: String] = ["computer": "컴퓨터", "user": "사용자"]
+
 func startGame() {
     printMenu()
     let computerNumber: Int = makeComputerNumber()
@@ -13,7 +15,11 @@ func startGame() {
 
 func printMenu() {
     print("가위(1), 바위(2), 보(3)! <종료 : 0> : ", terminator: "")
-   }
+}
+
+func printGame(winPlayer: String) {
+    print("[\(player[winPlayer])턴] 묵(1), 찌(2), 빠(3)! <종료 : 0>", terminator: "")
+}
 
 func makeComputerNumber() -> Int {
     let computerNumber: Int = Int.random(in: cardNumbersRange)
