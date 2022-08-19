@@ -16,7 +16,7 @@ var type: GameType = .normal
 func startGame() {
     printMenu()
     let computerNumber: Int = makeComputerNumber()
-    let userNumber: Int = manageUserNumber()
+    let userNumber: Int = getUserNumber()
     
     if isValidNumber(userNumber: userNumber) == false {
         return
@@ -40,11 +40,6 @@ func printMenu() {
 func makeComputerNumber() -> Int {
     let computerNumber: Int = Int.random(in: cardNumbersRange)
     return computerNumber
-}
-
-func manageUserNumber() -> Int {
-    let userNumber: Int = getUserNumber()
-    return userNumber
 }
 
 func getUserNumber() -> Int {
@@ -73,6 +68,9 @@ func isValidNumber(userNumber: Int) -> Bool {
 
 func invalidInputHandling(winPlayer: String = "") {
     print("잘못된 입력입니다. 다시 시도해주세요.\n")
+    if type == .Mukjipa {
+        winPlayer = Player.computer.rawValue
+    }
     startGame()
 }
 
