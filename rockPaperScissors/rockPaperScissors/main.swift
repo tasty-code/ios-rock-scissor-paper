@@ -13,10 +13,10 @@ func makeComputerValue() -> Int {
     return randomComputerValue
 }
 
-func checkUserValue(_ userValue: Int?) -> Int? {
+func checkUserValue(_ userValue: Int) -> Int {
     switch userValue {
     case 0:
-        return nil
+        return 0
     case 1, 2, 3:
         return userValue
     default:
@@ -24,20 +24,18 @@ func checkUserValue(_ userValue: Int?) -> Int? {
         startGame()
     }
     
-    return nil
+    return 0
 }
 
-func inputUserValue() -> Int? {
-    let userValue = readLine()
-    var integerUserValue: Int?
-    
-    if let value = userValue {
-        integerUserValue = Int(value)
+func inputUserValue() -> Int {
+    guard let userValue = readLine(), let value = Int(userValue) else {
+        print("잘못된 입력입니다. 다시 시도해주세요.")
+        startGame()
+        return 0
     }
     
-    integerUserValue = checkUserValue(integerUserValue)
-    
-    return integerUserValue
+    let checkValue = checkUserValue(value)
+    return checkValue
 }
 
 func checkWinOrLose(_ userValue: Int,_ computerValue: Int) {
