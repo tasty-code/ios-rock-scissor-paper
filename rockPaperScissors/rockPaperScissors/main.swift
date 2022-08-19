@@ -69,9 +69,7 @@ func gameMenu() {
 func startGame() {
     gameMenu()
     let computerValue = makeComputerValue()
-    guard let userValue = inputUserValue() else {
-        return
-    }
+    let userValue = inputUserValue()
     
     checkWinOrLose(userValue, computerValue)
 }
