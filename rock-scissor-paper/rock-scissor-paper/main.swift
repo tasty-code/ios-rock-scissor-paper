@@ -30,28 +30,28 @@ func analyzeUserInput(userNumber: Int) {
     switch comparisonOfNumber {
     case (0, _):
         isDone = true
-    case (1, 1):
+    case (RockScissorPaper.scissor.rawValue, RockScissorPaper.scissor.rawValue):
         print("비겼습니다!\n")
-    case (1, 3):
+    case (RockScissorPaper.scissor.rawValue, RockScissorPaper.paper.rawValue):
         print("이겼습니다!\n")
         isDone = true
-    case (1, 2):
+    case (RockScissorPaper.scissor.rawValue, RockScissorPaper.rock.rawValue):
         print("졌습니다!\n")
         isDone = true
-    case (2, 2):
+    case (RockScissorPaper.rock.rawValue, RockScissorPaper.rock.rawValue):
         print("비겼습니다!\n")
-    case (2, 1):
+    case (RockScissorPaper.rock.rawValue, RockScissorPaper.scissor.rawValue):
         print("이겼습니다!\n")
         isDone = true
-    case (2, 3):
+    case (RockScissorPaper.rock.rawValue, RockScissorPaper.paper.rawValue):
         print("졌습니다!\n")
         isDone = true
-    case (3, 3):
+    case (RockScissorPaper.paper.rawValue, RockScissorPaper.paper.rawValue):
         print("비겼습니다!\n")
-    case (3, 2):
+    case (RockScissorPaper.paper.rawValue, RockScissorPaper.paper.rawValue):
         print("이겼습니다!\n")
         isDone = true
-    case (3, 1):
+    case (RockScissorPaper.paper.rawValue, RockScissorPaper.scissor.rawValue):
         print("졌습니다!\n")
         isDone = true
     default:
