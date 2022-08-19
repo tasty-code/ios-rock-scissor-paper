@@ -35,6 +35,7 @@ func inputUserValue() -> Int {
     }
     
     let checkValue = checkUserValue(value)
+    
     return checkValue
 }
 
