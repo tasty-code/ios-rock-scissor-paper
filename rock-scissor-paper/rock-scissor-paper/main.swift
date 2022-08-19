@@ -5,8 +5,10 @@ func startGame() {
     printMenu()
     let computerNumber: Int = makeComputerNumber()
     let userNumber: Int = manageUserNumber()
+    if isValidNumber(userNumber: userNumber) == false {
+        return
+    }
     judgeNumber(computerNumber: computerNumber, userNumber: userNumber)
-    printMenu()
 }
 
 func printMenu() {
@@ -20,9 +22,7 @@ func makeComputerNumber() -> Int {
 
 func manageUserNumber() -> Int {
     let userNumber: Int = getUserNumber()
-    if isValidNumber(userNumber: userNumber)  {
-    
-    }
+    return userNumber
 }
 
 func getUserNumber() -> Int {
@@ -50,7 +50,7 @@ func isValidNumber(userNumber: Int) -> Bool {
 
 func invalidInputHandling() {
     print("잘못된 입력입니다. 다시 시도해주세요.\n")
-    printMenu()
+    startGame()
 }
 
 func judgeNumber(computerNumber: Int, userNumber: Int) -> Void {
@@ -64,6 +64,8 @@ func judgeNumber(computerNumber: Int, userNumber: Int) -> Void {
     default:
         print("비겼습니다!\n")
     }
+    
+    startGame()
 }
 
-printMenu()
+startGame()
