@@ -1,5 +1,11 @@
 import Foundation
 
+enum RockScissorPaper: Int {
+    case scissor = 1
+    case rock = 2
+    case paper = 3
+}
+
 func makeComputerValue() -> Int {
     let randomNumberRange = 1...3
     let randomComputerValue = Int.random(in: randomNumberRange)
@@ -35,16 +41,24 @@ func inputUserValue() -> Int? {
 }
 
 func checkWinOrLose(_ userValue: Int,_ computerValue: Int) {
-    let winCaseValue = userValue - computerValue
+    let compareValue = (userValue, computerValue)
     
-    switch winCaseValue {
-    case -2, 1:
+    switch compareValue {
+    case (RockScissorPaper.scissor.rawValue, RockScissorPaper.paper.rawValue):
         print("이겼습니다!")
-    case 0:
+    case (RockScissorPaper.scissor.rawValue, RockScissorPaper.rock.rawValue):
+        print("졌습니다!")
+    case (RockScissorPaper.rock.rawValue, RockScissorPaper.scissor.rawValue):
+        print("이겼습니다!")
+    case (RockScissorPaper.rock.rawValue, RockScissorPaper.paper.rawValue):
+        print("졌습니다")
+    case (RockScissorPaper.paper.rawValue, RockScissorPaper.rock.rawValue):
+        print("이겼습니다!")
+    case (RockScissorPaper.paper.rawValue, RockScissorPaper.scissor.rawValue):
+        print("졌습니다!")
+    default:
         print("비겼습니다!")
         inputGameValue()
-    default:
-        print("졌습니다!")
     }
 }
 
