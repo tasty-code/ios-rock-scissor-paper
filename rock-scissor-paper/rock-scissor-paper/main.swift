@@ -1,35 +1,40 @@
 import Foundation
 
+enum Player: String {
+    case user = "사용자"
+    case computer = "컴퓨터"
+}
+enum GameType {
+    case normal
+    case Mukjipa
+}
+
 let cardNumbersRange = 1...3
+var winPlayer: String = ""
+var type: GameType = .normal
 
 func startGame() {
     printMenu()
     let computerNumber: Int = makeComputerNumber()
     let userNumber: Int = manageUserNumber()
-    if isValidNumber(type: "normal",userNumber: userNumber) == false {
+    
+    if isValidNumber(userNumber: userNumber) == false {
         return
     }
-    judgeNumber(computerNumber: computerNumber, userNumber: userNumber)
+    if type == .normal {
+        judgeNumber(computerNumber: computerNumber, userNumber: userNumber)
+    } else {
+        judgeMukjipaNumber(computerNumber: computerNumber, userNumber: userNumber)
+    }
 }
 
 func printMenu() {
-    print("가위(1), 바위(2), 보(3)! <종료 : 0> : ", terminator: "")
-}
-
-func startMukJiPa(winPlayer: String) {
-    printGame(winPlayer: winPlayer)
-    let computerNumber: Int = makeComputerNumber()
-    let userNumber: Int = manageUserNumber()
-    
-    if isValidNumber(type: "MukJiPa", userNumber: userNumber) == false {
-        return
+    if type == .normal {
+        print("가위(1), 바위(2), 보(3)! <종료 : 0> : ", terminator: "")
+    } else {
+        print("[\(winPlayer) 턴] 묵(1), 찌(2), 빠(3)! <종료 : 0> : ", terminator: "")
     }
     
-    judgeMukJiPaNumber(winPlayer: winPlayer, computerNumber: computerNumber, userNumber: userNumber)
-}
-
-func printGame(winPlayer: String) {
-    print("[\(getWinPlayerName(winPlayer: winPlayer)) 턴] 묵(1), 찌(2), 빠(3)! <종료 : 0> : ", terminator: "")
 }
 
 func makeComputerNumber() -> Int {
@@ -50,29 +55,25 @@ func getUserNumber() -> Int {
     return -1
 }
 
-func isValidNumber(type: String, userNumber: Int) -> Bool {
+func isValidNumber(userNumber: Int) -> Bool {
     var isValidBool: Bool = true
+    
     switch userNumber {
     case 0:
         isValidBool = false
     case cardNumbersRange:
         break
     default:
-        invalidInputHandling(type: type)
+        invalidInputHandling()
         isValidBool = false
     }
     
     return isValidBool
 }
 
-func invalidInputHandling(type: String, winPlayer: String = "") {
+func invalidInputHandling(winPlayer: String = "") {
     print("잘못된 입력입니다. 다시 시도해주세요.\n")
     startGame()
-    if type == "normal" {
-        startGame()
-    } else {
-        startMukJiPa(winPlayer: <#T##String#>)
-    }
 }
 
 func judgeNumber(computerNumber: Int, userNumber: Int) -> Void {
@@ -81,10 +82,10 @@ func judgeNumber(computerNumber: Int, userNumber: Int) -> Void {
     switch computerAndUserNumber {
     case [1: 2], [2: 3], [3: 1]:
         print("이겼습니다!\n")
-        startMukJiPa(winPlayer: "user")
+        changeGameTypeAndWinPlayer(winner: .user)
     case [1: 3], [2: 1], [3: 2]:
         print("졌습니다!\n")
-        startMukJiPa(winPlayer: "computer")
+        changeGameTypeAndWinPlayer(winner: .computer)
     default:
         print("비겼습니다!\n")
     }
@@ -92,27 +93,26 @@ func judgeNumber(computerNumber: Int, userNumber: Int) -> Void {
     startGame()
 }
 
-func judgeMukJiPaNumber(winPlayer: String, computerNumber: Int, userNumber: Int) -> Void {
+func judgeMukjipaNumber(computerNumber: Int, userNumber: Int) -> Void {
     let computerAndUserNumber: [Int: Int] = [computerNumber: userNumber]
     
     switch computerAndUserNumber {
     case [1: 2], [2: 3], [3: 1]:
-        print("")
-        startMukJiPa(winPlayer: winPlayer)
+        winPlayer = Player.user.rawValue
+        print("\(winPlayer)의 턴입니다\n")
+        startGame()
     case [1: 3], [2: 1], [3: 2]:
-        
-        startMukJiPa(winPlayer: winPlayer)
+        winPlayer = Player.computer.rawValue
+        print("\(winPlayer)의 턴입니다\n")
+        startGame()
     default:
-        print("\(getWinPlayerName(winPlayer: winPlayer))의 승리!")
+        print("\(winPlayer)의 승리!\n")
     }
 }
 
-func getWinPlayerName(winPlayer: String) -> String {
-    let player: [String: String] = ["computer": "컴퓨터", "user": "사용자"]
-    if let winPlayerName = player[winPlayer] {
-        return winPlayerName
-    }
-    return "-"
+func changeGameTypeAndWinPlayer(winner: Player) {
+    winPlayer = winner.rawValue
+    type = GameType.Mukjipa
 }
 
 startGame()
