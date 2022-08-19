@@ -1,7 +1,8 @@
 import Foundation
 
 func makeComputerValue() -> Int {
-    let randomComputerValue = Int.random(in: 1...3)
+    let randomNumberRange = 1...3
+    let randomComputerValue = Int.random(in: randomNumberRange)
     
     return randomComputerValue
 }
