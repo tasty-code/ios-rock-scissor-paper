@@ -10,13 +10,13 @@ enum GameType {
 }
 
 let cardNumbersRange = 1...3
-var winPlayer: String = ""
+var winPlayerName: String = ""
 var type: GameType = .normal
 
 func startGame() {
     printMenu()
     let computerNumber: Int = makeComputerNumber()
-    let userNumber: Int = manageUserNumber()
+    let userNumber: Int = getUserNumber()
     
     if isValidNumber(userNumber: userNumber) == false {
         return
@@ -32,7 +32,7 @@ func printMenu() {
     if type == .normal {
         print("가위(1), 바위(2), 보(3)! <종료 : 0> : ", terminator: "")
     } else {
-        print("[\(winPlayer) 턴] 묵(1), 찌(2), 빠(3)! <종료 : 0> : ", terminator: "")
+        print("[\(winPlayerName) 턴] 묵(1), 찌(2), 빠(3)! <종료 : 0> : ", terminator: "")
     }
     
 }
@@ -40,11 +40,6 @@ func printMenu() {
 func makeComputerNumber() -> Int {
     let computerNumber: Int = Int.random(in: cardNumbersRange)
     return computerNumber
-}
-
-func manageUserNumber() -> Int {
-    let userNumber: Int = getUserNumber()
-    return userNumber
 }
 
 func getUserNumber() -> Int {
@@ -73,6 +68,9 @@ func isValidNumber(userNumber: Int) -> Bool {
 
 func invalidInputHandling(winPlayer: String = "") {
     print("잘못된 입력입니다. 다시 시도해주세요.\n")
+    if type == .Mukjipa {
+        winPlayerName = Player.computer.rawValue
+    }
     startGame()
 }
 
@@ -98,20 +96,20 @@ func judgeMukjipaNumber(computerNumber: Int, userNumber: Int) -> Void {
     
     switch computerAndUserNumber {
     case [1: 2], [2: 3], [3: 1]:
-        winPlayer = Player.user.rawValue
-        print("\(winPlayer)의 턴입니다\n")
+        winPlayerName = Player.user.rawValue
+        print("\(winPlayerName)의 턴입니다\n")
         startGame()
     case [1: 3], [2: 1], [3: 2]:
-        winPlayer = Player.computer.rawValue
-        print("\(winPlayer)의 턴입니다\n")
+        winPlayerName = Player.computer.rawValue
+        print("\(winPlayerName)의 턴입니다\n")
         startGame()
     default:
-        print("\(winPlayer)의 승리!\n")
+        print("\(winPlayerName)의 승리!\n")
     }
 }
 
 func changeGameTypeAndWinPlayer(winner: Player) {
-    winPlayer = winner.rawValue
+    winPlayerName = winner.rawValue
     type = GameType.Mukjipa
 }
 
