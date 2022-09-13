@@ -23,3 +23,15 @@ func paper(_ computerNumber: Int) {
         print("비겼습니다")
     }
 }
+
+func scissors(_ computerNumber: Int) {
+    if computerNumber == 1 {
+        print("비겼습니다")
+    }
+    else if computerNumber == 2 {
+        print("졌습니다")
+    }
+    else if computerNumber == 3 {
+        print("이겼습니다")
+    }
+}
