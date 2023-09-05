@@ -5,29 +5,31 @@
 // 
 
 import Foundation
-var isContinue = true
 
+var isContinue = true
 while isContinue {
     print("가위(1), 바위(2), 보(3)! <종료: 0> : ", terminator: "")
     let str = readLine() ?? "error"
-
     guard let num = Int(str), (0...3).contains(num) else {
         print("잘못된 입력입니다. 다시 시도해주세요.")
         continue
     }
-    isContinue = battle(player: num)
+    
+    do {
+        isContinue = try battle(player: num)
+    } catch {
+        print("잘못된 입력입니다. 다시 시도해주세요.")
+    }
 }
 
 
-func battle(player: Int) -> Bool {
+func battle(player: Int) throws -> Bool {
     guard let computer = (1...3).randomElement() else {
-        print("오류가 발생했습니다.")
-        return false
+        throw RPCError.invalidInputError
     }
     
     guard let playerHand = RockPaperScissors(rawValue: player), let computerHand = RockPaperScissors(rawValue: computer) else {
-        print("오류가 발생했습니다.")
-        return false
+        throw RPCError.invalidInputError
     }
     
     if playerHand == computerHand {

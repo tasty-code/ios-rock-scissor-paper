@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		0D3D20FD2AA7253900BBEC3C /* RPCError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0D3D20FC2AA7253900BBEC3C /* RPCError.swift */; };
 		C7ABA0E1254EA63000B2367D /* main.swift in Sources */ = {isa = PBXBuildFile; fileRef = C7ABA0E0254EA63000B2367D /* main.swift */; };
 		E35651F42AA6B3F3005A7916 /* RockPaperScissors.swift in Sources */ = {isa = PBXBuildFile; fileRef = E35651F32AA6B3F3005A7916 /* RockPaperScissors.swift */; };
 /* End PBXBuildFile section */
@@ -24,6 +25,7 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		0D3D20FC2AA7253900BBEC3C /* RPCError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RPCError.swift; sourceTree = "<group>"; };
 		C7ABA0DD254EA63000B2367D /* RockPaperScissors */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = RockPaperScissors; sourceTree = BUILT_PRODUCTS_DIR; };
 		C7ABA0E0254EA63000B2367D /* main.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = main.swift; sourceTree = "<group>"; };
 		E35651F32AA6B3F3005A7916 /* RockPaperScissors.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RockPaperScissors.swift; sourceTree = "<group>"; };
@@ -43,7 +45,6 @@
 		C7ABA0D4254EA63000B2367D = {
 			isa = PBXGroup;
 			children = (
-				E35651F32AA6B3F3005A7916 /* RockPaperScissors.swift */,
 				C7ABA0DF254EA63000B2367D /* RockPaperScissors */,
 				C7ABA0DE254EA63000B2367D /* Products */,
 			);
@@ -60,7 +61,9 @@
 		C7ABA0DF254EA63000B2367D /* RockPaperScissors */ = {
 			isa = PBXGroup;
 			children = (
+				E35651F32AA6B3F3005A7916 /* RockPaperScissors.swift */,
 				C7ABA0E0254EA63000B2367D /* main.swift */,
+				0D3D20FC2AA7253900BBEC3C /* RPCError.swift */,
 			);
 			path = RockPaperScissors;
 			sourceTree = "<group>";
@@ -122,6 +125,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				0D3D20FD2AA7253900BBEC3C /* RPCError.swift in Sources */,
 				E35651F42AA6B3F3005A7916 /* RockPaperScissors.swift in Sources */,
 				C7ABA0E1254EA63000B2367D /* main.swift in Sources */,
 			);
