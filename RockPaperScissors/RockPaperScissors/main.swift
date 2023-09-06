@@ -2,8 +2,6 @@
 //  RockPaperScissors - main.swift
 //  Created by tacocat.
 //  Copyright © tastycode. All rights reserved.
-//
-//var computerSelect: String
 var isRunning: Bool = true
 
 while isRunning {
