@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		C7ABA0E1254EA63000B2367D /* main.swift in Sources */ = {isa = PBXBuildFile; fileRef = C7ABA0E0254EA63000B2367D /* main.swift */; };
 		CBA033FD2AA80DAC002B44BC /* RPSGame.swift in Sources */ = {isa = PBXBuildFile; fileRef = CBA033FC2AA80DAC002B44BC /* RPSGame.swift */; };
+		DE4C046C2AA877A300F552E8 /* Choice.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE4C046B2AA877A300F552E8 /* Choice.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -27,6 +28,7 @@
 		C7ABA0DD254EA63000B2367D /* RockPaperScissors */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = RockPaperScissors; sourceTree = BUILT_PRODUCTS_DIR; };
 		C7ABA0E0254EA63000B2367D /* main.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = main.swift; sourceTree = "<group>"; };
 		CBA033FC2AA80DAC002B44BC /* RPSGame.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RPSGame.swift; sourceTree = "<group>"; };
+		DE4C046B2AA877A300F552E8 /* Choice.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Choice.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -61,6 +63,7 @@
 			children = (
 				C7ABA0E0254EA63000B2367D /* main.swift */,
 				CBA033FC2AA80DAC002B44BC /* RPSGame.swift */,
+				DE4C046B2AA877A300F552E8 /* Choice.swift */,
 			);
 			path = RockPaperScissors;
 			sourceTree = "<group>";
@@ -122,6 +125,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				DE4C046C2AA877A300F552E8 /* Choice.swift in Sources */,
 				C7ABA0E1254EA63000B2367D /* main.swift in Sources */,
 				CBA033FD2AA80DAC002B44BC /* RPSGame.swift in Sources */,
 			);

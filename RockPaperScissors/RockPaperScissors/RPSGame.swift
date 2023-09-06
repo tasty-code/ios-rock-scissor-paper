@@ -14,17 +14,17 @@ class RPSGame {
             printMenu()
             
             let userChoice = getUserChoice()
-
-            if userChoice == 0 {
+            
+            if userChoice == .stop {
                 print("게임 종료")
                 break
             }
-
-            let botChoice = generateRandomInteger()
-
+            
+            let botChoice = generateRandomChoice()
+            
             let result = getResult(userChoice, botChoice)
             print(result)
-
+            
             if gameStop(result) { break }
         }
     }
@@ -33,25 +33,31 @@ class RPSGame {
         print("가위(1), 바위(2), 보(3)! <종료 : 0> :", terminator: " ")
     }
     
-    private func getUserChoice() -> Int {
-        guard let input = readLine(), let number = Int(input), (0...3).contains(number) else {
+    private func getUserChoice() -> Choice {
+        guard let input = readLine(), let number = Int(input), let choice = Choice(rawValue: number) else {
             print("잘못된 입력입니다. 다시 시도해주세요.")
             printMenu()
             return getUserChoice()
         }
-
-        return number
+        return choice
     }
     
-    private func generateRandomInteger() -> Int {
-        return Int.random(in: 1...3)
+    private func generateRandomChoice() -> Choice {
+        switch Int.random(in: 1...3) {
+        case Choice.scissors.rawValue:
+            return Choice.scissors
+        case Choice.rock.rawValue:
+            return Choice.rock
+        default:
+            return Choice.paper
+        }
     }
     
-    private func getResult(_ userChoice: Int, _ botChoice: Int) -> String {
+    private func getResult(_ userChoice: Choice, _ botChoice: Choice) -> String {
         switch (userChoice, botChoice) {
-        case let (lhs, rhs) where lhs == rhs:
+        case (.scissors, .scissors), (.rock, .rock), (.paper, .paper):
             return "비겼습니다!"
-        case (1, 3), (2, 1), (3, 2):
+        case (.scissors, .paper), (.rock, .scissors), (.paper, .rock):
             return "이겼습니다!"
         default:
             return "졌습니다!"
