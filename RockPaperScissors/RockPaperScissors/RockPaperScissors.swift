@@ -16,5 +16,14 @@ final class RockPaperScissors {
     
     func start() {
         
+        while true {
+            print("가위(1), 바위(2), 보(3)! <종료: 0> : ", terminator: "")
+            guard let userInput = readLine() else { return }
+            
+            if userInput == "0" {
+                print("게임 종료")
+                break
+            }
+        }
     }
 }
