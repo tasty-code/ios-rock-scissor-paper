@@ -14,6 +14,8 @@ final class RockPaperScissors {
         case paper = "3"
     }
     
+    private let aiHand = Hand.allCases.randomElement()
+    
     func start() {
         
         while true {
@@ -26,10 +28,19 @@ final class RockPaperScissors {
             }
             
             guard let userHand = Hand(rawValue: userInput) else {
-                print("잘못된 입력입니다, 다시 시도해주세요.")
+                print("잘못된 입력입니다. 다시 시도해주세요.")
                 continue
             }
             
+            if userHand == aiHand {
+                print("비겼습니다!")
+            }
+            else if (userHand == .scissors && aiHand == .paper) || (userHand == .rock && aiHand == .scissors) || (userHand == .paper && aiHand == .rock) {
+                return print("이겼습니다!")
+            }
+            else {
+                return print("졌습니다!")
+            }
         }
     }
 }
