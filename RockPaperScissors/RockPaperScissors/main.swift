@@ -6,19 +6,20 @@
 
 import Foundation
 
-var isExitCondition : Bool = false
+var isExitCondition: Bool = false
 
-enum RockPaperScissorsError : Error {
+enum RockPaperScissorsError: Error
+{
     case invalidInput
 }
 
 while true
 {
     print("가위(1), 바위(2), 보(3)! <종료 : 0> : ", terminator: "")
-    
+
     do
     {
-       try playRockPaperScissors()
+        try playRockPaperScissors()
     }
     catch RockPaperScissorsError.invalidInput
     {
@@ -34,7 +35,7 @@ while true
 
 func playRockPaperScissors() throws
 {
-    let user : Int = try checkInput()
+    let user: Int = try checkInput()
 
     switch user
     {
@@ -48,28 +49,29 @@ func playRockPaperScissors() throws
     }
 }
 
-func checkInput() throws ->  Int
+func checkInput() throws -> Int
 {
-    guard let user = readLine(), let user = Int(user) else
+    guard let user = readLine(), let user = Int(user)
+    else
     {
         throw RockPaperScissorsError.invalidInput
     }
     return user
 }
 
-func getGameResult(of user : Int)
+func getGameResult(of user: Int)
 {
     isExitCondition = false
     let computer = Int.random(in: 1...3)
-    
+
     if user == computer
     {
         print("비겼습니다")
     }
     else if isWin(of: user, versus: computer)
     {
-       print("이겼습니다")
-       isExitCondition.toggle()
+        print("이겼습니다")
+        isExitCondition.toggle()
     }
     else
     {
@@ -78,9 +80,9 @@ func getGameResult(of user : Int)
     }
 }
 
-func isWin(of user : Int, versus computer : Int) -> Bool
+func isWin(of user: Int, versus computer: Int) -> Bool
 {
-    let winCase : [Int : Int] = [1:3, 2:1, 3:2]
+    let winCase: [Int: Int] = [1: 3, 2: 1, 3: 2]
 
     if winCase[user] == computer
     {
