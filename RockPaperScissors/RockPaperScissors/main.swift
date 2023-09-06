@@ -14,11 +14,18 @@ while isContinue {
         print("잘못된 입력입니다. 다시 시도해주세요.")
         continue
     }
+    
+    if num == 0 {
+        print("게임 종료.")
+        break
+    }
+    
     var turn = true
     do {
         turn = try battle(player: num)
     } catch RPCError.sameHandError {
         print("비겼습니다!")
+        continue
     } catch {
         print("잘못된 입력입니다. 다시 시도해주세요.")
         isContinue = false
@@ -32,8 +39,9 @@ while isContinue {
             print("잘못된 입력입니다. 다시 시도해주세요.")
             continue
         }
-        if num == 0 {
+        if num2 == 0 {
             isContinue = false
+            print("게임 종료.")
             break
         }
         do {
