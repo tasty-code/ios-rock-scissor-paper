@@ -37,18 +37,8 @@ var isRunning: Bool = true
 
 while isRunning {
     print(Alert.prompt.rawValue)
-    
-    let userInput = readLine()
-    guard let input = userInput else {
-        print(Alert.tryAgain.rawValue)
-        break
-    }
-    
-    guard let choice = Int(input) else {
-        print(Alert.tryAgain.rawValue)
-        break
-    }
-    
+    let choice = userInput()
+
     guard choice != 0 else {
         print(Alert.end.rawValue)
         isRunning = false
@@ -69,21 +59,33 @@ while isRunning {
         break
     }
     
-    guard choice != computerChoice else {
-        print(Alert.draw.rawValue)
-        break
-    }
     
-    if choice > computerChoice {
+    if choice == computerChoice {
+        print(Alert.draw.rawValue)
+    } else if choice > computerChoice {
         print(Alert.win.rawValue)
+        isRunning = false
+    } else if choice < 0 {
+        print(Alert.tryAgain.rawValue)
     } else {
         print(Alert.lose.rawValue)
+        isRunning = false
     }
-    
-    isRunning = false
-    break
 }
 
+func userInput() -> Int {
+    let userInput = readLine()
+    guard let input = userInput else {
+        print(Alert.tryAgain.rawValue)
+        return -1
+    }
+    guard let choice = Int(input) else {
+        print(Alert.tryAgain.rawValue)
+        return -1
+    }
+    
+    return choice
+}
 
 
 
