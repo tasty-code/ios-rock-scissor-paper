@@ -7,6 +7,9 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		0458E3B22AA8127E00F1FA49 /* InterfaceScript.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0458E3B12AA8127E00F1FA49 /* InterfaceScript.swift */; };
+		0458E3B42AA8130000F1FA49 /* Order.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0458E3B32AA8130000F1FA49 /* Order.swift */; };
+		0458E3B72AA813DD00F1FA49 /* RockPaperScissors.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0458E3B62AA813DD00F1FA49 /* RockPaperScissors.swift */; };
 		C7ABA0E1254EA63000B2367D /* main.swift in Sources */ = {isa = PBXBuildFile; fileRef = C7ABA0E0254EA63000B2367D /* main.swift */; };
 /* End PBXBuildFile section */
 
@@ -23,6 +26,9 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		0458E3B12AA8127E00F1FA49 /* InterfaceScript.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InterfaceScript.swift; sourceTree = "<group>"; };
+		0458E3B32AA8130000F1FA49 /* Order.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Order.swift; sourceTree = "<group>"; };
+		0458E3B62AA813DD00F1FA49 /* RockPaperScissors.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RockPaperScissors.swift; sourceTree = "<group>"; };
 		C7ABA0DD254EA63000B2367D /* RockPaperScissors */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = RockPaperScissors; sourceTree = BUILT_PRODUCTS_DIR; };
 		C7ABA0E0254EA63000B2367D /* main.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = main.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -38,6 +44,23 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		0458E3B02AA8127200F1FA49 /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				0458E3B12AA8127E00F1FA49 /* InterfaceScript.swift */,
+				0458E3B32AA8130000F1FA49 /* Order.swift */,
+			);
+			path = Models;
+			sourceTree = "<group>";
+		};
+		0458E3B52AA8135600F1FA49 /* Class */ = {
+			isa = PBXGroup;
+			children = (
+				0458E3B62AA813DD00F1FA49 /* RockPaperScissors.swift */,
+			);
+			path = Class;
+			sourceTree = "<group>";
+		};
 		C7ABA0D4254EA63000B2367D = {
 			isa = PBXGroup;
 			children = (
@@ -58,6 +81,8 @@
 			isa = PBXGroup;
 			children = (
 				C7ABA0E0254EA63000B2367D /* main.swift */,
+				0458E3B52AA8135600F1FA49 /* Class */,
+				0458E3B02AA8127200F1FA49 /* Models */,
 			);
 			path = RockPaperScissors;
 			sourceTree = "<group>";
@@ -119,6 +144,9 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				0458E3B42AA8130000F1FA49 /* Order.swift in Sources */,
+				0458E3B22AA8127E00F1FA49 /* InterfaceScript.swift in Sources */,
+				0458E3B72AA813DD00F1FA49 /* RockPaperScissors.swift in Sources */,
 				C7ABA0E1254EA63000B2367D /* main.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
