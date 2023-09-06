@@ -49,7 +49,7 @@ class RPSGame {
     
     private func getResult(_ userChoice: Int, _ botChoice: Int) -> String {
         switch (userChoice, botChoice) {
-        case let (param1, param2) where param1 == param2:
+        case let (lhs, rhs) where lhs == rhs:
             return "비겼습니다!"
         case (1, 3), (2, 1), (3, 2):
             return "이겼습니다!"
@@ -64,5 +64,4 @@ class RPSGame {
         }
         return false
     }
-    
 }
