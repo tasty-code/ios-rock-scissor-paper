@@ -22,6 +22,8 @@ class RPSGame {
                 break
             }
             
+            let result = getWinner(userChoice, botChoice)
+            print(result)
         }
     }
     
@@ -32,6 +34,7 @@ class RPSGame {
     private func getUserChoice() -> Int {
         guard let input = readLine(), let number = Int(input), (0...3).contains(number) else {
             print("잘못된 입력입니다. 다시 시도해주세요.")
+            printMenu()
             return getUserChoice()
         }
 
@@ -40,5 +43,17 @@ class RPSGame {
     
     private func generateRandomInteger() -> Int {
         return Int.random(in: 1...3)
+    }
+    
+    private func getWinner(_ userChoice: Int, _ botChoice: Int) -> String {
+        if userChoice == botChoice {
+            return "비겼습니다!"
+        } else if (userChoice == 1 && botChoice == 3) ||
+                    (userChoice == 2 && botChoice == 1) ||
+                        (userChoice == 3 && botChoice == 2) {
+            return "이겼습니다!"
+        } else {
+            return "졌습니다!"
+        }
     }
 }
