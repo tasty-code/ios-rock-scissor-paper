@@ -16,7 +16,8 @@ while true
 {
     print("가위(1), 바위(2), 보(3)! <종료 : 0> : ", terminator: "")
     
-    do {
+    do
+    {
         let user : Int = try checkInput()
         
         switch user
@@ -29,7 +30,8 @@ while true
             throw RockPaperScissorsError.invalidInput
         }
     }
-    catch RockPaperScissorsError.invalidInput {
+    catch RockPaperScissorsError.invalidInput
+    {
         print("잘못된 입력입니다. 다시 입력해주세요")
     }
     
