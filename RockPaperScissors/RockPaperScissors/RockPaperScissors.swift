@@ -8,11 +8,16 @@
 import Foundation
 
 final class RockPaperScissors {
+    
+    // MARK: - Enum
+    
     enum Hand : String, CaseIterable {
         case scissors = "1"
         case rock = "2"
         case paper = "3"
     }
+    
+    // MARK: - Start
     
     func start() {
         while true {
