@@ -14,11 +14,35 @@ while isContinue {
         print("잘못된 입력입니다. 다시 시도해주세요.")
         continue
     }
-    
+    var turn = true
     do {
-        isContinue = try battle(player: num)
+        turn = try battle(player: num)
+    } catch RPCError.sameHandError {
+        print("비겼습니다!")
     } catch {
         print("잘못된 입력입니다. 다시 시도해주세요.")
+        isContinue = false
+    }
+    
+    while true {
+        let turnString = turn ? "사용자" : "컴퓨터"
+        print("[\(turnString) 턴] 묵(1), 찌(2), 빠(3)! <종료 : 0> : ", terminator: "")
+        let str2 = readLine() ?? "error"
+        guard let num2 = Int(str2), (0...3).contains(num2) else {
+            print("잘못된 입력입니다. 다시 시도해주세요.")
+            continue
+        }
+        if num == 0 {
+            isContinue = false
+            break
+        }
+        do {
+            turn = try mukJjiBba(player: num2)
+        } catch RPCError.sameHandError {
+            print("\(turnString)의 승리!")
+            isContinue = false
+            break
+        }
     }
 }
 
@@ -33,13 +57,34 @@ func battle(player: Int) throws -> Bool {
     }
     
     if playerHand == computerHand {
-        print("비겼습니다!")
-        return true
-    }else if computerHand < playerHand {
+        
+        throw RPCError.sameHandError
+    } else if computerHand < playerHand {
         print("이겼습니다!")
-        return false
-    }else{
+        return true
+    } else {
         print("졌습니다!")
+        return false
+    }
+}
+
+func mukJjiBba(player: Int) throws -> Bool {
+    guard let computer = (1...3).randomElement() else {
+        throw RPCError.invalidInputError
+    }
+    
+    guard let playerHand = RockPaperScissors(rawValue: player), let computerHand = RockPaperScissors(rawValue: computer) else {
+        throw RPCError.invalidInputError
+    }
+    
+    if playerHand == computerHand {
+        
+        throw RPCError.sameHandError
+    } else if computerHand < playerHand {
+        
+        return true
+    } else {
+        
         return false
     }
 }
