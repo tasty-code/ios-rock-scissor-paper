@@ -24,6 +24,12 @@ final class RockPaperScissors {
                 print("게임 종료")
                 break
             }
+            
+            guard let userHand = Hand(rawValue: userInput) else {
+                print("잘못된 입력입니다, 다시 시도해주세요.")
+                continue
+            }
+            
         }
     }
 }
