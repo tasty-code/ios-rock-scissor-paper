@@ -14,8 +14,6 @@ final class RockPaperScissors {
         case paper = "3"
     }
     
-    private let aiHand = Hand.allCases.randomElement()
-    
     func start() {
         
         while true {
@@ -26,7 +24,7 @@ final class RockPaperScissors {
                 print("게임 종료")
                 break
             }
-            
+            let aiHand = Hand.allCases.randomElement()
             guard let userHand = Hand(rawValue: userInput) else {
                 print("잘못된 입력입니다. 다시 시도해주세요.")
                 continue
