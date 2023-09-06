@@ -7,3 +7,5 @@
 import Foundation
 
 var main = RockPaperScissors()
+
+main.start()
