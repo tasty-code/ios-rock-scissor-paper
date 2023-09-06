@@ -10,8 +10,7 @@ import Foundation
 class RPSGame {
     
     func run() {
-        var isRunning = true
-        while isRunning {
+        while true {
             printMenu()
             
             let userChoice = getUserChoice()
@@ -27,7 +26,6 @@ class RPSGame {
             print(result)
 
             if gameStop(result) { break }
-            
         }
     }
     
@@ -51,7 +49,7 @@ class RPSGame {
     
     private func getResult(_ userChoice: Int, _ botChoice: Int) -> String {
         switch (userChoice, botChoice) {
-        case let (param1, param2) where param1 == param2 :
+        case let (param1, param2) where param1 == param2:
             return "비겼습니다!"
         case (1, 3), (2, 1), (3, 2):
             return "이겼습니다!"
