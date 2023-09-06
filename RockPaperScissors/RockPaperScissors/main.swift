@@ -6,55 +6,85 @@
 
 import Foundation
 
-/// Error - Type 'WrongInput' does not conform to protocol 'CustomStringConvertible'
-enum WrongInput: Error, CustomDebugStringConvertible {
-    case tryAgain
+
+enum  Alert: String {
+    case tryAgain = "잘못된 입력입니다. 다시 시도해주세요."
+    case end = "게임 종료"
+    case draw = "비겼습니다!"
+    case win = "이겼습니다!"
+    case lose = "졌습니다!"
+    case prompt = "가위(1), 바위(2), 보(3)! <종료 : 0> :"
+}
+
+enum RockSissorPaper: String {
+    case sissor = "1"
+    case rock = "2"
+    case paper = "3"
     
-    var debugDescription: String {
+    var value: Int {
         switch self {
-        case .tryAgain:
-            return "잘못된 입력입니다. 다시 시도해주세요."
-        default:
-            return ""
+        case .sissor:
+            return 1
+        case .rock:
+            return 2
+        case .paper:
+            return 3
         }
     }
 }
 
-func run() {
-    while true {
-        start()
-        
-    }
-}
+var isRunning: Bool = true
 
-
-func start() {
-    print("가위(1), 바위(2), 보(3)! <종료 : 0> :")
-    /// Error - Value of optional type 'String?' must be unwrapped to a value of type 'String
-    /// Coalesce using '??' to provide a default when the optional value contains 'nil'
-    /// Force-unwrap using '!' to abort execution if the optional value contains 'nil'
-    let userInput: String? = readLine() ?? nil
+while isRunning {
+    print(Alert.prompt.rawValue)
     
-    /// Call can throw, but it is not marked with 'try' and the error is not handled
-    do { try isRightInput(userInput) } catch {
-        print(error)
+    let userInput = readLine()
+    guard let input = userInput else {
+        print(Alert.tryAgain.rawValue)
+        break
     }
+    
+    guard let choice = Int(input) else {
+        print(Alert.tryAgain.rawValue)
+        break
+    }
+    
+    guard choice != 0 else {
+        print(Alert.end.rawValue)
+        isRunning = false
+        break
+    }
+    
+    let computerChoice = Int.random(in: 1...3)
+    
+    guard !(choice == 3 && computerChoice == 1) else {
+        print(Alert.lose.rawValue)
+        isRunning = false
+        break
+    }
+    
+    guard !(choice == 1 && computerChoice == 3) else {
+        print(Alert.win.rawValue)
+        isRunning = false
+        break
+    }
+    
+    guard choice != computerChoice else {
+        print(Alert.draw.rawValue)
+        break
+    }
+    
+    if choice > computerChoice {
+        print(Alert.win.rawValue)
+    } else {
+        print(Alert.lose.rawValue)
+    }
+    
+    isRunning = false
+    break
 }
 
-func isRightInput(_ userInput: String?) throws -> Int {
-    switch userInput {
-    case "1":
-        return 1
-    case "2":
-        return 2
-    case "3":
-        return 3
-    case "0":
-        print("게임 종료")
-        return 4
-    default:
-        throw WrongInput.tryAgain
-    }
-}
+
+
 
 
