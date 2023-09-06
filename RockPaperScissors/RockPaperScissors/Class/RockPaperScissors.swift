@@ -20,13 +20,19 @@ final class RockPaperScissors {
         return computer
     }
     
-//    func inputOrder() throws -> Order {
-//        guard
-//            let input = readLine(),
-//            let intInput = Int(input),
-//            let order = Order(rawValue: intInput)
-//        else { throw }
-//
-//        return order
-//    }
+    private func inputUserOrder() throws -> Order {
+        guard
+            let input = readLine(),
+            let intInput = Int(input),
+            let order = Order(rawValue: intInput)
+        else { throw InterfaceScript.Failure.wrongInput}
+        
+        return order
+    }
+    
+    //    private func calculateResult(userOrder: Order) -> GameResult {
+    //
+    //        return
+    //    }
+    
 }

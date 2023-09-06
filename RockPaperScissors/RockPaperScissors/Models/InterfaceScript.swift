@@ -30,8 +30,10 @@ enum InterfaceScript {
         }
     }
     
-    enum GameResult: CustomStringConvertible {
-        case win, lose, draw
+    enum GameResult: Int, CustomStringConvertible {
+        case win = -1
+        case lose = 1
+        case draw = 0
         
         var description: String {
             switch self {
