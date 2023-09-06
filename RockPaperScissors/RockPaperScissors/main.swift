@@ -16,23 +16,6 @@ enum  Alert: String {
     case prompt = "가위(1), 바위(2), 보(3)! <종료 : 0> :"
 }
 
-enum RockSissorPaper: String {
-    case sissor = "1"
-    case rock = "2"
-    case paper = "3"
-    
-    var value: Int {
-        switch self {
-        case .sissor:
-            return 1
-        case .rock:
-            return 2
-        case .paper:
-            return 3
-        }
-    }
-}
-
 var isRunning: Bool = true
 
 while isRunning {
