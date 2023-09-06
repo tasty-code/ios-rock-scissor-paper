@@ -18,27 +18,33 @@ while true
     
     do
     {
-        let user : Int = try checkInput()
-        
-        switch user
-        {
-        case 0:
-            print("게임 종료")
-        case 1...3:
-            getGameResult(of: user)
-        default:
-            throw RockPaperScissorsError.invalidInput
-        }
+       try playRockPaperScissors()
     }
     catch RockPaperScissorsError.invalidInput
     {
         print("잘못된 입력입니다. 다시 입력해주세요")
     }
-    
+
     if isExitCondition
     {
         print("----------------------------------------")
         break
+    }
+}
+
+func playRockPaperScissors() throws
+{
+    let user : Int = try checkInput()
+
+    switch user
+    {
+        case 0:
+            print("게임 종료")
+            isExitCondition.toggle()
+        case 1...3:
+            getGameResult(of: user)
+        default:
+            throw RockPaperScissorsError.invalidInput
     }
 }
 
