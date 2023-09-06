@@ -6,33 +6,28 @@
 
 import Foundation
 
-var flag : Bool = false
+var isWin : [Int : Int] = [1:3, 2:1, 3:2]
+var isExitCondition : Bool = false
 
-func winLoseResult(_ input : Int) ->  Bool
+func getGameResult(of user : Int)
 {
-    flag = false
-    let computerHand = Int.random(in: 1...3)
+    isExitCondition = false
+    let computer = Int.random(in: 1...3)
     
-    if (input == computerHand)
+    if user == computer
     {
-        print("비겼습니다.")
-        flag.toggle()
+        print("비겼습니다")
+        isExitCondition.toggle()
     }
     
-    else if input == 1 && computerHand == 3
-        || input == 2 && computerHand == 1
-        || input == 3 && computerHand == 2
+    else if isWin[user] == computer
     {
-       print(computerHand)
        print("이겼습니다")
     }
     else
     {
-        print(computerHand)
         print("졌습니다")
     }
-
-    return flag
 }
 
 while true {
@@ -48,17 +43,16 @@ while true {
     case 0:
         print("게임 종료")
     case 1...3:
-        winLoseResult(input)
+        getGameResult(of: input)
     default:
         print("잘못된 입력입니다. 다시 입력해주세요")
             
     }
     
-    if !flag
+    if !isExitCondition
     {
         print("----------------------------------------")
         break
     }
 
 }
-
