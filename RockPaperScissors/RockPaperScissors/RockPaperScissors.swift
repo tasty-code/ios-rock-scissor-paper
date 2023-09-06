@@ -15,29 +15,29 @@ final class RockPaperScissors {
     }
     
     func start() {
-        
         while true {
-            print("가위(1), 바위(2), 보(3)! <종료: 0> : ", terminator: "")
+            print(GuideMessage.rpsChoiceMenu, terminator: "")
             guard let userInput = readLine() else { return }
             
             if userInput == "0" {
-                print("게임 종료")
-                break
+                return print(GuideMessage.exit)
             }
-            let aiHand = Hand.allCases.randomElement()
+            
             guard let userHand = Hand(rawValue: userInput) else {
-                print("잘못된 입력입니다. 다시 시도해주세요.")
+                print(GuideMessage.inputError)
                 continue
             }
             
+            let aiHand = Hand.allCases.randomElement()
+            
             if userHand == aiHand {
-                print("비겼습니다!")
-            }
-            else if (userHand == .scissors && aiHand == .paper) || (userHand == .rock && aiHand == .scissors) || (userHand == .paper && aiHand == .rock) {
-                return print("이겼습니다!")
-            }
-            else {
-                return print("졌습니다!")
+                print(GuideMessage.draw)
+            } else if (userHand == .scissors && aiHand == .paper) ||
+                      (userHand == .rock && aiHand == .scissors) ||
+                      (userHand == .paper && aiHand == .rock) {
+                return print(GuideMessage.win)
+            } else {
+                return print(GuideMessage.lose)
             }
         }
     }
