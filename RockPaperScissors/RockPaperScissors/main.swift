@@ -6,54 +6,66 @@
 
 import Foundation
 
-var isContinue = true
-while isContinue {
-    print("가위(1), 바위(2), 보(3)! <종료: 0> : ", terminator: "")
-    
-    var turn = true
-    
+runGame()
+
+func runGame() {
     do {
-        let num = try getInteger()
-        
-        if num == 0 {
-            print("게임 종료.")
-            break
-        }
-        turn = try battle(player: num)
-    } catch RPCError.sameHandError {
-        print("비겼습니다!")
-        continue
+        let turnOwner = try doRockPaperScissors()
+        let winner = try doMukJjiPpa(isPlayerTurn: turnOwner)
+        print(winner ? "사용자의 승리!" : "컴퓨터의 승리!")
+    } catch RPCError.zeroExit {
+        print("게임 종료.")
     } catch {
-        print("잘못된 입력입니다. 다시 시도해주세요.")
-        continue
-    }
-    
-    while true {
-        let turnString = turn ? "사용자" : "컴퓨터"
-        print("[\(turnString) 턴] 묵(1), 찌(2), 빠(3)! <종료 : 0> : ", terminator: "")
-        
-        do {
-            let num2 = try getInteger()
-            
-            if num2 == 0 {
-                isContinue = false
-                print("게임 종료.")
-                break
-            }
-            turn = try mukJjiBba(player: num2)
-            
-        } catch RPCError.sameHandError {
-            print("\(turnString)의 승리!")
-            isContinue = false
-            break
-        } catch RPCError.invalidInputError {
-            print("잘못된 입력입니다. 다시 시도해주세요.")
-            turn = false
-        }
-        print("\(turn ? "사용자" : "컴퓨터")의 턴입니다.")
+        print(error.localizedDescription)
     }
 }
 
+func getInteger() throws -> Int{
+    let str = readLine() ?? "error"
+    guard let num = Int(str), (0...3).contains(num) else {
+        throw RPCError.invalidInputError
+    }
+    return num
+}
+
+func doRockPaperScissors() throws -> Bool {
+    while true {
+        print("가위(1), 바위(2), 보(3)! <종료: 0> : ", terminator: "")
+        do {
+            let playerHand = try getInteger()
+            if playerHand == 0 {
+                throw RPCError.zeroExit
+            }
+            return try battle(player: playerHand)
+        } catch RPCError.invalidInputError {
+            print("잘못된 입력입니다. 다시 시도해주세요.")
+        } catch RPCError.sameHandError {
+            print("비겼습니다.")
+            continue
+        }
+    }
+}
+
+func doMukJjiPpa(isPlayerTurn: Bool) throws -> Bool {
+    var turnOwner = isPlayerTurn
+    while true {
+        let ownerString = turnOwner ? "사용자" : "컴퓨터"
+        print("[\(ownerString) 턴] 묵(1), 찌(2), 빠(3)! <종료 : 0> : ", terminator: "")
+        do {
+            let playerHand = try getInteger()
+            if playerHand == 0 {
+                throw RPCError.zeroExit
+            }
+            turnOwner = try mukJjiBba(player: playerHand)
+        } catch RPCError.sameHandError {
+            return turnOwner
+        } catch RPCError.invalidInputError {
+            print("잘못된 입력입니다. 다시 시도해주세요.")
+            turnOwner = false
+        }
+        print("\(turnOwner ? "사용자" : "컴퓨터")의 턴입니다.")
+    }
+}
 
 func battle(player: Int) throws -> Bool {
     guard let computer = (1...3).randomElement() else {
@@ -96,13 +108,3 @@ func mukJjiBba(player: Int) throws -> Bool {
         return false
     }
 }
-
-func getInteger() throws -> Int{
-    let str = readLine() ?? "error"
-    guard let num = Int(str), (0...3).contains(num) else {
-        throw RPCError.invalidInputError
-    }
-    return num
-}
-
-

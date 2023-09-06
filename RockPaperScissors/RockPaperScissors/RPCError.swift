@@ -10,4 +10,5 @@ import Foundation
 enum RPCError: Error {
     case invalidInputError
     case sameHandError
+    case zeroExit
 }
