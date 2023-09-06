@@ -6,7 +6,6 @@
 
 import Foundation
 
-var isWin : [Int : Int] = [1:3, 2:1, 3:2]
 var isExitCondition : Bool = false
 
 func getGameResult(of user : Int)
@@ -20,8 +19,9 @@ func getGameResult(of user : Int)
         isExitCondition.toggle()
     }
     
-    else if isWin[user] == computer
+    else if isWin(of: user, versus: computer)
     {
+        print(computer)
        print("이겼습니다")
     }
     else
@@ -54,5 +54,19 @@ while true
         print("----------------------------------------")
         break
     }
+}
 
+
+func isWin(of user : Int, versus computer : Int) -> Bool
+{
+    let winCase : [Int : Int] = [1:3, 2:1, 3:2] 
+
+    if winCase[user] == computer
+    {
+        return true
+    }
+    else
+    {
+        return false
+    }
 }
