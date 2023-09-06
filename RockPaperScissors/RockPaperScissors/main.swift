@@ -59,11 +59,9 @@ while isRunning {
 func userInput() -> Int {
     let userInput = readLine()
     guard let input = userInput else {
-        print(Alert.tryAgain.rawValue)
         return -1
     }
     guard let choice = Int(input) else {
-        print(Alert.tryAgain.rawValue)
         return -1
     }
     
