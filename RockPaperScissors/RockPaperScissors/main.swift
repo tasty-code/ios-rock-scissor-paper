@@ -6,4 +6,6 @@
 
 import Foundation
 
+let program = RPSGame()
+program.run()
 

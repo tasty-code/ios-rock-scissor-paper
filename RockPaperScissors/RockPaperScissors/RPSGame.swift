@@ -7,7 +7,6 @@
 
 import Foundation
 
-
 class RPSGame {
     
     func run() {
@@ -15,15 +14,21 @@ class RPSGame {
             printMenu()
             
             let userChoice = getUserChoice()
-            let botChoice = generateRandomInteger()
             
             if userChoice == 0 {
                 print("게임 종료")
                 break
             }
             
-            let result = getWinner(userChoice, botChoice)
+            let botChoice = generateRandomInteger()
+            
+            let result = getResult(userChoice, botChoice)
             print(result)
+            
+            if (result == "이겼습니다!" || result == "졌습니다!") {
+                print("게임 종료")
+                break
+            }
         }
     }
     
@@ -45,7 +50,7 @@ class RPSGame {
         return Int.random(in: 1...3)
     }
     
-    private func getWinner(_ userChoice: Int, _ botChoice: Int) -> String {
+    private func getResult(_ userChoice: Int, _ botChoice: Int) -> String {
         if userChoice == botChoice {
             return "비겼습니다!"
         } else if (userChoice == 1 && botChoice == 3) ||
@@ -56,4 +61,5 @@ class RPSGame {
             return "졌습니다!"
         }
     }
+    
 }
