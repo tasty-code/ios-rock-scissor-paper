@@ -8,6 +8,47 @@ import Foundation
 
 var isExitCondition : Bool = false
 
+enum RockPaperScissorsError : Error {
+    case invalidInput
+}
+
+while true
+{
+    print("가위(1), 바위(2), 보(3)! <종료 : 0> : ", terminator: "")
+    
+    do {
+        let user : Int = try checkInput()
+        
+        switch user
+        {
+        case 0:
+            print("게임 종료")
+        case 1...3:
+            getGameResult(of: user)
+        default:
+            throw RockPaperScissorsError.invalidInput
+        }
+    }
+    catch RockPaperScissorsError.invalidInput {
+        print("잘못된 입력입니다. 다시 입력해주세요")
+    }
+    
+    if isExitCondition
+    {
+        print("----------------------------------------")
+        break
+    }
+}
+
+func checkInput() throws ->  Int
+{
+    guard let user = readLine(), let user = Int(user) else
+    {
+        throw RockPaperScissorsError.invalidInput
+    }
+    return user
+}
+
 func getGameResult(of user : Int)
 {
     isExitCondition = false
@@ -40,32 +81,5 @@ func isWin(of user : Int, versus computer : Int) -> Bool
     else
     {
         return false
-    }
-}
-
-RockPaperScissors : while true
-{
-    print("가위(1), 바위(2), 보(3)! <종료 : 0> : ", terminator: "")
-    
-    guard let user = readLine(), let user = Int(user) else
-    {
-        print("잘못된 입력입니다. 다시 입력해주세요")
-        continue RockPaperScissors
-    }
-        
-    switch user
-    {
-    case 0:
-        print("게임 종료")
-    case 1...3:
-        getGameResult(of: user)
-    default:
-        print("잘못된 입력입니다. 다시 입력해주세요")
-    }
-    
-    if isExitCondition
-    {
-        print("----------------------------------------")
-        break
     }
 }
