@@ -30,23 +30,23 @@ func getGameResult(of user : Int)
     }
 }
 
-while true {
+while true
+{
     print("가위(1), 바위(2), 보(3)! <종료 : 0> : ", terminator: "")
     
-    guard let input = readLine(), let input = Int(input) else
+    guard let user = readLine(), let user = Int(user) else
     {
        break
     }
         
-    switch input
+    switch user
     {
     case 0:
         print("게임 종료")
     case 1...3:
-        getGameResult(of: input)
+        getGameResult(of: user)
     default:
         print("잘못된 입력입니다. 다시 입력해주세요")
-            
     }
     
     if !isExitCondition
