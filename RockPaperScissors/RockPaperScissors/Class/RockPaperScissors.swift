@@ -35,14 +35,12 @@ final class RockPaperScissors {
     private func makeComputerHandSign() -> Order? {
         guard let computer = Order.allCases.filter({ $0 != .exitProgram }).randomElement() else { return nil }
         
-        print("컴퓨터: \(computer.rawValue)")
-        
         return computer
     }
     
     private func calculateResult(userOrder: Order) {
-        guard let computer = computerHandSign?.rawValue else { return }
-        let distance = computer - userOrder.rawValue
+        guard let computerHandSignRawValue = computerHandSign?.rawValue else { return }
+        let distance = computerHandSignRawValue - userOrder.rawValue
         
         switch distance {
         case -1, 2:
