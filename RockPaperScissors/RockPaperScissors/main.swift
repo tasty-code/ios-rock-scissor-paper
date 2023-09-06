@@ -5,3 +5,6 @@
 // 
 
 import Foundation
+
+
+RockPaperScissors().run()
