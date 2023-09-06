@@ -26,7 +26,6 @@ class RPSGame {
             print(result)
             
             if (result == "이겼습니다!" || result == "졌습니다!") {
-                print("게임 종료")
                 break
             }
         }
