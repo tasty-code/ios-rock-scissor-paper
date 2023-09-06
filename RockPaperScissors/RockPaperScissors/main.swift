@@ -16,17 +16,30 @@ func getGameResult(of user : Int)
     if user == computer
     {
         print("비겼습니다")
-        isExitCondition.toggle()
     }
-    
     else if isWin(of: user, versus: computer)
     {
-        print(computer)
        print("이겼습니다")
+       isExitCondition.toggle()
     }
     else
     {
         print("졌습니다")
+        isExitCondition.toggle()
+    }
+}
+
+func isWin(of user : Int, versus computer : Int) -> Bool
+{
+    let winCase : [Int : Int] = [1:3, 2:1, 3:2]
+
+    if winCase[user] == computer
+    {
+        return true
+    }
+    else
+    {
+        return false
     }
 }
 
@@ -49,7 +62,7 @@ while true
         print("잘못된 입력입니다. 다시 입력해주세요")
     }
     
-    if !isExitCondition
+    if isExitCondition
     {
         print("----------------------------------------")
         break
@@ -57,16 +70,4 @@ while true
 }
 
 
-func isWin(of user : Int, versus computer : Int) -> Bool
-{
-    let winCase : [Int : Int] = [1:3, 2:1, 3:2] 
 
-    if winCase[user] == computer
-    {
-        return true
-    }
-    else
-    {
-        return false
-    }
-}
