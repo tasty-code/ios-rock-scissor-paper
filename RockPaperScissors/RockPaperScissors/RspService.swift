@@ -26,7 +26,7 @@ struct RspService {
     private var computerValue: Int = 0
     private var status: Progress = .notYet
     private var isRunning: Bool = true
-    
+    private var step1Result: GameResult = .draw
     
     mutating func run() {
         while isRunning {
@@ -40,6 +40,7 @@ struct RspService {
             case .onGoing:
                 getComputerValue()
                 game()
+                step1Judge()
             case .tryAgain:
                 print(Progress.tryAgain.rawValue)
                 break
@@ -82,7 +83,36 @@ struct RspService {
         isRunning = false
     }
 
-    func game() {
-        print("게임")
+    mutating func game() {
+        if userInput == 3 && computerValue == 1 {
+            step1Result = .lose
+            return
+        }
+        if userInput == 1 && computerValue == 3 {
+            step1Result = .win
+            return
+        }
+        if userInput == computerValue {
+            step1Result = .draw
+            return
+        }
+        guard let certainUserInput = userInput else {
+            print(Progress.tryAgain.rawValue)
+            return
+        }
+        step1Result = certainUserInput > computerValue ? .win : .lose
+    }
+    
+    mutating func step1Judge() {
+        switch step1Result {
+        case GameResult.win:
+            print(GameResult.win.rawValue)
+            isRunning = false
+        case GameResult.draw:
+            print(GameResult.draw.rawValue)
+        case GameResult.lose:
+            print(GameResult.lose.rawValue)
+            isRunning = false
+        }
     }
 }
