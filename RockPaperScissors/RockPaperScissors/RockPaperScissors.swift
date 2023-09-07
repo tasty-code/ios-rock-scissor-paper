@@ -115,7 +115,7 @@ final class RockPaperScissors {
             userChoice = RpsChoice.changeMcpVersion(of: userChoice)
             
             if userInput == 0 {
-                return print("게임 종료")
+                return print(GuideMessage.exit)
             }
             
             guard let computerChoice = RpsChoice(rawValue: computerInput) else { return }
