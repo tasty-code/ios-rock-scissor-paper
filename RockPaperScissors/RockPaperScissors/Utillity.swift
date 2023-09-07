@@ -8,58 +8,64 @@
 import Foundation
 
 func getRandomNum() -> String {
-    return String(Int.random(in: 1...3))
+  return String(Int.random(in: 1...3))
 }
 
 func getRPSResult(userSelcet: String, computerSelect: String) {
-    if userSelcet == computerSelect {
-        print("비겼습니다")
-    } else if userSelcet == scissors && computerSelect == paper ||
-                userSelcet == rock && computerSelect == scissors ||
-                userSelcet == paper && computerSelect == rock {
-        print("이겼습니다")
-        turn = "user"
-        game()
-        
-    } else {
-        print("졌습니다")
-        turn = "computer"
-        game()
-    }
+  if userSelcet == computerSelect {
+    print("비겼습니다")
+  } else if userSelcet == scissors && computerSelect == paper ||
+              userSelcet == rock && computerSelect == scissors ||
+              userSelcet == paper && computerSelect == rock {
+    print("이겼습니다")
+    turn = "사용자"
+    game()
+  } else {
+    print("졌습니다")
+    turn = "컴퓨터"
+    game()
+  }
 }
 
 func game(){
-    print("[\(turn)]턴 묵(1), 찌(2), 빠(3)!, <종료: 0> : ",terminator: "")
-    let computerSelect = getRandomNum()
-    guard let userSelcet = readLine() else { return }
-    
-   let result = game2Start(userSelcet: userSelcet, computerSelect: computerSelect)
-    print("\(turn)턴 입니다. 유저\(userSelcet) 컴\(computerSelect)")
-    if result == "win" {
-        game()
-        
-    } else if result == "lose" {
-        turn = turn == "user" ? "computer" : "user"
-        game()
-        
-    } else {
-      isRunning = false
-    }
+  print("[\(turn) 턴] 묵(1), 찌(2), 빠(3)! <종료: 0> : ",terminator: "")
+  let computerSelect = getRandomNum()
+  guard let userSelcet = readLine() else { return }
   
+  print("유저 \(userSelcet) 컴퓨터 \(computerSelect)")
+  
+  switch userSelcet {
+  case exitGame2:
+    isRunning = false
+    return
+  case muk, jji, bba:
+    let turnState = getMJBResult(userSelcet: userSelcet, computerSelect: computerSelect)
+    if turnState == "end" {
+      print("\(turn)의 승리!")
+      isRunning = false
+      return
+    }
+    if turnState == "change" {
+      turn = turn == "사용자" ? "컴퓨터" : "사용자"
+    }
+    print("\(turn)의 턴입니다.")
+  default:
+    print("잘못된 입력입니다. 다시 시도해주세요.")
+  }
+  
+  game()
 }
 
-func game2Start(userSelcet: String, computerSelect: String) -> String {
-    var result: String = ""
-    if userSelcet == computerSelect {
-        print("\(turn)의 승리!")
-//        isRunning = false
-    } else if userSelcet == scissors && computerSelect == paper ||
-                userSelcet == rock && computerSelect == scissors ||
-                userSelcet == paper && computerSelect == rock {
-        result = "win"
-    } else {
-        turn = "computer"
-        result = "lose"
-    }
-    return result
+func getMJBResult(userSelcet: String, computerSelect: String) -> String {
+  var turnStatus: String
+  if userSelcet == computerSelect {
+    turnStatus = "end"
+  } else if userSelcet == jji && computerSelect == bba ||
+              userSelcet == muk && computerSelect == jji ||
+              userSelcet == bba && computerSelect == muk {
+    turnStatus = turn == "사용자" ? "keep" : "change"
+  } else {
+    turnStatus = turn == "컴퓨터" ? "keep": "change"
+  }
+  return turnStatus
 }

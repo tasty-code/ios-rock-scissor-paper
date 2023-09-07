@@ -5,8 +5,6 @@
 //  Created by 김경록 on 2023/09/07.
 //
 
-import Foundation
-
 enum RPSOption: String {
     case exit = "0"
     case scissors = "1"
