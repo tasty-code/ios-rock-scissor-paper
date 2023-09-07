@@ -21,16 +21,28 @@ enum GameResult: String {
     case lose = "졌습니다!"
 }
 
+enum GameType {
+    case rsp
+    case continuousRsp
+}
+
 struct RspService {
     private var userInput: Int? = -1
     private var computerValue: Int = 0
     private var status: Progress = .notYet
     private var isRunning: Bool = true
-    private var step1Result: GameResult = .draw
+    private var userResult: GameResult = .draw
+    private var isFirstRound: Bool = true
+    private var isUserWin: Bool = false
     
-    mutating func run() {
+    mutating func run(_ type: GameType) {
         while isRunning {
-            print(Progress.prompt.rawValue)
+            if isFirstRound {
+                print(Progress.prompt.rawValue)
+            } else {
+                print("\(userResult == GameResult.lose ? "[컴퓨터 턴]" : "[사용자 턴]") " + Progress.prompt.rawValue )
+            }
+            
             getUserInput()
             checkInputValidation()
             
@@ -38,9 +50,10 @@ struct RspService {
             case .end:
                 endGame()
             case .onGoing:
-                getComputerValue()
+//                getComputerValue()
+                computerValue = 1
                 game()
-                step1Judge()
+                judge(type)
             case .tryAgain:
                 print(Progress.tryAgain.rawValue)
                 break
@@ -85,34 +98,65 @@ struct RspService {
 
     mutating func game() {
         if userInput == 3 && computerValue == 1 {
-            step1Result = .lose
+            userResult = .lose
             return
         }
         if userInput == 1 && computerValue == 3 {
-            step1Result = .win
+            userResult = .win
             return
         }
         if userInput == computerValue {
-            step1Result = .draw
+            userResult = .draw
             return
         }
         guard let certainUserInput = userInput else {
             print(Progress.tryAgain.rawValue)
             return
         }
-        step1Result = certainUserInput > computerValue ? .win : .lose
+        userResult = certainUserInput > computerValue ? .win : .lose
+    }
+    
+    mutating func judge(_ type: GameType) {
+        switch type {
+        case .rsp:
+            step1Judge()
+            if userResult == GameResult.win || userResult == GameResult.lose {
+                isRunning = false
+            }
+        case .continuousRsp:
+            if isFirstRound {
+                step1Judge()
+            } else {
+                step2Judge()
+            }
+        }
     }
     
     mutating func step1Judge() {
-        switch step1Result {
+        switch userResult {
         case GameResult.win:
             print(GameResult.win.rawValue)
-            isRunning = false
+            isFirstRound = false
         case GameResult.draw:
             print(GameResult.draw.rawValue)
         case GameResult.lose:
             print(GameResult.lose.rawValue)
+            isFirstRound = false
+        }
+    }
+    
+    mutating func step2Judge() {
+        
+        switch userResult {
+        case GameResult.draw:
+            print(isUserWin ? "사용자의 승리" : "컴퓨터의 승리")
             isRunning = false
+        case GameResult.lose:
+            isUserWin = false
+            print(userResult == GameResult.lose ? "컴퓨터의 턴입니다." : "사용자의 턴입니다")
+        case GameResult.win:
+            isUserWin = true
+            print(userResult == GameResult.lose ? "컴퓨터의 턴입니다." : "사용자의 턴입니다")
         }
     }
 }
