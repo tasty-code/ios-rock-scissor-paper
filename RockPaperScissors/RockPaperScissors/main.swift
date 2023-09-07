@@ -7,14 +7,6 @@
 import Foundation
 
 
-enum  Alert: String {
-    case tryAgain = "잘못된 입력입니다. 다시 시도해주세요."
-    case end = "게임 종료"
-    case draw = "비겼습니다!"
-    case win = "이겼습니다!"
-    case lose = "졌습니다!"
-    case prompt = "가위(1), 바위(2), 보(3)! <종료 : 0> :"
-}
 
 var isRunning: Bool = true
 
