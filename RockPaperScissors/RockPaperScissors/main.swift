@@ -15,6 +15,11 @@ while isContinue {
         continue
     }
     
+    if playerHandType == 0 {
+        print("게임 종료")
+        break
+    }
+    
     do {
         guard let computerHandType = (1...3).randomElement() else {
             throw PlayingGameException.invalidInputError
