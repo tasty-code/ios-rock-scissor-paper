@@ -11,24 +11,32 @@ enum ErrorCases: Error
     case invalidInput
 }
 
+private var RPSResult : String = ""
+
 while true
 {
-    print("testt")
-    // 묵찌빠 디버깅 끝나면 주석 해제하시면 됩니다.
-//        let RPSResult : String = try RPS().play()
-//
-//        if isRepeat(RPSResult)
-//        {
-//            continue
-//        }
-        
-        let RPSResult = "사용자"
-        let MukJjiPpaResult = try MukJjiPpa().play(RPSResult)
-        
-        if shouldByClose(MukJjiPpaResult)
-        {
-            break
-        }
+    RPSResult = try RPS().play()
+
+    if isRepeat(RPSResult)
+    {
+        break
+    }
+}
+
+while true
+{
+    if shouldByClose(RPSResult)
+    {
+        break
+    }
+    
+    let MukJjiPpaResult = try MukJjiPpa().play(RPSResult)
+
+    if shouldByClose(MukJjiPpaResult)
+    {
+        break
+    }
+    RPSResult = MukJjiPpaResult
 }
 
 func shouldByClose(_ gameResult : String) -> Bool
@@ -49,11 +57,11 @@ func isRepeat(_ gameResult : String) -> Bool
 {
     if gameResult == "repeat"
     {
-        return true
+        return false
     }
     else
     {
-        return false
+        return true
     }
 }
 
