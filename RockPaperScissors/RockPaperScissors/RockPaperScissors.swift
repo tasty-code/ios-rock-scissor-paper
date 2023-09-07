@@ -31,12 +31,16 @@ final class RockPaperScissors {
     private var userChoice : RpsChoice = .scissors
     
     // MARK: - Start
-    
+
     func start() {
+        playRPS()
+    }
+
+    private func playRPS() {
         print(GuideMessage.rpsChoiceMenu, terminator: "")
         
         enterUserChoice {
-            start()
+            playRPS()
         }
         
         if userInput == 0 {
@@ -47,7 +51,17 @@ final class RockPaperScissors {
         gameResult = checkResult(of: userChoice, with: computerChoice) { result in
             print(result)
         }
+        
+        return playNextGame()
     }
+    
+    private func playNextGame() {
+        switch gameResult {
+        case .draw: playRPS()
+        default: return
+        }
+    }
+    
     private func enterUserChoice(whenMistake: () -> ()) {
         guard let userInput = Int(readLine() ?? "0"),
               let userChoice = RpsChoice(rawValue: userInput) else {
