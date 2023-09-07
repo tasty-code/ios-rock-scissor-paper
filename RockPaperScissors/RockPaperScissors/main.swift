@@ -20,23 +20,30 @@ func runGame() {
     }
 }
 
-func getInteger() throws -> Int{
-    let str = readLine() ?? "error"
-    guard let num = Int(str), (0...3).contains(num) else {
+
+
+
+func getHandType() throws -> Int{
+    let playerInput = readLine() ?? "error"
+    guard let playerHandType = Int(playerInput), (0...3).contains(playerHandType) else {
         throw RPCError.invalidInputError
     }
-    return num
+    return playerHandType
 }
+
+
+
+
 
 func doRockPaperScissors() throws -> Bool {
     while true {
         print("가위(1), 바위(2), 보(3)! <종료: 0> : ", terminator: "")
         do {
-            let playerHand = try getInteger()
-            if playerHand == 0 {
+            let playerHandShape = try getHandType()
+            if playerHandShape == 0 {
                 throw RPCError.zeroExit
             }
-            return try battle(player: playerHand)
+            return try battle(player: playerHandShape)
         } catch RPCError.invalidInputError {
             print("잘못된 입력입니다. 다시 시도해주세요.")
         } catch RPCError.sameHandError {
@@ -46,13 +53,17 @@ func doRockPaperScissors() throws -> Bool {
     }
 }
 
+
+
+
+
 func doMukJjiPpa(isPlayerTurn: Bool) throws -> Bool {
     var turnOwner = isPlayerTurn
     while true {
         let ownerString = turnOwner ? "사용자" : "컴퓨터"
         print("[\(ownerString) 턴] 묵(1), 찌(2), 빠(3)! <종료 : 0> : ", terminator: "")
         do {
-            let playerHand = try getInteger()
+            let playerHand = try getHandType()
             if playerHand == 0 {
                 throw RPCError.zeroExit
             }
@@ -66,6 +77,9 @@ func doMukJjiPpa(isPlayerTurn: Bool) throws -> Bool {
         print("\(turnOwner ? "사용자" : "컴퓨터")의 턴입니다.")
     }
 }
+
+
+
 
 func battle(player: Int) throws -> Bool {
     guard let computer = (1...3).randomElement() else {
@@ -88,6 +102,9 @@ func battle(player: Int) throws -> Bool {
     }
 }
 
+
+
+
 func mukJjiBba(player: Int) throws -> Bool {
     guard let computer = (1...3).randomElement() else {
         throw RPCError.invalidInputError
@@ -98,13 +115,10 @@ func mukJjiBba(player: Int) throws -> Bool {
     }
     
     if playerHand == computerHand {
-        
         throw RPCError.sameHandError
     } else if computerHand < playerHand {
-        
         return true
     } else {
-        
         return false
     }
 }
