@@ -44,7 +44,8 @@ func doRockPaperScissors() throws -> Bool {
             print("잘못된 입력입니다. 다시 시도해주세요.")
         } catch PlayingGameException.sameHandError {
             print("비겼습니다.")
-            continue
+        } catch {
+            throw error
         }
     }
 }
@@ -76,11 +77,10 @@ func battle(_ player1: Int, and player2: Int) throws -> Bool {
     }
     
     if playerHandShape == player2HandShape {
-        print("비겼습니다!")
-        return true
+        throw PlayingGameException.sameHandError
     } else if player2HandShape < playerHandShape {
         print("이겼습니다!")
-        return false
+        return true
     } else {
         print("졌습니다!")
         return false
