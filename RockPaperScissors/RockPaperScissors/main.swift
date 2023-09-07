@@ -13,12 +13,23 @@ enum RockPaperScissorsError: Error
 
 while true
 {
-    print("가위(1), 바위(2), 보(3)! <종료 : 0> : ", terminator: "")
-
     do
     {
-        let gameResult : Bool = try RPS().play()
+        let gameResult : String = try RPS().play()
 
+        if shouldByClose(gameResult)
+        {
+            break
+        }
+
+        if isRepeatRPC(gameResult)
+        {
+            continue
+        }
+
+        
+        print("묵찌빠 하세요")
+        // 묵찌빠.play()
         if shouldByClose(gameResult)
         {
             break
@@ -42,11 +53,23 @@ func checkInput() throws -> Int
     return user
 }
 
-func shouldByClose(_ gameResult : Bool) -> Bool
+func shouldByClose(_ gameResult : String) -> Bool
 {
-    if gameResult
+    if gameResult == "exit"
     {
         print("---------------------------------------")
+        return true
+    }
+    else
+    {
+        return false
+    }
+}
+
+func isRepeatRPC(_ gameResult : String) -> Bool
+{
+    if gameResult == "repeat"
+    {
         return true
     }
     else

@@ -9,41 +9,44 @@ import Foundation
 
 class RPS
 {
-    func play() throws -> Bool
+    func play() throws -> String
     {
+        print("가위(1), 바위(2), 보(3)! <종료 : 0> : ", terminator: "")
+
         let user: Int = try checkInput()
 
         switch user
         {
             case 0:
                 print("게임 종료")
-                return true
+                return "exit"
             case 1...3:
-                let gameResult : Bool = getResult(of: user)
+                let gameResult : String = getResult(of: user)
                 return gameResult
             default:
                 throw RockPaperScissorsError.invalidInput
         }
+        
     }
     
-    func getResult(of user: Int) -> Bool
+    func getResult(of user: Int) -> String
     {
         let computer = Int.random(in: 1...3)
 
         if user == computer
         {
             print("비겼습니다")
-            return false
+            return "repeat"
         }
         else if isWin(of: user, versus: computer)
         {
             print("이겼습니다")
-            return true
+            return "nextGame"
         }
         else
         {
             print("졌습니다")
-            return true
+            return "nextGame"
         }
     }
     
