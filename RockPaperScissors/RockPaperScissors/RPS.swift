@@ -19,3 +19,14 @@ let scissors = RPSOption.scissors.rawValue
 let rock = RPSOption.rock.rawValue
 let paper = RPSOption.paper.rawValue
 
+enum Mukjjibba: String {
+  case exit = "0"
+  case muk = "1"
+  case jji = "2"
+  case bba = "3"
+}
+
+let exitGame2 = Mukjjibba.exit.rawValue
+let muk = Mukjjibba.muk.rawValue
+let jji = Mukjjibba.jji.rawValue
+let bba = Mukjjibba.bba.rawValue
