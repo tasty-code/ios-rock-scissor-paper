@@ -11,82 +11,36 @@ enum ErrorCases: Error
     case invalidInput
 }
 
+private var RPSResult : String = ""
+
 while true
 {
-    do
-    {
-        let gameResult : String = try RPS().play()
-        
-        if shouldByClose(gameResult)
-        {
-            break
-        }
+    RPSResult = try RPS().play()
 
-        if isRepeatRPC(gameResult)
-        {
-            continue
-        }
-      
-        try MukJjiPpa().play(gameResult)
-        
-        if shouldByClose(gameResult)
-        {
-            break
-        }
-        
-        
-    }
-    catch ErrorCases.invalidInput
+    if RPS().isRepeat(RPSResult)
     {
-        print("잘못된 입력입니다. 다시 입력해주세요")
-    }
-
-}
-
-func checkInput() throws -> Int
-{
-    guard let user = readLine(), let user = Int(user) else
-    {
-        throw ErrorCases.invalidInput
-    }
-    return user
-}
-
-func shouldByClose(_ gameResult : String) -> Bool
-{
-    if gameResult == "exit"
-    {
-        print("---------------------------------------")
-        return true
-    }
-    else
-    {
-        return false
+        break
     }
 }
 
-func isRepeatRPC(_ gameResult : String) -> Bool
+while true
 {
-    if gameResult == "draw"
+    if MukJjiPpa().shouldByClose(RPSResult)
     {
-        return true
+        break
     }
-    else
-    {
-        return false
-    }
-}
-
-func isWin(of user: Int, versus computer: Int) -> Bool
-{
-    let winCase: [Int: Int] = [1: 3, 2: 1, 3: 2]
     
-    if winCase[user] == computer
+    let MukJjiPpaResult = try MukJjiPpa().play(RPSResult)
+
+    if MukJjiPpa().shouldByClose(MukJjiPpaResult)
     {
-        return true
+        break
     }
-    else
-    {
-        return false
-    }
+    RPSResult = MukJjiPpaResult
 }
+
+
+
+
+
+
