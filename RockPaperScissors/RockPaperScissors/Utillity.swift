@@ -29,6 +29,21 @@ func getRPSResult(userSelcet: String, computerSelect: String) {
     }
 }
 
+func game2Start(userSelcet: String, computerSelect: String) {
+//  var ruf =
+  if userSelcet == computerSelect {
+    print("\(turn)의 승리!")
+    isRunning = false
+  } else if userSelcet == scissors && computerSelect == paper ||
+    userSelcet == rock && computerSelect == scissors ||
+    userSelcet == paper && computerSelect == rock {
+//    ruf = win lose
+  } else {
+    turn = "computer"
+//    ruf = win lose
+  }
+  game()
+}
 
 
 
@@ -37,14 +52,13 @@ func game(){
     print("[\(turn)] 묵(1), 찌(2), 빠(3)!, <종료: 0> : ",terminator: "")
     let computerSelect = getRandomNum()
     guard let userSelcet = readLine() else { return }
-    getRPSResult(userSelcet: userSelcet, computerSelect: computerSelect)
+//    ruf game2Start(userSelcet: userSelcet, computerSelect: computerSelect)
     
-    if turn == "user" {
-        
-        
-        
-    } else {
-        
-    }
+//  if 결과값 처리
+//    if turn == "user" {
+//        game2Start(userSelcet: userSelcet, computerSelect: computerSelect)
+//    } else {
+//
+//    }
     
 }
