@@ -51,15 +51,18 @@ class MukJjiPpa : RPS
             print("\(whichTurn)의 승리!")
             return "exit"
         }
-        else if isWin(of: user, versus: computer)
+        else
+        if isWin(of: user, versus: computer)
         {
-            
-            return "repeat"
+            whichTurn = "사용자"
+            print("\(whichTurn)의 턴입니다.")
+            return whichTurn
         }
         else
         {
-            print("졌습니다")
-            return ""
+            whichTurn = "컴퓨터"
+            print("\(whichTurn)의 턴입니다.")
+            return whichTurn
         }
     }
     
@@ -74,4 +77,19 @@ class MukJjiPpa : RPS
             return "사용자"
         }
     }
+    
+    override func isWin(of user: Int, versus computer: Int) -> Bool
+    {
+        let winCase: [Int: Int] = [1: 2, 2: 3, 3: 1]
+        
+        if winCase[user] == computer
+        {
+            return true
+        }
+        else
+        {
+            return false
+        }
+    }
 }
+
