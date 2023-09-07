@@ -6,8 +6,6 @@
 
 import Foundation
 
-var isExitCondition: Bool = false
-
 enum RockPaperScissorsError: Error
 {
     case invalidInput
@@ -19,21 +17,21 @@ while true
 
     do
     {
-        try playRockPaperScissors()
+        let gameResult : Bool = try playRockPaperScissors()
+
+        if shouldByClose(gameResult)
+        {
+            break
+        }
     }
     catch RockPaperScissorsError.invalidInput
     {
         print("잘못된 입력입니다. 다시 입력해주세요")
     }
 
-    if isExitCondition
-    {
-        print("---------------------------------------")
-        break
-    }
 }
 
-func playRockPaperScissors() throws
+func playRockPaperScissors() throws -> Bool
 {
     let user: Int = try checkInput()
 
@@ -41,9 +39,10 @@ func playRockPaperScissors() throws
     {
         case 0:
             print("게임 종료")
-            isExitCondition.toggle()
+            return true
         case 1...3:
-            getGameResult(of: user)
+            let gameResult : Bool = getGameResult(of: user)
+            return gameResult
         default:
             throw RockPaperScissorsError.invalidInput
     }
@@ -59,24 +58,24 @@ func checkInput() throws -> Int
     return user
 }
 
-func getGameResult(of user: Int)
+func getGameResult(of user: Int) -> Bool
 {
-    isExitCondition = false
     let computer = Int.random(in: 1...3)
 
     if user == computer
     {
         print("비겼습니다")
+        return false
     }
     else if isWin(of: user, versus: computer)
     {
         print("이겼습니다")
-        isExitCondition.toggle()
+        return true
     }
     else
     {
         print("졌습니다")
-        isExitCondition.toggle()
+        return true
     }
 }
 
@@ -86,6 +85,19 @@ func isWin(of user: Int, versus computer: Int) -> Bool
 
     if winCase[user] == computer
     {
+        return true
+    }
+    else
+    {
+        return false
+    }
+}
+
+func shouldByClose(_ gameResult : Bool) -> Bool
+{
+    if gameResult
+    {
+        print("---------------------------------------")
         return true
     }
     else
