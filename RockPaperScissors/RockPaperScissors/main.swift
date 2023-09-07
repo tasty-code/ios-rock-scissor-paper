@@ -13,46 +13,22 @@ enum ErrorCases: Error
 
 while true
 {
-    do
-    {
-        let gameResult : String = try RPS().play()
+    
+    // 묵찌빠 디버깅 끝나면 주석 해제하시면 됩니다.
+//        let RPSResult : String = try RPS().play()
+//
+//        if isRepeat(RPSResult)
+//        {
+//            continue
+//        }
         
-        if shouldByClose(gameResult)
+        let RPSResult = "사용자"
+        let MukJjiPpaResult = try MukJjiPpa().play(RPSResult)
+        
+        if shouldByClose(MukJjiPpaResult)
         {
             break
         }
-
-        if isRepeatRPC(gameResult)
-        {
-            continue
-        }
-        else
-        {
-            //           isUserTurn = MukJjiPpa().isUserTurn(gameResult)
-           try MukJjiPpa().play(gameResult)
-        }
-        
-        if shouldByClose(gameResult)
-        {
-            break
-        }
-        
-        
-    }
-    catch ErrorCases.invalidInput
-    {
-        print("잘못된 입력입니다. 다시 입력해주세요")
-    }
-
-}
-
-func checkInput() throws -> Int
-{
-    guard let user = readLine(), let user = Int(user) else
-    {
-        throw ErrorCases.invalidInput
-    }
-    return user
 }
 
 func shouldByClose(_ gameResult : String) -> Bool
@@ -68,7 +44,8 @@ func shouldByClose(_ gameResult : String) -> Bool
     }
 }
 
-func isRepeatRPC(_ gameResult : String) -> Bool
+
+func isRepeat(_ gameResult : String) -> Bool
 {
     if gameResult == "repeat"
     {
@@ -80,16 +57,3 @@ func isRepeatRPC(_ gameResult : String) -> Bool
     }
 }
 
-func isWin(of user: Int, versus computer: Int) -> Bool
-{
-    let winCase: [Int: Int] = [1: 3, 2: 1, 3: 2]
-    
-    if winCase[user] == computer
-    {
-        return true
-    }
-    else
-    {
-        return false
-    }
-}
