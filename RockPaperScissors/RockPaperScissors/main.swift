@@ -17,7 +17,7 @@ while true
 {
     RPSResult = try RPS().play()
 
-    if isRepeat(RPSResult)
+    if RPS().isRepeat(RPSResult)
     {
         break
     }
@@ -25,43 +25,22 @@ while true
 
 while true
 {
-    if shouldByClose(RPSResult)
+    if MukJjiPpa().shouldByClose(RPSResult)
     {
         break
     }
     
     let MukJjiPpaResult = try MukJjiPpa().play(RPSResult)
 
-    if shouldByClose(MukJjiPpaResult)
+    if MukJjiPpa().shouldByClose(MukJjiPpaResult)
     {
         break
     }
     RPSResult = MukJjiPpaResult
 }
 
-func shouldByClose(_ gameResult : String) -> Bool
-{
-    if gameResult == "exit"
-    {
-        print("---------------------------------------")
-        return true
-    }
-    else
-    {
-        return false
-    }
-}
 
 
-func isRepeat(_ gameResult : String) -> Bool
-{
-    if gameResult == "repeat"
-    {
-        return false
-    }
-    else
-    {
-        return true
-    }
-}
+
+
 

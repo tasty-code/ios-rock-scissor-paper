@@ -14,6 +14,7 @@ class MukJjiPpa : RPS
     func play(_ gameResult : String) throws -> String
     {
         whichTurn = gameResult
+        
         while true
         {
             print("[\(whichTurn) 턴] 묵(1), 찌(2), 빠(3)! <종료 : 0> : ", terminator: "")
@@ -51,8 +52,7 @@ class MukJjiPpa : RPS
             print("\(whichTurn)의 승리!")
             return "exit"
         }
-        else
-        if isWin(of: user, versus: computer)
+        else if isWin(of: user, versus: computer)
         {
             whichTurn = "사용자"
             print("\(whichTurn)의 턴입니다.")
@@ -87,7 +87,21 @@ class MukJjiPpa : RPS
             whichTurn = "컴퓨터"
             throw ErrorCases.invalidInput
         }
+        
         return user
+    }
+    
+    func shouldByClose(_ gameResult : String) -> Bool
+    {
+        if gameResult == "exit"
+        {
+            print("---------------------------------------")
+            return true
+        }
+        else
+        {
+            return false
+        }
     }
 }
 
