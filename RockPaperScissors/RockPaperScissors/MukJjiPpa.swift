@@ -31,7 +31,7 @@ class MukJjiPpa : RPS
                     let gameResult : String = getResult(of: user)
                     return gameResult
                 default:
-                    whichTurn = switchTurn(whichTurn)
+                    whichTurn = "컴퓨터"
                     throw ErrorCases.invalidInput
                 }
             }
@@ -66,18 +66,6 @@ class MukJjiPpa : RPS
         }
     }
     
-    func switchTurn(_ gameResult : String) -> String
-    {
-        if gameResult == "사용자"
-        {
-            return "컴퓨터"
-        }
-        else
-        {
-            return "사용자"
-        }
-    }
-    
     override func isWin(of user: Int, versus computer: Int) -> Bool
     {
         let winCase: [Int: Int] = [1: 2, 2: 3, 3: 1]
@@ -90,6 +78,16 @@ class MukJjiPpa : RPS
         {
             return false
         }
+    }
+    
+    override func checkInput() throws -> Int
+    {
+        guard let user = readLine(), let user = Int(user) else
+        {
+            whichTurn = "컴퓨터"
+            throw ErrorCases.invalidInput
+        }
+        return user
     }
 }
 
