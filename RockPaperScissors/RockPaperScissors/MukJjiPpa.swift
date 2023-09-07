@@ -7,11 +7,11 @@
 
 import Foundation
 
-class MukJjiPpa : RPS
+class MukJjiPpa: RPS
 {
-    private var whichTurn : String = ""
+    private var whichTurn: String = ""
     
-    func play(_ gameResult : String) throws -> String
+    func play(_ gameResult: String) throws -> String
     {
         whichTurn = gameResult
         
@@ -29,7 +29,7 @@ class MukJjiPpa : RPS
                     print("게임 종료")
                     return "exit"
                 case 1...3:
-                    let gameResult : String = getResult(of: user)
+                    let gameResult: String = getResult(of: user)
                     return gameResult
                 default:
                     whichTurn = "컴퓨터"
@@ -40,6 +40,19 @@ class MukJjiPpa : RPS
             {
                 print("잘못된 입력입니다. 다시 입력해주세요")
             }
+        }
+    }
+    
+    func shouldByClose(_ gameResult: String) -> Bool
+    {
+        if gameResult == "exit"
+        {
+            print("---------------------------------------")
+            return true
+        }
+        else
+        {
+            return false
         }
     }
     
@@ -90,18 +103,4 @@ class MukJjiPpa : RPS
         
         return user
     }
-    
-    func shouldByClose(_ gameResult : String) -> Bool
-    {
-        if gameResult == "exit"
-        {
-            print("---------------------------------------")
-            return true
-        }
-        else
-        {
-            return false
-        }
-    }
 }
-
