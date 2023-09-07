@@ -16,6 +16,7 @@ while true
     do
     {
         let gameResult : String = try RPS().play()
+        var isUserTurn: String = ""
 
         if shouldByClose(gameResult)
         {
@@ -26,10 +27,16 @@ while true
         {
             continue
         }
+        else
+        {
+           isUserTurn = MukJjiPpa().isUserTurn(gameResult)
+        }
 
-        
         print("묵찌빠 하세요")
         // 묵찌빠.play()
+        
+        print(isUserTurn)
+        
         if shouldByClose(gameResult)
         {
             break
@@ -77,3 +84,4 @@ func isRepeatRPC(_ gameResult : String) -> Bool
         return false
     }
 }
+

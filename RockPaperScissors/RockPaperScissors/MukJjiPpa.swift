@@ -6,3 +6,20 @@
 //
 
 import Foundation
+
+class MukJjiPpa
+{
+    
+    func isUserTurn(_ gameResult : String) -> String
+    {
+        if gameResult == "UserTurn"
+        {
+            return "user"
+        }
+        else
+        {
+            return "computer"
+        }
+    }
+    
+}
