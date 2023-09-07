@@ -18,6 +18,7 @@ struct RockPaperScissorsGame {
     mutating func playMukJjiPpa() {
         do {
             turnOwner = try doRockPaperScissors()
+            print(turnOwner ? "이겼습니다!" : "졌습니다!")
             let winner = try doMukJjiPpa(isPlayerTurn: turnOwner)
             print(winner ? "사용자의 승리!" : "컴퓨터의 승리!")
         } catch PlayingGameException.zeroExit {
@@ -51,7 +52,7 @@ struct RockPaperScissorsGame {
                 return try battle(playerHandType, and: computerHandType)
             } catch PlayingGameException.invalidInputError {
                 print("잘못된 입력입니다. 다시 시도해주세요.")
-            } catch PlayingGameException.sameHandError {
+            } catch PlayingGameException.sameHand {
                 print("비겼습니다.")
             } catch {
                 throw error
@@ -64,9 +65,12 @@ struct RockPaperScissorsGame {
         while true {
             print("[\(ownerName) 턴] 묵(1), 찌(2), 빠(3)! <종료 : 0> : ", terminator: "")
             do {
-                let playerHand = try getHandType()
-                turnOwner = try mukJjiBba(player: playerHand)
-            } catch PlayingGameException.sameHandError {
+                let playerHandType = try getHandType()
+                guard let computerHandType = (1...3).randomElement() else {
+                    throw PlayingGameException.unknownError
+                }
+                turnOwner = try battle(playerHandType, and: computerHandType)
+            } catch PlayingGameException.sameHand {
                 return turnOwner
             } catch PlayingGameException.invalidInputError {
                 print("잘못된 입력입니다. 다시 시도해주세요.")
@@ -82,31 +86,8 @@ struct RockPaperScissorsGame {
         }
         
         if player1HandShape == player2HandShape {
-            throw PlayingGameException.sameHandError
+            throw PlayingGameException.sameHand
         } else if player2HandShape < player1HandShape {
-            print("이겼습니다!")
-            return true
-        } else {
-            print("졌습니다!")
-            return false
-        }
-    }
-    
-    
-    
-    
-    private func mukJjiBba(player: Int) throws -> Bool {
-        guard let computer = (1...3).randomElement() else {
-            throw PlayingGameException.invalidInputError
-        }
-        
-        guard let playerHand = RockPaperScissors(rawValue: player), let computerHand = RockPaperScissors(rawValue: computer) else {
-            throw PlayingGameException.invalidInputError
-        }
-        
-        if playerHand == computerHand {
-            throw PlayingGameException.sameHandError
-        } else if computerHand < playerHand {
             return true
         } else {
             return false
