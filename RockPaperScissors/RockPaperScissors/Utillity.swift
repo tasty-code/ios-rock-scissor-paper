@@ -15,9 +15,9 @@ func getRandomNum() -> String {
 func getRPSResult(userSelcet: String, computerSelect: String) {
     if userSelcet == computerSelect {
         print("비겼습니다")
-    } else if userSelcet == "1" && computerSelect == "3" ||
-                userSelcet == "2" && computerSelect == "1" ||
-                userSelcet == "3" && computerSelect == "2" {
+    } else if userSelcet == scissors && computerSelect == paper ||
+                userSelcet == rock && computerSelect == scissors ||
+                userSelcet == paper && computerSelect == rock {
         print("이겼습니다")
         isRunning = false
     } else {
