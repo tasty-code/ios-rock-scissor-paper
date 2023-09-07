@@ -11,13 +11,24 @@ final class RockPaperScissors {
     
     // MARK: - Enum
     
+    @frozen
     enum RpsChoice : Int {
         case exit = 0
         case scissors = 1
         case rock = 2
         case paper = 3
+        
+        static func changeMcpVersion(of choice: RpsChoice) -> RpsChoice {
+            switch choice {
+            case .exit: return .exit
+            case .scissors: return .rock
+            case .rock: return .scissors
+            case .paper: return .paper
+            }
+        }
     }
     
+    @frozen
     enum GameResult {
         case win
         case lose
