@@ -44,6 +44,7 @@ class RPS
         {
             throw ErrorCases.invalidInput
         }
+        
         return user
     }
 
@@ -79,6 +80,18 @@ class RPS
         else
         {
             return false
+        }
+    }
+    
+    func isRepeat(_ gameResult : String) -> Bool
+    {
+        if gameResult == "repeat"
+        {
+            return false
+        }
+        else
+        {
+            return true
         }
     }
 }
