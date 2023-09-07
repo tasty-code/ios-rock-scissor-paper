@@ -7,4 +7,4 @@
 import Foundation
 
 var game = RspService()
-game.run()
+game.run(GameType.continuousRsp)
