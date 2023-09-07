@@ -7,6 +7,6 @@
 
 import Foundation
 
-enum RPCError: Error {
+enum PlayingGameException: Error {
     case invalidInputError
 }
