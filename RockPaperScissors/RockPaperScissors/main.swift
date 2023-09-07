@@ -11,7 +11,7 @@ enum ErrorCases: Error
     case invalidInput
 }
 
-private var RPSResult : String = ""
+private var RPSResult: String = ""
 
 while true
 {
@@ -29,7 +29,7 @@ while true
     {
         break
     }
-    
+
     let MukJjiPpaResult = try MukJjiPpa().play(RPSResult)
 
     if MukJjiPpa().shouldByClose(MukJjiPpaResult)
@@ -38,9 +38,3 @@ while true
     }
     RPSResult = MukJjiPpaResult
 }
-
-
-
-
-
-

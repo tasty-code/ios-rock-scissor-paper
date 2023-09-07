@@ -25,7 +25,7 @@ class RPS
                     print("게임 종료")
                     return "exit"
                 case 1...3:
-                    let gameResult : String = getResult(of: user)
+                    let gameResult: String = getResult(of: user)
                     return gameResult
                 default:
                     throw ErrorCases.invalidInput
@@ -83,7 +83,7 @@ class RPS
         }
     }
     
-    func isRepeat(_ gameResult : String) -> Bool
+    func isRepeat(_ gameResult: String) -> Bool
     {
         if gameResult == "repeat"
         {
