@@ -71,12 +71,6 @@ func doMukJjiPpa(isPlayerTurn: Bool) throws -> Bool {
 }
 
 func battle(_ player1: Int, and player2: Int) throws -> Bool {
-    guard let playerHandShape = RockPaperScissors(rawValue: player1), let computerHandShape = RockPaperScissors(rawValue: player2) else {
-        throw PlayingGameException.invalidInputError
-    }
-    
-    if playerHandShape == computerHandShape {
-func battle(_ player1: Int, and player2: Int) throws -> Bool {
     guard let playerHandShape = RockPaperScissors(rawValue: player1), let player2HandShape = RockPaperScissors(rawValue: player2) else {
         throw PlayingGameException.invalidInputError
     }
