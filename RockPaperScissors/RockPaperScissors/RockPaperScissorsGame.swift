@@ -32,6 +32,11 @@ struct RockPaperScissorsGame {
         guard let playerHandType = Int(playerInput), (0...3).contains(playerHandType) else {
             throw PlayingGameException.invalidInputError
         }
+        
+        if playerHandType == 0 {
+            throw PlayingGameException.zeroExit
+        }
+        
         return playerHandType
     }
     
@@ -39,14 +44,11 @@ struct RockPaperScissorsGame {
         while true {
             print("가위(1), 바위(2), 보(3)! <종료: 0> : ", terminator: "")
             do {
-                let playerHandShape = try getHandType()
-                if playerHandShape == 0 {
-                    throw PlayingGameException.zeroExit
-                }
-                guard let computerHandShape = (1...3).randomElement() else {
+                let playerHandType = try getHandType()
+                guard let computerHandType = (1...3).randomElement() else {
                     throw PlayingGameException.invalidInputError
                 }
-                return try battle(playerHandShape, and: computerHandShape)
+                return try battle(playerHandType, and: computerHandType)
             } catch PlayingGameException.invalidInputError {
                 print("잘못된 입력입니다. 다시 시도해주세요.")
             } catch PlayingGameException.sameHandError {
@@ -63,9 +65,6 @@ struct RockPaperScissorsGame {
             print("[\(ownerName) 턴] 묵(1), 찌(2), 빠(3)! <종료 : 0> : ", terminator: "")
             do {
                 let playerHand = try getHandType()
-                if playerHand == 0 {
-                    throw PlayingGameException.zeroExit
-                }
                 turnOwner = try mukJjiBba(player: playerHand)
             } catch PlayingGameException.sameHandError {
                 return turnOwner
@@ -77,8 +76,8 @@ struct RockPaperScissorsGame {
         }
     }
     
-    private func battle(_ player1: Int, and player2: Int) throws -> Bool {
-        guard let player1HandShape = RockPaperScissors(rawValue: player1), let player2HandShape = RockPaperScissors(rawValue: player2) else {
+    private func battle(_ player1HandType: Int, and player2HandType: Int) throws -> Bool {
+        guard let player1HandShape = RockPaperScissors(rawValue: player1HandType), let player2HandShape = RockPaperScissors(rawValue: player2HandType) else {
             throw PlayingGameException.invalidInputError
         }
         
