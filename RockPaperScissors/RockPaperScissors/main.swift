@@ -50,8 +50,7 @@ func playRockPaperScissors() throws -> Bool
 
 func checkInput() throws -> Int
 {
-    guard let user = readLine(), let user = Int(user)
-    else
+    guard let user = readLine(), let user = Int(user) else
     {
         throw RockPaperScissorsError.invalidInput
     }
