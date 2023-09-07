@@ -3,6 +3,7 @@
 //  Created by tacocat.
 //  Copyright © tastycode. All rights reserved.
 var isRunning: Bool = true
+var turn: String
 
 while isRunning {
     print("가위(1), 바위(2), 보(3)! <종료 : 0 > : ", terminator: "")
