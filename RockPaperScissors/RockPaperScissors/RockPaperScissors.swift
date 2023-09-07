@@ -39,7 +39,8 @@ final class RockPaperScissors {
     
     private var gameResult: GameResult = .draw
     private var userInput = 1
-    private var userChoice : RpsChoice = .scissors
+    private var userChoice: RpsChoice = .scissors
+    private var firstTurn = ""
     
     // MARK: - Start
 
@@ -47,12 +48,14 @@ final class RockPaperScissors {
         playRPS()
     }
 
+    // MARK: - Play RockPaperScissors
+    
     private func playRPS() {
         print(GuideMessage.rpsChoiceMenu, terminator: "")
         
-        enterUserChoice {
+        enterUserChoice(whenMistake: {
             playRPS()
-        }
+        })
         
         if userInput == 0 {
             return print(GuideMessage.exit)
@@ -69,9 +72,64 @@ final class RockPaperScissors {
     private func playNextGame() {
         switch gameResult {
         case .draw: playRPS()
-        default: return
+        default: playMukchippa()
         }
     }
+    
+    // MARK: - Play Mukchippa
+    
+    private func playMukchippa() {
+        let computerInput = Int.random(in: 1...3)
+        
+        switch gameResult {
+        case .win:
+            firstTurn = "사용자"
+            
+            print(GuideMessage.userTurn)
+            print("[사용자 턴] \(GuideMessage.mcpChoiceMenu)", terminator: "")
+            
+            enterUserChoice(whenMistake: {
+                gameResult = .lose
+                
+                playMukchippa()
+            })
+            userChoice = RpsChoice.changeMcpVersion(of: userChoice)
+            
+            if userInput == 0 {
+                return print(GuideMessage.exit)
+            }
+            
+            guard let computerChoice = RpsChoice(rawValue: computerInput) else { return }
+            gameResult = checkResult(of: userChoice,
+                                     with: RpsChoice.changeMcpVersion(of: computerChoice)) { _ in }
+            
+        case .lose:
+            firstTurn = "컴퓨터"
+            
+            print(GuideMessage.computerTurn)
+            print("[컴퓨터 턴] \(GuideMessage.mcpChoiceMenu)\(computerInput)")
+            
+            enterUserChoice(whenMistake: {
+                playMukchippa()
+            })
+            userChoice = RpsChoice.changeMcpVersion(of: userChoice)
+            
+            if userInput == 0 {
+                return print("게임 종료")
+            }
+            
+            guard let computerChoice = RpsChoice(rawValue: computerInput) else { return }
+            gameResult = checkResult(of: userChoice,
+                                     with: RpsChoice.changeMcpVersion(of: computerChoice)) { _ in }
+            
+        case .draw:
+            return print("\(firstTurn)의 승리!")
+        }
+        
+        return playMukchippa()
+    }
+    
+    // MARK: - Helper Method
     
     private func enterUserChoice(whenMistake: () -> ()) {
         guard let userInput = Int(readLine() ?? "0"),
