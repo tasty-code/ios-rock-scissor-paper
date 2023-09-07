@@ -7,7 +7,7 @@
 
 import Foundation
 
-enum RPCError: Error {
+enum PlayingGameException: Error {
     case invalidInputError
     case sameHandError
     case zeroExit
