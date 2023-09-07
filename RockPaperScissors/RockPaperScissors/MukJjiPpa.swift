@@ -7,7 +7,7 @@
 
 import Foundation
 
-class MukJjiPpa
+class MukJjiPpa : RPS
 {
     func play(_ gameResult : String) throws -> String
     {
@@ -29,33 +29,7 @@ class MukJjiPpa
             throw ErrorCases.invalidInput
         }
         
-        
-        func getResult(of user: Int) -> String
-        {
-            let computer = Int.random(in: 1...3)
-            
-            if user == computer
-            {
-                print("비겼습니다")
-                return "repeat"
-            }
-            else if isWin(of: user, versus: computer)
-            {
-                print("이겼습니다")
-                return "UserTurn"
-            }
-            else
-            {
-                print("졌습니다")
-                return "ComputerTurn"
-            }
-            
-        }
-        
     }
-    
-    
-
     
     func switchTurn(_ gameResult : String) -> String
     {

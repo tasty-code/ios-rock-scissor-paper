@@ -26,11 +26,8 @@ while true
         {
             continue
         }
-        else
-        {
-            //           isUserTurn = MukJjiPpa().isUserTurn(gameResult)
-           try MukJjiPpa().play(gameResult)
-        }
+      
+        try MukJjiPpa().play(gameResult)
         
         if shouldByClose(gameResult)
         {
@@ -70,7 +67,7 @@ func shouldByClose(_ gameResult : String) -> Bool
 
 func isRepeatRPC(_ gameResult : String) -> Bool
 {
-    if gameResult == "repeat"
+    if gameResult == "draw"
     {
         return true
     }

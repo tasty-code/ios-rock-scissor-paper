@@ -36,7 +36,7 @@ class RPS
         if user == computer
         {
             print("비겼습니다")
-            return "repeat"
+            return "draw"
         }
         else if isWin(of: user, versus: computer)
         {
