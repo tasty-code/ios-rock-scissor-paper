@@ -24,7 +24,7 @@ class RPS
             let gameResult : String = getResult(of: user)
             return gameResult
         default:
-            throw RockPaperScissorsError.invalidInput
+            throw ErrorCases.invalidInput
         }
         
     }
@@ -41,29 +41,13 @@ class RPS
         else if isWin(of: user, versus: computer)
         {
             print("이겼습니다")
-            return "UserTurn"
+            return "사용자"
         }
         else
         {
             print("졌습니다")
-            return "ComputerTurn"
+            return "컴퓨터"
         }
         
     }
-    
-    func isWin(of user: Int, versus computer: Int) -> Bool
-    {
-        let winCase: [Int: Int] = [1: 3, 2: 1, 3: 2]
-        
-        if winCase[user] == computer
-        {
-            return true
-        }
-        else
-        {
-            return false
-        }
-    }
-    
-    
 }

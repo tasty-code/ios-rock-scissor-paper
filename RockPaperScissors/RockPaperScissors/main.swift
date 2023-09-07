@@ -6,7 +6,7 @@
 
 import Foundation
 
-enum RockPaperScissorsError: Error
+enum ErrorCases: Error
 {
     case invalidInput
 }
@@ -16,8 +16,7 @@ while true
     do
     {
         let gameResult : String = try RPS().play()
-        var isUserTurn: String = ""
-
+        
         if shouldByClose(gameResult)
         {
             break
@@ -29,13 +28,9 @@ while true
         }
         else
         {
-           isUserTurn = MukJjiPpa().isUserTurn(gameResult)
+            //           isUserTurn = MukJjiPpa().isUserTurn(gameResult)
+           try MukJjiPpa().play(gameResult)
         }
-
-        print("묵찌빠 하세요")
-        // 묵찌빠.play()
-        
-        print(isUserTurn)
         
         if shouldByClose(gameResult)
         {
@@ -44,7 +39,7 @@ while true
         
         
     }
-    catch RockPaperScissorsError.invalidInput
+    catch ErrorCases.invalidInput
     {
         print("잘못된 입력입니다. 다시 입력해주세요")
     }
@@ -55,7 +50,7 @@ func checkInput() throws -> Int
 {
     guard let user = readLine(), let user = Int(user) else
     {
-        throw RockPaperScissorsError.invalidInput
+        throw ErrorCases.invalidInput
     }
     return user
 }
@@ -85,3 +80,16 @@ func isRepeatRPC(_ gameResult : String) -> Bool
     }
 }
 
+func isWin(of user: Int, versus computer: Int) -> Bool
+{
+    let winCase: [Int: Int] = [1: 3, 2: 1, 3: 2]
+    
+    if winCase[user] == computer
+    {
+        return true
+    }
+    else
+    {
+        return false
+    }
+}
