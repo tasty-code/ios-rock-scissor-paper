@@ -76,9 +76,15 @@ func battle(_ player1: Int, and player2: Int) throws -> Bool {
     }
     
     if playerHandShape == computerHandShape {
+func battle(_ player1: Int, and player2: Int) throws -> Bool {
+    guard let playerHandShape = RockPaperScissors(rawValue: player1), let player2HandShape = RockPaperScissors(rawValue: player2) else {
+        throw PlayingGameException.invalidInputError
+    }
+    
+    if playerHandShape == player2HandShape {
         print("비겼습니다!")
         return true
-    } else if computerHandShape < playerHandShape {
+    } else if player2HandShape < playerHandShape {
         print("이겼습니다!")
         return false
     } else {
