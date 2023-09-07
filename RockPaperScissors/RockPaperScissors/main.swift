@@ -13,7 +13,7 @@ enum ErrorCases: Error
 
 while true
 {
-    
+    print("test")
     // 묵찌빠 디버깅 끝나면 주석 해제하시면 됩니다.
 //        let RPSResult : String = try RPS().play()
 //
