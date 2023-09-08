@@ -1,7 +1,7 @@
 # 묵찌빠 프로젝트
 
 ### 팀원
-@rarlala @KimRoks
+[@rarlala](https://github.com/rarlala) [@KimRoks](https://github.com/kimroks)
 
 ### 작동 영상
 <img src="https://private-user-images.githubusercontent.com/48057629/266529603-eedadd3a-c261-4afb-8706-f9e8850cb34a.gif?jwt=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJnaXRodWIuY29tIiwiYXVkIjoicmF3LmdpdGh1YnVzZXJjb250ZW50LmNvbSIsImtleSI6ImtleTEiLCJleHAiOjE2OTQxNTcwODEsIm5iZiI6MTY5NDE1Njc4MSwicGF0aCI6Ii80ODA1NzYyOS8yNjY1Mjk2MDMtZWVkYWRkM2EtYzI2MS00YWZiLTg3MDYtZjllODg1MGNiMzRhLmdpZj9YLUFtei1BbGdvcml0aG09QVdTNC1ITUFDLVNIQTI1NiZYLUFtei1DcmVkZW50aWFsPUFLSUFJV05KWUFYNENTVkVINTNBJTJGMjAyMzA5MDglMkZ1cy1lYXN0LTElMkZzMyUyRmF3czRfcmVxdWVzdCZYLUFtei1EYXRlPTIwMjMwOTA4VDA3MDYyMVomWC1BbXotRXhwaXJlcz0zMDAmWC1BbXotU2lnbmF0dXJlPWMzOGQ5MTM3ZGRiYzY3NjExOTE4YTU4YTAzZjNjNTBkZDE3ZDdmMTliYmQzNDI3NDA3NzM1OTdiYzI3ZmYxNDQmWC1BbXotU2lnbmVkSGVhZGVycz1ob3N0JmFjdG9yX2lkPTAma2V5X2lkPTAmcmVwb19pZD0wIn0.EnRoX_Bf1Feozb-aShaDQ--hKF9xkolx0eZQBfVbdI0">
@@ -23,7 +23,7 @@
 
 
 ### 개선한 내용
--  명확한 표현의 네이밍을 사용하였습니다.
+- 명확한 표현의 네이밍을 사용하였습니다.
 - 함수를 분리할 때 근거와 기준을 가지고 한가지 일만 수행하도록 처리했습니다.
 - 코드의 가독성을 고려하여 if 문의 이중중첩이 되지않게끔 작성했습니다.
 - 코드의 가독성을 고려하여 모듈화를 진행했습니다.
