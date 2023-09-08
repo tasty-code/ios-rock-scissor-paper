@@ -11,25 +11,25 @@ class RPSGame {
     
     func run() {
         while true {
-            RPSPrinter.menu.getMessage()
+            RPSPrinter.menu.printMessage()
             
             guard let userChoice = getUserChoice() else {
-                RPSPrinter.invalid.getMessage()
+                RPSPrinter.invalid.printMessage()
                 continue
             }
             
             if userChoice == .stop {
-                RPSPrinter.gameFinish.getMessage()
+                RPSPrinter.gameFinish.printMessage()
                 break
             }
             
             guard let botChoice = generateRandomChoice() else {
-                RPSPrinter.invalid.getMessage()
+                RPSPrinter.invalid.printMessage()
                 continue
             }
             
             let result = getResult(userChoice, botChoice)
-            result.getMessage()
+            result.printMessage()
             
             if getGameResult(result) { break }
         }

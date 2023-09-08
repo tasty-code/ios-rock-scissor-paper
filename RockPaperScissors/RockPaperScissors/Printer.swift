@@ -15,7 +15,7 @@ enum RPSPrinter: Int {
     case lose
     case invalid
     
-    func getMessage() {
+    func printMessage() {
         switch self {
         case .menu:
             print("가위(1), 바위(2), 보(3)! <종료 : 0> :", terminator: " ")
