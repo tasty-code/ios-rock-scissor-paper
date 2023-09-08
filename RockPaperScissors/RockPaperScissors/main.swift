@@ -11,30 +11,15 @@ enum ErrorCases: Error
     case invalidInput
 }
 
-private var RPSResult: String = ""
+private var RPSResult: String = "repeat"
 
-while true
+while isRepeat(RPSResult)
 {
-    RPSResult = try RPS().play()
-
-    if RPS().isRepeat(RPSResult)
-    {
-        break
-    }
+    RPSResult = try RPS().play(RPSResult)
 }
 
-while true
+while shouldByClose(RPSResult)
 {
-    if MukJjiPpa().shouldByClose(RPSResult)
-    {
-        break
-    }
-
     let MukJjiPpaResult = try MukJjiPpa().play(RPSResult)
-
-    if MukJjiPpa().shouldByClose(MukJjiPpaResult)
-    {
-        break
-    }
     RPSResult = MukJjiPpaResult
 }
