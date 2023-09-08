@@ -14,6 +14,7 @@
 
 ### 주요 메서드명과 역할
 |메서드명|역할|
+| :---: || :---: |
 |getRandomNum()|1부터 3까지의 랜덤한 숫자 생성 후 return하는 함수|
 |getRPSResult(userSelect:String, computerSelect:String)|사용자와 컴퓨터의 입력값에 따른 가위바위보 결과를 처리하는 함수|
 |playMukjjibba()|묵찌빠 게임 옵션에 대한 사용자의 입력을 받아 처리하는 함수|
