@@ -16,7 +16,7 @@ class MukJjiPpa: RPS
     
     override func getResult(of user: Int) -> String
     {
-        let computer = Int.random(in: 1...3)
+        let computer = Int.random(in: 1 ... 3)
         
         if user == computer
         {
@@ -50,5 +50,4 @@ class MukJjiPpa: RPS
             return false
         }
     }
-    
 }
