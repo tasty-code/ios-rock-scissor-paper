@@ -29,7 +29,7 @@ struct RockPaperScissorsGame {
         }
     }
     
-    private func getHandType() throws -> Int {
+    private func getPlayerHandType() throws -> Int {
         let playerInput = readLine() ?? "error"
         guard let playerHandType = Int(playerInput), (0...3).contains(playerHandType) else {
             throw PlayingGameException.invalidInputError
@@ -40,6 +40,13 @@ struct RockPaperScissorsGame {
         }
         
         return playerHandType
+    }
+    
+    private func getRandomHandType() throws -> Int {
+        guard let randomHandType = (1...3).randomElement() else {
+            throw PlayingGameException.unknownError
+        }
+        return randomHandType
     }
     
     private func battle(_ player1HandType: Int, and player2HandType: Int) throws -> BattleResult {
@@ -60,10 +67,8 @@ struct RockPaperScissorsGame {
         while true {
             print("가위(1), 바위(2), 보(3)! <종료: 0> : ", terminator: "")
             do {
-                let playerHandType = try getHandType()
-                guard let computerHandType = (1...3).randomElement() else {
-                    throw PlayingGameException.invalidInputError
-                }
+                let playerHandType = try getPlayerHandType()
+                let computerHandType = try getRandomHandType()
                 battleResultType = try battle(playerHandType, and: computerHandType)
             } catch PlayingGameException.invalidInputError {
                 print("잘못된 입력입니다. 다시 시도해주세요.")
@@ -88,18 +93,16 @@ struct RockPaperScissorsGame {
         while true {
             print("[\(ownerName) 턴] 묵(1), 찌(2), 빠(3)! <종료 : 0> : ", terminator: "")
             do {
-                let playerHandType = try getHandType()
-                guard let computerHandType = (1...3).randomElement() else {
-                    throw PlayingGameException.unknownError
-                }
+                let playerHandType = try getPlayerHandType()
+                let computerHandType = try getRandomHandType()
                 battleResultType = try battle(playerHandType, and: computerHandType)
             } catch PlayingGameException.invalidInputError {
                 print("잘못된 입력입니다. 다시 시도해주세요.")
-                turnOwner = false
+                battleResultType = .player2Win
             } catch {
                 throw error
             }
-            print("\(ownerName)의 턴입니다.")
+            
             switch battleResultType {
             case .player1Win:
                 turnOwner = true
@@ -108,6 +111,7 @@ struct RockPaperScissorsGame {
             case .draw:
                 return
             }
+            print("\(ownerName)의 턴입니다.")
         }
     }
 }
