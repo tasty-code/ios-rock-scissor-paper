@@ -7,40 +7,70 @@
 
 import Foundation
 
-enum  Progress: String {
-    case notYet = "시작 전"
-    case prompt = "가위(1), 바위(2), 보(3)! <종료 : 0> :"
-    case tryAgain = "잘못된 입력입니다. 다시 시도해주세요."
-    case onGoing = "계속"
-    case end = "게임 종료"
+enum  GameStatus: String {
+    case start
+    case tryAgain
+    case end
+    case onGoing
+    case notYet
+    
+    var message: String {
+        switch self {
+        case .start:
+            return "가위(1), 바위(2), 보(3)! <종료 : 0> :"
+        case .tryAgain:
+            return "잘못된 입력입니다. 다시 시도해주세요."
+        case .end:
+            return "게임 종료"
+        default:
+            return ""
+        }
+    }
+}
+
+enum GameWinner: String {
+    case user
+    case opponent
+    case draw
 }
 
 enum GameResult: String {
-    case draw = "비겼습니다!"
-    case win = "이겼습니다!"
-    case lose = "졌습니다!"
+    case draw
+    case win
+    case lose
+
+    var message: String {
+        switch self {
+        case .draw:
+            return "비겼습니다!"
+        case .win:
+            return "이겼습니다!"
+        case .lose:
+            return "졌습니다!"
+        }
+    }
 }
 
 enum GameType {
-    case rsp
-    case continuousRsp
+    case step1
+    case step2
 }
 
 struct RspService {
-    private var userInput: Int? = -1
-    private var computerValue: Int = 0
-    private var status: Progress = .notYet
+    private var userInput: Int? = nil
+    private var opponent: Int = 0
+    private var status: GameStatus = .notYet
     private var isRunning: Bool = true
-    private var userResult: GameResult = .draw
+    private var winner: GameWinner = .draw
     private var isFirstRound: Bool = true
-    private var isUserWin: Bool = false
+    private var lastWinner: GameWinner = .draw
     
     mutating func run(_ type: GameType) {
         while isRunning {
             if isFirstRound {
-                print(Progress.prompt.rawValue)
+                print(GameStatus.start.message)
             } else {
-                print("\(userResult == GameResult.lose ? "[컴퓨터 턴]" : "[사용자 턴]") " + Progress.prompt.rawValue )
+                print(winner == GameWinner.user ? "[사용자 턴] " : "[컴퓨터 턴] ", GameStatus.start.message)
             }
             
             getUserInput()
@@ -50,12 +80,11 @@ struct RspService {
             case .end:
                 endGame()
             case .onGoing:
-//                getComputerValue()
-                computerValue = 1
+                getOpponentChoice()
                 game()
-                judge(type)
+                checkFlow(type)
             case .tryAgain:
-                print(Progress.tryAgain.rawValue)
+                print(GameStatus.tryAgain.message)
                 break
             default:
                 continue
@@ -64,99 +93,98 @@ struct RspService {
     }
     
     mutating func getUserInput() {
-        let tempUserInput = readLine()
-        guard let stringUserInput = tempUserInput else {
-            userInput = nil
+        let userInput = readLine()
+        guard let unwrapped = userInput else {
+            self.userInput = nil
             return
         }
-        guard let intUserInput = Int(stringUserInput) else {
-            userInput = nil
+        guard let preprocessedInput = Int(unwrapped) else {
+            self.userInput = nil
             return
         }
-        userInput = intUserInput
+        self.userInput = preprocessedInput
     }
     
     mutating func checkInputValidation() {
         switch self.userInput {
         case 0:
-            status = Progress.end
+            status = GameStatus.end
         case 1,2,3:
-            status = Progress.onGoing
+            status = GameStatus.onGoing
         default:
-            status = Progress.tryAgain
+            status = GameStatus.tryAgain
         }
     }
     
-    mutating func getComputerValue() {
-        computerValue = Int.random(in: 1...3)
+    mutating func getOpponentChoice() {
+        opponent = Int.random(in: 1...3)
     }
     
     mutating func endGame() {
-        print(Progress.end.rawValue)
+        print(GameStatus.end.message)
         isRunning = false
     }
 
     mutating func game() {
-        if userInput == 3 && computerValue == 1 {
-            userResult = .lose
+        if userInput == 3 && opponent == 1 {
+            winner = .opponent
             return
         }
-        if userInput == 1 && computerValue == 3 {
-            userResult = .win
+        if userInput == 1 && opponent == 3 {
+            winner = .user
             return
         }
-        if userInput == computerValue {
-            userResult = .draw
+        if userInput == opponent {
+            winner = .draw
             return
         }
         guard let certainUserInput = userInput else {
-            print(Progress.tryAgain.rawValue)
+            print(GameStatus.tryAgain.message)
             return
         }
-        userResult = certainUserInput > computerValue ? .win : .lose
+        winner = certainUserInput > opponent ? .user : .opponent
     }
     
-    mutating func judge(_ type: GameType) {
+    mutating func checkFlow(_ type: GameType) {
         switch type {
-        case .rsp:
-            step1Judge()
-            if userResult == GameResult.win || userResult == GameResult.lose {
+        case .step1:
+            step1Result()
+            if winner == GameWinner.user || winner == GameWinner.opponent {
                 isRunning = false
             }
-        case .continuousRsp:
+        case .step2:
             if isFirstRound {
-                step1Judge()
+                step1Result()
             } else {
-                step2Judge()
+                step2Result()
             }
         }
     }
     
-    mutating func step1Judge() {
-        switch userResult {
-        case GameResult.win:
-            print(GameResult.win.rawValue)
+    mutating func step1Result() {
+        switch winner {
+        case .user:
+            print(GameResult.win.message)
             isFirstRound = false
-        case GameResult.draw:
-            print(GameResult.draw.rawValue)
-        case GameResult.lose:
-            print(GameResult.lose.rawValue)
+        case .opponent:
+            print(GameResult.lose.message)
             isFirstRound = false
+        case .draw:
+            print(GameResult.draw.message)
         }
     }
     
-    mutating func step2Judge() {
-        
-        switch userResult {
-        case GameResult.draw:
-            print(isUserWin ? "사용자의 승리" : "컴퓨터의 승리")
+    mutating func step2Result() {
+        switch winner {
+        case .user:
+            lastWinner = .user
+            print(winner == GameWinner.opponent ? "컴퓨터의 턴입니다." : "사용자의 턴입니다")
+        case .opponent:
+            lastWinner = .opponent
+            print(winner == GameWinner.opponent ? "컴퓨터의 턴입니다." : "사용자의 턴입니다")
+        case .draw:
+            print(lastWinner == .user ? "사용자의 승리" : "컴퓨터의 승리")
             isRunning = false
-        case GameResult.lose:
-            isUserWin = false
-            print(userResult == GameResult.lose ? "컴퓨터의 턴입니다." : "사용자의 턴입니다")
-        case GameResult.win:
-            isUserWin = true
-            print(userResult == GameResult.lose ? "컴퓨터의 턴입니다." : "사용자의 턴입니다")
         }
     }
 }
