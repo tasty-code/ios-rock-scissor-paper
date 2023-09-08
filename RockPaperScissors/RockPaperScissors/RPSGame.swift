@@ -14,6 +14,7 @@ class RPSGame {
             RPSPrinter.menu.getMessage()
             
             guard let userChoice = getUserChoice() else {
+                RPSPrinter.invalid.getMessage()
                 continue
             }
             
@@ -22,7 +23,10 @@ class RPSGame {
                 break
             }
             
-            let botChoice = generateRandomChoice()
+            guard let botChoice = generateRandomChoice() else {
+                RPSPrinter.invalid.getMessage()
+                continue
+            }
             
             let result = getResult(userChoice, botChoice)
             result.getMessage()
@@ -32,32 +36,32 @@ class RPSGame {
     }
     
     
-    private func getUserChoice() -> Choice? {
-        guard let input = readLine(), let number = Int(input), let choice = Choice(rawValue: number) else {
-            RPSPrinter.invalid.getMessage()
+    private func getUserChoice() -> Input? {
+        guard let input = readLine(), let number = Int(input), let choice = Input(number), choice != Input.error("Invalid Error: \(number)") else {
             return nil
         }
         return choice
     }
     
-    private func generateRandomChoice() -> Choice {
+    private func generateRandomChoice() -> Input? {
         switch Int.random(in: 1...3) {
-        case Choice.scissors.rawValue:
-            return Choice.scissors
-        case Choice.rock.rawValue:
-            return Choice.rock
+        case 1:
+            return Input(1)
+        case 2:
+            return Input(2)
+        case 3:
+            return Input(3)
         default:
-            return Choice.paper
+            return nil
         }
     }
     
-    private func getResult(_ userChoice: Choice, _ botChoice: Choice) -> RPSPrinter {
-        switch (userChoice, botChoice) {
-        case (.scissors, .scissors), (.rock, .rock), (.paper, .paper):
+    private func getResult(_ userChoice: Input, _ botChoice: Input) -> RPSPrinter {
+        if userChoice == botChoice {
             return .draw
-        case (.scissors, .paper), (.rock, .scissors), (.paper, .rock):
+        } else if userChoice < botChoice {
             return .win
-        default:
+        } else {
             return .lose
         }
     }
