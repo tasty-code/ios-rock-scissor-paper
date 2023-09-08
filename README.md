@@ -45,11 +45,11 @@
 
 ### 코드
 
-- main
+- main.swift
   - 2개의 while문으로 각각 가위바위보와 묵찌빠를 반복한다.
 
     
- - RPS class
+ - RPS.swift
     - play() : 게임을 진행하는 함수
     - checkInput() : 사용자에게 입력받은 값이 잘못된 값인지 확인하는 함수
     - getResult() : 가위바위보의 승패 결과를 확인하는 함수
@@ -57,14 +57,17 @@
     - startMessage() : 가위바위보 게임을 진행할시 출력하는 메시지
   
  
- - MukJjiPpa class
+ - MukJjiPpa.swift
    - RPS class 를 상속 받았습니다.
    - startMessage() : 묵찌빠 게임을 진행할시 출력하는 메시지 ( 가위바위보의 메시지와는 차이가 있다.)
    - getResult() : 묵찌빠 게임의 결과를 출력하는 함수
    - isWin() : 사용자가 묵찌빠에서 이기는 경우 만을 판단하는 함수 (가위바위보와 같은 입력을 했을 때 선택되는 패가 다르기때문에 존재한다.)
 
 
-- Utility
+- Utility.swift
   - shouldByClose() : 게임의 종료여부를 판단하는 함수
   - isRepeat() : 반복의 필요성을 확인하는 함수
+ 
+- CasesOf.swift
+  - rawValue로 가위바위보 승패 여부를 판정하는 것에서 가독성을 위해 만든 열거형
 
