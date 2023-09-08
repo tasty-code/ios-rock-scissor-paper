@@ -39,7 +39,12 @@ class MukJjiPpa: RPS
     
     override func isWin(of user: Int, versus computer: Int) -> Bool
     {
-        let winCase: [Int: Int] = [1: 2, 2: 3, 3: 1]
+        let winCase: [Int: Int] =
+        [
+            CasesOf.rock.rawValue: CasesOf.paper.rawValue,
+            CasesOf.paper.rawValue: CasesOf.scissors.rawValue,
+            CasesOf.scissors.rawValue: CasesOf.rock.rawValue
+        ]
         
         if winCase[user] == computer
         {
