@@ -19,9 +19,7 @@ struct RockPaperScissorsGame {
     mutating func playMukJjiPpa() {
         do {
             try doRockPaperScissors()
-            print(turnOwner ? "이겼습니다!" : "졌습니다!")
             try doMukJjiPpa()
-            print("\(ownerName) 승리")
         } catch PlayingGameException.zeroExit {
             print("게임 종료.")
         } catch {
@@ -66,6 +64,7 @@ struct RockPaperScissorsGame {
     private mutating func doRockPaperScissors() throws {
         while true {
             print("가위(1), 바위(2), 보(3)! <종료: 0> : ", terminator: "")
+            
             do {
                 let playerHandType = try getPlayerHandType()
                 let computerHandType = try getRandomHandType()
@@ -76,6 +75,8 @@ struct RockPaperScissorsGame {
                 throw error
             }
             
+            print(battleResultType.getResultString())
+            
             switch battleResultType {
             case .player1Win:
                 turnOwner = true
@@ -84,7 +85,7 @@ struct RockPaperScissorsGame {
                 turnOwner = false
                 return
             case .draw:
-                print("비겼습니다.")
+                continue
             }
         }
     }
@@ -92,6 +93,7 @@ struct RockPaperScissorsGame {
     private mutating func doMukJjiPpa() throws {
         while true {
             print("[\(ownerName) 턴] 묵(1), 찌(2), 빠(3)! <종료 : 0> : ", terminator: "")
+            
             do {
                 let playerHandType = try getPlayerHandType()
                 let computerHandType = try getRandomHandType()
@@ -109,8 +111,10 @@ struct RockPaperScissorsGame {
             case .player2Win:
                 turnOwner = false
             case .draw:
+                print("\(ownerName) 승리!")
                 return
             }
+            
             print("\(ownerName)의 턴입니다.")
         }
     }

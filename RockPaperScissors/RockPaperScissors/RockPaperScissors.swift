@@ -25,5 +25,3 @@ enum RockPaperScissors: Int, Comparable {
         return false
     }
 }
-
-

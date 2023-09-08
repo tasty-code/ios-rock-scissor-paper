@@ -6,9 +6,5 @@
 
 import Foundation
 
-
 var game = RockPaperScissorsGame()
 game.playMukJjiPpa()
-
-
-
