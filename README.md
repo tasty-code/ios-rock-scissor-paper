@@ -1,7 +1,15 @@
 # Tasty Code 묵찌빠 프로젝트 저장소
 
+
+## 팀원 
+[쫑](https://github.com/shlim0), [범](https://github.com/snowy-summer)
+
+
+
 ## 기간
  23.09.04 ~ 23.09.08
+
+ 
 
 
 ## [step 1] 가위바위보 게임
@@ -31,7 +39,12 @@
 
     
 ### 고민했던 점
-  - 
+  - <img width="676" alt="스크린샷 2023-09-08 오후 5 02 22" src="https://github.com/snowy-summer/ios-rock-scissor-paper/assets/118453865/57484228-6f44-4ead-9a4f-139a6270fdd4">
+<img width="686" alt="스크린샷 2023-09-08 오후 5 02 14" src="https://github.com/snowy-summer/ios-rock-scissor-paper/assets/118453865/df751fa5-2b71-454d-b88e-7d02f4a50f93">
+
+
+
+
 
 
 ## [step 2] 묵찌빠 게임
