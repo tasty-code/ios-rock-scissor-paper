@@ -28,3 +28,6 @@ let exitMukjjibba = MukjjibbaOption.exit.rawValue
 let muk = MukjjibbaOption.muk.rawValue
 let jji = MukjjibbaOption.jji.rawValue
 let bba = MukjjibbaOption.bba.rawValue
+
+enum ddd {
+}
