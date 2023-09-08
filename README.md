@@ -1,4 +1,5 @@
-  <h4>묵찌빠 프로젝트</h4>
+
+<h4>묵찌빠 프로젝트</h4>
 
 <h2>소개: 컴퓨터와 가위바위로 게임을 하는 프로젝트 입니다.</h2>
 <h2>팀원 소개:Mango, Mond </h2>
@@ -42,4 +43,3 @@
 * 우리팀이 궁금했던 점
    - Nil-coalescing operator방식의 defaultValue의 초기 값을 ""로 작성을 했는데 defaultValue의 초기값에는 아무 의미가 없습니다.
 이러한 방식은 가독성을 해친다고 수업을 들어서 guard let 방식으로 받고 싶었는데 optional unwrapping이 어려웠습니다.
-
