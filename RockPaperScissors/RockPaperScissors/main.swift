@@ -15,25 +15,28 @@ enum Choice: Int {
 var go: Bool = true
 
 while(go) {
-    let result:String = RockPaperScissors()
+    let computerNum = Int.random(in: 1..<4)
+    print("가위(1), 바위(2), 보(3)! <종료: 0> : ", terminator: "")
+    guard let userNum = readLine() else {
+        throw NSError()
+    }
+    guard let userChoice = Int(userNum) else {
+        throw NSError()
+    }
+    let result:String = RockPaperScissors(user: userChoice, computer: computerNum)
     switch result {
     case "비겼습니다.": // 다시 복귀
         print(result)
-        break
     case "이겼습니다.":
         print(result)
         go = false
-        break
     case "졌습니다.":
         print(result)
         go = false
-        break
     case "0":// 게임 종료
         go = false
-        break
     case "잘못된 입력입니다. 다시 시도해주세요.": // 다시 복귀
         print(result)
-        break
     default:
         break
     }
@@ -41,30 +44,23 @@ while(go) {
 
 print("게임 종료")
 
-func RockPaperScissors() -> String {
-    let comNum = Int.random(in: 1..<4)
-    print("가위(1), 바위(2), 보(3)! <종료: 0> : ", terminator: "")
-    guard let userNum = readLine() else {
-        return "잘못된 입력입니다."
-    }
-    guard let uChoice = Int(userNum) else {
-        return "잘못된 입력입니다."
-    }
-    if uChoice == comNum {
+func RockPaperScissors(user: Int, computer: Int) -> String {
+   
+    if user == computer {
         return "비겼습니다."
-    } else if uChoice == Choice.scissor.rawValue && comNum == Choice.rock.rawValue {
+    } else if user == Choice.scissor.rawValue && computer == Choice.rock.rawValue {
         return "졌습니다."
-    } else if uChoice == Choice.scissor.rawValue && comNum == Choice.paper.rawValue {
+    } else if user == Choice.scissor.rawValue && computer == Choice.paper.rawValue {
         return "이겼습니다."
-    } else if uChoice == Choice.rock.rawValue && comNum == Choice.paper.rawValue {
+    } else if user == Choice.rock.rawValue && computer == Choice.paper.rawValue {
         return "졌습니다."
-    } else if uChoice == Choice.rock.rawValue && comNum == Choice.scissor.rawValue {
+    } else if user == Choice.rock.rawValue && computer == Choice.scissor.rawValue {
         return "이겼습니다."
-    } else if uChoice == Choice.paper.rawValue && comNum == Choice.scissor.rawValue {
+    } else if user == Choice.paper.rawValue && computer == Choice.scissor.rawValue {
         return "졌습니다."
-    } else if uChoice == Choice.paper.rawValue && comNum == Choice.rock.rawValue {
+    } else if user == Choice.paper.rawValue && computer == Choice.rock.rawValue {
         return "이겼습니다."
-    } else if uChoice == Choice.end.rawValue {
+    } else if user == Choice.end.rawValue {
         return "0"
     } else {
         return "잘못된 입력입니다. 다시 시도해주세요."
