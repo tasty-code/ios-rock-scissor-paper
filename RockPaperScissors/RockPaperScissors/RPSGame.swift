@@ -13,7 +13,10 @@ class RPSGame {
         while true {
             printMenu()
             
-            let userChoice = getUserChoice()
+            guard let userChoice = getUserChoice() else {
+                printMenu()
+                continue
+            }
             
             if userChoice == .stop {
                 print("게임 종료")
@@ -25,7 +28,7 @@ class RPSGame {
             let result = getResult(userChoice, botChoice)
             print(result)
             
-            if gameStop(result) { break }
+            if getGameResult(result) { break }
         }
     }
     
@@ -33,11 +36,10 @@ class RPSGame {
         print("가위(1), 바위(2), 보(3)! <종료 : 0> :", terminator: " ")
     }
     
-    private func getUserChoice() -> Choice {
+    private func getUserChoice() -> Choice? {
         guard let input = readLine(), let number = Int(input), let choice = Choice(rawValue: number) else {
             print("잘못된 입력입니다. 다시 시도해주세요.")
-            printMenu()
-            return getUserChoice()
+            return nil
         }
         return choice
     }
@@ -64,7 +66,7 @@ class RPSGame {
         }
     }
     
-    private func gameStop(_ result: String) -> Bool {
+    private func getGameResult(_ result: String) -> Bool {
         if result == "이겼습니다!" || result == "졌습니다!" {
             return true
         }
