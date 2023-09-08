@@ -11,33 +11,30 @@ class RPSGame {
     
     func run() {
         while true {
-            printMenu()
+            RPSPrinter.menu.getMessage()
             
             guard let userChoice = getUserChoice() else {
                 continue
             }
             
             if userChoice == .stop {
-                print("게임 종료")
+                RPSPrinter.gameFinish.getMessage()
                 break
             }
             
             let botChoice = generateRandomChoice()
             
             let result = getResult(userChoice, botChoice)
-            print(result)
+            result.getMessage()
             
             if getGameResult(result) { break }
         }
     }
     
-    private func printMenu() {
-        print("가위(1), 바위(2), 보(3)! <종료 : 0> :", terminator: " ")
-    }
     
     private func getUserChoice() -> Choice? {
         guard let input = readLine(), let number = Int(input), let choice = Choice(rawValue: number) else {
-            print("잘못된 입력입니다. 다시 시도해주세요.")
+            RPSPrinter.invalid.getMessage()
             return nil
         }
         return choice
@@ -54,19 +51,19 @@ class RPSGame {
         }
     }
     
-    private func getResult(_ userChoice: Choice, _ botChoice: Choice) -> String {
+    private func getResult(_ userChoice: Choice, _ botChoice: Choice) -> RPSPrinter {
         switch (userChoice, botChoice) {
         case (.scissors, .scissors), (.rock, .rock), (.paper, .paper):
-            return "비겼습니다!"
+            return .draw
         case (.scissors, .paper), (.rock, .scissors), (.paper, .rock):
-            return "이겼습니다!"
+            return .win
         default:
-            return "졌습니다!"
+            return .lose
         }
     }
     
-    private func getGameResult(_ result: String) -> Bool {
-        if result == "이겼습니다!" || result == "졌습니다!" {
+    private func getGameResult(_ result: RPSPrinter) -> Bool {
+        if result == .win || result == .lose {
             return true
         }
         return false
