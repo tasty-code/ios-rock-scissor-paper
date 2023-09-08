@@ -14,7 +14,6 @@ class RPSGame {
             printMenu()
             
             guard let userChoice = getUserChoice() else {
-                printMenu()
                 continue
             }
             
