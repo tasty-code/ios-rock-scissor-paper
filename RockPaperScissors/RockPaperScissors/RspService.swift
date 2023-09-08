@@ -65,7 +65,7 @@ struct RspService {
     private var isFirstRound: Bool = true
     private var lastWinner: GameWinner = .draw
     
-    mutating func run(_ type: GameType) {
+    public mutating func run(_ type: GameType) {
         while isRunning {
             if isFirstRound {
                 print(GameStatus.start.message)
@@ -92,7 +92,7 @@ struct RspService {
         }
     }
     
-    mutating func getUserInput() {
+    private mutating func getUserInput() {
         let userInput = readLine()
         guard let unwrapped = userInput else {
             self.userInput = nil
@@ -105,7 +105,7 @@ struct RspService {
         self.userInput = preprocessedInput
     }
     
-    mutating func checkInputValidation() {
+    private mutating func checkInputValidation() {
         switch self.userInput {
         case 0:
             status = GameStatus.end
@@ -120,12 +120,12 @@ struct RspService {
         opponent = Int.random(in: 1...3)
     }
     
-    mutating func endGame() {
+    private mutating func endGame() {
         print(GameStatus.end.message)
         isRunning = false
     }
 
-    mutating func game() {
+    private mutating func game() {
         if userInput == 3 && opponent == 1 {
             winner = .opponent
             return
@@ -145,7 +145,7 @@ struct RspService {
         winner = certainUserInput > opponent ? .user : .opponent
     }
     
-    mutating func checkFlow(_ type: GameType) {
+    private mutating func checkFlow(_ type: GameType) {
         switch type {
         case .step1:
             step1Result()
@@ -161,7 +161,7 @@ struct RspService {
         }
     }
     
-    mutating func step1Result() {
+    private mutating func step1Result() {
         switch winner {
         case .user:
             print(GameResult.win.message)
