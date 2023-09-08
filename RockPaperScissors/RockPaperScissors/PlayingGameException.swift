@@ -9,7 +9,8 @@ import Foundation
 
 enum PlayingGameException: Error {
     case invalidInputError
-    case sameHand
     case zeroExit
     case unknownError
 }
+
+
