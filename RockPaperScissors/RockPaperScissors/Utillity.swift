@@ -18,54 +18,52 @@ func getRPSResult(userSelcet: String, computerSelect: String) {
               userSelcet == rock && computerSelect == scissors ||
               userSelcet == paper && computerSelect == rock {
     print("이겼습니다")
-    turn = "사용자"
-    game()
+    attackTurn = "사용자"
+    playMukjjibba()
   } else {
     print("졌습니다")
-    turn = "컴퓨터"
-    game()
+    attackTurn = "컴퓨터"
+    playMukjjibba()
   }
 }
 
-func game(){
-  print("[\(turn) 턴] 묵(1), 찌(2), 빠(3)! <종료: 0> : ",terminator: "")
+func playMukjjibba(){
+  print("[\(attackTurn) 턴] 묵(1), 찌(2), 빠(3)! <종료: 0> : ",terminator: "")
   let computerSelect = getRandomNum()
   guard let userSelcet = readLine() else { return }
   
-  print("유저 \(userSelcet) 컴퓨터 \(computerSelect)")
-  
   switch userSelcet {
-  case exitGame2:
+  case exitMukjjibba:
     isRunning = false
     return
   case muk, jji, bba:
-    let turnState = getMJBResult(userSelcet: userSelcet, computerSelect: computerSelect)
+    let turnState = getMukjjibbaResult(userSelcet: userSelcet, computerSelect: computerSelect)
     if turnState == "end" {
-      print("\(turn)의 승리!")
+      print("\(attackTurn)의 승리!")
       isRunning = false
       return
     }
     if turnState == "change" {
-      turn = turn == "사용자" ? "컴퓨터" : "사용자"
+      attackTurn = attackTurn == "사용자" ? "컴퓨터" : "사용자"
     }
-    print("\(turn)의 턴입니다.")
+    print("\(attackTurn)의 턴입니다.")
   default:
     print("잘못된 입력입니다. 다시 시도해주세요.")
   }
   
-  game()
+  playMukjjibba()
 }
 
-func getMJBResult(userSelcet: String, computerSelect: String) -> String {
+func getMukjjibbaResult(userSelcet: String, computerSelect: String) -> String {
   var turnStatus: String
   if userSelcet == computerSelect {
     turnStatus = "end"
   } else if userSelcet == jji && computerSelect == bba ||
               userSelcet == muk && computerSelect == jji ||
               userSelcet == bba && computerSelect == muk {
-    turnStatus = turn == "사용자" ? "keep" : "change"
+    turnStatus = attackTurn == "사용자" ? "keep" : "change"
   } else {
-    turnStatus = turn == "컴퓨터" ? "keep": "change"
+    turnStatus = attackTurn == "컴퓨터" ? "keep": "change"
   }
   return turnStatus
 }

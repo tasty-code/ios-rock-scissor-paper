@@ -12,19 +12,19 @@ enum RPSOption: String {
     case paper = "3"
 }
 
-let exit = RPSOption.exit.rawValue
+let exitRPS = RPSOption.exit.rawValue
 let scissors = RPSOption.scissors.rawValue
 let rock = RPSOption.rock.rawValue
 let paper = RPSOption.paper.rawValue
 
-enum Mukjjibba: String {
+enum MukjjibbaOption: String {
   case exit = "0"
   case muk = "1"
   case jji = "2"
   case bba = "3"
 }
 
-let exitGame2 = Mukjjibba.exit.rawValue
-let muk = Mukjjibba.muk.rawValue
-let jji = Mukjjibba.jji.rawValue
-let bba = Mukjjibba.bba.rawValue
+let exitMukjjibba = MukjjibbaOption.exit.rawValue
+let muk = MukjjibbaOption.muk.rawValue
+let jji = MukjjibbaOption.jji.rawValue
+let bba = MukjjibbaOption.bba.rawValue

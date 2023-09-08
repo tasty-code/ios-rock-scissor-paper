@@ -3,7 +3,7 @@
 //  Created by tacocat.
 //  Copyright © tastycode. All rights reserved.
 var isRunning: Bool = true
-var turn: String
+var attackTurn: String
 
 while isRunning {
     print("가위(1), 바위(2), 보(3)! <종료 : 0 > : ", terminator: "")
@@ -11,7 +11,7 @@ while isRunning {
     let computerSelect = getRandomNum()
     
     switch userSelcet {
-    case exit:
+    case exitRPS:
         isRunning = false
     case scissors, rock, paper:
         getRPSResult(userSelcet: userSelcet, computerSelect: computerSelect)
