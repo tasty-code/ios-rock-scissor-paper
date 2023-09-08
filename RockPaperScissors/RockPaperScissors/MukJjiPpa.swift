@@ -9,19 +9,6 @@ import Foundation
 
 class MukJjiPpa: RPS
 {
-    func shouldByClose(_ gameResult: String) -> Bool
-    {
-        if gameResult == "exit"
-        {
-            print("---------------------------------------")
-            return true
-        }
-        else
-        {
-            return false
-        }
-    }
-    
     override func startMessage()
     {
         print("[\(whichTurn) 턴] 묵(1), 찌(2), 빠(3)! <종료 : 0> : ", terminator: "")

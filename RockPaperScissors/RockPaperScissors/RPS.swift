@@ -88,18 +88,6 @@ class RPS
         }
     }
     
-    func isRepeat(_ gameResult: String) -> Bool
-    {
-        if gameResult == "repeat"
-        {
-            return false
-        }
-        else
-        {
-            return true
-        }
-    }
-    
     func startMessage()
     {
         print("가위(1), 바위(2), 보(3)! <종료 : 0> : ", terminator: "")
