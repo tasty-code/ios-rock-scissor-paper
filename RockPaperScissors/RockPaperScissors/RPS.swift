@@ -76,7 +76,12 @@ class RPS
     
     func isWin(of user: Int, versus computer: Int) -> Bool
     {
-        let winCase: [Int: Int] = [1: 3, 2: 1, 3: 2]
+        let winCase: [Int: Int] =
+        [
+            CasesOf.rock.rawValue: CasesOf.scissors.rawValue,
+            CasesOf.paper.rawValue: CasesOf.rock.rawValue,
+            CasesOf.scissors.rawValue: CasesOf.paper.rawValue
+        ]
         
         if winCase[user] == computer
         {

@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		A6500C892AAAD359000561A3 /* Utility.swift in Sources */ = {isa = PBXBuildFile; fileRef = A6500C882AAAD359000561A3 /* Utility.swift */; };
+		A6500C8B2AAB05C0000561A3 /* CasesOf.swift in Sources */ = {isa = PBXBuildFile; fileRef = A6500C8A2AAB05C0000561A3 /* CasesOf.swift */; };
 		A6816D7F2AA954BC00ADD86B /* MukJjiPpa.swift in Sources */ = {isa = PBXBuildFile; fileRef = A6816D7E2AA954BC00ADD86B /* MukJjiPpa.swift */; };
 		A6816D812AA954C900ADD86B /* RPS.swift in Sources */ = {isa = PBXBuildFile; fileRef = A6816D802AA954C900ADD86B /* RPS.swift */; };
 		C7ABA0E1254EA63000B2367D /* main.swift in Sources */ = {isa = PBXBuildFile; fileRef = C7ABA0E0254EA63000B2367D /* main.swift */; };
@@ -27,6 +28,7 @@
 
 /* Begin PBXFileReference section */
 		A6500C882AAAD359000561A3 /* Utility.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Utility.swift; sourceTree = "<group>"; };
+		A6500C8A2AAB05C0000561A3 /* CasesOf.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CasesOf.swift; sourceTree = "<group>"; };
 		A6816D7E2AA954BC00ADD86B /* MukJjiPpa.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MukJjiPpa.swift; sourceTree = "<group>"; };
 		A6816D802AA954C900ADD86B /* RPS.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RPS.swift; sourceTree = "<group>"; };
 		C7ABA0DD254EA63000B2367D /* RockPaperScissors */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = RockPaperScissors; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -64,6 +66,7 @@
 			isa = PBXGroup;
 			children = (
 				C7ABA0E0254EA63000B2367D /* main.swift */,
+				A6500C8A2AAB05C0000561A3 /* CasesOf.swift */,
 				A6500C882AAAD359000561A3 /* Utility.swift */,
 				A6816D7E2AA954BC00ADD86B /* MukJjiPpa.swift */,
 				A6816D802AA954C900ADD86B /* RPS.swift */,
@@ -131,6 +134,7 @@
 			files = (
 				A6500C892AAAD359000561A3 /* Utility.swift in Sources */,
 				A6816D7F2AA954BC00ADD86B /* MukJjiPpa.swift in Sources */,
+				A6500C8B2AAB05C0000561A3 /* CasesOf.swift in Sources */,
 				C7ABA0E1254EA63000B2367D /* main.swift in Sources */,
 				A6816D812AA954C900ADD86B /* RPS.swift in Sources */,
 			);
