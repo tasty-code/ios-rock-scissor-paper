@@ -39,9 +39,10 @@
 
     
 ### 고민했던 점
-  - <img width="676" alt="스크린샷 2023-09-08 오후 5 02 22" src="https://github.com/snowy-summer/ios-rock-scissor-paper/assets/118453865/57484228-6f44-4ead-9a4f-139a6270fdd4">
+<img width="676" alt="스크린샷 2023-09-08 오후 5 02 22" src="https://github.com/snowy-summer/ios-rock-scissor-paper/assets/118453865/57484228-6f44-4ead-9a4f-139a6270fdd4">
 <img width="686" alt="스크린샷 2023-09-08 오후 5 02 14" src="https://github.com/snowy-summer/ios-rock-scissor-paper/assets/118453865/df751fa5-2b71-454d-b88e-7d02f4a50f93">
-
+- main.swift 파일을 더 간결하게 작성하는 방법
+- 가위바위보 승패여부를 계산할 때, rawValue 대신 가독성이 좋게 코드를 수정하는 방법
 
 
 
