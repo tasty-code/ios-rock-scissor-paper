@@ -99,6 +99,8 @@ final class RockPaperScissors {
                 return print(GuideMessage.exit)
             }
             
+            print(GuideMessage.computerTurn)
+            print("[컴퓨터 턴] \(GuideMessage.mcpChoiceMenu)\(computerInput)")
             guard let computerChoice = RpsChoice(rawValue: computerInput) else { return }
             gameResult = checkResult(of: userChoice,
                                      with: RpsChoice.changeMcpVersion(of: computerChoice)) { _ in }
@@ -109,6 +111,8 @@ final class RockPaperScissors {
             print(GuideMessage.computerTurn)
             print("[컴퓨터 턴] \(GuideMessage.mcpChoiceMenu)\(computerInput)")
             
+            print(GuideMessage.userTurn)
+            print("[사용자 턴] \(GuideMessage.mcpChoiceMenu)", terminator: "")
             enterUserChoice(whenMistake: {
                 playMukchippa()
             })
@@ -135,7 +139,7 @@ final class RockPaperScissors {
         guard let userInput = Int(readLine() ?? "0"),
               let userChoice = RpsChoice(rawValue: userInput) else {
             print(GuideMessage.inputError)
-            return
+            return whenMistake()
         }
         self.userInput = userInput
         self.userChoice = userChoice
