@@ -9,11 +9,15 @@ import Foundation
 
 class RPS
 {
-    func play() throws -> String
+    var whichTurn: String = ""
+    
+    func play(_ gameResult: String) throws -> String
     {
+        whichTurn = gameResult
+        
         while true
         {
-            print("가위(1), 바위(2), 보(3)! <종료 : 0> : ", terminator: "")
+            startMessage()
             
             do
             {
@@ -33,6 +37,7 @@ class RPS
             }
             catch ErrorCases.invalidInput
             {
+                whichTurn = "컴퓨터"
                 print("잘못된 입력입니다. 다시 입력해주세요")
             }
         }
@@ -94,4 +99,11 @@ class RPS
             return true
         }
     }
+    
+    func startMessage()
+    {
+        print("가위(1), 바위(2), 보(3)! <종료 : 0> : ", terminator: "")
+    }
+    
+    
 }

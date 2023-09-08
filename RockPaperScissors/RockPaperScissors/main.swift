@@ -12,10 +12,11 @@ enum ErrorCases: Error
 }
 
 private var RPSResult: String = ""
+let start = "start"
 
 while true
 {
-    RPSResult = try RPS().play()
+    RPSResult = try RPS().play(start)
 
     if RPS().isRepeat(RPSResult)
     {
