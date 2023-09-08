@@ -12,7 +12,7 @@ final class RockPaperScissors {
     // MARK: - Enum
     
     @frozen
-    enum RpsChoice : Int {
+    enum RpsChoice: Int {
         case exit = 0
         case scissors = 1
         case rock = 2
@@ -34,12 +34,17 @@ final class RockPaperScissors {
         case lose
         case draw
     }
+
+    // MARK: - Struct
+    
+    struct User {
+        var input: Int
+        var choice: RpsChoice
+    }
     
     // MARK: - Property
     
     private var gameResult: GameResult = .draw
-    private var userInput = 1
-    private var userChoice: RpsChoice = .scissors
     private var firstTurn = ""
     
     // MARK: - Start
@@ -53,16 +58,16 @@ final class RockPaperScissors {
     private func playRPS() {
         print(GuideMessage.rpsChoiceMenu, terminator: "")
         
-        enterUserChoice(whenMistake: {
-            playRPS()
-        })
+        guard let user = enterUserChoice() else {
+            return playRPS()
+        }
         
-        if userInput == 0 {
+        if user.input == 0 {
             return print(GuideMessage.exit)
         }
         
         guard let computerChoice = RpsChoice(rawValue: Int.random(in: 1...3)) else { return }
-        gameResult = checkResult(of: userChoice, with: computerChoice) { result in
+        gameResult = checkResult(of: user.choice, with: computerChoice) { result in
             print(result)
         }
         
@@ -88,21 +93,22 @@ final class RockPaperScissors {
             print(GuideMessage.userTurn)
             print("[사용자 턴] \(GuideMessage.mcpChoiceMenu)", terminator: "")
             
-            enterUserChoice(whenMistake: {
+            guard var user = enterUserChoice() else {
                 gameResult = .lose
-                
-                playMukchippa()
-            })
-            userChoice = RpsChoice.changeMcpVersion(of: userChoice)
+                return playMukchippa()
+            }
+
+            user.choice = RpsChoice.changeMcpVersion(of: user.choice)
             
-            if userInput == 0 {
+            if user.input == 0 {
                 return print(GuideMessage.exit)
             }
             
             print(GuideMessage.computerTurn)
             print("[컴퓨터 턴] \(GuideMessage.mcpChoiceMenu)\(computerInput)")
+
             guard let computerChoice = RpsChoice(rawValue: computerInput) else { return }
-            gameResult = checkResult(of: userChoice,
+            gameResult = checkResult(of: user.choice,
                                      with: RpsChoice.changeMcpVersion(of: computerChoice)) { _ in }
             
         case .lose:
@@ -113,17 +119,19 @@ final class RockPaperScissors {
             
             print(GuideMessage.userTurn)
             print("[사용자 턴] \(GuideMessage.mcpChoiceMenu)", terminator: "")
-            enterUserChoice(whenMistake: {
-                playMukchippa()
-            })
-            userChoice = RpsChoice.changeMcpVersion(of: userChoice)
+
+            guard var user = enterUserChoice() else {
+                return playMukchippa()
+            }
             
-            if userInput == 0 {
+            user.choice = RpsChoice.changeMcpVersion(of: user.choice)
+            
+            if user.input == 0 {
                 return print(GuideMessage.exit)
             }
             
             guard let computerChoice = RpsChoice(rawValue: computerInput) else { return }
-            gameResult = checkResult(of: userChoice,
+            gameResult = checkResult(of: user.choice,
                                      with: RpsChoice.changeMcpVersion(of: computerChoice)) { _ in }
             
         case .draw:
@@ -135,17 +143,18 @@ final class RockPaperScissors {
     
     // MARK: - Helper Method
     
-    private func enterUserChoice(whenMistake: () -> ()) {
+    private func enterUserChoice() -> User? {
         guard let userInput = Int(readLine() ?? "0"),
               let userChoice = RpsChoice(rawValue: userInput) else {
             print(GuideMessage.inputError)
-            return whenMistake()
+            return nil
         }
-        self.userInput = userInput
-        self.userChoice = userChoice
+        return User(input: userInput, choice: userChoice)
     }
     
-    private func checkResult(of userChoice: RpsChoice, with computerChoice: RpsChoice, message: (String) -> ()) -> GameResult {
+    private func checkResult(of userChoice: RpsChoice,
+                             with computerChoice: RpsChoice,
+                             message: (String) -> ()) -> GameResult {
         switch (userChoice, computerChoice) {
         case (.scissors, .paper), (.rock, .scissors), (.paper, .rock):
             message(GuideMessage.win)
