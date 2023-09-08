@@ -126,23 +126,23 @@ struct RspService {
     }
 
     private mutating func game() {
-        if userInput == 3 && opponent == 1 {
-            winner = .opponent
-            return
-        }
-        if userInput == 1 && opponent == 3 {
-            winner = .user
-            return
-        }
-        if userInput == opponent {
-            winner = .draw
-            return
-        }
-        guard let certainUserInput = userInput else {
+        guard let unwrapped = userInput else {
             print(GameStatus.tryAgain.message)
             return
         }
-        winner = certainUserInput > opponent ? .user : .opponent
+        if unwrapped == 3 && opponent == 1 {
+            winner = .opponent
+            return
+        }
+        if unwrapped == 1 && opponent == 3 {
+            winner = .user
+            return
+        }
+        if unwrapped == opponent {
+            winner = .draw
+            return
+        }
+        winner = unwrapped > opponent ? .user : .opponent
     }
     
     private mutating func checkFlow(_ type: GameType) {
