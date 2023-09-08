@@ -16,7 +16,7 @@ struct RockPaperScissorsGame {
     }
     private var battleResultType: BattleResult = .draw
     
-    mutating func playMukJjiPpa() {
+    mutating func playGame() {
         do {
             try doRockPaperScissors()
             try doMukJjiPpa()
