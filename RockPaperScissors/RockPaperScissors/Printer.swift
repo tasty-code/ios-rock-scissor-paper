@@ -7,7 +7,7 @@
 
 import Foundation
 
-enum RPSPrinter: Int {
+enum RPSPrinter {
     case menu
     case gameFinish
     case draw
