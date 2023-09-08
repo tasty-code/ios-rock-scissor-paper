@@ -9,14 +9,11 @@ command line tool 콘솔 프로그램
 사용자에게 입력값을 받아 컴퓨터와의 가위바위보 게임을 진행하며 결과를 확인합니다.
 
 ### 팀원
+|![719695e0175e463db8ac992bc4fb98f7-sticker](https://github.com/JinUng41/ios-rock-scissor-paper/assets/63297236/e72034b1-99b3-471a-94da-232584d947c5)|![bello](https://github.com/JinUng41/ios-rock-scissor-paper/assets/63297236/1073c5f9-ec08-4790-9173-2087faf8d5a4)|
+|:------:|:---:|
+|Howard|Bello|
 
-![       Bello](https://prod-files-secure.s3.us-west-2.amazonaws.com/ffea4a1c-3b7d-4743-a030-3b14e2d929a0/74ebc407-5979-40ed-bdaf-49f495e1cfb5/image.png)
 
-       Bello
-
-![    Howard](https://prod-files-secure.s3.us-west-2.amazonaws.com/ffea4a1c-3b7d-4743-a030-3b14e2d929a0/19733376-ca36-40be-ba91-2979e5629c54/719695e0175e463db8ac992bc4fb98f7-sticker.png)
-
-    Howard
 
 ## 프로젝트 구조
 
