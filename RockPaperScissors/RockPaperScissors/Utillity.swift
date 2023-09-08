@@ -37,7 +37,7 @@ func playMukjjibba(){
     isRunning = false
     return
   case muk, jji, bba:
-    let turnState = getMukjjibbaResult(userSelcet: userSelcet, computerSelect: computerSelect)
+    let turnState = getMukjjibbaTurn(userSelcet: userSelcet, computerSelect: computerSelect)
     if turnState == "end" {
       print("\(attackTurn)의 승리!")
       isRunning = false
@@ -54,7 +54,7 @@ func playMukjjibba(){
   playMukjjibba()
 }
 
-func getMukjjibbaResult(userSelcet: String, computerSelect: String) -> String {
+func getMukjjibbaTurn(userSelcet: String, computerSelect: String) -> String {
   var turnStatus: String
   if userSelcet == computerSelect {
     turnStatus = "end"
