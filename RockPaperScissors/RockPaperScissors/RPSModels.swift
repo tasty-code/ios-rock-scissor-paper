@@ -56,12 +56,10 @@ enum RPS: Int, Comparable {
     
     static func < (lhs: RPS, rhs: RPS) -> Bool {
         switch (lhs, rhs) {
-        case (.scissors, .scissors), (.rock, .rock), (.paper, .paper):
-            return false
         case (.scissors, .paper), (.rock, .scissors), (.paper, .rock):
-            return true
+            return lhs.rawValue < rhs.rawValue
         default:
-            return false
+            return lhs.rawValue > rhs.rawValue
         }
     }
 }
