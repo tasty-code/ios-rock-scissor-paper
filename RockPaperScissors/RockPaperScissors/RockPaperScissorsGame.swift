@@ -71,6 +71,7 @@ struct RockPaperScissorsGame {
                 battleResultType = try battle(playerHandType, and: computerHandType)
             } catch PlayingGameException.invalidInputError {
                 print("잘못된 입력입니다. 다시 시도해주세요.")
+                continue
             } catch {
                 throw error
             }
