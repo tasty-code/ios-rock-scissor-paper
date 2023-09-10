@@ -26,9 +26,9 @@ enum Input: Equatable {
     
     func getRPSValue(input: Input) -> RPS? {
         switch input {
-        case .rps(let rps) where rps.rawValue == 1 : return .scissors
-        case .rps(let rps) where rps.rawValue == 2 : return .rock
-        case .rps(let rps) where rps.rawValue == 3 : return .paper
+        case .rps(let rpsValue) where rpsValue.rawValue == 1 : return .scissors
+        case .rps(let rpsValue) where rpsValue.rawValue == 2 : return .rock
+        case .rps(let rpsValue) where rpsValue.rawValue == 3 : return .paper
         case .stop: return nil
         case .rps(_): return nil
         case .error(_): return nil
