@@ -144,7 +144,7 @@ final class RockPaperScissors {
     // MARK: - Helper Method
     
     private func enterUserChoice() -> User? {
-        guard let userInput = Int(readLine() ?? "0"),
+        guard let userInput = Int(readLine() ?? "-1"),
               let userChoice = RpsChoice(rawValue: userInput) else {
             print(GuideMessage.inputError)
             return nil
