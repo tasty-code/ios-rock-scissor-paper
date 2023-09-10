@@ -9,7 +9,7 @@ import Foundation
 
 final class RockPaperScissors {
     
-    // MARK: - Enum
+    // MARK: - Enums
     
     @frozen
     enum RpsChoice: Int {
@@ -42,7 +42,7 @@ final class RockPaperScissors {
         var choice: RpsChoice
     }
     
-    // MARK: - Property
+    // MARK: - Properties
     
     private var gameResult: GameResult = .draw
     private var firstTurn = ""
@@ -141,7 +141,7 @@ final class RockPaperScissors {
         return playMukchippa()
     }
     
-    // MARK: - Helper Method
+    // MARK: - Helper Methods
     
     private func enterUserChoice() -> User? {
         guard let userInput = Int(readLine() ?? "-1"),
