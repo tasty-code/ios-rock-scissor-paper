@@ -7,7 +7,7 @@
 
 import Foundation
 
-enum Input: Comparable {
+enum Input: Equatable {
     case stop
     case rps(RPS)
     case error(String)
@@ -17,28 +17,21 @@ enum Input: Comparable {
         case 0:
             self = .stop
         case 1...3:
-            if let rps = RPS(hand: input) {
-                self = .rps(rps)
-            } else {
-                self = .error("Invalid Error: \(input)")
-            }
+            guard let rpsValue = RPS(rawValue: input) else { self = .error("Invalid Error: \(input)"); return }
+            self = .rps(rpsValue)
         default:
             self = .error("Invalid Error: \(input)")
         }
     }
     
-    static func < (lhs: Input, rhs: Input) -> Bool {
-        switch (lhs, rhs) {
-        case (.stop, .stop):
-            return false
-        case (.stop, _):
-            return true
-        case (_, .stop):
-            return false
-        case (.rps(let lhsRPS), .rps(let rhsRPS)):
-            return lhsRPS < rhsRPS
-        default:
-            return false
+    func getRPSValue(input: Input) -> RPS? {
+        switch input {
+        case .rps(let rps) where rps.rawValue == 1 : return .scissors
+        case .rps(let rps) where rps.rawValue == 2 : return .rock
+        case .rps(let rps) where rps.rawValue == 3 : return .paper
+        case .stop: return nil
+        case .rps(_): return nil
+        case .error(_): return nil
         }
     }
 }
@@ -46,20 +39,11 @@ enum Input: Comparable {
 enum RPS: Int, Comparable {
     case scissors = 1, rock, paper
     
-    init?(hand: Int) {
-        if let rps = RPS(rawValue: hand) {
-            self = rps
-        } else {
-            return nil
-        }
-    }
-    
     static func < (lhs: RPS, rhs: RPS) -> Bool {
         switch (lhs, rhs) {
-        case (.scissors, .paper), (.rock, .scissors), (.paper, .rock):
-            return lhs.rawValue < rhs.rawValue
-        default:
-            return lhs.rawValue > rhs.rawValue
+        case (.scissors, .rock), (.rock, .paper), (.paper, .scissors): return true
+        case (.scissors, .paper), (.rock, .scissors), (.paper, .rock): return false
+        case (.scissors, .scissors), (.rock, .rock), (.paper, .paper): return false
         }
     }
 }

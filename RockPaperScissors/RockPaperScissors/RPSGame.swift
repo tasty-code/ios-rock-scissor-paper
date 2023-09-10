@@ -23,12 +23,17 @@ class RPSGame {
                 break
             }
             
+            guard let newUserChoice = userChoice.getRPSValue(input: userChoice) else {
+                RPSPrinter.invalid.printMessage()
+                continue
+            }
+            
             guard let botChoice = generateRandomChoice() else {
                 RPSPrinter.invalid.printMessage()
                 continue
             }
             
-            let result = getResult(userChoice, botChoice)
+            let result = getResult(newUserChoice, botChoice)
             result.printMessage()
             
             if getGameResult(result) { break }
@@ -37,29 +42,20 @@ class RPSGame {
     
     
     private func getUserChoice() -> Input? {
-        guard let input = readLine(), let number = Int(input), let choice = Input(number), choice != Input.error("Invalid Error: \(number)") else {
+        guard let input = readLine(), let number = Int(input), let input = Input(number), input != Input.error("Invalid Error: \(number)") else {
             return nil
         }
-        return choice
+        return input
     }
     
-    private func generateRandomChoice() -> Input? {
-        switch Int.random(in: 1...3) {
-        case 1:
-            return Input(1)
-        case 2:
-            return Input(2)
-        case 3:
-            return Input(3)
-        default:
-            return nil
-        }
+    private func generateRandomChoice() -> RPS? {
+        return RPS(rawValue: Int.random(in: 1...3))
     }
     
-    private func getResult(_ userChoice: Input, _ botChoice: Input) -> RPSPrinter {
+    private func getResult(_ userChoice: RPS, _ botChoice: RPS) -> RPSPrinter {
         if userChoice == botChoice {
             return .draw
-        } else if userChoice < botChoice {
+        } else if userChoice > botChoice {
             return .win
         } else {
             return .lose
