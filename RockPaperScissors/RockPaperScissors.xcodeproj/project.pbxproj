@@ -9,8 +9,11 @@
 /* Begin PBXBuildFile section */
 		C7ABA0E1254EA63000B2367D /* main.swift in Sources */ = {isa = PBXBuildFile; fileRef = C7ABA0E0254EA63000B2367D /* main.swift */; };
 		E1D2710F2AA95D16004D79F6 /* RspService.swift in Sources */ = {isa = PBXBuildFile; fileRef = E1D2710E2AA95D16004D79F6 /* RspService.swift */; };
-		E1D4DD5A2AAF1374001AB013 /* Progress.swift in Sources */ = {isa = PBXBuildFile; fileRef = E1D4DD592AAF1374001AB013 /* Progress.swift */; };
+		E1D4DD5A2AAF1374001AB013 /* GameStage.swift in Sources */ = {isa = PBXBuildFile; fileRef = E1D4DD592AAF1374001AB013 /* GameStage.swift */; };
 		E1D4DD5C2AAF1387001AB013 /* GameResult.swift in Sources */ = {isa = PBXBuildFile; fileRef = E1D4DD5B2AAF1387001AB013 /* GameResult.swift */; };
+		E1D4DD5E2AAF16CB001AB013 /* GameWinner.swift in Sources */ = {isa = PBXBuildFile; fileRef = E1D4DD5D2AAF16CB001AB013 /* GameWinner.swift */; };
+		E1D4DD602AAF16F3001AB013 /* GameType.swift in Sources */ = {isa = PBXBuildFile; fileRef = E1D4DD5F2AAF16F3001AB013 /* GameType.swift */; };
+		E1D4DD622AAF1B0D001AB013 /* Rsp.swift in Sources */ = {isa = PBXBuildFile; fileRef = E1D4DD612AAF1B0D001AB013 /* Rsp.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -29,8 +32,11 @@
 		C7ABA0DD254EA63000B2367D /* RockPaperScissors */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = RockPaperScissors; sourceTree = BUILT_PRODUCTS_DIR; };
 		C7ABA0E0254EA63000B2367D /* main.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = main.swift; sourceTree = "<group>"; };
 		E1D2710E2AA95D16004D79F6 /* RspService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RspService.swift; sourceTree = "<group>"; };
-		E1D4DD592AAF1374001AB013 /* Progress.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Progress.swift; sourceTree = "<group>"; };
+		E1D4DD592AAF1374001AB013 /* GameStage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameStage.swift; sourceTree = "<group>"; };
 		E1D4DD5B2AAF1387001AB013 /* GameResult.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameResult.swift; sourceTree = "<group>"; };
+		E1D4DD5D2AAF16CB001AB013 /* GameWinner.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameWinner.swift; sourceTree = "<group>"; };
+		E1D4DD5F2AAF16F3001AB013 /* GameType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameType.swift; sourceTree = "<group>"; };
+		E1D4DD612AAF1B0D001AB013 /* Rsp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Rsp.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -73,8 +79,11 @@
 		E1D4DD582AAF1361001AB013 /* Enum */ = {
 			isa = PBXGroup;
 			children = (
-				E1D4DD592AAF1374001AB013 /* Progress.swift */,
+				E1D4DD592AAF1374001AB013 /* GameStage.swift */,
 				E1D4DD5B2AAF1387001AB013 /* GameResult.swift */,
+				E1D4DD5D2AAF16CB001AB013 /* GameWinner.swift */,
+				E1D4DD5F2AAF16F3001AB013 /* GameType.swift */,
+				E1D4DD612AAF1B0D001AB013 /* Rsp.swift */,
 			);
 			path = Enum;
 			sourceTree = "<group>";
@@ -137,9 +146,12 @@
 			buildActionMask = 2147483647;
 			files = (
 				E1D4DD5C2AAF1387001AB013 /* GameResult.swift in Sources */,
-				E1D4DD5A2AAF1374001AB013 /* Progress.swift in Sources */,
+				E1D4DD5A2AAF1374001AB013 /* GameStage.swift in Sources */,
 				C7ABA0E1254EA63000B2367D /* main.swift in Sources */,
 				E1D2710F2AA95D16004D79F6 /* RspService.swift in Sources */,
+				E1D4DD622AAF1B0D001AB013 /* Rsp.swift in Sources */,
+				E1D4DD5E2AAF16CB001AB013 /* GameWinner.swift in Sources */,
+				E1D4DD602AAF16F3001AB013 /* GameType.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
