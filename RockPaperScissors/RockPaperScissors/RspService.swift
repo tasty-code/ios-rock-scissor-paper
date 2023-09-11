@@ -7,23 +7,9 @@
 
 import Foundation
 
-enum  Progress: String {
-    case notYet = "시작 전"
-    case prompt = "가위(1), 바위(2), 보(3)! <종료 : 0> :"
-    case tryAgain = "잘못된 입력입니다. 다시 시도해주세요."
-    case onGoing = "계속"
-    case end = "게임 종료"
-}
-
-enum GameResult: String {
-    case draw = "비겼습니다!"
-    case win = "이겼습니다!"
-    case lose = "졌습니다!"
-}
-
 struct RspService {
-    private var userInput: Int? = -1
-    private var computerValue: Int = 0
+    private var userChoice: Int?
+    private var computerChoice: Int?
     private var status: Progress = .notYet
     private var isRunning: Bool = true
     private var step1Result: GameResult = .draw
@@ -39,7 +25,7 @@ struct RspService {
                 endGame()
             case .onGoing:
                 getComputerValue()
-                game()
+                playGame()
                 step1Judge()
             case .tryAgain:
                 print(Progress.tryAgain.rawValue)
@@ -53,18 +39,18 @@ struct RspService {
     mutating func getUserInput() {
         let tempUserInput = readLine()
         guard let stringUserInput = tempUserInput else {
-            userInput = nil
+            userChoice = nil
             return
         }
         guard let intUserInput = Int(stringUserInput) else {
-            userInput = nil
+            userChoice = nil
             return
         }
-        userInput = intUserInput
+        userChoice = intUserInput
     }
     
     mutating func checkInputValidation() {
-        switch self.userInput {
+        switch self.userChoice {
         case 0:
             status = Progress.end
         case 1,2,3:
@@ -75,7 +61,7 @@ struct RspService {
     }
     
     mutating func getComputerValue() {
-        computerValue = Int.random(in: 1...3)
+        computerChoice = Int.random(in: 1...3)
     }
     
     mutating func endGame() {
@@ -83,24 +69,26 @@ struct RspService {
         isRunning = false
     }
 
-    mutating func game() {
-        if userInput == 3 && computerValue == 1 {
-            step1Result = .lose
-            return
-        }
-        if userInput == 1 && computerValue == 3 {
-            step1Result = .win
-            return
-        }
-        if userInput == computerValue {
-            step1Result = .draw
-            return
-        }
-        guard let certainUserInput = userInput else {
+    mutating func playGame() {
+        guard let user = userChoice, let computer = computerChoice else {
             print(Progress.tryAgain.rawValue)
             return
         }
-        step1Result = certainUserInput > computerValue ? .win : .lose
+        
+        if user == 3 && computer == 1 {
+            step1Result = .lose
+            return
+        }
+        if user == 1 && computer == 3 {
+            step1Result = .win
+            return
+        }
+        if user == computer {
+            step1Result = .draw
+            return
+        }
+     
+        step1Result = user > computer ? .win : .lose
     }
     
     mutating func step1Judge() {

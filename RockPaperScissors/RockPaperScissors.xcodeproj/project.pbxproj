@@ -9,6 +9,8 @@
 /* Begin PBXBuildFile section */
 		C7ABA0E1254EA63000B2367D /* main.swift in Sources */ = {isa = PBXBuildFile; fileRef = C7ABA0E0254EA63000B2367D /* main.swift */; };
 		E1D2710F2AA95D16004D79F6 /* RspService.swift in Sources */ = {isa = PBXBuildFile; fileRef = E1D2710E2AA95D16004D79F6 /* RspService.swift */; };
+		E1D4DD5A2AAF1374001AB013 /* Progress.swift in Sources */ = {isa = PBXBuildFile; fileRef = E1D4DD592AAF1374001AB013 /* Progress.swift */; };
+		E1D4DD5C2AAF1387001AB013 /* GameResult.swift in Sources */ = {isa = PBXBuildFile; fileRef = E1D4DD5B2AAF1387001AB013 /* GameResult.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -27,6 +29,8 @@
 		C7ABA0DD254EA63000B2367D /* RockPaperScissors */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = RockPaperScissors; sourceTree = BUILT_PRODUCTS_DIR; };
 		C7ABA0E0254EA63000B2367D /* main.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = main.swift; sourceTree = "<group>"; };
 		E1D2710E2AA95D16004D79F6 /* RspService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RspService.swift; sourceTree = "<group>"; };
+		E1D4DD592AAF1374001AB013 /* Progress.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Progress.swift; sourceTree = "<group>"; };
+		E1D4DD5B2AAF1387001AB013 /* GameResult.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameResult.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -59,10 +63,20 @@
 		C7ABA0DF254EA63000B2367D /* RockPaperScissors */ = {
 			isa = PBXGroup;
 			children = (
+				E1D4DD582AAF1361001AB013 /* Enum */,
 				C7ABA0E0254EA63000B2367D /* main.swift */,
 				E1D2710E2AA95D16004D79F6 /* RspService.swift */,
 			);
 			path = RockPaperScissors;
+			sourceTree = "<group>";
+		};
+		E1D4DD582AAF1361001AB013 /* Enum */ = {
+			isa = PBXGroup;
+			children = (
+				E1D4DD592AAF1374001AB013 /* Progress.swift */,
+				E1D4DD5B2AAF1387001AB013 /* GameResult.swift */,
+			);
+			path = Enum;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -122,6 +136,8 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				E1D4DD5C2AAF1387001AB013 /* GameResult.swift in Sources */,
+				E1D4DD5A2AAF1374001AB013 /* Progress.swift in Sources */,
 				C7ABA0E1254EA63000B2367D /* main.swift in Sources */,
 				E1D2710F2AA95D16004D79F6 /* RspService.swift in Sources */,
 			);
