@@ -57,9 +57,17 @@
 		C7ABA0DF254EA63000B2367D /* RockPaperScissors */ = {
 			isa = PBXGroup;
 			children = (
+				D0AF43CD2B0B473000A21FF8 /* Model */,
 				C7ABA0E0254EA63000B2367D /* main.swift */,
 			);
 			path = RockPaperScissors;
+			sourceTree = "<group>";
+		};
+		D0AF43CD2B0B473000A21FF8 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Model;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
