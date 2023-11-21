@@ -2,7 +2,7 @@
 //  RockPaperScissors - main.swift
 //  Created by mireu & kyle.
 //  Copyright © tastycode. All rights reserved.
-// 
+//
 
 import Foundation
 
@@ -15,24 +15,33 @@ func choiceRockScissorsPaper() {
         let computer = checkingOpponentHand()
         print(computer)
         print("가위(1), 바위(2), 보(3)! <종료: 0> :", terminator: " ")
-        guard let input = readLine() else { return }
-        guard let input2 = Int(input) else { return }
+        guard
+            let input = readLine(),
+            let user = Int(input)
+        else {
+            print("잘못된 입력입니다. 다시 시도해주세요.")
+            continue
+        }
         
-        switch input2 {
+        switch user {
         case 0:
             print("게임종료")
             return
         case 1...3:
-            playGame(user: input2, computer: computer)
+            playGame(user: user, computer: computer)
         default:
             print("잘못된 입력입니다. 다시 시도해주세요.")
-         continue
+            continue
         }
     }
 }
 
 func checkingOpponentHand() -> Int {
-    guard let opponentHand = opponentHands.randomElement() else { return 0 }
+    guard
+        let opponentHand = opponentHands.randomElement()
+    else {
+        return 0
+    }
     
     return opponentHand
 }
