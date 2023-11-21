@@ -6,5 +6,14 @@
 
 import Foundation
 
-print("Hello, World!")
+let ioManager = IOManager()
+
+func playGame() {
+    while true {
+        ioManager.showMessage(.default)
+        let input = readLine()
+        
+        
+    }
+}
 
