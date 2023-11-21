@@ -8,3 +8,5 @@ import Foundation
 
 print("Hello, World!")
 
+print("레포지토리 연결테스트")
+
