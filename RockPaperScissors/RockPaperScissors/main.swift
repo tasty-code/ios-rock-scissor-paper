@@ -7,9 +7,9 @@
 import Foundation
 
 let opponentHands: [Int] = [1, 2, 3]
+var isRunning: Bool = true
 
 func choiceRockScissorsPaper() {
-    let isRunning: Bool = true
     
     while isRunning {
         let computer = checkingOpponentHand()
@@ -20,6 +20,7 @@ func choiceRockScissorsPaper() {
         
         switch input2 {
         case 0:
+            print("게임종료")
             return
         case 1...3:
             playGame(user: input2, computer: computer)
@@ -40,8 +41,12 @@ func playGame(user: Int, computer: Int) {
     switch (user, computer) {
     case (1,2),(2,3),(3,1):
         print("졌습니다!")
+        print("게임종료")
+        isRunning = false
     case (1,3),(2,1),(3,2):
         print("이겼습니다!")
+        print("게임종료")
+        isRunning = false
     default:
         print("비겼습니다!")
     }
