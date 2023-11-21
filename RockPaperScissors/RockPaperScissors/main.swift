@@ -6,6 +6,12 @@
 
 import Foundation
 
+enum Choice: Int {
+    case scissor = 1
+    case rock = 2
+    case paper = 3
+}
+
 let opponentHands: [Int] = [1, 2, 3]
 var isRunning: Bool = true
 
@@ -23,12 +29,19 @@ func choiceRockScissorsPaper() {
             continue
         }
         
+        guard
+            let userChoice = Choice(rawValue: user),
+            let computerChoice = Choice(rawValue: computer)
+        else {
+            return
+        }
+        
         switch user {
         case 0:
             print("게임종료")
             return
         case 1...3:
-            playGame(user: user, computer: computer)
+            playGame(user: userChoice, computer: computerChoice)
         default:
             print("잘못된 입력입니다. 다시 시도해주세요.")
             continue
@@ -46,13 +59,13 @@ func checkingOpponentHand() -> Int {
     return opponentHand
 }
 
-func playGame(user: Int, computer: Int) {
+func playGame(user: Choice, computer: Choice) {
     switch (user, computer) {
-    case (1,2),(2,3),(3,1):
+    case (.scissor,.rock),(.rock,.paper),(.paper,.scissor):
         print("졌습니다!")
         print("게임종료")
         isRunning = false
-    case (1,3),(2,1),(3,2):
+    case (.scissor,.paper),(.rock,.scissor),(.paper,.rock):
         print("이겼습니다!")
         print("게임종료")
         isRunning = false
