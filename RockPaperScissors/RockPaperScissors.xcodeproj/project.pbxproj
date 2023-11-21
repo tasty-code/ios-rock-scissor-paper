@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		777641842B0C9B5F00CFEFEC /* IOManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 777641832B0C9B5F00CFEFEC /* IOManager.swift */; };
 		777641862B0C9BA400CFEFEC /* UserGuideMessage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 777641852B0C9BA400CFEFEC /* UserGuideMessage.swift */; };
 		C7ABA0E1254EA63000B2367D /* main.swift in Sources */ = {isa = PBXBuildFile; fileRef = C7ABA0E0254EA63000B2367D /* main.swift */; };
 /* End PBXBuildFile section */
@@ -24,6 +25,7 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		777641832B0C9B5F00CFEFEC /* IOManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IOManager.swift; sourceTree = "<group>"; };
 		777641852B0C9BA400CFEFEC /* UserGuideMessage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserGuideMessage.swift; sourceTree = "<group>"; };
 		C7ABA0DD254EA63000B2367D /* RockPaperScissors */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = RockPaperScissors; sourceTree = BUILT_PRODUCTS_DIR; };
 		C7ABA0E0254EA63000B2367D /* main.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = main.swift; sourceTree = "<group>"; };
@@ -60,6 +62,7 @@
 			isa = PBXGroup;
 			children = (
 				C7ABA0E0254EA63000B2367D /* main.swift */,
+				777641832B0C9B5F00CFEFEC /* IOManager.swift */,
 				777641852B0C9BA400CFEFEC /* UserGuideMessage.swift */,
 			);
 			path = RockPaperScissors;
@@ -124,6 +127,7 @@
 			files = (
 				777641862B0C9BA400CFEFEC /* UserGuideMessage.swift in Sources */,
 				C7ABA0E1254EA63000B2367D /* main.swift in Sources */,
+				777641842B0C9B5F00CFEFEC /* IOManager.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
