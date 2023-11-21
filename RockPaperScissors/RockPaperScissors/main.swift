@@ -7,6 +7,7 @@
 import Foundation
 
 let ioManager = IOManager()
+var computerChoice = Int.random(in: 1...3)
 
 func playGame() {
     while true {
