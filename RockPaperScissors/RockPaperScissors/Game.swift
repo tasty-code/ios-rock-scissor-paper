@@ -8,30 +8,28 @@
 import Foundation
 
 enum RockPaperScissors {
-    case win(userSelect: String, comSelect: String)
-    case draw(userSelect: String, comSelect: String)
-    case lose(userSelect: String, comSelect: String)
+    case win
+    case draw
+    case lose
     case menuText
     case wrongText
+    case endText
     
     var result: String {
         switch self {
-        case .win(userSelect: let userSelect, comSelect: let comSelct):
+        case .win:
             return "이겼습니다!"
-        case .lose(userSelect: let userSelect, comSelect: let comSelct):
+        case .lose:
             return "졌습니다!"
-        case .draw(userSelect: let userSelect, comSelect: let comSelct):
+        case .draw:
             return "비겼습니다!"
         case .menuText:
             return "가위(1), 바위(2), 보(3)! <종료 : 0> :"
         case .wrongText:
             return "잘못된 입력입니다. 다시 시도해주세요."
+        case .endText:
+            return "게임종료"
         }
     }
 }
 
-struct Game {
-    var rock: String
-    var paper: String
-    var scissors: String
-}
