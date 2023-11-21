@@ -17,7 +17,7 @@ struct RockScissorPaper {
                 let input = readLine(),
                 let user = Int(input)
             else {
-                print("잘못된 입력입니다. 다시 시도해주세요.")
+                print(Result.error)
                 continue
             }
             checkingResult(user: user, computer: computer)
@@ -28,15 +28,15 @@ struct RockScissorPaper {
     private mutating func compareChoice(user: Choice, computer: Choice) {
         switch (user, computer) {
         case (.scissor,.rock),(.rock,.paper),(.paper,.scissor):
-            print("졌습니다!")
-            print("게임종료")
+            print(Result.lose)
+            print(Result.quit)
             isRunning = false
         case (.scissor,.paper),(.rock,.scissor),(.paper,.rock):
-            print("이겼습니다!")
-            print("게임종료")
+            print(Result.win)
+            print(Result.quit)
             isRunning = false
         default:
-            print("비겼습니다!")
+            print(Result.draw)
             playRockScissorPaper()
         }
     }
@@ -47,18 +47,18 @@ struct RockScissorPaper {
                 let userChoice = Choice(rawValue: user),
                 let computerChoice = Choice(rawValue: computer)
             else {
-                print("잘못된 입력입니다. 다시 시도해주세요.")
+                print(Result.error)
                 return playRockScissorPaper()
             }
             
             switch user {
             case 0:
-                print("게임종료")
+                print(Result.quit)
                 return
             case 1...3:
                 compareChoice(user: userChoice, computer: computerChoice)
             default:
-                print("잘못된 입력입니다. 다시 시도해주세요.")
+                print(Result.error)
                 continue
             }
         }
