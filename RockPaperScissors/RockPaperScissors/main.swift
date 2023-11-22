@@ -10,9 +10,30 @@ let choice = ["가위", "바위", "보"]
 
 var isEnd = false
 
+func randomChoice () -> String{
+    let randomElement = choice.randomElement()
+    
+    if let randomElement {
+        return randomElement
+    } else {
+        return "값 없음"
+    }
+}
+
 while(isEnd == false) {
     print("가위(1) 바위(2) 보(3)! <종료 : 0> :")
-    let playerChoice = Int(readLine()!)
+    
+    guard let playerChoice = readLine() else {
+        continue
+    }
+    
+    guard let playerChoice = Int(playerChoice) else {
+        continue
+    }
+    
+    let compuerChoice = randomChoice()
+    
+    print("사용자: \(choice[playerChoice-1]) 컴퓨터: \(compuerChoice)")
     
     switch playerChoice {
     case 0: isEnd = true
