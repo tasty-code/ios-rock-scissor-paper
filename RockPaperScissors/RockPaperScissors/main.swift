@@ -6,15 +6,16 @@
 
 import Foundation
 
-let choice = ["rock", "scissors", "paper"]
+let choice = ["가위", "바위", "보"]
 
 var isEnd = false
 
 while(isEnd == false) {
-    print("바위(1) 가위(2) 보(3) 중 선택하시오!")
-    let playderChoice = Int(readLine()!)
+    print("가위(1) 바위(2) 보(3)! <종료 : 0> :")
+    let playerChoice = Int(readLine()!)
     
-    switch playderChoice {
+    switch playerChoice {
+    case 0: isEnd = true
     case 1: print(choice[0])
         break
     case 2: print(choice[1])
@@ -25,6 +26,5 @@ while(isEnd == false) {
     default: print("잘못된 입력값입니다.")
     
     }
-
-    isEnd = true
 }
+
