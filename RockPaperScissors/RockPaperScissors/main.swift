@@ -35,3 +35,5 @@ func playGame() {
 }
 
 playGame()
+ioManager.showMessage(.exit)
+
