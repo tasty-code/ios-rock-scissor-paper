@@ -12,32 +12,27 @@ final class RSPApp {
     
     private let invalidErrorMessage: String = "잘못된 입력입니다. 다시 시도해주세요."
     
+    let judge: Judge = Judge()
+    
+    var userPlayer: UserPlayer?
+    
+    var pcPlayer: PCPlayer?
+    
     private func printInvalidErrorMessage() {
         print(invalidErrorMessage)
     }
     
     func run() {
         while isRunning {
-            // 프롬포터 출력
             printPrompt()
-            // 입력 받기
-            guard let input = getInput() else {
+            guard let input = getInput(),
+                  let intInput = Int(input),
+                  let menu = Menu(input: intInput) else { #warning("상수")
                 printInvalidErrorMessage()
                 continue
             }
-            // 입력 > 가위바위보로 바꾸기
-            guard let intInput = Int(input) else {
-                printInvalidErrorMessage()
-                continue
-            }
-            let rohHand = Hand.init(rawValue: intInput)
-                // 성공 -> process
-                // 실패 -> "잘못된 입력입니다. 다시 시도해주세요." 출력
+            processMenu(menu)
         }
-    }
-    
-    private func errorMessage() {
-        
     }
     
     private func printPrompt() {
@@ -49,5 +44,39 @@ final class RSPApp {
         // 문자열 가공
         let result = pureInput.trimmingCharacters(in: .whitespacesAndNewlines)
         return result.isEmpty ? nil : result
+    }
+    
+    private func exit() {
+        print("게임 종료")
+        self.isRunning = false
+    }
+    
+    private func processMenu(_ menu: Menu) {
+        switch menu {
+        case .rsp(let userHand):
+            self.userPlayer = UserPlayer(hand: userHand)
+            self.pcPlayer = PCPlayer()
+            guard let userPlayer, let pcPlayer else {
+                return
+            }
+            let result = judge.judgeIf(userPlayer, wins: pcPlayer)
+            handleResult(result)
+        case .exit:
+            exit()
+        }
+    }
+    
+    private func handleResult(_ result: RSPResult) {
+        switch result {
+        case .tie:
+            print("비겼습니다!")
+        case .winning(let winner):
+            if let winner = winner as? UserPlayer, winner === userPlayer {
+                print("이겼습니다!")
+            } else {
+                print("졌습니다!")
+            }
+            exit()
+        }
     }
 }
