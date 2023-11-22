@@ -7,7 +7,7 @@
 
 import Foundation
 
-class RockPaperScissorsManager {
+final class RockPaperScissorsManager {
     
     /// 사용자 입력 유효성 검사 메서드
     func validateUserInput(_ input: String?) -> Int {
