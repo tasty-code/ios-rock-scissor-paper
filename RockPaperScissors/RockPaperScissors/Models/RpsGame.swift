@@ -18,38 +18,32 @@ class RpsGame {
     }
     
     func game() {
-        guard let userInput = Int(readLine() ?? "4") else {
+        guard let userSelect = Int(readLine() ?? "4") else {
             print(Message.wrong.result)
             return
         }
         
-        if userInput == 4 {
+        if userSelect >= 4 {
             print(Message.wrong.result)
+            return
         }
 
-        if userInput == 0 {
+        if userSelect == 0 {
             print(Message.end.result)
             isRunning = false
             return
         }
         
         let comSelect = Int.random(in: 1...3)
-        let info = (userInput, comSelect)
         
-        if userInput == comSelect {
-            print(Message.draw.result)
-        } else if isWin(info){
+        switch Match(userSelect, comSelect) {
+        case .win:
             print(Message.win.result)
-        } else {
+        case .draw:
+            print(Message.draw.result)
+        case .lose:
             print(Message.lose.result)
         }
-    }
-    
-    func isWin(_  match:(Int, Int)) -> Bool {
-        if (1, 3) == match || (2, 1) == match || (3, 2) == match {
-            return true
-        }
-        return false
     }
     
 }
