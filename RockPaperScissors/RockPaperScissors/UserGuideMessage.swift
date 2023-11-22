@@ -13,4 +13,5 @@ enum UserGuideMessage {
     case lose
     case draw
     case inputError
+    case exit
 }
