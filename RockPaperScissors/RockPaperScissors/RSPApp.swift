@@ -21,8 +21,12 @@ final class RSPApp {
             }
             print("입력: ", input)
             // 입력 > 가위바위보로 바꾸기
-            
-            
+            guard let intInput = Int(input) else {
+                print("잘못된 입력입니다. 다시 시도해주세요.")
+                continue
+            }
+            let rohHand = Hand.init(rawValue: intInput)
+            print(rohHand)
                 // 성공 -> process
                 // 실패 -> "잘못된 입력입니다. 다시 시도해주세요." 출력
         }
