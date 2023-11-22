@@ -21,6 +21,18 @@ while true {
     }
 }
 
-func handleSelection() {
-    
+func handleSelection(_ select: Selection) {
+    switch select {
+    case.exit:
+        
+    case .scissors:
+        
+    case .rock:
+        
+    case .paper:
+        
+    }
+}
+func runningGame(_ myChoice: Selection) {
+    var comChoice 
 }
