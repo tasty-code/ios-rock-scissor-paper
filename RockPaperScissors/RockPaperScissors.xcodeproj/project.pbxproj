@@ -11,6 +11,8 @@
 		CCD0ECC42B0DE7A0004FDED3 /* RSPApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = CCD0ECC32B0DE7A0004FDED3 /* RSPApp.swift */; };
 		CCD0ECC62B0DF016004FDED3 /* Hand.swift in Sources */ = {isa = PBXBuildFile; fileRef = CCD0ECC52B0DF016004FDED3 /* Hand.swift */; };
 		CCD0ECC82B0E0AEB004FDED3 /* RSPPlayable.swift in Sources */ = {isa = PBXBuildFile; fileRef = CCD0ECC72B0E0AEB004FDED3 /* RSPPlayable.swift */; };
+		CCD0ECCA2B0E0E61004FDED3 /* RSPResult.swift in Sources */ = {isa = PBXBuildFile; fileRef = CCD0ECC92B0E0E61004FDED3 /* RSPResult.swift */; };
+		CCD0ECCC2B0E0F0B004FDED3 /* Judge.swift in Sources */ = {isa = PBXBuildFile; fileRef = CCD0ECCB2B0E0F0B004FDED3 /* Judge.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -31,6 +33,8 @@
 		CCD0ECC32B0DE7A0004FDED3 /* RSPApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RSPApp.swift; sourceTree = "<group>"; };
 		CCD0ECC52B0DF016004FDED3 /* Hand.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Hand.swift; sourceTree = "<group>"; };
 		CCD0ECC72B0E0AEB004FDED3 /* RSPPlayable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RSPPlayable.swift; sourceTree = "<group>"; };
+		CCD0ECC92B0E0E61004FDED3 /* RSPResult.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RSPResult.swift; sourceTree = "<group>"; };
+		CCD0ECCB2B0E0F0B004FDED3 /* Judge.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Judge.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -67,6 +71,8 @@
 				C7ABA0E0254EA63000B2367D /* main.swift */,
 				CCD0ECC52B0DF016004FDED3 /* Hand.swift */,
 				CCD0ECC72B0E0AEB004FDED3 /* RSPPlayable.swift */,
+				CCD0ECC92B0E0E61004FDED3 /* RSPResult.swift */,
+				CCD0ECCB2B0E0F0B004FDED3 /* Judge.swift */,
 			);
 			path = RockPaperScissors;
 			sourceTree = "<group>";
@@ -132,6 +138,8 @@
 				CCD0ECC42B0DE7A0004FDED3 /* RSPApp.swift in Sources */,
 				CCD0ECC62B0DF016004FDED3 /* Hand.swift in Sources */,
 				CCD0ECC82B0E0AEB004FDED3 /* RSPPlayable.swift in Sources */,
+				CCD0ECCA2B0E0E61004FDED3 /* RSPResult.swift in Sources */,
+				CCD0ECCC2B0E0F0B004FDED3 /* Judge.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
