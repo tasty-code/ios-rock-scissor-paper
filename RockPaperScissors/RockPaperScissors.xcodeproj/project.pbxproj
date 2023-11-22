@@ -10,6 +10,7 @@
 		C7ABA0E1254EA63000B2367D /* main.swift in Sources */ = {isa = PBXBuildFile; fileRef = C7ABA0E0254EA63000B2367D /* main.swift */; };
 		CCD0ECC42B0DE7A0004FDED3 /* RSPApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = CCD0ECC32B0DE7A0004FDED3 /* RSPApp.swift */; };
 		CCD0ECC62B0DF016004FDED3 /* Hand.swift in Sources */ = {isa = PBXBuildFile; fileRef = CCD0ECC52B0DF016004FDED3 /* Hand.swift */; };
+		CCD0ECC82B0E0AEB004FDED3 /* RSPPlayable.swift in Sources */ = {isa = PBXBuildFile; fileRef = CCD0ECC72B0E0AEB004FDED3 /* RSPPlayable.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -29,6 +30,7 @@
 		C7ABA0E0254EA63000B2367D /* main.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = main.swift; sourceTree = "<group>"; };
 		CCD0ECC32B0DE7A0004FDED3 /* RSPApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RSPApp.swift; sourceTree = "<group>"; };
 		CCD0ECC52B0DF016004FDED3 /* Hand.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Hand.swift; sourceTree = "<group>"; };
+		CCD0ECC72B0E0AEB004FDED3 /* RSPPlayable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RSPPlayable.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -64,6 +66,7 @@
 				CCD0ECC32B0DE7A0004FDED3 /* RSPApp.swift */,
 				C7ABA0E0254EA63000B2367D /* main.swift */,
 				CCD0ECC52B0DF016004FDED3 /* Hand.swift */,
+				CCD0ECC72B0E0AEB004FDED3 /* RSPPlayable.swift */,
 			);
 			path = RockPaperScissors;
 			sourceTree = "<group>";
@@ -128,6 +131,7 @@
 				C7ABA0E1254EA63000B2367D /* main.swift in Sources */,
 				CCD0ECC42B0DE7A0004FDED3 /* RSPApp.swift in Sources */,
 				CCD0ECC62B0DF016004FDED3 /* Hand.swift in Sources */,
+				CCD0ECC82B0E0AEB004FDED3 /* RSPPlayable.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
