@@ -15,8 +15,22 @@ func playGame() {
         ioManager.showMessage(.default)
         
         let input = readLine()
-        let result = rockPaperScissorsManager.validateUserInput(input)
-        ioManager.showMessage(rockPaperScissorsManager.judgeGame(user: result, computer: computerChoice))
+        let userChoice = rockPaperScissorsManager.validateUserInput(input)
+        if userChoice == 0 {
+            return
+        }
+        
+        let gameResult = rockPaperScissorsManager.judgeGame(user: userChoice, computer: computerChoice)
+        
+        switch gameResult {
+        case .win, .lose:
+            ioManager.showMessage(gameResult)
+            return
+        case .draw, .inputError:
+            ioManager.showMessage(gameResult)
+        default:
+            return
+        }
     }
 }
 
