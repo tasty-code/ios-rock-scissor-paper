@@ -7,7 +7,6 @@ import Foundation
 
 //MARK: - RPS Node init
 class RpsNode {
-    
     var value: RPSModel
     var next: RpsNode?
     
@@ -29,6 +28,7 @@ class CircularRpsLinkedList {
 
 //MARK: - CircularRpsLinkedList Method
 extension CircularRpsLinkedList {
+    
     func convertInputToRPSOption(_ input: String) -> RPSModel? {
         switch input {
         case "1", "가위":

@@ -4,17 +4,12 @@ import Foundation
 //MARK: - GameView init & deinit
 class GameView {
     var gameRules: GameRules
-    var playerChoice: RPSModel?
-    
     
     init(gameRules: GameRules) {
         self.gameRules = gameRules
     }
     
-    
-    deinit {
-        print("gameView deinit")
-    }
+    deinit { print("gameView deinit") }
 }
 
 //MARK: - GameView 메서드
