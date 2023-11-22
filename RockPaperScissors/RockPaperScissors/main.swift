@@ -2,47 +2,43 @@
 //  RockPaperScissors - main.swift
 //  Created by tacocat.
 //  Copyright © tastycode. All rights reserved.
-// 
-
-import Foundation
+//
 
 var run: Bool = true
 var menuMessage: MenuMessage = .rps
 
-enum Rps: Int, CustomStringConvertible {
-    case rock, paper, scissors
+enum RpsGameResult: CustomStringConvertible {
+    case win, draw, lose
     
     var description: String {
         switch (self) {
-        case .rock:
-            return "바위"
-        case .paper:
-            return "보"
-        case .scissors:
-            return "가위"
+        case .win:
+            return "이겼습니다!"
+        case .draw:
+            return "비겼습니다!"
+        case .lose:
+            return "졌습니다!"
+        }
+    }
+    
+    func isOver(result: RpsGameResult) -> Bool {
+        switch (result) {
+        case .win, .lose:
+            return false
+        case .draw:
+            return true
         }
     }
 }
 
 enum MenuMessage: CustomStringConvertible {
-    case rps, mjp
+    case rps
     
     var description: String {
         switch (self) {
         case .rps:
             return "가위(1), 바위(2), 보(3)! <종료 : 0> : "
-        case .mjp:
-            return "묵(1), 찌(2), 빠(3)! <종료 : 0> : "
         }
-    }
-}
-
-func printMsg(message: String, newLine: Bool) {
-    switch (newLine) {
-    case true:
-        print(message)
-    case false:
-        print(message, terminator: "")
     }
 }
 
@@ -54,23 +50,38 @@ func getInput() -> Int? {
     }
 }
 
-func rpsGame(userInput: Int) {
+func rpsGame(userInput: Int, cpuInput: Int) -> Bool {
     switch (userInput) {
     case 0:
-        print("게임 종료")
-    case 1:
-        print("1번 입력")
-    case 2:
-        print("2번 입력")
-    case 3:
-        print("3번 입력")
+        return false
+    case 1...3:
+        let result: RpsGameResult = judgeWinOrLose(userInput: userInput, cpuInput: cpuInput)
+        print(result)
+        return result.isOver(result: result)
     default:
         print("잘못된 입력입니다. 다시 시도해주세요.")
+        return true
     }
 }
 
-while (run) {
-    printMsg(message: menuMessage.description, newLine: false)
-    var userInput: Int = getInput() ?? -1
-    rpsGame(userInput: userInput)
+func judgeWinOrLose(userInput: Int, cpuInput: Int) -> RpsGameResult {
+    if (userInput == cpuInput) {
+        return RpsGameResult.draw
+    } else if (userInput - cpuInput == 1 || userInput - cpuInput == -2) {
+        return RpsGameResult.win
+    } else {
+        return RpsGameResult.lose
+    }
 }
+
+func initCpuInput() -> Int {
+    return Int.random(in: 1...3)
+}
+
+while (run) {
+    print(menuMessage, terminator: "")
+    let cpuInput: Int = initCpuInput()
+    let userInput: Int = getInput() ?? -1
+    run = rpsGame(userInput: userInput, cpuInput: cpuInput)
+}
+print("게임 종료")
