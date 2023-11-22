@@ -6,41 +6,44 @@
 
 import Foundation
 
-enum winDrawLose: String {
+enum WinDrawLose: String {
     case win = "이겼습니다!"
     case draw = "비겼습니다!"
     case lose = "졌습니다!"
 }
 
-func randomComputerHand() -> String {
-    return String(Int.random(in: 1...3))
+enum RockScissorPaper: Int {
+    case scissor = 1, rock, paper
+    subscript(index: Int) -> RockScissorPaper? {
+        return RockScissorPaper(rawValue: index)
+    }
 }
 
-func playRockPaperScissor(userHand: String?) -> winDrawLose {
-    var result: winDrawLose = .draw
-    let comHand = randomComputerHand()
+func playRockPaperScissor(userHand: Int) -> WinDrawLose {
+    let comHand = RockScissorPaper(rawValue: Int.random(in: 1...3))
+    let userHand = RockScissorPaper(rawValue: userHand)
+    var result: WinDrawLose = .draw
     
-    if userHand == String(comHand) {
-        result = .draw
-        return result
+    if userHand == comHand {
+        return .draw
     }
     
     switch userHand {
-    case "1":
-        result = comHand == "3" ? .win : .lose
-    case "2":
-        result = comHand == "1" ? .win : .lose
-    case "3":
-        result = comHand == "2" ? .win : .lose
-    default :
-        print("잘못된 입력입니다.")
+    case .scissor:
+        result = comHand == .paper ? .win : .lose
+    case .rock:
+        result = comHand == .scissor ? .win : .lose
+    case .paper:
+        result = comHand == .rock ? .win : .lose
+    default:
+        print("잘못된 접근입니다.")
     }
-    
     return result
 }
 
 func main() {
     var userInput: String?
+    
     repeat {
         print("가위(1), 바위(2), 보(3)! <종료 : 0> : ", terminator: "")
         userInput = readLine()
@@ -49,10 +52,11 @@ func main() {
         case "0":
             print("게임 종료")
         case "1", "2", "3":
-            var result: String
-            result = playRockPaperScissor(userHand: userInput).rawValue
-            print(result)
-        default : 
+            if let userHand = userInput {
+                var result = playRockPaperScissor(userHand: Int(userHand) ?? 0).rawValue
+                print(result)
+            }
+        default :
             print("잘못된 입력입니다. 다시 시도해주세요.")
         }
         
