@@ -31,17 +31,35 @@ while(isEnd == false) {
         continue
     }
     
-    let compuerChoice = randomChoice()
+    let computerChoice = randomChoice()
     
-    print("사용자: \(choice[playerChoice-1]) 컴퓨터: \(compuerChoice)")
+    print("사용자: \(choice[playerChoice-1]) 컴퓨터: \(computerChoice)")
     
     switch playerChoice {
     case 0: isEnd = true
-    case 1: print(choice[0])
+    case 1: if computerChoice == "보" {
+        print("이겼다!")
+    } else if computerChoice == "바위" {
+        print("졌다!")
+    } else {
+        print("비겼다!")
+    }
         break
-    case 2: print(choice[1])
+    case 2: if computerChoice == "가위" {
+        print("이겼다!")
+    } else if computerChoice == "보" {
+        print("졌다!")
+    } else {
+        print("비겼다!")
+    }
         break
-    case 3: print(choice[2])
+    case 3: if computerChoice == "바위" {
+        print("이겼다!")
+    } else if computerChoice == "가위" {
+        print("졌다!")
+    } else {
+        print("비겼다!")
+    }
         break
 
     default: print("잘못된 입력값입니다.")
