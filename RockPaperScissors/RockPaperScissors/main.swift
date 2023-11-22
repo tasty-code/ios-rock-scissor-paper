@@ -6,11 +6,11 @@
 
 import Foundation
 
-enum Selection: String {
-    case exit = "0"
-    case scissors = "1"
-    case rock = "2"
-    case paper = "3"
+enum Selection: Int {
+    case exit = 0
+    case scissors = 1
+    case rock = 2
+    case paper = 3
     
 }
 
@@ -34,5 +34,11 @@ func handleSelection(_ select: Selection) {
     }
 }
 func runningGame(_ myChoice: Selection) {
-    var comChoice 
+    var comChoice = Int.random(in: 1...3)
+    if comChoice == myChoice {
+        print("비겼습니다!")
+    } else if {
+        comChoice = 1 && myChoice = 2
+    }
+    
 }
