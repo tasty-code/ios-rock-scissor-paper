@@ -12,20 +12,19 @@ enum Choice: String, CaseIterable {
     case paper = "보"
 }
 
-enum Result: String {
+enum GameResult: String {
     case win = "이겼다!"
     case draw = "비겼다!"
     case lose = "졌다!"
 }
 
-func randomChoice() -> Choice {
-    if let randomChoice = Choice.allCases.randomElement() {
-        return randomChoice
-    }
-    return .rock
+func randomChoice() -> Choice? {
+    return Choice.allCases.randomElement()
 }
 
-func playGame(player: Choice, computer: Choice) -> Result {
+func playGame(player: Choice, computer: Choice) -> GameResult {
+    print("나 : \(player.rawValue), 컴퓨터 : \(computer.rawValue)")
+    
     switch (player, computer) {
     case (.rock, .scissors), (.scissors, .paper), (.paper, .rock):
         return .win
@@ -34,10 +33,6 @@ func playGame(player: Choice, computer: Choice) -> Result {
     default:
         return .draw
     }
-}
-
-func printResult(result: Result) {
-    print(result.rawValue)
 }
 
 var isEnd = false
@@ -54,14 +49,24 @@ while !isEnd {
         print("잘못된 입력입니다. 1, 2, 3, 0 중 하나를 입력하세요.")
         continue
     }
-
-    if playerChoiceInt == 0 {
+    
+    guard let computerChoice = randomChoice() else {
+        continue
+    }
+    
+    switch playerChoiceInt {
+    case 0:
         isEnd = true
-    } else {
-        let playerChoice = Choice.allCases[playerChoiceInt - 1]
-        let computerChoice = randomChoice()
-        let result = playGame(player: playerChoice, computer: computerChoice)
-        print("나 : \(playerChoice.rawValue), 컴퓨터 : \(computerChoice.rawValue)")
-        printResult(result: result)
+    case 1:
+        let result = playGame(player: .scissors, computer: computerChoice)
+        print(result.rawValue)
+    case 2:
+        let result = playGame(player: .rock, computer: computerChoice)
+        print(result.rawValue)
+    case 3:
+        let result = playGame(player: .paper, computer: computerChoice)
+        print(result.rawValue)
+    default:
+        break
     }
 }
