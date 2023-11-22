@@ -8,7 +8,6 @@ import Foundation
 
 enum Hand: String {
     case scissor = "1" , rock = "2", paper = "3", exit = "0"
-    
 }
 
 func action(com: Hand, user: Hand) {
@@ -17,8 +16,6 @@ func action(com: Hand, user: Hand) {
         endGame()
     case .paper, .rock, .scissor:
         startGame(comPick: com, userPick: user)
-    default:
-        print("잘못된 입력입니다. 다시 시도해주세요.")
     }
 }
 
@@ -46,14 +43,15 @@ var isWorking: Bool = true
 let RPS: [String] = ["1", "2", "3"]
 
 while isWorking {
-    
-    
     print("가위(1), 바위(2), 보(3)! <종료: 0> : ", terminator: "")
     let comChoice: String = RPS.randomElement() ?? ""
 
-    guard let input = readLine(), let userInput = Int(input), (0...3).contains(userInput) else {
+    guard let userChoice = readLine(), ["0", "1", "2", "3"].contains(userChoice) else {
         print("잘못된 입력입니다. 다시 시도해주세요.")
+        continue
     }
+    
+    action(com: Hand(rawValue: comChoice) ?? .exit, user: Hand(rawValue: userChoice) ?? .exit)
 }
 
 
