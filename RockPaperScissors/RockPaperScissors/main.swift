@@ -22,3 +22,7 @@ enum RpsCase: Int{
 func rpsMenu() {
     print("가위(1), 바위(2) 보(3)! <종료: 0>")
 }
+
+func comRandomInput() -> Int{
+    return Int.random(in: 1 ... 3)
+}
