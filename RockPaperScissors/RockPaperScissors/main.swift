@@ -1,6 +1,6 @@
 
 import Foundation
 
-var gameRules = GameRules()
-var gameView = GameView(gameRules: gameRules)
+private let gameRules = GameRules()
+private let gameView = GameView(gameRules: gameRules)
 gameView.gameStart()

@@ -5,11 +5,11 @@
 import Foundation
 
 //MARK: - GameRules init & deinit
-class GameRules {
+final class GameRules {
     
-    var result: String?
-    let computerPlayer = ComputerPlayer()
-    let rpsLinkedList = CircularRpsLinkedList()
+    private var result: String?
+    private let computerPlayer = ComputerPlayer()
+    private let rpsLinkedList = CircularRpsLinkedList()
     
     deinit { print("GameRules Deinit!!") }
 }
@@ -18,7 +18,7 @@ class GameRules {
 //MARK: - GameRules method
 extension GameRules {
     
-    func convertInputToRPSOption(_ input: String) -> RPSModel? {
+    private func convertInputToRPSOption(_ input: String) -> RPSModel? {
         switch input {
         case "1", "가위":
             return .scissors
@@ -41,7 +41,7 @@ extension GameRules {
         return (gameResult, userChoice, computerPlayer.choice)
     }
 
-    func determineWinner(userChoice: RPSModel) -> String {
+    private func determineWinner(userChoice: RPSModel) -> String {
         
         let computerChoice = computerPlayer.makeRandomChoice()
         

@@ -2,8 +2,9 @@
 import Foundation
 
 //MARK: - GameView init & deinit
-class GameView {
-    var gameRules: GameRules
+final class GameView {
+    
+    private let gameRules: GameRules
     
     init(gameRules: GameRules) {
         self.gameRules = gameRules
@@ -29,14 +30,14 @@ extension GameView {
         }
     }
     
-    func displayChoices(_ userChoice: RPSModel?, _ computerChoice: RPSModel?) {
+    private func displayChoices(_ userChoice: RPSModel?, _ computerChoice: RPSModel?) {
         if let userChoice = userChoice, let computerChoice = computerChoice {
             print("나의 선택: \(userChoice.rawValue)")
             print("컴퓨터의 선택: \(computerChoice.rawValue)")
         }
     }
     
-    func handleGameResult(_ result: String) {
+    private func handleGameResult(_ result: String) {
         switch result {
         case "승리":
             print("승리하셨습니다!")

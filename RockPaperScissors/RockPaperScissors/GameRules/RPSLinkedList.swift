@@ -6,7 +6,7 @@ import Foundation
 
 
 //MARK: - RPS Node init
-class RpsNode {
+final class RpsNode {
     var value: RPSModel
     var next: RpsNode?
     
@@ -17,7 +17,7 @@ class RpsNode {
 
 
 //MARK: - CircularRpsLinkedList init
-class CircularRpsLinkedList {
+final class CircularRpsLinkedList {
     
     private var startNode: RpsNode?
     
@@ -30,7 +30,7 @@ class CircularRpsLinkedList {
 extension CircularRpsLinkedList {
 
     
-    func createRPSLinkedList() -> RpsNode {
+    private func createRPSLinkedList() -> RpsNode {
         let rock = RpsNode(value: .rock)
         let paper = RpsNode(value: .paper)
         let scissors = RpsNode(value: .scissors)
