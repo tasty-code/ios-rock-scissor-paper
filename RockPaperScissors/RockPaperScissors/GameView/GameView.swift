@@ -9,7 +9,9 @@ class GameView {
         self.gameRules = gameRules
     }
     
-    deinit { print("gameView deinit") }
+    deinit {
+        print("gameView deinit")
+    }
 }
 
 //MARK: - GameView 메서드
@@ -25,7 +27,6 @@ extension GameView {
             displayChoices(userChoice, computerChoice)
             handleGameResult(result)
         }
-
     }
     
     func displayChoices(_ userChoice: RPSModel?, _ computerChoice: RPSModel?) {

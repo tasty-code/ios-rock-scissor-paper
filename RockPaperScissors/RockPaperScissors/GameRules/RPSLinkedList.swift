@@ -28,19 +28,6 @@ class CircularRpsLinkedList {
 
 //MARK: - CircularRpsLinkedList Method
 extension CircularRpsLinkedList {
-    
-    func convertInputToRPSOption(_ input: String) -> RPSModel? {
-        switch input {
-        case "1", "가위":
-            return .scissors
-        case "2", "바위":
-            return .rock
-        case "3", "보":
-            return .paper
-        default:
-            return nil
-        }
-    }
 
     
     func createRPSLinkedList() -> RpsNode {
