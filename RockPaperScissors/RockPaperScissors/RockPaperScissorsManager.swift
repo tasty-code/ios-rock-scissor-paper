@@ -19,6 +19,17 @@ struct RockPaperScissorsManager {
             if let input = readLine() {
                 guard let number = Int(input) else { return }
                 userValue = number
+                
+                switch userValue {
+                case 0:
+                    print(Case.exit.rawValue)
+                    status = false
+                case 1, 2, 3:
+                    print("게임 중")
+                default:
+                    print(Case.falseValue.rawValue)
+                    play()
+                }
             }
         }
     }
