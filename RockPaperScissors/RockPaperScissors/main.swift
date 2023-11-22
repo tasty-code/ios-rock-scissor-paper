@@ -6,7 +6,7 @@
 
 import Foundation
 
-
+var keep = true
 
 enum RpsCase: Int{
     case scissors = 1
@@ -14,7 +14,11 @@ enum RpsCase: Int{
     case paper
 }
 
+rpsMenu()
 
+while keep {
+    userInput()
+}
 
 
 //----------Funtion--------//
@@ -32,9 +36,11 @@ func compareRps(user: RpsCase, com: RpsCase) {
     case (.scissors, .paper), (.rock, .scissors), (.paper, .rock):
         print("이겼습니다.")
         print("게임 종료")
+        keep = false
     case (.paper, .scissors), (.scissors, .rock), (.rock, .paper):
         print("졌습니다.")
         print("게임 종료")
+        keep = false
     default:
         print("비겼습니다.")
         rpsMenu()
