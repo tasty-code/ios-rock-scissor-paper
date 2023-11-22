@@ -6,64 +6,62 @@
 
 import Foundation
 
-let choice = ["가위", "바위", "보"]
+enum Choice: String, CaseIterable {
+    case scissors = "가위"
+    case rock = "바위"
+    case paper = "보"
+}
+
+enum Result: String {
+    case win = "이겼다!"
+    case draw = "비겼다!"
+    case lose = "졌다!"
+}
+
+func randomChoice() -> Choice {
+    if let randomChoice = Choice.allCases.randomElement() {
+        return randomChoice
+    }
+    return .rock
+}
+
+func playGame(player: Choice, computer: Choice) -> Result {
+    switch (player, computer) {
+    case (.rock, .scissors), (.scissors, .paper), (.paper, .rock):
+        return .win
+    case (.rock, .paper), (.scissors, .rock), (.paper, .scissors):
+        return .lose
+    default:
+        return .draw
+    }
+}
+
+func printResult(result: Result) {
+    print(result.rawValue)
+}
 
 var isEnd = false
 
-func randomChoice () -> String{
-    let randomElement = choice.randomElement()
+while !isEnd {
+    print("가위(1), 바위(2), 보(3)! <종료 : 0> : ", terminator: "")
     
-    if let randomElement {
-        return randomElement
-    } else {
-        return "값 없음"
-    }
-}
-
-while(isEnd == false) {
-    print("가위(1) 바위(2) 보(3)! <종료 : 0> :")
-    
-    guard let playerChoice = readLine() else {
+    guard let input = readLine(), !input.isEmpty else {
+        print("입력값이 없습니다. 다시 시도하세요.")
         continue
     }
     
-    guard let playerChoice = Int(playerChoice) else {
+    guard let playerChoiceInt = Int(input), playerChoiceInt >= 0, playerChoiceInt <= 3 else {
+        print("잘못된 입력입니다. 1, 2, 3, 0 중 하나를 입력하세요.")
         continue
     }
-    
-    let computerChoice = randomChoice()
-    
-    print("사용자: \(choice[playerChoice-1]) 컴퓨터: \(computerChoice)")
-    
-    switch playerChoice {
-    case 0: isEnd = true
-    case 1: if computerChoice == "보" {
-        print("이겼다!")
-    } else if computerChoice == "바위" {
-        print("졌다!")
-    } else {
-        print("비겼다!")
-    }
-        break
-    case 2: if computerChoice == "가위" {
-        print("이겼다!")
-    } else if computerChoice == "보" {
-        print("졌다!")
-    } else {
-        print("비겼다!")
-    }
-        break
-    case 3: if computerChoice == "바위" {
-        print("이겼다!")
-    } else if computerChoice == "가위" {
-        print("졌다!")
-    } else {
-        print("비겼다!")
-    }
-        break
 
-    default: print("잘못된 입력값입니다.")
-    
+    if playerChoiceInt == 0 {
+        isEnd = true
+    } else {
+        let playerChoice = Choice.allCases[playerChoiceInt - 1]
+        let computerChoice = randomChoice()
+        let result = playGame(player: playerChoice, computer: computerChoice)
+        print("나 : \(playerChoice.rawValue), 컴퓨터 : \(computerChoice.rawValue)")
+        printResult(result: result)
     }
 }
-
