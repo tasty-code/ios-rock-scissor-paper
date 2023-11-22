@@ -46,13 +46,13 @@ var isWorking: Bool = true
 let RPS: [String] = ["1", "2", "3"]
 
 while isWorking {
+    
+    
     print("가위(1), 바위(2), 보(3)! <종료: 0> : ", terminator: "")
     let comChoice: String = RPS.randomElement() ?? ""
 
-    if let userChoice = readLine() {
-        action(com: comChoice, user: userChoice))
-    } else {
-        break
+    guard let input = readLine(), let userInput = Int(input), (0...3).contains(userInput) else {
+        print("잘못된 입력입니다. 다시 시도해주세요.")
     }
 }
 
