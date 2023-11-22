@@ -16,7 +16,8 @@ func playGame() {
         
         let input = readLine()
         let result = rockPaperScissorsManager.validateUserInput(input)
-        
+        ioManager.showMessage(rockPaperScissorsManager.judgeGame(user: result, computer: computerChoice))
     }
 }
 
+playGame()
