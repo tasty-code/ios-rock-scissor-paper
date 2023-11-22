@@ -16,44 +16,48 @@ func randomComputerHand() -> String {
     return String(Int.random(in: 1...3))
 }
 
-func compareHands(userHand: String?) -> winDrawLose {
-    var result: winDrawLose = winDrawLose.draw
+func playRockPaperScissor(userHand: String?) -> winDrawLose {
+    var result: winDrawLose = .draw
     let comHand = randomComputerHand()
+    
     if userHand == String(comHand) {
-        result = winDrawLose.draw
+        result = .draw
         return result
     }
+    
     switch userHand {
     case "1":
-        result = comHand == "3" ? winDrawLose.win : winDrawLose.lose
+        result = comHand == "3" ? .win : .lose
     case "2":
-        result = comHand == "1" ? winDrawLose.win : winDrawLose.lose
+        result = comHand == "1" ? .win : .lose
     case "3":
-        result = comHand == "2" ? winDrawLose.win : winDrawLose.lose
+        result = comHand == "2" ? .win : .lose
     default :
         print("잘못된 입력입니다.")
     }
+    
     return result
 }
 
-func playRockPaperScissor() {
+func main() {
     var userInput: String?
     repeat {
         print("가위(1), 바위(2), 보(3)! <종료 : 0> : ", terminator: "")
-        var result: String
         userInput = readLine()
+        
         switch userInput {
         case "0":
             print("게임 종료")
         case "1", "2", "3":
-    
-                result = compareHands(userHand: userInput).rawValue
-                print(result)
-            default : print("잘못된 입력입니다. 다시 시도해주세요.")
+            var result: String
+            result = playRockPaperScissor(userHand: userInput).rawValue
+            print(result)
+        default : 
+            print("잘못된 입력입니다. 다시 시도해주세요.")
         }
         
     } while userInput != "0"
 }
 
 
-playRockPaperScissor()
+main()
