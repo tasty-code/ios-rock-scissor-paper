@@ -1,3 +1,4 @@
 import Foundation
 
-print("Hello, World!")
+var rpsManager = RockPaperScissorsManager()
+rpsManager.play()

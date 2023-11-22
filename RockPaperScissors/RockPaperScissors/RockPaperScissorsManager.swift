@@ -8,10 +8,10 @@
 import Foundation
 
 struct RockPaperScissorsManager {
-    private var userValue: Int
-    private var randomValue: Int
+    private var userValue: Int = 0
+    private var randomValue: Int = 0
+    private var resultValue: Int = 0
     private var status: Bool = true
-    private var resultValue: Int
     
     mutating func play() {
         while status {
