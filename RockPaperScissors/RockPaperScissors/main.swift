@@ -40,3 +40,16 @@ func compareRps(user: RpsCase, com: RpsCase) {
         rpsMenu()
     }
 }
+
+
+func userInput(){
+    let randomValue = comRandomInput()
+    guard let inputvalue = readLine() else {return}
+    if let num = Int(inputvalue) , num >= 1 && num <= 3   {
+        compareRps(user: RpsCase(rawValue:num)!, com: RpsCase(rawValue:randomValue)!)
+    }else if let num = Int(inputvalue) , num == 0{
+    }else{
+        print("잘못된 입력입니다. 다시 시도해주세요.")
+        userInput()
+    }
+}
