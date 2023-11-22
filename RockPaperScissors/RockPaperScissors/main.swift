@@ -6,7 +6,11 @@
 
 import Foundation
 
-print("Hello, World!")
 
-// 초기설정
-print("초기설정 Test")
+
+enum RpsCase: Int{
+    case scissors = 1
+    case rock
+    case paper
+}
+
