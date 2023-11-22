@@ -21,4 +21,24 @@ func action(com: Hand, user: Hand) {
     default:
         print("잘못된 입력입니다. 다시 시도해주세요.")
     }
+    
+    func startGame(comPick: Hand, userPick: Hand) {
+        if comPick == userPick {
+            print("비겼습니다!")
+        } else if (comPick == .scissor && userPick == .rock) ||
+                    (comPick == .rock && userPick == .paper) ||
+                    (comPick == .paper && userPick == .scissor)
+        {
+            print("이겼습니다!")
+            endGame()
+        } else {
+            print("졌습니다!")
+            endGame()
+        }
+    }
+
+    func endGame() {
+        print("게임 종료")
+        isWorking.toggle()
+    }
 }
