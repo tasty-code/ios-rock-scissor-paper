@@ -19,14 +19,21 @@ final class GameView {
 extension GameView {
     
     func gameStart() {
-        
         print("가위(1), 바위(2), 보(3) ! <종료: 0> : ", terminator: "")
-        
-        if let playerInput = readLine() {
-            if playerInput == "0" { print("게임 종료"); return }
+        if let playerInput = readLine() { handleUserInsetNum(playerInput: playerInput) }
+    }
+    
+    private func handleUserInsetNum(playerInput: String) {
+        switch Int(playerInput) {
+        case 0:
+            print("게임 종료"); return
+        case 1,2,3:
             let (result, userChoice, computerChoice) = gameRules.playGameWithUserInput(playerInput)
             displayChoices(userChoice, computerChoice)
             handleGameResult(result)
+        default:
+            print("잘못된 입력입니다 다시 시도해주세요")
+            gameStart()
         }
     }
     
