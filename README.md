@@ -34,6 +34,9 @@ RockScissorsPaper-iOS/
 │
 ├── View/
 │   └── GameView.swift
+│   
+├── Player/
+│   └── Players.swift
 │
 ├── GameRules/
 │   ├── GameRukes.swift
