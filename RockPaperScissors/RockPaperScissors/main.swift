@@ -14,14 +14,15 @@ enum WinDrawLose: String {
 
 enum RockScissorPaper: Int {
     case scissor = 1, rock, paper
+    
     subscript(index: Int) -> RockScissorPaper? {
         return RockScissorPaper(rawValue: index)
     }
 }
 
-func playRockPaperScissor(userHand: Int) -> WinDrawLose {
+func playRockPaperScissor(userHand: Int?) -> WinDrawLose {
     let comHand = RockScissorPaper(rawValue: Int.random(in: 1...3))
-    let userHand = RockScissorPaper(rawValue: userHand)
+    let userHand = RockScissorPaper(rawValue: userHand ?? 0)
     
     if userHand == comHand {
         return .draw
@@ -41,9 +42,8 @@ func playRockPaperScissor(userHand: Int) -> WinDrawLose {
 
 func main() {
     var userInput: String?
-    
+
     gameLoop : repeat {
-        
         print("가위(1), 바위(2), 보(3)! <종료 : 0> : ", terminator: "")
         userInput = readLine()
         
@@ -52,17 +52,19 @@ func main() {
             break gameLoop
         case "1", "2", "3":
             if let userHand = userInput {
-                let result = playRockPaperScissor(userHand: Int(userHand) ?? 0)
+                let result = playRockPaperScissor(userHand: Int(userHand))
                 print(result.rawValue)
+                
                 if result == .win || result == .lose {
                     break gameLoop
                 }
+                
             }
         default :
             print("잘못된 입력입니다. 다시 시도해주세요.")
         }
-        
     } while userInput != "0"
+    
     print("게임 종료")
 }
 
