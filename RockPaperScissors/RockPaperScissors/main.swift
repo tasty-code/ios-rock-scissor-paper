@@ -6,7 +6,7 @@
 
 import Foundation
 
-let gameManager = GameManager()
+var gameManager = GameManager()
 
 while(gameManager.canPlayGame()) {
     gameManager.playGame()

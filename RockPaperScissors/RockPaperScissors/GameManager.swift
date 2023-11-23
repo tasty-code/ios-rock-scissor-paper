@@ -35,7 +35,7 @@ struct GameManager {
     }
     
     mutating func playGame() {
-        print("가위(1), 바위(2), 보(3)! <종료: 0> :")
+        showOptions()
         
         let user = User()
         let userOption: String = user.chooseOption()
@@ -46,13 +46,33 @@ struct GameManager {
             
             return
         }
+        
+        guard let userSelectedNumber = Int(userOption),
+                let userChoice = getUserChoice(from: userSelectedNumber) else {
+            notifyInvalidOption()
+            
+            return
+        }
+        
     }
     
-    func notifyGameOver() {
+    private mutating func endGame() {
+        willRun.toggle()
+    }
+    
+    private func getUserChoice(from userSelectedNumber: Int) -> RockPaperScissors? {
+        return RockPaperScissors(rawValue: userSelectedNumber)
+    }
+    
+    private func showOptions() {
+        print("가위(1), 바위(2), 보(3)! <종료: 0> :")
+    }
+    
+    private func notifyGameOver() {
         print("게임 종료")
     }
     
-    mutating func endGame() {
-        willRun.toggle()
+    private func notifyInvalidOption(){
+        print("잘못된 입력입니다. 다시 시도해 주세요.")
     }
 }
