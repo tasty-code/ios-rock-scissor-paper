@@ -2,12 +2,23 @@
 //  RockPaperScissors - main.swift
 //  Created by tacocat.
 //  Copyright © tastycode. All rights reserved.
-// 
+//
 
 import Foundation
 
 enum ChoiceMenu: String {
     case scissor = "1" , rock = "2", paper = "3", exit = "0"
+    case other
+}
+
+enum Result: String {
+    case win = "이겼습니다!"
+    case lose = "졌습니다!"
+    case draw = "비겼습니다!"
+}
+
+func startMessage() {
+    print("가위(1), 바위(2), 보(3)! <종료: 0> : ", terminator: "")
 }
 
 func action(com: ChoiceMenu, user: ChoiceMenu) {
@@ -16,22 +27,25 @@ func action(com: ChoiceMenu, user: ChoiceMenu) {
         endGame()
     case .paper, .rock, .scissor:
         startGame(comPick: com, userPick: user)
+    case .other:
+        print("잘못된 입력입니다. 다ls시 시도해주세요.")
     }
 }
 
 func startGame(comPick: ChoiceMenu, userPick: ChoiceMenu) {
     if comPick == userPick {
-        print("비겼습니다!")
+        print(Result.draw.rawValue)
+        return
     } else if (comPick == .scissor && userPick == .rock) ||
                 (comPick == .rock && userPick == .paper) ||
                 (comPick == .paper && userPick == .scissor)
     {
-        print("이겼습니다!")
-        endGame()
+        print(Result.win.rawValue)
     } else {
-        print("졌습니다!")
-        endGame()
+        print(Result.lose.rawValue)
     }
+    
+    endGame()
 }
 
 func endGame() {
@@ -43,15 +57,10 @@ var isWorking: Bool = true
 let rps: [String] = ["1", "2", "3"]
 
 while isWorking {
-    print("가위(1), 바위(2), 보(3)! <종료: 0> : ", terminator: "")
+    startMessage()
     let comChoice: String = rps.randomElement() ?? ""
-
-    guard let userChoice = readLine(), ["0", "1", "2", "3"].contains(userChoice) else {
-        print("잘못된 입력입니다. 다시 시도해주세요.")
-        continue
-    }
     
-    action(com: ChoiceMenu(rawValue: comChoice) ?? .exit, user: ChoiceMenu(rawValue: userChoice) ?? .exit)
+    if let userChoice = readLine() {
+        action(com: ChoiceMenu(rawValue: comChoice) ?? .scissor, user: ChoiceMenu(rawValue: userChoice) ?? .other)
+    }
 }
-
-
