@@ -19,7 +19,7 @@ final class RSPApp {
     var pcPlayer: PCPlayer?
     
     func run() {
-        while isRunning {
+        while self.isRunning {
             printPrompt()
             guard let input = getInput(),
                   let intInput = Int(input),
@@ -36,29 +36,37 @@ extension RSPApp {
     private func processMenu(_ menu: Menu) {
         switch menu {
         case .rsp(let userHand):
-            self.userPlayer = UserPlayer(hand: userHand)
-            self.pcPlayer = PCPlayer()
-            guard let userPlayer, let pcPlayer else {
-                return
-            }
-            let result = judge.judgeIf(userPlayer, wins: pcPlayer)
-            handleResult(result)
+            playOneRound(with: userHand)
         case .exit:
             exit()
         }
+    }
+    
+    private func playOneRound(with userHand: Hand) {
+        self.userPlayer = UserPlayer(hand: userHand)
+        self.pcPlayer = PCPlayer()
+        guard let userPlayer, let pcPlayer else {
+            return
+        }
+        let result = self.judge.judgeIf(userPlayer, wins: pcPlayer)
+        handleResult(result)
     }
     
     private func handleResult(_ result: RSPResult) {
         switch result {
         case .tie:
             print("비겼습니다!")
-        case .winning(let winner):
-            if let winner = winner as? UserPlayer, winner === userPlayer {
-                print("이겼습니다!")
-            } else {
-                print("졌습니다!")
-            }
+        case .winning(let player):
+            judgeIfUserWins(winner: player)
             exit()
+        }
+    }
+    
+    private func judgeIfUserWins(winner: RSPPlayable) {
+        if let winner = winner as? UserPlayer, winner === userPlayer {
+            print("이겼습니다!")
+        } else {
+            print("졌습니다!")
         }
     }
     
@@ -76,7 +84,7 @@ extension RSPApp {
     }
     
     private func printInvalidErrorMessage() {
-        print(invalidErrorMessage)
+        print(self.invalidErrorMessage)
     }
     
     private func printPrompt() {
