@@ -20,7 +20,7 @@
 #### 게임규칙에서 LinkedList 자료구조 활용
 
 자료구조 학습과 활용을 하고싶어 게임규칙에 Linked List를 도입했습니다 <br/>
-<a href="https://www.google.co.kr](https://velog.io/@suojae0516/%EB%AC%B5%EC%B0%8C%EB%B9%A0%EB%A5%BC-%ED%86%B5%ED%95%B4-LinkedList-%EC%8B%A4%EC%8A%B5%ED%95%98%EA%B8%B0"><strong> 공부내용 정리 </strong><br/>
+<a href="https://velog.io/@suojae0516/%EB%AC%B5%EC%B0%8C%EB%B9%A0%EB%A5%BC-%ED%86%B5%ED%95%B4-LinkedList-%EC%8B%A4%EC%8A%B5%ED%95%98%EA%B8%B0"> <strong> 공부내용 정리 </strong><br/>
 
 ---
 
