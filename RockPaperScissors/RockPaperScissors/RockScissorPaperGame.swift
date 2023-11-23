@@ -19,17 +19,17 @@ struct RockScissorPaperGame {
         
         let userInput = readLine()
         
-        guard let command = Command(value: userInput) else {
+        guard let validator = Validator(value: userInput) else {
             print(ApplicationStatus.error.message)
             return true
         }
         
-        guard !command.isQuit else {
+        guard !validator.isQuit else {
             print(ApplicationStatus.quit.message)
             return false
         }
         
-        let userChoice = command.value
+        let userChoice = validator.userChoice
         let computerChoice = Int.random(in: 1...3)
         
         return makeResult(user: userChoice, computer: computerChoice)
