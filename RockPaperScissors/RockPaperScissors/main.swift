@@ -4,5 +4,5 @@
 //  Copyright © tastycode. All rights reserved.
 //
 
-var rockScissorPaper = RockScissorPaper()
-rockScissorPaper.playRockScissorPaper()
+var rockScissorPaperGame = RockScissorPaperGame()
+rockScissorPaperGame.playRockScissorPaper()

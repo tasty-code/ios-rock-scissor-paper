@@ -5,7 +5,7 @@
 //  Created by mireu & kyle.
 //
 
-struct RockScissorPaper {
+struct RockScissorPaperGame {
     private var isRunning: Bool = true
 
     mutating func playRockScissorPaper() {
