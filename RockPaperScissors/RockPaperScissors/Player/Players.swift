@@ -3,10 +3,10 @@ import Foundation
 
 class ComputerPlayer {
     
-    var choice: RPSModel!
+    var choice: RPSModel?
     
     func makeRandomChoice() -> RPSModel {
         choice = RPSModel.allCases.randomElement()!
-        return choice
+        return choice ?? .rock
     }
 }
