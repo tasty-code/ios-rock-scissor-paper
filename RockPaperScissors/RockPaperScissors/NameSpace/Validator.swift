@@ -5,10 +5,10 @@
 //  Created by mireu & kyle.
 //
 
-struct Command {
-    let value: Int
+struct Validator {
+    let userChoice: Int
     var isQuit: Bool {
-        return value == 0
+        return userChoice == 0
     }
     
     init?(value: String?) {
@@ -17,6 +17,6 @@ struct Command {
         let isValid = validInputs.contains(converted)
         
         guard isValid else { return nil }
-        self.value = converted
+        self.userChoice = converted
     }
 }
