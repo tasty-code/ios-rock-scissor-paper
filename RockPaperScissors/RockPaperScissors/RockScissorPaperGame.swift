@@ -6,7 +6,6 @@
 //
 
 struct RockScissorPaperGame {
-    
     func play() {
         let isRunning: Bool = true
         
@@ -14,31 +13,29 @@ struct RockScissorPaperGame {
             guard start() else { return }
         }
     }
-
+    
     private func start() -> Bool {
         print("가위(1), 바위(2), 보(3)! <종료: 0> :", terminator: " ")
-        guard
-            let userInput = readLine(),
-            let userChoice = Int(userInput)
-        else {
+        
+        let userInput = readLine()
+        
+        guard let command = Command(value: userInput) else {
             print(ApplicationStatus.error.message)
             return true
         }
         
-        let computer = Int.random(in: 1...3)
-        
-        return makeResult(user: userChoice, computer: computer)
-    }
-    
-    private func makeResult(user: Int, computer: Int) -> Bool {
-        
-        guard
-            user != 0
-        else {
+        guard !command.isQuit else {
             print(ApplicationStatus.quit.message)
             return false
         }
         
+        let userChoice = command.value
+        let computerChoice = Int.random(in: 1...3)
+        
+        return makeResult(user: userChoice, computer: computerChoice)
+    }
+    
+    private func makeResult(user: Int, computer: Int) -> Bool {
         guard
             let userChoice = GameChoice(rawValue: user),
             let computerChoice = GameChoice(rawValue: computer)
