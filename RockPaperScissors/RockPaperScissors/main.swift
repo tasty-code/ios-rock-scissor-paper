@@ -6,13 +6,13 @@
 
 import Foundation
 
-var keep = true
-
 enum RpsCase: Int{
     case scissors = 1
     case rock
     case paper
 }
+
+var keep = true
 
 rpsMenu()
 
@@ -21,8 +21,7 @@ while keep {
 }
 
 
-//----------Funtion--------//
-
+// MARK: - Function
 func rpsMenu() {
     print("가위(1), 바위(2) 보(3)! <종료: 0>")
 }
@@ -50,11 +49,11 @@ func compareRps(user: RpsCase, com: RpsCase) {
 
 func userInput(){
     let randomValue = comRandomInput()
-    guard let inputvalue = readLine() else {return}
-    if let num = Int(inputvalue) , num >= 1 && num <= 3   {
+    guard let inputvalue = readLine() else { return }
+    if let num = Int(inputvalue) , num >= 1 && num <= 3 {
         compareRps(user: RpsCase(rawValue:num)!, com: RpsCase(rawValue:randomValue)!)
-    }else if let num = Int(inputvalue) , num == 0{
-    }else{
+    } else if let num = Int(inputvalue) , num == 0 {
+    } else {
         print("잘못된 입력입니다. 다시 시도해주세요.")
         userInput()
     }
