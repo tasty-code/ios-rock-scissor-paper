@@ -25,6 +25,26 @@ struct RockScissorPaper {
         }
     }
 
+    private mutating func checkingResult(user: Int, computer: Int) {
+            guard
+                let userChoice = Choice(rawValue: user),
+                let computerChoice = Choice(rawValue: computer)
+            else {
+                
+                return print(Result.error)
+            }
+            
+            switch user {
+            case 0:
+                print(Result.quit)
+                return
+            case 1...3:
+                compareChoice(user: userChoice, computer: computerChoice)
+            default:
+                print(Result.error)
+            }
+    }
+    
     private mutating func compareChoice(user: Choice, computer: Choice) {
         switch (user, computer) {
         case (.scissor,.rock),(.rock,.paper),(.paper,.scissor):
@@ -37,30 +57,6 @@ struct RockScissorPaper {
             isRunning = false
         default:
             print(Result.draw)
-            playRockScissorPaper()
-        }
-    }
-    
-    private mutating func checkingResult(user: Int, computer: Int) {
-        while isRunning {
-            guard
-                let userChoice = Choice(rawValue: user),
-                let computerChoice = Choice(rawValue: computer)
-            else {
-                print(Result.error)
-                return playRockScissorPaper()
-            }
-            
-            switch user {
-            case 0:
-                print(Result.quit)
-                return
-            case 1...3:
-                compareChoice(user: userChoice, computer: computerChoice)
-            default:
-                print(Result.error)
-                continue
-            }
         }
     }
     
