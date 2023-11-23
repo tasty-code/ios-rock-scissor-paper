@@ -61,7 +61,7 @@ extension RSPApp {
     }
     
     private func judgeIfUserWins(winner: RSPPlayable) {
-        if let winner = winner as? UserPlayer, winner === userPlayer {
+        if let winner = winner as? UserPlayer, winner === self.userPlayer {
             printMessage(.winning)
         } else {
             printMessage(.losing)
@@ -91,7 +91,6 @@ extension RSPApp {
     }
     
     private func printMessage(_ message: Message, terminator: String? = nil) {
-        print(message, terminator: terminator ?? "\n")
+        Swift.print(message.rawValue, terminator: terminator ?? "\n")
     }
 }
- 
