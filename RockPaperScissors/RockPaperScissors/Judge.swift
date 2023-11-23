@@ -8,7 +8,7 @@
 import Foundation
 
 final class Judge {
-    func judgeIf(_ leftPlayer: RSPPlayable, wins rightPlayer: RSPPlayable) -> RSPResult {
+    func judgeBetween(_ leftPlayer: RSPPlayable, _ rightPlayer: RSPPlayable) -> RSPResult {
         let lhs: Hand = leftPlayer.hand
         let rhs: Hand = rightPlayer.hand
         if lhs == rhs {
