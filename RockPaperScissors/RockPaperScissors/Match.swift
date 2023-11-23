@@ -12,15 +12,15 @@ enum Match {
     case lose
     case draw
     
-    init(_ userSelect: Int, _ comSelect: Int) {
-        let winList: [[Int]] = [[1, 3], [2, 1], [3, 2]]
+    static func getResult(_ userSelect: RockPaperScissors, _ comSelect: RockPaperScissors) -> Match {
+        let winList: [[RockPaperScissors]] = [[.scissors, .paper], [.rock, .scissors], [.paper, .rock]]
         
         if winList.contains([userSelect, comSelect]) {
-            self = .win
+            return .win
         } else if userSelect == comSelect {
-            self = .draw
+            return .draw
         } else {
-            self = .lose
+            return .lose
         }
     }
 }

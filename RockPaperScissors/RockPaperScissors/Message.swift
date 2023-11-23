@@ -15,7 +15,7 @@ enum Message {
     case wrong
     case end
     
-    var result: String {
+    var text: String {
         switch self {
         case .win:
             return "이겼습니다!"

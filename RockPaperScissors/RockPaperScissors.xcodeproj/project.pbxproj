@@ -7,9 +7,10 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		BD368D662B0C42DA00CA5AA4 /* RpsGame.swift in Sources */ = {isa = PBXBuildFile; fileRef = BD368D652B0C42DA00CA5AA4 /* RpsGame.swift */; };
+		BD368D662B0C42DA00CA5AA4 /* RockPaperScissorsGame.swift in Sources */ = {isa = PBXBuildFile; fileRef = BD368D652B0C42DA00CA5AA4 /* RockPaperScissorsGame.swift */; };
 		BD368D682B0CA35B00CA5AA4 /* Message.swift in Sources */ = {isa = PBXBuildFile; fileRef = BD368D672B0CA35B00CA5AA4 /* Message.swift */; };
 		BD368D862B0D88CA00CA5AA4 /* Match.swift in Sources */ = {isa = PBXBuildFile; fileRef = BD368D852B0D88CA00CA5AA4 /* Match.swift */; };
+		C1CA5CA62B0EE42000EE372C /* RockPaperScissors.swift in Sources */ = {isa = PBXBuildFile; fileRef = C1CA5CA52B0EE42000EE372C /* RockPaperScissors.swift */; };
 		C7ABA0E1254EA63000B2367D /* main.swift in Sources */ = {isa = PBXBuildFile; fileRef = C7ABA0E0254EA63000B2367D /* main.swift */; };
 /* End PBXBuildFile section */
 
@@ -26,9 +27,10 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
-		BD368D652B0C42DA00CA5AA4 /* RpsGame.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RpsGame.swift; sourceTree = "<group>"; };
+		BD368D652B0C42DA00CA5AA4 /* RockPaperScissorsGame.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RockPaperScissorsGame.swift; sourceTree = "<group>"; };
 		BD368D672B0CA35B00CA5AA4 /* Message.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Message.swift; sourceTree = "<group>"; };
 		BD368D852B0D88CA00CA5AA4 /* Match.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Match.swift; sourceTree = "<group>"; };
+		C1CA5CA52B0EE42000EE372C /* RockPaperScissors.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RockPaperScissors.swift; sourceTree = "<group>"; };
 		C7ABA0DD254EA63000B2367D /* RockPaperScissors */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = RockPaperScissors; sourceTree = BUILT_PRODUCTS_DIR; };
 		C7ABA0E0254EA63000B2367D /* main.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = main.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -44,31 +46,6 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		BD368D692B0CA47C00CA5AA4 /* Models */ = {
-			isa = PBXGroup;
-			children = (
-				BD368D652B0C42DA00CA5AA4 /* RpsGame.swift */,
-				BD368D852B0D88CA00CA5AA4 /* Match.swift */,
-			);
-			path = Models;
-			sourceTree = "<group>";
-		};
-		BD368D6A2B0CA49D00CA5AA4 /* Controllers */ = {
-			isa = PBXGroup;
-			children = (
-				C7ABA0E0254EA63000B2367D /* main.swift */,
-			);
-			path = Controllers;
-			sourceTree = "<group>";
-		};
-		BD368D6B2B0CA4A800CA5AA4 /* Views */ = {
-			isa = PBXGroup;
-			children = (
-				BD368D672B0CA35B00CA5AA4 /* Message.swift */,
-			);
-			path = Views;
-			sourceTree = "<group>";
-		};
 		C7ABA0D4254EA63000B2367D = {
 			isa = PBXGroup;
 			children = (
@@ -88,9 +65,11 @@
 		C7ABA0DF254EA63000B2367D /* RockPaperScissors */ = {
 			isa = PBXGroup;
 			children = (
-				BD368D6B2B0CA4A800CA5AA4 /* Views */,
-				BD368D6A2B0CA49D00CA5AA4 /* Controllers */,
-				BD368D692B0CA47C00CA5AA4 /* Models */,
+				C1CA5CA52B0EE42000EE372C /* RockPaperScissors.swift */,
+				C7ABA0E0254EA63000B2367D /* main.swift */,
+				BD368D672B0CA35B00CA5AA4 /* Message.swift */,
+				BD368D652B0C42DA00CA5AA4 /* RockPaperScissorsGame.swift */,
+				BD368D852B0D88CA00CA5AA4 /* Match.swift */,
 			);
 			path = RockPaperScissors;
 			sourceTree = "<group>";
@@ -154,8 +133,9 @@
 			files = (
 				BD368D682B0CA35B00CA5AA4 /* Message.swift in Sources */,
 				C7ABA0E1254EA63000B2367D /* main.swift in Sources */,
-				BD368D662B0C42DA00CA5AA4 /* RpsGame.swift in Sources */,
+				BD368D662B0C42DA00CA5AA4 /* RockPaperScissorsGame.swift in Sources */,
 				BD368D862B0D88CA00CA5AA4 /* Match.swift in Sources */,
+				C1CA5CA62B0EE42000EE372C /* RockPaperScissors.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
