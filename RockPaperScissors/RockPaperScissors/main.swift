@@ -6,35 +6,35 @@
 
 import Foundation
 
-enum WinDrawLose: String {
+enum GameResult: String {
     case win = "이겼습니다!"
     case draw = "비겼습니다!"
     case lose = "졌습니다!"
 }
 
-enum RockScissorPaper: Int {
-    case scissor = 1, rock, paper
+enum GameHand: Int {
+    case scissor = 1, rock = 2, paper = 3
     
-    subscript(index: Int) -> RockScissorPaper? {
-        return RockScissorPaper(rawValue: index)
+    subscript(index: Int) -> GameHand? {
+        return GameHand(rawValue: index)
     }
 }
 
-func playRockPaperScissor(userHand: Int?) -> WinDrawLose {
-    let comHand = RockScissorPaper(rawValue: Int.random(in: 1...3))
-    let userHand = RockScissorPaper(rawValue: userHand ?? 0)
+func playRockPaperScissor(userHand: Int)-> GameResult {
+    let computerHand = GameHand(rawValue: Int.random(in: 1...3))
+    let userHand = GameHand(rawValue: userHand)
     
-    if userHand == comHand {
+    if userHand == computerHand {
         return .draw
     }
     
     switch userHand {
     case .scissor:
-        return comHand == .paper ? .win : .lose
+        return computerHand == .paper ? .win : .lose
     case .rock:
-        return comHand == .scissor ? .win : .lose
+        return computerHand == .scissor ? .win : .lose
     case .paper:
-        return comHand == .rock ? .win : .lose
+        return computerHand == .rock ? .win : .lose
     case .none:
         return .draw
     }
@@ -51,15 +51,17 @@ func main() {
         case "0":
             break gameLoop
         case "1", "2", "3":
-            if let userHand = userInput {
-                let result = playRockPaperScissor(userHand: Int(userHand))
-                print(result.rawValue)
-                
-                if result == .win || result == .lose {
-                    break gameLoop
-                }
-                
+            guard let userHand = userInput, let intUserHand = Int(userHand) else {
+                break
             }
+            
+            let result = playRockPaperScissor(userHand: intUserHand )
+            print(result.rawValue)
+            
+            if result == .win || result == .lose {
+                break gameLoop
+            }
+            
         default :
             print("잘못된 입력입니다. 다시 시도해주세요.")
         }
