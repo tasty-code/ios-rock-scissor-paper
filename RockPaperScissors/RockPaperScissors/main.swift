@@ -2,7 +2,7 @@
 //  RockPaperScissors - main.swift
 //  Created by tacocat.
 //  Copyright © tastycode. All rights reserved.
-// 
+//
 
 import Foundation
 
@@ -20,16 +20,12 @@ func runningGame(_ myChoice: Selection) {
         exit(0)
     } else if comChoice == myChoice {
         print("비겼습니다!")
-    } else if comChoice == 1 && myChoice == 2 {
+    } else if (comChoice == 1 && myChoice == 2) ||
+              (comChoice == 2 && myChoice == 3) ||
+              (comChoice == 3 && myChoice == 1)  {
         print("이겼습니다!")
         exit(0)
-    } else if comChoice == 2 && myChoice == 3 {
-        print("이겼습니다!")
-        exit(0)
-    } else if comChoice == 3 && myChoice == 1 {
-        print("이겼습니다!")
-        exit(0)
-    } else {
+    }  else {
         print("졌습니다!")
         exit(0)
     }
