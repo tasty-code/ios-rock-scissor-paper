@@ -18,10 +18,6 @@ final class RSPApp {
     
     var pcPlayer: PCPlayer?
     
-    private func printInvalidErrorMessage() {
-        print(invalidErrorMessage)
-    }
-    
     func run() {
         while isRunning {
             printPrompt()
@@ -34,23 +30,9 @@ final class RSPApp {
             processMenu(menu)
         }
     }
-    
-    private func printPrompt() {
-        print("가위(1), 바위(2), 보(3)! <종료 : 0> :", terminator: " ")
-    }
-    
-    private func getInput() -> String? {
-        guard let pureInput = Swift.readLine() else { return nil }
-        // 문자열 가공
-        let result = pureInput.trimmingCharacters(in: .whitespacesAndNewlines)
-        return result.isEmpty ? nil : result
-    }
-    
-    private func exit() {
-        print("게임 종료")
-        self.isRunning = false
-    }
-    
+}
+
+extension RSPApp {
     private func processMenu(_ menu: Menu) {
         switch menu {
         case .rsp(let userHand):
@@ -79,4 +61,26 @@ final class RSPApp {
             exit()
         }
     }
+    
+    private func exit() {
+        print("게임 종료")
+        self.isRunning = false
+    }
 }
+
+extension RSPApp {
+    private func getInput() -> String? {
+        guard let pureInput = Swift.readLine() else { return nil }
+        let result = pureInput.trimmingCharacters(in: .whitespacesAndNewlines)
+        return result.isEmpty ? nil : result
+    }
+    
+    private func printInvalidErrorMessage() {
+        print(invalidErrorMessage)
+    }
+    
+    private func printPrompt() {
+        print("가위(1), 바위(2), 보(3)! <종료 : 0> :", terminator: " ")
+    }
+}
+ 
