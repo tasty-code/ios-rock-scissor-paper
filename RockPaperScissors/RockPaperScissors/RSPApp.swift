@@ -46,7 +46,7 @@ extension RSPApp {
         guard let userPlayer, let pcPlayer else {
             return
         }
-        let result = self.judge.judgeIf(userPlayer, wins: pcPlayer)
+        let result = self.judge.judgeBetween(userPlayer, pcPlayer)
         handleResult(result)
     }
     
