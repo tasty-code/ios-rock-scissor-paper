@@ -14,6 +14,10 @@ final class Game {
     
     private var inputNum: Int = 0
     
+    func load() {
+        playRps()
+    }
+    
     private func playRps() {
         while loopState {
             
@@ -26,9 +30,10 @@ final class Game {
             case 1, 2, 3:
                 calcRps(with: inputNum)
                 print(result.rawValue)
+                shutDown()
                 
             case 0:
-                // TODO: 겜임 exit 메서드 콜
+                shutDown()
                 print(Constant.gameExit)
                 
             default:

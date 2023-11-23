@@ -71,10 +71,10 @@
 		C7ABA0DF254EA63000B2367D /* RockPaperScissors */ = {
 			isa = PBXGroup;
 			children = (
-				2A7708792B0F1A49003640F0 /* Models */,
-				C7ABA0E0254EA63000B2367D /* main.swift */,
 				7F0604832B0F1C0400BF6EEA /* Constant.swift */,
+				2A7708792B0F1A49003640F0 /* Models */,
 				2A77087C2B0F2015003640F0 /* Game.swift */,
+				C7ABA0E0254EA63000B2367D /* main.swift */,
 			);
 			path = RockPaperScissors;
 			sourceTree = "<group>";
