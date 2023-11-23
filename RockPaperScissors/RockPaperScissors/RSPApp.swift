@@ -10,11 +10,11 @@ import Foundation
 final class RSPApp {
     private var isRunning: Bool = true
     
-    let judge: Judge = Judge()
+    private let judge: Judge = Judge()
     
-    var userPlayer: UserPlayer?
+    private var userPlayer: UserPlayer?
     
-    var pcPlayer: PCPlayer?
+    private var pcPlayer: PCPlayer?
     
     func run() {
         while self.isRunning {
