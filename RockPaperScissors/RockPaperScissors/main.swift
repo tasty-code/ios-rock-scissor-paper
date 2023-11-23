@@ -22,7 +22,6 @@ enum RockScissorPaper: Int {
 func playRockPaperScissor(userHand: Int) -> WinDrawLose {
     let comHand = RockScissorPaper(rawValue: Int.random(in: 1...3))
     let userHand = RockScissorPaper(rawValue: userHand)
-    var result: WinDrawLose = .draw
     
     if userHand == comHand {
         return .draw
@@ -30,37 +29,41 @@ func playRockPaperScissor(userHand: Int) -> WinDrawLose {
     
     switch userHand {
     case .scissor:
-        result = comHand == .paper ? .win : .lose
+        return comHand == .paper ? .win : .lose
     case .rock:
-        result = comHand == .scissor ? .win : .lose
+        return comHand == .scissor ? .win : .lose
     case .paper:
-        result = comHand == .rock ? .win : .lose
-    default:
-        print("잘못된 접근입니다.")
+        return comHand == .rock ? .win : .lose
+    case .none:
+        return .draw
     }
-    return result
 }
 
 func main() {
     var userInput: String?
     
-    repeat {
+    gameLoop : repeat {
+        
         print("가위(1), 바위(2), 보(3)! <종료 : 0> : ", terminator: "")
         userInput = readLine()
         
         switch userInput {
         case "0":
-            print("게임 종료")
+            break gameLoop
         case "1", "2", "3":
             if let userHand = userInput {
-                var result = playRockPaperScissor(userHand: Int(userHand) ?? 0).rawValue
-                print(result)
+                let result = playRockPaperScissor(userHand: Int(userHand) ?? 0)
+                print(result.rawValue)
+                if result == .win || result == .lose {
+                    break gameLoop
+                }
             }
         default :
             print("잘못된 입력입니다. 다시 시도해주세요.")
         }
         
     } while userInput != "0"
+    print("게임 종료")
 }
 
 
