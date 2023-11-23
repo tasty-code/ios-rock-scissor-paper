@@ -48,12 +48,20 @@ struct GameManager {
         }
         
         guard let userSelectedNumber = Int(userOption),
-                let userChoice = getUserChoice(from: userSelectedNumber) else {
+              let userChoice = getUserChoice(from: userSelectedNumber) else {
             notifyInvalidOption()
             
             return
         }
         
+        guard let computerChoice = getComputerChoice() else {
+            endGame()
+            return
+        }
+        
+        let gameOutcome = determineGameOutcome(userChoice, computerChoice)
+        gameOutcome.notify()
+
     }
     
     private mutating func endGame() {
@@ -62,6 +70,21 @@ struct GameManager {
     
     private func getUserChoice(from userSelectedNumber: Int) -> RockPaperScissors? {
         return RockPaperScissors(rawValue: userSelectedNumber)
+    }
+    
+    private func getComputerChoice() -> RockPaperScissors? {
+        return RockPaperScissors.allCases.randomElement()
+    }
+    
+    private func determineGameOutcome(_ userChoice: RockPaperScissors,
+                                      _ computerChoice: RockPaperScissors) -> GameOutcome {
+        if userChoice == computerChoice {
+            return .draw
+        } else if (userChoice.rawValue + 1) % 3 == computerChoice.rawValue {
+            return .loss
+        } else {
+            return .win
+        }
     }
     
     private func showOptions() {
