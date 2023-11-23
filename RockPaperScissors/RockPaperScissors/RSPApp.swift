@@ -10,8 +10,6 @@ import Foundation
 final class RSPApp {
     private var isRunning: Bool = true
     
-    private let invalidErrorMessage: String = "잘못된 입력입니다. 다시 시도해주세요."
-    
     let judge: Judge = Judge()
     
     var userPlayer: UserPlayer?
@@ -20,11 +18,11 @@ final class RSPApp {
     
     func run() {
         while self.isRunning {
-            printPrompt()
+            printMessage(.menuPrompt, terminator: " ")
             guard let input = getInput(),
                   let intInput = Int(input),
-                  let menu = Menu(input: intInput) else { #warning("상수")
-                printInvalidErrorMessage()
+                  let menu = Menu(input: intInput) else {
+                printMessage(.invalidError)
                 continue
             }
             processMenu(menu)
@@ -55,7 +53,7 @@ extension RSPApp {
     private func handleResult(_ result: RSPResult) {
         switch result {
         case .tie:
-            print("비겼습니다!")
+            printMessage(.tie)
         case .winning(let player):
             judgeIfUserWins(winner: player)
             exit()
@@ -64,31 +62,36 @@ extension RSPApp {
     
     private func judgeIfUserWins(winner: RSPPlayable) {
         if let winner = winner as? UserPlayer, winner === userPlayer {
-            print("이겼습니다!")
+            printMessage(.winning)
         } else {
-            print("졌습니다!")
+            printMessage(.losing)
         }
     }
     
     private func exit() {
-        print("게임 종료")
+        printMessage(.exit)
         self.isRunning = false
     }
 }
 
 extension RSPApp {
+    private enum Message: String {
+        case menuPrompt = "가위(1), 바위(2), 보(3)! <종료 : 0> :"
+        case invalidError = "잘못된 입력입니다. 다시 시도해주세요."
+        case winning = "이겼습니다!"
+        case losing = "졌습니다!"
+        case tie = "비겼습니다!"
+        case exit = "게임 종료"
+    }
+    
     private func getInput() -> String? {
         guard let pureInput = Swift.readLine() else { return nil }
         let result = pureInput.trimmingCharacters(in: .whitespacesAndNewlines)
         return result.isEmpty ? nil : result
     }
     
-    private func printInvalidErrorMessage() {
-        print(self.invalidErrorMessage)
-    }
-    
-    private func printPrompt() {
-        print("가위(1), 바위(2), 보(3)! <종료 : 0> :", terminator: " ")
+    private func printMessage(_ message: Message, terminator: String? = nil) {
+        print(message, terminator: terminator ?? "\n")
     }
 }
  
