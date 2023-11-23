@@ -6,4 +6,4 @@
 
 import Foundation
 
-RpsGame().play()
+RockPaperScissorsGame().play()
