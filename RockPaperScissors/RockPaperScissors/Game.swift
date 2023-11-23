@@ -30,11 +30,12 @@ final class Game {
             case 1, 2, 3:
                 calcRps(with: inputNum)
                 print(result.rawValue)
-                shutDown()
+                if result != .draw {
+                    shutDown()
+                }
                 
             case 0:
                 shutDown()
-                print(Constant.gameExit)
                 
             default:
                 print(Constant.badInput)
@@ -71,6 +72,8 @@ final class Game {
     private func setInputNum() {
         guard let input = readLine(), let inputNum = Int(input) else {
             print(Constant.badInput)
+            print(Constant.rpsChoice)
+            setInputNum()
             return
         }
         self.inputNum = inputNum
