@@ -31,10 +31,28 @@ struct GameManager {
     var willRun: Bool = true
     
     func canPlayGame() -> Bool {
-        return Bool()
+        return willRun
     }
     
-    func playGame() {
+    mutating func playGame() {
+        print("가위(1), 바위(2), 보(3)! <종료: 0> :")
         
+        let user = User()
+        let userOption: String = user.chooseOption()
+        
+        guard userOption != termination else {
+            notifyGameOver()
+            endGame()
+            
+            return
+        }
+    }
+    
+    func notifyGameOver() {
+        print("게임 종료")
+    }
+    
+    mutating func endGame() {
+        willRun.toggle()
     }
 }
