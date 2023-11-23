@@ -5,7 +5,7 @@
 //  Created by mireu & kyle.
 //
 
-enum Choice: Int {
+enum RockScissorPaperChoice: Int {
     case scissor = 1
     case rock = 2
     case paper = 3

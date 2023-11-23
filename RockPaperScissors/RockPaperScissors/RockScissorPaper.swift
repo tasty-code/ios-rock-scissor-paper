@@ -17,46 +17,45 @@ struct RockScissorPaper {
                 let input = readLine(),
                 let user = Int(input)
             else {
-                print(Result.error)
+                print(ApplicationStatus.error.message)
                 continue
             }
             checkingResult(user: user, computer: computer)
-            
         }
     }
 
     private mutating func checkingResult(user: Int, computer: Int) {
             guard
-                let userChoice = Choice(rawValue: user),
-                let computerChoice = Choice(rawValue: computer)
+                let userChoice = RockScissorPaperChoice(rawValue: user),
+                let computerChoice = RockScissorPaperChoice(rawValue: computer)
             else {
                 
-                return print(Result.error)
+                return print(ApplicationStatus.error.message)
             }
             
             switch user {
             case 0:
-                print(Result.quit)
+                print(ApplicationStatus.quit.message)
                 return
             case 1...3:
                 compareChoice(user: userChoice, computer: computerChoice)
             default:
-                print(Result.error)
+                print(ApplicationStatus.error.message)
             }
     }
     
-    private mutating func compareChoice(user: Choice, computer: Choice) {
+    private mutating func compareChoice(user: RockScissorPaperChoice, computer: RockScissorPaperChoice) {
         switch (user, computer) {
         case (.scissor,.rock),(.rock,.paper),(.paper,.scissor):
-            print(Result.lose)
-            print(Result.quit)
+            print(GameResult.lose.message)
+            print(ApplicationStatus.quit.message)
             isRunning = false
         case (.scissor,.paper),(.rock,.scissor),(.paper,.rock):
-            print(Result.win)
-            print(Result.quit)
+            print(GameResult.win.message)
+            print(ApplicationStatus.quit.message)
             isRunning = false
         default:
-            print(Result.draw)
+            print(GameResult.draw.message)
         }
     }
     
