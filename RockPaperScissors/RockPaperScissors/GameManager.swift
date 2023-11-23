@@ -43,14 +43,12 @@ struct GameManager {
         guard userOption != termination else {
             notifyGameOver()
             endGame()
-            
             return
         }
         
         guard let userSelectedNumber = Int(userOption),
               let userChoice = getUserChoice(from: userSelectedNumber) else {
             notifyInvalidOption()
-            
             return
         }
         
@@ -60,8 +58,12 @@ struct GameManager {
         }
         
         let gameOutcome = determineGameOutcome(userChoice, computerChoice)
+        
         gameOutcome.notify()
-
+        
+        if shouldEndGame(with: gameOutcome) {
+            endGame()
+        }
     }
     
     private mutating func endGame() {
@@ -87,15 +89,19 @@ struct GameManager {
         }
     }
     
+    private func shouldEndGame(with gameOutcome: GameOutcome) -> Bool {
+        return gameOutcome == .draw ? false : true
+    }
+    
     private func showOptions() {
-        print("가위(1), 바위(2), 보(3)! <종료: 0> :")
+        print("가위(1), 바위(2), 보(3)! <종료: 0> : ", terminator: String())
     }
     
     private func notifyGameOver() {
         print("게임 종료")
     }
     
-    private func notifyInvalidOption(){
+    private func notifyInvalidOption() {
         print("잘못된 입력입니다. 다시 시도해 주세요.")
     }
 }
