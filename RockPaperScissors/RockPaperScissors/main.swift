@@ -15,19 +15,19 @@ enum RpsCase: Int {
 var isPlayRockScissorsPaperGame = true
 
 
-initPlayRockScissorsPaperGame()
+userInput()
 
 
 // MARK: - Function
-func rpsMenu() {
+func displayRockScissorsPaperMenu() {
     print("가위(1), 바위(2) 보(3)! <종료: 0>")
 }
 
-func comRandomInput() -> Int{
+func comRandomInput() -> Int {
     return Int.random(in: 1 ... 3)
 }
 
-func compareRps(user: RpsCase, com: RpsCase) {
+func compareRockScissorsPaper(user: RpsCase, com: RpsCase) {
     switch (user, com) {
     case (.scissors, .paper), (.rock, .scissors), (.paper, .rock):
         print("이겼습니다.")
@@ -39,25 +39,28 @@ func compareRps(user: RpsCase, com: RpsCase) {
         isPlayRockScissorsPaperGame = false
     default:
         print("비겼습니다.")
-        rpsMenu()
+        displayRockScissorsPaperMenu()
     }
 }
 
 
 func userInput() {
-    let randomValue = comRandomInput()
-    guard let inputvalue = readLine() else { return }
-    if let num = Int(inputvalue) , num >= 1 && num <= 3 {
-        compareRps(user: RpsCase(rawValue:num)!, com: RpsCase(rawValue:randomValue)!)
-    } else if let num = Int(inputvalue) , num == 0 {
-    } else {
-        print("잘못된 입력입니다. 다시 시도해주세요.")
-        userInput()
+    while isPlayRockScissorsPaperGame {
+        let randomValue = comRandomInput()
+        guard let inputValue = readLine() else { return }
+        if let num = Int(inputValue), num >= 1 && num <= 3 {
+            compareRockScissorsPaper(user: RpsCase(rawValue:num)!, com: RpsCase(rawValue:randomValue)!)
+        } else if let num = Int(inputValue) , num == 0 {
+            print("게임 종료")
+            isPlayRockScissorsPaperGame = false
+        } else {
+            print("잘못된 입력입니다. 다시 시도해주세요.")
+        }
     }
 }
 
 func initPlayRockScissorsPaperGame() {
-    rpsMenu()
+    displayRockScissorsPaperMenu()
     while isPlayRockScissorsPaperGame {
         userInput()
     }
