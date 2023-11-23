@@ -31,7 +31,7 @@ struct GameManager {
     var willRun: Bool = true
     
     func canPlayGame() -> Bool {
-        return true
+        return Bool()
     }
     
     func playGame() {
