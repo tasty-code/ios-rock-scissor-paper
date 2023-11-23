@@ -5,4 +5,4 @@
 //
 
 var rockScissorPaperGame = RockScissorPaperGame()
-rockScissorPaperGame.playRockScissorPaper()
+rockScissorPaperGame.play()

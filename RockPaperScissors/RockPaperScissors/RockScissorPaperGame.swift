@@ -7,19 +7,19 @@
 
 struct RockScissorPaperGame {
     
-    func playRockScissorPaper() {
+    func play() {
         let isRunning: Bool = true
         
         while isRunning {
-            guard startGame() else { return }
+            guard start() else { return }
         }
     }
 
-    private func startGame() -> Bool {
+    private func start() -> Bool {
         print("가위(1), 바위(2), 보(3)! <종료: 0> :", terminator: " ")
         guard
-            let input = readLine(),
-            let user = Int(input)
+            let userInput = readLine(),
+            let userChoice = Int(userInput)
         else {
             print(ApplicationStatus.error.message)
             return true
@@ -27,27 +27,27 @@ struct RockScissorPaperGame {
         
         let computer = Int.random(in: 1...3)
         
-        return checkingResult(user: user, computer: computer)
+        return makeResult(user: userChoice, computer: computer)
     }
     
-    private func checkingResult(user: Int, computer: Int) -> Bool {
-            guard
-                let userChoice = GameChoice(rawValue: user),
-                let computerChoice = GameChoice(rawValue: computer)
-            else {
-                print(ApplicationStatus.error.message)
-                return true
-            }
-            
-            switch user {
-            case 0:
-                print(ApplicationStatus.quit.message)
-                return false
-            case 1...3:
-                return compareChoice(user: userChoice, computer: computerChoice)
-            default:
-                return true
-            }
+    private func makeResult(user: Int, computer: Int) -> Bool {
+        
+        guard
+            user != 0
+        else {
+            print(ApplicationStatus.quit.message)
+            return false
+        }
+        
+        guard
+            let userChoice = GameChoice(rawValue: user),
+            let computerChoice = GameChoice(rawValue: computer)
+        else {
+            print(ApplicationStatus.error.message)
+            return true
+        }
+        
+        return compareChoice(user: userChoice, computer: computerChoice)
     }
     
     private func compareChoice(user: GameChoice, computer: GameChoice) -> Bool {
