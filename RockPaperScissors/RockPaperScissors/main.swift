@@ -42,7 +42,7 @@ enum MenuMessage: CustomStringConvertible {
     }
 }
 
-func getInput() -> Int? {
+func getUserInput() -> Int? {
     if let input = readLine() {
         return Int(input)
     } else {
@@ -81,7 +81,7 @@ func initCpuInput() -> Int {
 while (run) {
     print(menuMessage, terminator: "")
     let cpuInput: Int = initCpuInput()
-    let userInput: Int = getInput() ?? -1
+    let userInput: Int = getUserInput() ?? -1
     run = rpsGame(userInput: userInput, cpuInput: cpuInput)
 }
 print("게임 종료")
