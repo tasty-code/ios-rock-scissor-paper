@@ -55,7 +55,7 @@ func rpsGame(userInput: Int, cpuInput: Int) -> Bool {
     case 0:
         return false
     case 1...3:
-        let result: RpsGameResult = judgeWinOrLose(userInput: userInput, cpuInput: cpuInput)
+        let result: RpsGameResult = getRpsGameResult(userInput: userInput, cpuInput: cpuInput)
         print(result)
         return result.isOver(result: result)
     default:
@@ -64,7 +64,7 @@ func rpsGame(userInput: Int, cpuInput: Int) -> Bool {
     }
 }
 
-func judgeWinOrLose(userInput: Int, cpuInput: Int) -> RpsGameResult {
+func getRpsGameResult(userInput: Int, cpuInput: Int) -> RpsGameResult {
     if (userInput == cpuInput) {
         return RpsGameResult.draw
     } else if (userInput - cpuInput == 1 || userInput - cpuInput == -2) {
