@@ -1,7 +1,7 @@
 # Tasty Code
 
 **리뷰어:** <br/>
-**@Dana** <br/>
+**<a href="https://github.com/songda515"> @Dana** <br/>
 
 **버드:** <br/>
 **<a href="https://github.com/Jin0Yun" target="_blank"> @Yuni** <br/>
@@ -9,7 +9,7 @@
 
 
 
-안녕하세요 다나! 
+안녕하세요 Dana! 
 첫 PR 잘부탁드립니다🤩
 
 ---
