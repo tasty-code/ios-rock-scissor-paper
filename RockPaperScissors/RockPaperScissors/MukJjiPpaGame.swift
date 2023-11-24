@@ -6,32 +6,39 @@
 //
 
 struct MukJjiPpaGame {
-    
     var rockScissorPaperGame = RockScissorPaperGame()
     
     mutating func play() {
-        
         rockScissorPaperGame.play()
         
         let isRunning: Bool = true
         
         while isRunning {
-            guard continueGame() else { return }
+            guard 
+                continueGame()
+            else {
+                return
+            }
         }
     }
     
-    private func continueGame() -> Bool {
+    private mutating func continueGame() -> Bool {
         print("\(rockScissorPaperGame.turn) 턴 입니다.")
         print("[\(rockScissorPaperGame.turn) 턴] 묵(1), 찌(2), 빠(3)! <종료: 0> :", terminator: " ")
         
         let userInput = readLine()
         
-        guard let validator = Validator(value: userInput) else {
+        guard 
+            let validator = Validator(value: userInput)
+        else {
+            rockScissorPaperGame.turn = .computer
             print(ApplicationStatus.error.message)
             return true
         }
         
-        guard !validator.isQuit else {
+        guard 
+            !validator.isQuit
+        else {
             print(ApplicationStatus.quit.message)
             return false
         }

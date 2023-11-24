@@ -6,14 +6,17 @@
 //
 
 struct RockScissorPaperGame {
-    
     var turn: Turn = .none
     
     mutating func play() {
         let isRunning: Bool = true
         
         while isRunning {
-            guard continueGame() else { return }
+            guard
+                continueGame()
+            else {
+                return
+            }
         }
     }
     
@@ -22,12 +25,16 @@ struct RockScissorPaperGame {
         
         let userInput = readLine()
         
-        guard let validator = Validator(value: userInput) else {
+        guard
+            let validator = Validator(value: userInput)
+        else {
             print(ApplicationStatus.error.message)
             return true
         }
         
-        guard !validator.isQuit else {
+        guard
+            !validator.isQuit
+        else {
             print(ApplicationStatus.quit.message)
             return false
         }
