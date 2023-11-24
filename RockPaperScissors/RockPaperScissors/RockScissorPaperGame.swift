@@ -5,7 +5,7 @@
 //  Created by mireu & kyle.
 //
 
-struct RockScissorPaperGame {
+struct RockScissorPaperGame: Game {
     func play() {
         let isRunning: Bool = true
         
@@ -29,18 +29,10 @@ struct RockScissorPaperGame {
             return false
         }
         
-        let userChoice = validator.userChoice
-        let computerChoice = Int.random(in: 1...3)
-        
-        return makeResult(user: userChoice, computer: computerChoice)
-    }
-    
-    private func makeResult(user: Int, computer: Int) -> Bool {
         guard
-            let userChoice = GameChoice(rawValue: user),
-            let computerChoice = GameChoice(rawValue: computer)
+            let userChoice = GameChoice(rawValue: validator.userChoice),
+            let computerChoice = GameChoice(rawValue: Int.random(in: 1...3))
         else {
-            print(ApplicationStatus.error.message)
             return true
         }
         
