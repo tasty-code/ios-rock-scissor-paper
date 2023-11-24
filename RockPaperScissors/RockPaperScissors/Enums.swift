@@ -18,5 +18,5 @@ enum StringNameSpace: String {
     case drawMessage = "비겼습니다."
     case endMessage = "게임 종료"
     case inputErrorMessage = "잘못된 입력입니다. 다시 시도해주세요."
-    case rockScissorsPaperExit = "가위(1), 바위(2) 보(3)! <종료: 0>"
+    case rockScissorsPaperExitMenuMessage = "가위(1), 바위(2) 보(3)! <종료: 0>"
 }

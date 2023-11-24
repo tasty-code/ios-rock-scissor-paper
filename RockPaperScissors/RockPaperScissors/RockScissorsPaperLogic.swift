@@ -9,40 +9,42 @@ import Foundation
 
 func initPlayRockScissorsPaperGame() {
     displayRockScissorsPaperMenu()
-    userInput()
+    userInputReadLine()
 }
 
 private func getComputerRandomNumber() -> Int {
     return Int.random(in: 1 ... 3)
 }
 
-private func compareRockScissorsPaper(user: RockScissorsPaperCase, com: RockScissorsPaperCase) {
-    switch (user, com) {
+private func userInputReadLine() {
+    while isWorkingRockScissorsPaper {
+        let randomValue = getComputerRandomNumber()
+        guard let inputValue = readLine() else { return }
+        if let userInputNum = Int(inputValue), userInputNum >= 1 && userInputNum <= 3 {
+            compareRockScissorsPaper(userChoice: RockScissorsPaperCase(rawValue:userInputNum)!, computerChoice: RockScissorsPaperCase(rawValue:randomValue)!)
+        } else if let userInputNum = Int(inputValue), userInputNum == 0 {
+            print(StringNameSpace.endMessage.rawValue)
+            isWorkingRockScissorsPaper = false
+        } else {
+            print(StringNameSpace.inputErrorMessage.rawValue)
+        }
+    }
+}
+
+private func compareRockScissorsPaper(userChoice: RockScissorsPaperCase, computerChoice: RockScissorsPaperCase) {
+    switch (userChoice, computerChoice) {
     case (.scissors, .paper), (.rock, .scissors), (.paper, .rock):
         print(StringNameSpace.winMessage.rawValue)
         print(StringNameSpace.endMessage.rawValue)
-        isPlayRockScissorsPaperGame = false
+        isWorkingRockScissorsPaper = false
     case (.paper, .scissors), (.scissors, .rock), (.rock, .paper):
         print(StringNameSpace.loseMessage.rawValue)
         print(StringNameSpace.endMessage.rawValue)
-        isPlayRockScissorsPaperGame = false
+        isWorkingRockScissorsPaper = false
     default:
         print(StringNameSpace.drawMessage.rawValue)
         displayRockScissorsPaperMenu()
     }
 }
 
-private func userInput() {
-    while isPlayRockScissorsPaperGame {
-        let randomValue = getComputerRandomNumber()
-        guard let inputValue = readLine() else { return }
-        if let num = Int(inputValue), num >= 1 && num <= 3 {
-            compareRockScissorsPaper(user: RockScissorsPaperCase(rawValue:num)!, com: RockScissorsPaperCase(rawValue:randomValue)!)
-        } else if let num = Int(inputValue), num == 0 {
-            print(StringNameSpace.endMessage.rawValue)
-            isPlayRockScissorsPaperGame = false
-        } else {
-            print(StringNameSpace.inputErrorMessage.rawValue)
-        }
-    }
-}
+
