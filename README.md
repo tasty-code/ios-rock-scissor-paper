@@ -20,16 +20,15 @@
     
 ### 3. 주요 Method, enum
     
-    
-    | Method | 설명 |
-    | --- | --- |
-    | playRockPaperScissorsGame | 가위바위보 게임 진행 |
-    | getResult | 가위바위보 게임 결과처리 |
-    
-    | Enum | 설명 |
-    | --- | --- |
-    | RockPaperScissors | 가위바위보 enum |
-    | Match | 게임 결과 enum |
+| Method | 설명 |
+| --- | --- |
+| playRockPaperScissorsGame | 가위바위보 게임 진행 |
+| getResult | 가위바위보 게임 결과처리 |
+
+| Enum | 설명 |
+| --- | --- |
+| RockPaperScissors | 가위바위보 enum |
+| Match | 게임 결과 enum |
 
 ### 4. 스크린샷
 ![KakaoTalk_Photo_2023-11-24-10-32-41](https://github.com/jus1234/ios-rock-scissor-paper/assets/130636633/1c0b0ed2-35e5-4987-8d4a-1c049eaa6596)
