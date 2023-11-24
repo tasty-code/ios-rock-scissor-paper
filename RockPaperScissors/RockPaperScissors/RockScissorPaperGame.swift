@@ -6,15 +6,18 @@
 //
 
 struct RockScissorPaperGame {
-    func play() {
+    
+    var turn: Turn = .none
+    
+    mutating func play() {
         let isRunning: Bool = true
         
         while isRunning {
-            guard start() else { return }
+            guard continueGame() else { return }
         }
     }
     
-    private func start() -> Bool {
+    private mutating func continueGame() -> Bool {
         print("가위(1), 바위(2), 보(3)! <종료: 0> :", terminator: " ")
         
         let userInput = readLine()
@@ -39,13 +42,15 @@ struct RockScissorPaperGame {
         return compareChoice(user: userChoice, computer: computerChoice)
     }
     
-    private func compareChoice(user: RockScissorPaperChoice, computer: RockScissorPaperChoice) -> Bool {
+    private mutating func compareChoice(user: RockScissorPaperChoice, computer: RockScissorPaperChoice) -> Bool {
         switch (user, computer) {
         case (.scissor,.rock),(.rock,.paper),(.paper,.scissor):
             print(GameResult.lose.message)
+            turn = .computer
             return false
         case (.scissor,.paper),(.rock,.scissor),(.paper,.rock):
             print(GameResult.win.message)
+            turn = .user
             return false
         default:
             print(GameResult.draw.message)
