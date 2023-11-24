@@ -6,16 +6,23 @@
 //
 
 struct MukJjiPpaGame {
-    func play() {
+    
+    var rockScissorPaperGame = RockScissorPaperGame()
+    
+    mutating func play() {
+        
+        rockScissorPaperGame.play()
+        
         let isRunning: Bool = true
         
         while isRunning {
-            guard start() else { return }
+            guard continueGame() else { return }
         }
     }
     
-    private func start() -> Bool {
-        print("묵(1), 찌(2), 빠(3)! <종료: 0> :", terminator: " ")
+    private func continueGame() -> Bool {
+        print("\(rockScissorPaperGame.turn) 턴 입니다.")
+        print("[\(rockScissorPaperGame.turn) 턴] 묵(1), 찌(2), 빠(3)! <종료: 0> :", terminator: " ")
         
         let userInput = readLine()
         
@@ -42,13 +49,11 @@ struct MukJjiPpaGame {
     private func compareChoice(user: MukJjiPpaChoice, computer: MukJjiPpaChoice) -> Bool {
         switch (user, computer) {
         case (.jji,.muk),(.muk,.ppa),(.ppa,.jji):
-            print(GameResult.lose.message)
             return true
         case (.jji,.ppa),(.muk,.jji),(.ppa,.muk):
-            print(GameResult.win.message)
             return true
         default:
-            print("최종승리입니다.")
+            print("\(rockScissorPaperGame.turn)의 승리!")
             return false
         }
     }
