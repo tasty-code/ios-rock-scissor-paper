@@ -11,7 +11,7 @@ enum RpsGameResult: CustomStringConvertible {
     case win, draw, lose
     
     var description: String {
-        switch (self) {
+        switch self {
         case .win:
             return "이겼습니다!"
         case .draw:
@@ -21,8 +21,8 @@ enum RpsGameResult: CustomStringConvertible {
         }
     }
     
-    func isOver(result: RpsGameResult) -> Bool {
-        switch (result) {
+    func isOver() -> Bool {
+        switch self {
         case .win, .lose:
             return false
         case .draw:
@@ -35,14 +35,14 @@ enum MenuMessage: CustomStringConvertible {
     case rps
     
     var description: String {
-        switch (self) {
+        switch self {
         case .rps:
             return "가위(1), 바위(2), 보(3)! <종료 : 0> : "
         }
     }
 }
 
-func getUserInput() -> Int? {
+func readUserInput() -> Int? {
     if let input = readLine() {
         return Int(input)
     } else {
@@ -51,13 +51,13 @@ func getUserInput() -> Int? {
 }
 
 func rpsGame(userInput: Int, cpuInput: Int) -> Bool {
-    switch (userInput) {
+    switch userInput {
     case 0:
         return false
     case 1...3:
         let result: RpsGameResult = getRpsGameResult(userInput: userInput, cpuInput: cpuInput)
         print(result)
-        return result.isOver(result: result)
+        return result.isOver()
     default:
         print("잘못된 입력입니다. 다시 시도해주세요.")
         return true
@@ -81,7 +81,7 @@ func initCpuInput() -> Int {
 while (run) {
     print(menuMessage, terminator: "")
     let cpuInput: Int = initCpuInput()
-    let userInput: Int = getUserInput() ?? -1
+    let userInput: Int = readUserInput() ?? -1
     run = rpsGame(userInput: userInput, cpuInput: cpuInput)
 }
 print("게임 종료")
