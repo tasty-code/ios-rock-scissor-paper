@@ -14,7 +14,7 @@
 
 ### STEP 1
 <h1 align="center">
-  <img src="https://github.com/rohhyungwoo/ios-rock-scissor-paper/assets/56967908/7197dd4a-8666-4feb-8d4e-2a62555d9507" width=85%>
+  <img src="https://github.com/rohhyungwoo/ios-rock-scissor-paper/assets/56967908/8db30b4a-6bfe-4a04-8fdf-ae9c3db33e11" width=85%>
 </h1>
 
 ### STEP 2
