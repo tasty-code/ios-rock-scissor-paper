@@ -7,6 +7,33 @@
 var run: Bool = true
 var menuMessage: MenuMessage = .rps
 
+struct Player {
+    var input: RockPaperScissor
+}
+
+enum RockPaperScissor: Int, CaseIterable {
+    case gameOver = 0,
+         rock = 1,
+         paper = 2,
+         scissor = 3,
+         noChoice = 4
+}
+
+func convertInputToRockPaperScissor(_ input: Int) -> RockPaperScissor {
+    switch input {
+    case 0:
+        return .gameOver
+    case 1:
+        return .rock
+    case 2:
+        return .paper
+    case 3:
+        return .scissor
+    default:
+        return .noChoice
+    }
+}
+
 enum RpsGameResult: CustomStringConvertible {
     case win, draw, lose
     
@@ -42,20 +69,20 @@ enum MenuMessage: CustomStringConvertible {
     }
 }
 
-func readUserInput() -> Int? {
-    if let input = readLine() {
-        return Int(input)
+func readInput() -> RockPaperScissor {
+    if let input = Int(readLine() ?? "") {
+        return convertInputToRockPaperScissor(input)
     } else {
-        return nil
+        return .noChoice
     }
 }
 
-func rpsGame(userInput: Int, cpuInput: Int) -> Bool {
-    switch userInput {
-    case 0:
+func rpsGame(user: Player, opponent: Player) -> Bool {
+    switch user.input {
+    case .gameOver:
         return false
-    case 1...3:
-        let result: RpsGameResult = getRpsGameResult(userInput: userInput, cpuInput: cpuInput)
+    case .rock, .scissor, .paper:
+        let result: RpsGameResult = getRpsGameResult(userInput: user.input, opponentInput: opponent.input)
         print(result)
         return result.isOver()
     default:
@@ -64,13 +91,17 @@ func rpsGame(userInput: Int, cpuInput: Int) -> Bool {
     }
 }
 
-func getRpsGameResult(userInput: Int, cpuInput: Int) -> RpsGameResult {
-    if (userInput == cpuInput) {
-        return RpsGameResult.draw
-    } else if (userInput - cpuInput == 1 || userInput - cpuInput == -2) {
-        return RpsGameResult.win
+func getRpsGameResult(userInput: RockPaperScissor, opponentInput: RockPaperScissor) -> RpsGameResult {
+    let gameInfo = (userInput, opponentInput)
+    
+    if userInput == opponentInput {
+        return .draw
+    } else if gameInfo == (.rock, .scissor) ||
+              gameInfo == (.paper, .rock) ||
+              gameInfo == (.scissor, .paper) {
+        return .win
     } else {
-        return RpsGameResult.lose
+        return .lose
     }
 }
 
@@ -78,10 +109,15 @@ func initCpuInput() -> Int {
     return Int.random(in: 1...3)
 }
 
+func makeRandomInput() -> RockPaperScissor {
+    guard let input = RockPaperScissor.allCases.randomElement() else { return .noChoice }
+    return input
+}
+
 while (run) {
     print(menuMessage, terminator: "")
-    let cpuInput: Int = initCpuInput()
-    let userInput: Int = readUserInput() ?? -1
-    run = rpsGame(userInput: userInput, cpuInput: cpuInput)
+    let cpuPlayer: Player = Player(input: makeRandomInput())
+    let userPlayer: Player = Player(input: readInput())
+    run = rpsGame(user: userPlayer, opponent: cpuPlayer)
 }
 print("게임 종료")
