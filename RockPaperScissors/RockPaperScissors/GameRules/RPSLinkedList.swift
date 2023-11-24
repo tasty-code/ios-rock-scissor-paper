@@ -1,25 +1,19 @@
 
-
-
-
 import Foundation
 
-
 //MARK: - RPS Node init
-final class RpsNode {
+final class RPSNode {
     var value: RPSModel
-    var next: RpsNode?
+    var next: RPSNode?
     
     init(value: RPSModel) {
         self.value = value
     }
 }
 
-
 //MARK: - CircularRpsLinkedList init
 final class CircularRpsLinkedList {
-    
-    private var startNode: RpsNode?
+    private var startNode: RPSNode?
     
     init() {
         startNode = createRPSLinkedList()
@@ -28,21 +22,19 @@ final class CircularRpsLinkedList {
 
 //MARK: - CircularRpsLinkedList Method
 extension CircularRpsLinkedList {
-
-    
-    private func createRPSLinkedList() -> RpsNode {
-        let rock = RpsNode(value: .rock)
-        let paper = RpsNode(value: .paper)
-        let scissors = RpsNode(value: .scissors)
+    private func createRPSLinkedList() -> RPSNode {
+        let rock = RPSNode(value: .rock)
+        let paper = RPSNode(value: .paper)
+        let scissors = RPSNode(value: .scissors)
         
         rock.next = paper
         paper.next = scissors
         scissors.next = rock
-
+        
         return rock
     }
-        
-    func node(for choice: RPSModel) -> RpsNode? {
+    
+    func node(for choice: RPSModel) -> RPSNode? {
         var currentNode = startNode
         repeat {
             if currentNode?.value == choice {
@@ -50,7 +42,7 @@ extension CircularRpsLinkedList {
             }
             currentNode = currentNode?.next
         } while currentNode !== startNode
-
+        
         return nil
     }
 }
