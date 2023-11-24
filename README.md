@@ -1,5 +1,26 @@
-# Tasty Code
+# 콘솔 묵찌빠 앱
 
-### 묵찌빠 프로젝트 저장소
+콘솔에서 한 명의 사용자가 컴퓨터와 가위바위보 하는 게임입니다.
 
-- 이 저장소를 자신의 저장소로 fork하여 프로젝트를 진행합니다.
+## 팀원
+
+| <img src="https://avatars.githubusercontent.com/u/56967908?v=4" width=120> | <img src="https://avatars.githubusercontent.com/u/67363759?v=4" width=120> |
+| --- | --- |
+| 노움 | 에피 |
+
+## 타임라인
+
+## 다이어그램 로그
+
+### STEP 1
+<h1 align="center">
+  <img src="https://github.com/rohhyungwoo/ios-rock-scissor-paper/assets/56967908/7197dd4a-8666-4feb-8d4e-2a62555d9507" width=85%>
+</h1>
+
+### STEP 2
+
+## 실행 화면
+
+## 트러블슈팅
+
+## 참고 링크
