@@ -23,10 +23,10 @@ private func userInputReadLine() {
         if let userInputNum = Int(inputValue), userInputNum >= 1 && userInputNum <= 3 {
             compareRockScissorsPaper(userChoice: RockScissorsPaperCase(rawValue:userInputNum)!, computerChoice: RockScissorsPaperCase(rawValue:randomValue)!)
         } else if let userInputNum = Int(inputValue), userInputNum == 0 {
-            print(StringNameSpace.endMessage.rawValue)
+            print(StringNameSpace.endMessage)
             isWorkingRockScissorsPaper = false
         } else {
-            print(StringNameSpace.inputErrorMessage.rawValue)
+            print(StringNameSpace.inputErrorMessage)
         }
     }
 }
@@ -34,15 +34,15 @@ private func userInputReadLine() {
 private func compareRockScissorsPaper(userChoice: RockScissorsPaperCase, computerChoice: RockScissorsPaperCase) {
     switch (userChoice, computerChoice) {
     case (.scissors, .paper), (.rock, .scissors), (.paper, .rock):
-        print(StringNameSpace.winMessage.rawValue)
-        print(StringNameSpace.endMessage.rawValue)
+        print(StringNameSpace.winMessage)
+        print(StringNameSpace.endMessage)
         isWorkingRockScissorsPaper = false
     case (.paper, .scissors), (.scissors, .rock), (.rock, .paper):
-        print(StringNameSpace.loseMessage.rawValue)
-        print(StringNameSpace.endMessage.rawValue)
+        print(StringNameSpace.loseMessage)
+        print(StringNameSpace.endMessage)
         isWorkingRockScissorsPaper = false
     default:
-        print(StringNameSpace.drawMessage.rawValue)
+        print(StringNameSpace.drawMessage)
         displayRockScissorsPaperMenu()
     }
 }

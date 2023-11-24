@@ -9,5 +9,5 @@ import Foundation
 
 
 func displayRockScissorsPaperMenu() {
-    print(StringNameSpace.rockScissorsPaperExitMenuMessage.rawValue)
+    print(StringNameSpace.rockScissorsPaperExitMenuMessage)
 }

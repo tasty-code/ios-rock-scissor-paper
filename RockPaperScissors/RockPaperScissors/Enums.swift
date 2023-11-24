@@ -12,11 +12,11 @@ enum RockScissorsPaperCase: Int {
     case scissors = 1, rock, paper
 }
 
-enum StringNameSpace: String {
-    case winMessage = "이겼습니다."
-    case loseMessage = "졌습니다."
-    case drawMessage = "비겼습니다."
-    case endMessage = "게임 종료"
-    case inputErrorMessage = "잘못된 입력입니다. 다시 시도해주세요."
-    case rockScissorsPaperExitMenuMessage = "가위(1), 바위(2) 보(3)! <종료: 0>"
+enum StringNameSpace {
+    static let winMessage = "이겼습니다."
+    static let loseMessage = "졌습니다."
+    static let drawMessage = "비겼습니다."
+    static let endMessage = "게임 종료"
+    static let inputErrorMessage = "잘못된 입력입니다. 다시 시도해주세요."
+    static let rockScissorsPaperExitMenuMessage = "가위(1), 바위(2) 보(3)! <종료: 0>"
 }
