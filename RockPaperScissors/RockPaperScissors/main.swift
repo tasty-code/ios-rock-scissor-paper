@@ -6,14 +6,13 @@
 
 import Foundation
 
-enum RSPSelection: String {
-    case exit = "0"
+enum RockScissorsPaper: String {
     case scissors = "1"
     case rock = "2"
     case paper = "3"
 }
 
-func RSPGame(_ myChoice: RSPSelection) -> Bool {
+func RockScissorsPaperGame(_ myChoice: RockScissorsPaper) -> Bool {
     let myChoice = Int(myChoice.rawValue)
     let comChoice = Int.random(in: 1...3)
     if myChoice == 0 {
@@ -27,6 +26,7 @@ func RSPGame(_ myChoice: RSPSelection) -> Bool {
         return true
     }  else {
         print("졌습니다!")
+        return true
     }
     return false
 }
@@ -34,8 +34,8 @@ func RSPGame(_ myChoice: RSPSelection) -> Bool {
 while true {
     print("가위(1), 바위(2), 보(3)! <종료 : 0> :")
     if let input = readLine(),
-       let select = RSPSelection(rawValue: input) {
-        if RSPGame(select) {
+       let select = RockScissorsPaper(rawValue: input) {
+        if RockScissorsPaperGame(select) {
             break
         }
     } else {
