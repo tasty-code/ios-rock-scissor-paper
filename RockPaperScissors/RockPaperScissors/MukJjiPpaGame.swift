@@ -1,11 +1,11 @@
 //
-//  RockScissorPaper.swift
+//  MukJjiPpaGame.swift
 //  RockPaperScissors
 //
 //  Created by mireu & kyle.
 //
 
-struct RockScissorPaperGame {
+struct MukJjiPpaGame {
     func play() {
         let isRunning: Bool = true
         
@@ -15,7 +15,7 @@ struct RockScissorPaperGame {
     }
     
     private func start() -> Bool {
-        print("가위(1), 바위(2), 보(3)! <종료: 0> :", terminator: " ")
+        print("묵(1), 찌(2), 빠(3)! <종료: 0> :", terminator: " ")
         
         let userInput = readLine()
         
@@ -30,8 +30,8 @@ struct RockScissorPaperGame {
         }
         
         guard
-            let userChoice = RockScissorPaperChoice(rawValue: validator.userChoice),
-            let computerChoice = RockScissorPaperChoice(rawValue: Int.random(in: 1...3))
+            let userChoice = MukJjiPpaChoice(rawValue: validator.userChoice),
+            let computerChoice = MukJjiPpaChoice(rawValue: Int.random(in: 1...3))
         else {
             return true
         }
@@ -39,17 +39,17 @@ struct RockScissorPaperGame {
         return compareChoice(user: userChoice, computer: computerChoice)
     }
     
-    private func compareChoice(user: RockScissorPaperChoice, computer: RockScissorPaperChoice) -> Bool {
+    private func compareChoice(user: MukJjiPpaChoice, computer: MukJjiPpaChoice) -> Bool {
         switch (user, computer) {
-        case (.scissor,.rock),(.rock,.paper),(.paper,.scissor):
+        case (.jji,.muk),(.muk,.ppa),(.ppa,.jji):
             print(GameResult.lose.message)
-            return false
-        case (.scissor,.paper),(.rock,.scissor),(.paper,.rock):
-            print(GameResult.win.message)
-            return false
-        default:
-            print(GameResult.draw.message)
             return true
+        case (.jji,.ppa),(.muk,.jji),(.ppa,.muk):
+            print(GameResult.win.message)
+            return true
+        default:
+            print("최종승리입니다.")
+            return false
         }
     }
 }

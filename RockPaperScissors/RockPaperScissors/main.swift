@@ -5,4 +5,6 @@
 //
 
 var rockScissorPaperGame = RockScissorPaperGame()
+var mukJjiPpaGame = MukJjiPpaGame()
 rockScissorPaperGame.play()
+mukJjiPpaGame.play()
