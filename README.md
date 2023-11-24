@@ -6,7 +6,7 @@
 
 | <img src="https://avatars.githubusercontent.com/u/56967908?v=4" width=120> | <img src="https://avatars.githubusercontent.com/u/67363759?v=4" width=120> |
 | --- | --- |
-| 노움 | 에피 |
+| 에피 | 노움 |
 
 ## 타임라인
 
