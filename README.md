@@ -9,12 +9,14 @@
 가위바위보 프로그램
 
 1. 순서도
-    
-    ![KakaoTalk_Photo_2023-11-24-10-08-10.png](https://prod-files-secure.s3.us-west-2.amazonaws.com/b373fc23-beb5-4d5d-b95d-57742b77d7f5/2309a4c9-3244-43df-bc4a-1d0451e4c0f2/KakaoTalk_Photo_2023-11-24-10-08-10.png)
+    ![KakaoTalk_Photo_2023-11-24-10-08-10](https://github.com/jus1234/ios-rock-scissor-paper/assets/130636633/4e2866b9-a7f7-4da7-9121-d5cec457b4d7)
+
+
     
 2. 아키텍쳐
-    
-    ![KakaoTalk_Photo_2023-11-24-10-25-02.png](https://prod-files-secure.s3.us-west-2.amazonaws.com/b373fc23-beb5-4d5d-b95d-57742b77d7f5/a79e787b-c895-4203-8a38-baa797fa472f/KakaoTalk_Photo_2023-11-24-10-25-02.png)
+    ![KakaoTalk_Photo_2023-11-24-10-25-02](https://github.com/jus1234/ios-rock-scissor-paper/assets/130636633/a0188322-b630-4aa8-88dc-6a06e1983e2f)
+
+
     
 3. 주요 Method, enum
     
@@ -29,5 +31,5 @@
     | RockPaperScissors | 가위바위보 enum |
     | Match | 게임 결과 enum |
 4. 스크린샷
-    
-    ![KakaoTalk_Photo_2023-11-24-10-32-41.png](https://prod-files-secure.s3.us-west-2.amazonaws.com/b373fc23-beb5-4d5d-b95d-57742b77d7f5/0ac1e719-ef57-48a7-965f-03bd0ea8400d/KakaoTalk_Photo_2023-11-24-10-32-41.png)
+  ![KakaoTalk_Photo_2023-11-24-10-32-41](https://github.com/jus1234/ios-rock-scissor-paper/assets/130636633/1c0b0ed2-35e5-4987-8d4a-1c049eaa6596)
+
