@@ -4,6 +4,7 @@ import Foundation
 //MARK: - GameView init & deinit
 final class GameView {
     private let gameRules: GameRules
+    private var gameContinue = true
     
     init(gameRules: GameRules) {
         self.gameRules = gameRules
@@ -17,20 +18,24 @@ final class GameView {
 //MARK: - GameView Method
 extension GameView {
     func gameStart() {
-        print("가위(1), 바위(2), 보(3) ! <종료: 0> : ", terminator: "")
-        if let playerInput = readLine() { handleUserInsertNum(playerInsert: playerInput) }
+        while gameContinue {
+            print("가위(1), 바위(2), 보(3) ! <종료: 0> : ", terminator: "")
+            if let playerInput = readLine() {
+                handleUserInsertNum(playerInput)
+            }
+        }
     }
     
-    private func handleUserInsertNum(playerInsert: String) {
+    private func handleUserInsertNum(_ playerInsert: String) {
         switch Int(playerInsert) {
         case 0:
-            print("게임 종료")
-        case 1,2,3:
+            handleGameResult(.endGame)
+        case 1, 2, 3:
             let (result, userChoice, computerChoice) = gameRules.playGameWithUserInput(playerInsert)
             displayChoices(userChoice, computerChoice)
             handleGameResult(result)
         default:
-            print("잘못된 입력입니다 다시 시도해주세요")
+            handleGameResult(.error)
         }
     }
     
@@ -45,11 +50,15 @@ extension GameView {
         switch result {
         case .win:
             print(GameResult.win.message)
+            gameContinue = false
         case .loss:
             print(GameResult.loss.message)
+            gameContinue = false
         case .draw:
             print(GameResult.draw.message)
-            gameStart()
+        case .endGame:
+            print(GameResult.endGame.message)
+            gameContinue = false 
         default:
             print(GameResult.error.message)
         }

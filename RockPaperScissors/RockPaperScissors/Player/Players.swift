@@ -7,7 +7,7 @@ final class ComputerPlayer {
     var choice: RPSModel?
     
     func makeRandomChoice() -> RPSModel {
-        choice = RPSModel.allCases.randomElement() ?? .rock
+        choice = RPSModel.allCases.randomElement()
         return choice ?? .rock
     }
 }
