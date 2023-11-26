@@ -1,10 +1,8 @@
 //
 //  RockPaperScissors - main.swift
-//  Created by tacocat.
+//  Created by mireu & kyle.
 //  Copyright © tastycode. All rights reserved.
-// 
+//
 
-import Foundation
-
-print("Hello, World!")
-
+var rockScissorPaperGame = RockScissorPaperGame()
+rockScissorPaperGame.play()
