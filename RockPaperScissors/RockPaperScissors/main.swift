@@ -6,19 +6,6 @@
 
 import Foundation
 
-enum GameResult: String {
-    case win = "이겼습니다!"
-    case draw = "비겼습니다!"
-    case lose = "졌습니다!"
-}
-
-enum GameHand: Int {
-    case scissor = 1, rock = 2, paper = 3
-    
-    subscript(index: Int) -> GameHand? {
-        return GameHand(rawValue: index)
-    }
-}
 
 func playRockPaperScissor(userHand: Int)-> GameResult {
     let computerHand = GameHand(rawValue: Int.random(in: 1...3))
