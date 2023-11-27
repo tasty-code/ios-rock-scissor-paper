@@ -69,13 +69,13 @@ final class Game {
     }
     
     private func receiveUserInput() {
-        guard let input = readLine(), let inputInt = Int(input) else {
+        if let input = readLine(), let inputInt = Int(input) {
+            self.userInput = inputInt
+        } else {
             print(Prompt.badInput)
             print(Prompt.rpsChoice)
             receiveUserInput()
-            return
         }
-        self.userInput = inputInt
     }
     
     private func shutDown() {
