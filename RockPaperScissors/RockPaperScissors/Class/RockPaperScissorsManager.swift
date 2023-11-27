@@ -11,7 +11,7 @@ final class RockPaperScissorsManager {
     
     func validateUserInput(_ input: String?) throws -> RockPaperScissorsType {
         guard let input else {
-            throw RockPaperScissorsError.invalidInput
+            throw GameError.invalidInput
         }
         
         switch input {
@@ -19,7 +19,7 @@ final class RockPaperScissorsManager {
         case "1": return .scissors
         case "2": return .rock
         case "3": return .paper
-        default: throw RockPaperScissorsError.invalidInput
+        default: throw GameError.invalidInput
         }
     }
     
