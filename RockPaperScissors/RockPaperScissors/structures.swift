@@ -72,4 +72,15 @@ struct GameMaster {
     mutating func setTurn(to player: Player) {
         self.turn = player
     }
+    
+    mutating func playRockScissorPaper(userInput: Int) {
+        user.setRockScissorPaper(input: userInput)
+        computer.setRockScissorPaper(input: Int.random(in: 1...3))
+    }
+    
+    mutating func playMookJjiBba(userInput: Int) {
+        user.setMookJjiBba(input: userInput)
+        computer.setMookJjiBba(input: Int.random(in: 1...3))
+    }
 }
+
