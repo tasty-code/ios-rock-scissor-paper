@@ -105,18 +105,14 @@ func getRpsGameResult(userInput: RockPaperScissor, opponentInput: RockPaperSciss
     }
 }
 
-func initCpuInput() -> Int {
-    return Int.random(in: 1...3)
-}
-
-func makeRandomInput() -> RockPaperScissor {
-    guard let input = RockPaperScissor.allCases.randomElement() else { return .noChoice }
-    return input
+func makeRandomRockScissorPaperInput() -> RockPaperScissor {
+    let randomInput = Int.random(in: 1...3)
+    return convertInputToRockPaperScissor(randomInput)
 }
 
 while (run) {
     print(menuMessage, terminator: "")
-    let cpuPlayer: Player = Player(input: makeRandomInput())
+    let cpuPlayer: Player = Player(input: makeRandomRockScissorPaperInput())
     let userPlayer: Player = Player(input: readInput())
     run = rpsGame(user: userPlayer, opponent: cpuPlayer)
 }
