@@ -10,27 +10,27 @@ import Foundation
 final class Game {
     private var loopState: Bool = true
     
-    private var result: Result = .draw
+    private var gameResult: GameResult = .draw
     
-    private var inputNum: Int = 0
+    private var userInput: Int = 0
     
     func load() {
-        playRps()
+        playRockScissorsPaper()
     }
     
-    private func playRps() {
+    private func playRockScissorsPaper() {
         while loopState {
             
-            print(Constant.rpsChoice)
+            print(Prompt.rpsChoice)
             
-            setInputNum()
+            receiveUserInput()
             
-            switch inputNum {
+            switch userInput {
                 
             case 1, 2, 3:
-                calcRps(with: inputNum)
-                print(result.rawValue)
-                if result != .draw {
+                calculateRockScissorsPaperResult(with: userInput)
+                print(gameResult.rawValue)
+                if gameResult != .draw {
                     shutDown()
                 }
                 
@@ -38,49 +38,49 @@ final class Game {
                 shutDown()
                 
             default:
-                print(Constant.badInput)
+                print(Prompt.badInput)
             }
         }
     }
     
-    private func calcRps(with input: Int) {
-        let randomInt: Int = getRandomInt()
+    private func calculateRockScissorsPaperResult(with userInput: Int) {
+        let randomInt: Int = randomInt()
         
-        let diff: Int = randomInt - input
+        let difference: Int = randomInt - userInput
         
-        if diff == 0 {
-            return setResult(.draw)
+        if difference == 0 {
+            return setGameResult(.draw)
         }
         
-        if [-1, 2].contains(diff) {
-            return setResult(.lose)
+        if [-1, 2].contains(difference) {
+            return setGameResult(.lose)
         }
         
-        if [1, -2].contains(diff) {
-            return setResult(.win)
+        if [1, -2].contains(difference) {
+            return setGameResult(.win)
         }
     }
     
-    private func getRandomInt() -> Int {
+    private func randomInt() -> Int {
         return Int.random(in: 1...3)
     }
     
-    private func setResult(_ result: Result) {
-        self.result = result
+    private func setGameResult(_ gameResult: GameResult) {
+        self.gameResult = gameResult
     }
     
-    private func setInputNum() {
-        guard let input = readLine(), let inputNum = Int(input) else {
-            print(Constant.badInput)
-            print(Constant.rpsChoice)
-            setInputNum()
+    private func receiveUserInput() {
+        guard let input = readLine(), let inputInt = Int(input) else {
+            print(Prompt.badInput)
+            print(Prompt.rpsChoice)
+            receiveUserInput()
             return
         }
-        self.inputNum = inputNum
+        self.userInput = inputInt
     }
     
     private func shutDown() {
-        print(Constant.gameExit)
+        print(Prompt.gameExit)
         breakLoop()
     }
     

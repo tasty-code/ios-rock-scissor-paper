@@ -7,7 +7,7 @@
 
 import Foundation
 
-struct Constant {
+struct Prompt {
     static let rpsChoice: String = "가위(1), 바위(2), 보(3)! <종료 : 0> :"
     
     static let gameExit: String = "게임 종료"
