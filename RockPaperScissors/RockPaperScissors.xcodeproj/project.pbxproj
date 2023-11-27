@@ -13,6 +13,7 @@
 		777641912B10463B00CFEFEC /* Playable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 777641902B10463B00CFEFEC /* Playable.swift */; };
 		C7ABA0E1254EA63000B2367D /* main.swift in Sources */ = {isa = PBXBuildFile; fileRef = C7ABA0E0254EA63000B2367D /* main.swift */; };
 		FE9E95D92B1425920027D0DC /* GameError.swift in Sources */ = {isa = PBXBuildFile; fileRef = FE9E95D82B1425920027D0DC /* GameError.swift */; };
+		FE9E95DB2B142F400027D0DC /* AdvancedRockPaperScissorsManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = FE9E95DA2B142F400027D0DC /* AdvancedRockPaperScissorsManager.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -35,6 +36,7 @@
 		C7ABA0DD254EA63000B2367D /* RockPaperScissors */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = RockPaperScissors; sourceTree = BUILT_PRODUCTS_DIR; };
 		C7ABA0E0254EA63000B2367D /* main.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = main.swift; sourceTree = "<group>"; };
 		FE9E95D82B1425920027D0DC /* GameError.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GameError.swift; sourceTree = "<group>"; };
+		FE9E95DA2B142F400027D0DC /* AdvancedRockPaperScissorsManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AdvancedRockPaperScissorsManager.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -61,6 +63,7 @@
 		7776418E2B0F1E2800CFEFEC /* Class */ = {
 			isa = PBXGroup;
 			children = (
+				FE9E95DA2B142F400027D0DC /* AdvancedRockPaperScissorsManager.swift */,
 				777641872B0C9F1200CFEFEC /* RockPaperScissorsManager.swift */,
 			);
 			path = Class;
@@ -158,6 +161,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				FE9E95DB2B142F400027D0DC /* AdvancedRockPaperScissorsManager.swift in Sources */,
 				777641882B0C9F1200CFEFEC /* RockPaperScissorsManager.swift in Sources */,
 				777641862B0C9BA400CFEFEC /* UserGuideMessage.swift in Sources */,
 				C7ABA0E1254EA63000B2367D /* main.swift in Sources */,
