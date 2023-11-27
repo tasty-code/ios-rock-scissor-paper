@@ -7,22 +7,13 @@
 var run: Bool = true
 var menuMessage: MenuMessage = .rps
 
-struct Player {
+class Player {
     var input: RockPaperScissor
-    var myTurn: Bool
+    var isMyTurn: Bool
     
-    var isMyTurn: Bool {
-        get {
-            return myTurn
-        }
-        set {
-            myTurn = newValue
-        }
-    }
-    
-    init(input: RockPaperScissor, myTurn: Bool = false) {
+    init(input: RockPaperScissor, isMyTurn: Bool = false) {
         self.input = input
-        self.myTurn = myTurn
+        self.isMyTurn = isMyTurn
     }
 }
 
@@ -99,10 +90,26 @@ func rpsGame(user: Player, opponent: Player) -> Bool {
     case .rock, .scissor, .paper:
         let result: RpsGameResult = decideRpsGameResult(userInput: user.input, opponentInput: opponent.input)
         print(result)
+        
+        
+        
         return result.decideGameOver()
     default:
         print("잘못된 입력입니다. 다시 시도해주세요.")
         return true
+    }
+}
+
+func changeTurn(user: Player, opponent: Player, userGameResult: RpsGameResult) {
+    switch userGameResult {
+    case .win:
+        user.isMyTurn = true
+        opponent.isMyTurn = false
+    case .lose:
+        user.isMyTurn = false
+        opponent.isMyTurn = true
+    default:
+        print("error")
     }
 }
 
