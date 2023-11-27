@@ -115,7 +115,7 @@ struct GameMaster {
 
     mutating func evaluateMookJjiBba() -> GameResult {
         if self.user.getMookJjiBba() == self.computer.getMookJjiBba() {
-            print("\(self.getTurn())의 승리!")
+            print("\(self.getTurn().getName())의 승리!")
             return .win
         }
         
@@ -127,7 +127,7 @@ struct GameMaster {
         case .paper:
             self.turn = computer.getMookJjiBba() == .rock ? user : computer
         }
-        print("\(self.getTurn())의 턴입니다.")
+        print("\(self.getTurn().getName())의 턴입니다.")
         return .draw
     }
 }
