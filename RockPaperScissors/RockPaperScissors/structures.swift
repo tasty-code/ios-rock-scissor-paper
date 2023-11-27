@@ -49,6 +49,13 @@ struct GameMaster {
     private var computer: Player
     private var turn: Player
     
+    init(gameType: GameType, user: Player, computer: Player, turn: Player) {
+        self.gameType = gameType
+        self.user = user
+        self.computer = computer
+        self.turn = turn
+    }
+    
     func getGameType() -> GameType {
         return self.gameType
     }
