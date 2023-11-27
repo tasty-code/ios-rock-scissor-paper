@@ -39,8 +39,9 @@ struct RockPaperScissorsManager {
         
         guard let computerValue = randomValue else { return }
         resultValue = (userValue - computerValue + 3) % 3
+        guard let gameValue = resultValue else { return }
         
-        switch ResultType(rawValue: computerValue) {
+        switch ResultType(rawValue: gameValue) {
         case .draw:
             print(GameResult.draw.rawValue)
         case .userWin:
