@@ -9,9 +9,7 @@ struct RockScissorPaperGame {
     var turn: Turn = .none
     
     mutating func play() {
-        let isRunning: Bool = true
-        
-        while isRunning {
+        while true {
             guard
                 continueGame()
             else {
@@ -26,22 +24,22 @@ struct RockScissorPaperGame {
         let userInput = readLine()
         
         guard
-            let validator = Validator(value: userInput)
+            let command = Command(value: userInput)
         else {
-            print(ApplicationStatus.error.message)
+            print(ApplicationStatusMessage.error)
             return true
         }
         
         guard
-            !validator.isQuit
+            !command.isQuit
         else {
-            print(ApplicationStatus.quit.message)
+            print(ApplicationStatusMessage.quit)
             return false
         }
         
         guard
-            let userChoice = RockScissorPaperChoice(rawValue: validator.userChoice),
-            let computerChoice = RockScissorPaperChoice(rawValue: Int.random(in: 1...3))
+            let userChoice = RockScissorPaperChoice(rawValue: command.userChoice),
+            let computerChoice = RockScissorPaperChoice.allCases.randomElement()
         else {
             return true
         }
@@ -52,15 +50,15 @@ struct RockScissorPaperGame {
     private mutating func compareChoice(user: RockScissorPaperChoice, computer: RockScissorPaperChoice) -> Bool {
         switch (user, computer) {
         case (.scissor,.rock),(.rock,.paper),(.paper,.scissor):
-            print(GameResult.lose.message)
+            print(GameResultMessage.lose)
             turn = .computer
             return false
         case (.scissor,.paper),(.rock,.scissor),(.paper,.rock):
-            print(GameResult.win.message)
+            print(GameResultMessage.win)
             turn = .user
             return false
         default:
-            print(GameResult.draw.message)
+            print(GameResultMessage.draw)
             return true
         }
     }
