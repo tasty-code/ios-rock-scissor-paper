@@ -25,7 +25,7 @@ final class RockPaperScissorsManager: Playable {
     
     func judgeGame(user: RockPaperScissorsType,
                             computer: RockPaperScissorsType?,
-                            _ turn: PlayerType = .user) -> UserGuideMessage {
+                            turn: PlayerType = .user) -> UserGuideMessage {
         if user == computer {
             return .draw
         }
