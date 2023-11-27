@@ -11,7 +11,7 @@ var computerChoice = Int.random(in: 1...3)
 
 func playGame() {
     while true {
-        UserGuideMessage.default.showMessage()
+        rockPaperScissorsManager.showMessage(.default)
         
         let input = readLine()
         let userChoice: RockPaperScissorsType
@@ -25,7 +25,7 @@ func playGame() {
         
         let gameResult = rockPaperScissorsManager.judgeGame(user: userChoice,
                                                             computer: RockPaperScissorsType(rawValue: computerChoice))
-        gameResult.showMessage()
+        rockPaperScissorsManager.showMessage(gameResult)
         
         if gameResult != .draw {
             return
