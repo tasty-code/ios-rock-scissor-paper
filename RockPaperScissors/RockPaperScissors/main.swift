@@ -48,7 +48,7 @@ enum RpsGameResult: CustomStringConvertible {
         }
     }
     
-    func isOver() -> Bool {
+    func decideGameOver() -> Bool {
         switch self {
         case .win, .lose:
             return false
@@ -84,7 +84,7 @@ func rpsGame(user: Player, opponent: Player) -> Bool {
     case .rock, .scissor, .paper:
         let result: RpsGameResult = decideRpsGameResult(userInput: user.input, opponentInput: opponent.input)
         print(result)
-        return result.isOver()
+        return result.decideGameOver()
     default:
         print("잘못된 입력입니다. 다시 시도해주세요.")
         return true
