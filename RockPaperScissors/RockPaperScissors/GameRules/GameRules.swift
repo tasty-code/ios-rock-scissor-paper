@@ -6,20 +6,21 @@ final class GameRules {
     private var result: String?
     private let computerPlayer = ComputerPlayer()
     private let rpsLinkedList = CircularRpsLinkedList()
-    
+    var onRequstMJB: ((GameResult) -> Void)?
+    var onRPSResult: ((GameResult, RPSModel?, RPSModel?) -> Void)?
     deinit { print("GameRules Deinit!!") }
 }
 
 
 //MARK: - GameRules method
 extension GameRules {
-    func playGameWithUserInput(_ input: String) -> (result: GameResult, userChoice: RPSModel?, computerChoice: RPSModel?) {
+    func playGameWithUserInput(_ input: String) {
         
         guard let userChoice = convertInputToRPSOption(input)
-        else { return (.error, nil, nil) }
+        else { onRPSResult? (.error, nil, nil); return }
         
         let gameResult = determineWinner(userChoice: userChoice)
-        return (gameResult, userChoice, computerPlayer.choice)
+        onRPSResult?(gameResult, userChoice, computerPlayer.choice)
     }
     
     private func convertInputToRPSOption(_ input: String) -> RPSModel? {
@@ -40,8 +41,12 @@ extension GameRules {
         guard let computerNode = rpsLinkedList.node(for: computerChoice) 
         else { return .error}
         
-        if computerNode.next?.value == userChoice   { return .win }
+        if computerNode.next?.value == userChoice   { 
+            onRequstMJB?(GameResult.win)
+            return .win }
         else if computerNode.value == userChoice    { return .draw }
-        else                                        { return .loss }
+        else                                        { 
+            onRequstMJB?(GameResult.loss)
+            return .loss }
     }
 }

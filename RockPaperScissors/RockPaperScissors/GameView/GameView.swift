@@ -8,6 +8,15 @@ final class GameView {
     
     init(gameRules: GameRules) {
         self.gameRules = gameRules
+        gameRules.onRequstMJB = { _ in
+            print("이벤트 전달")
+            readLine()
+            
+        }
+        gameRules.onRPSResult = { [weak self] result, userChoice, computerChoice in
+            self?.displayChoices(userChoice, computerChoice)
+            self?.handleGameResult(result)
+        }
     }
     
     deinit {
@@ -31,9 +40,8 @@ extension GameView {
         case 0:
             handleGameResult(.endGame)
         case 1, 2, 3:
-            let (result, userChoice, computerChoice) = gameRules.playGameWithUserInput(playerInsert)
-            displayChoices(userChoice, computerChoice)
-            handleGameResult(result)
+            gameRules.playGameWithUserInput(playerInsert)
+            
         default:
             handleGameResult(.error)
         }
