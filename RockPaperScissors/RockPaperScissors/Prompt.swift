@@ -13,4 +13,6 @@ struct Prompt {
     static let gameExit: String = "게임 종료"
     
     static let badInput: String = "잘못된 입력입니다. 다시 시도해주세요"
+    
+    private init() {}
 }
