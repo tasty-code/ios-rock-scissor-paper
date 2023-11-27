@@ -34,3 +34,38 @@ enum GameType: String {
         }
     }
 }
+
+enum InGameMessage {
+    case ready, evaluation, falseInput
+    
+    func message() {
+        switch self {
+        case .falseInput:
+            print("잘못된 입력입니다. 다시 시도해주세요.")
+        default:
+            print("상태가 정의되지 않았습니다.")
+        }
+    }
+    
+    func message(for gameType: GameType, by gameResult: GameResult) {
+        switch (gameType, self) {
+        case (.rockScissorPaper, .ready):
+            print("가위(1), 바위(2), 보(3)! <종료 : 0> : ")
+        case (.rockScissorPaper, .evaluation):
+            print(gameResult.rawValue)
+        default:
+            print("상태가 정의되지 않았습니다.")
+        }
+    }
+    
+    func message(for gameType: GameType, turn player: Player) {
+        switch (gameType, self) {
+        case (.mookJjiBba, .ready):
+            print("[\(player.getName()) 턴] 묵(1), 찌(2), 빠(3)! <종료 : 0> : ")
+        case (.mookJjiBba, .evaluation):
+            print("\(player.getName())의 턴입니다.")
+        default:
+            print("상태가 정의되지 않았습니다.")
+        }
+    }
+}
