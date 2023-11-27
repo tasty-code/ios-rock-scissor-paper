@@ -9,6 +9,21 @@ var menuMessage: MenuMessage = .rps
 
 struct Player {
     var input: RockPaperScissor
+    var myTurn: Bool
+    
+    var isMyTurn: Bool {
+        get {
+            return myTurn
+        }
+        set {
+            myTurn = newValue
+        }
+    }
+    
+    init(input: RockPaperScissor, myTurn: Bool = false) {
+        self.input = input
+        self.myTurn = myTurn
+    }
 }
 
 enum RockPaperScissor: Int {
