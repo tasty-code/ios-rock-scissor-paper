@@ -7,6 +7,6 @@
 
 import Foundation
 
-enum RockPaperScissorsError: Error {
+enum GameError: Error {
     case invalidInput
 }
