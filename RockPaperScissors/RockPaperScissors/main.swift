@@ -16,7 +16,7 @@ func main() {
     var userInput: String?
     
     gameLoop : repeat {
-        print(gameType.message(gameType: gameMaster.getGameType()), terminator: "")
+        print(gameType.message(gameType: gameMaster.getGameType(), turn: gameMaster.getTurn()), terminator: "")
         userInput = readLine()
         
         switch userInput {
@@ -40,7 +40,8 @@ func main() {
                 }
             }
         default :
-            return
+            gameMaster.setTurn(to: computer)
+            print("잘못된 입력입니다. 다시 시도해주세요.")
         }
     } while userInput != "0"
     
