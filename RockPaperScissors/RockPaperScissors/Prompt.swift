@@ -8,7 +8,7 @@
 import Foundation
 
 struct Prompt {
-    static let RockScissorsPaperChoice: String = "가위(1), 바위(2), 보(3)! <종료 : 0> :"
+    static let rockScissorsPaperChoice: String = "가위(1), 바위(2), 보(3)! <종료 : 0> :"
     
     static let gameExit: String = "게임 종료"
     

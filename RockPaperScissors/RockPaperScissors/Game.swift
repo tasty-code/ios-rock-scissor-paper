@@ -21,7 +21,7 @@ final class Game {
     private func playRockScissorsPaper() {
         while loopState {
             
-            print(Prompt.RockScissorsPaperChoice)
+            print(Prompt.rockScissorsPaperChoice)
             
             receiveUserInput()
             
@@ -73,7 +73,7 @@ final class Game {
             self.userInput = inputInt
         } else {
             print(Prompt.badInput)
-            print(Prompt.RockScissorsPaperChoice)
+            print(Prompt.rockScissorsPaperChoice)
             receiveUserInput()
         }
     }
