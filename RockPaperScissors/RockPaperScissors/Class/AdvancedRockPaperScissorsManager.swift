@@ -9,6 +9,12 @@ import Foundation
 
 final class AdvancedRockPaperScissorsManager: Playable {
     
+    let rockPaperScissorsManager: RockPaperScissorsManager
+    
+    init(rockPaperScissorsManager: RockPaperScissorsManager) {
+        self.rockPaperScissorsManager = rockPaperScissorsManager
+    }
+    
     func validateUserInput(_ input: String?) throws -> RockPaperScissorsType {
         guard let input else {
             throw GameError.invalidInput
@@ -52,6 +58,45 @@ final class AdvancedRockPaperScissorsManager: Playable {
             print("\(turn.rawValue)의 턴입니다.")
         case .exit:
             print("게임 종료")
+        }
+    }
+    
+    @discardableResult
+    func playGame(_ result: UserGuideMessage) -> UserGuideMessage {
+        var turn: PlayerType
+        turn = result == .win ? .user : .computer
+        
+        while true {
+            showMessage(.default, turn)
+            
+            let input = readLine()
+            let userChoice: RockPaperScissorsType
+            let computerChoice = Int.random(in: 1...3)
+            
+            do {
+                userChoice = try advancedRockPaperScissorsManager.validateUserInput(input)
+            } catch {
+                print("잘못된 입력입니다. 다시 시도해주세요.")
+                continue
+            }
+            
+            let gameResult = judgeGame(user: userChoice,
+                                       computer: RockPaperScissorsType(rawValue: computerChoice)?.getAdvancedType(),
+                                       turn: turn)
+            
+            switch gameResult {
+            case .win, .lose:
+                showMessage(gameResult, turn)
+                return .exit
+            case .draw:
+                let result = rockPaperScissorsManager.judgeGame(user: userChoice, computer: RockPaperScissorsType(rawValue: computerChoice)?.getAdvancedType())
+                let nextTurn: PlayerType = result == .win ? .user : .computer
+                showMessage(.draw, nextTurn)
+                turn = nextTurn
+            default:
+                showMessage(.exit, .computer)
+                return .exit
+            }
         }
     }
 }
