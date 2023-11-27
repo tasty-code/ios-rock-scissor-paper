@@ -7,7 +7,7 @@
 
 import Foundation
 
-final class RockPaperScissorsManager {
+final class RockPaperScissorsManager: Playable {
     
     func validateUserInput(_ input: String?) throws -> RockPaperScissorsType {
         guard let input else {
@@ -37,6 +37,22 @@ final class RockPaperScissorsManager {
             return user == .rock ? .win : .lose
         case .none:
             return .exit
+        }
+    }
+    
+    func showMessage(_ messageType: UserGuideMessage, _ turn: String = "") {
+        switch messageType {
+            
+        case .default:
+            print("가위(1), 바위(2), 보(3)! <종료 : 0> : ")
+        case .win:
+            print("이겼습니다!")
+        case .lose:
+            print("졌습니다!")
+        case .draw:
+            print("비겼습니다!")
+        case .exit:
+            print("게임 종료")
         }
     }
 }
