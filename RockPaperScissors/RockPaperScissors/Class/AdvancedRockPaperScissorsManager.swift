@@ -22,4 +22,18 @@ final class AdvancedRockPaperScissorsManager: Playable {
         default: throw GameError.invalidInput
         }
     }
+    
+    func showMessage(_ messageType: UserGuideMessage, _ turn: String) {
+        switch messageType {
+            
+        case .default:
+            print("[\(turn) 턴] 묵(1), 찌(2), 빠(3)! <종료 : 0> :")
+        case .win:
+            print("\(turn)의 승리!")
+        case .lose, .draw:
+            print("\(turn)의 턴입니다.")
+        case .exit:
+            print("게임 종료")
+        }
+    }
 }
