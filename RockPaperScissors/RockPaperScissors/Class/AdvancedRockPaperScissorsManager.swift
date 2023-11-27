@@ -23,6 +23,10 @@ final class AdvancedRockPaperScissorsManager: Playable {
         }
     }
     
+    func judgeGame(user: RockPaperScissorsType, computer: RockPaperScissorsType?) -> UserGuideMessage {
+        return .default
+    }
+    
     func showMessage(_ messageType: UserGuideMessage, _ turn: String) {
         switch messageType {
             
