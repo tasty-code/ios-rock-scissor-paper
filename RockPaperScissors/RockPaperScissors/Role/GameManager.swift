@@ -1,15 +1,11 @@
-//
-//  GameManager.swift
-//  RockPaperScissors
-//
-
 import Foundation
 
 struct GameManager {
-
-    
     let termination: String = "0"
     var willRun: Bool = true
+    
+    private var user = User()
+    private var computer = Computer()
     
     func canPlayGame() -> Bool {
         return willRun
@@ -18,23 +14,13 @@ struct GameManager {
     mutating func playGame() {
         showOptions()
         
-        let user = User()
-        let userOption: String = user.chooseOption()
-        
-        guard userOption != termination else {
-            notifyGameOver()
-            endGame()
+        guard let userChoice = user.chooseSymbol() else {
+            determineEarlyEnd(player: user)
             return
         }
         
-        guard let userSelectedNumber = Int(userOption),
-              let userChoice = getUserChoice(from: userSelectedNumber) else {
-            notifyInvalidOption()
-            return
-        }
-        
-        guard let computerChoice = getComputerChoice() else {
-            endGame()
+        guard let computerChoice = computer.chooseSymbol() else {
+            determineEarlyEnd(player: computer)
             return
         }
         
@@ -44,6 +30,15 @@ struct GameManager {
         
         if shouldEndGame(with: gameOutcome) {
             endGame()
+        }
+    }
+    
+    private mutating func determineEarlyEnd(player: Player) {
+        if player.willEndGame {
+            notifyGameOver()
+            endGame()
+        } else {
+            notifyInvalidOption()
         }
     }
     
