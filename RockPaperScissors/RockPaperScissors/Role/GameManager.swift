@@ -1,83 +1,41 @@
 import Foundation
 
 struct GameManager {
-    let termination: String = "0"
-    var willRun: Bool = true
-    
+    public private(set) var canRun: Bool = true
     private var user = User()
     private var computer = Computer()
+    private var referee = Referee()
     
-    func canPlayGame() -> Bool {
-        return willRun
-    }
-    
-    mutating func playGame() {
-        showOptions()
+    public mutating func playGame() {
+        PrintingHandler.showOptions()
         
-        guard let userChoice = user.chooseSymbol() else {
-            determineEarlyEnd(player: user)
+        guard let userChoice = user.chooseSymbol(),
+              let computerChoice = computer.chooseSymbol() else {
+            shouldEndGameEarly() ? endGame() : PrintingHandler.notifyInvalidOption()
             return
         }
+                
+        let gameOutcome = referee.determineGameOutcome(between: userChoice, and: computerChoice)
         
-        guard let computerChoice = computer.chooseSymbol() else {
-            determineEarlyEnd(player: computer)
+        PrintingHandler.notifyOutcome(of: gameOutcome)
+        
+        if shouldEndGame(basedOn: gameOutcome) {
+            endGame()
             return
         }
-        
-        let gameOutcome = determineGameOutcome(userChoice, computerChoice)
-        
-//        gameOutcome.notify()
-        
-        if shouldEndGame(with: gameOutcome) {
-            endGame()
-        }
     }
-    
-    private mutating func determineEarlyEnd(player: Player) {
-        if player.willEndGame {
-            notifyGameOver()
-            endGame()
-        } else {
-            notifyInvalidOption()
-        }
+        
+    private func shouldEndGameEarly() -> Bool {
+        return user.willEndGame || computer.willEndGame
     }
     
     private mutating func endGame() {
-        willRun.toggle()
+        canRun = false
+        PrintingHandler.notifyGameOver()
     }
     
-    private func getUserChoice(from userSelectedNumber: Int) -> RockPaperScissors? {
-        return RockPaperScissors(rawValue: userSelectedNumber)
-    }
-    
-    private func getComputerChoice() -> RockPaperScissors? {
-        return RockPaperScissors.allCases.randomElement()
-    }
-    
-    private func determineGameOutcome(_ userChoice: RockPaperScissors,
-                                      _ computerChoice: RockPaperScissors) -> GameOutcome {
-        if userChoice == computerChoice {
-            return .draw
-        } else if (userChoice.rawValue + 1) % 3 == computerChoice.rawValue {
-            return .loss
-        } else {
-            return .win
-        }
-    }
-    
-    private func shouldEndGame(with gameOutcome: GameOutcome) -> Bool {
-        return gameOutcome == .draw ? false : true
-    }
-    
-    private func showOptions() {
-        print("가위(1), 바위(2), 보(3)! <종료: 0> : ", terminator: String())
-    }
-    
-    private func notifyGameOver() {
-        print("게임 종료")
-    }
-    
-    private func notifyInvalidOption() {
-        print("잘못된 입력입니다. 다시 시도해 주세요.")
+    private func shouldEndGame(basedOn gameOutcome: GameOutcome) -> Bool {
+        return gameOutcome != .draw
     }
 }
+

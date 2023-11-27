@@ -8,6 +8,6 @@ import Foundation
 
 var gameManager = GameManager()
 
-while(gameManager.canPlayGame()) {
+while(gameManager.canRun) {
     gameManager.playGame()
 }

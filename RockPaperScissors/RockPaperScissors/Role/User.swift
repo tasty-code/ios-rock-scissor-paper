@@ -4,20 +4,16 @@ struct User: Player {
     private(set) var willEndGame: Bool = false
     
     mutating func chooseSymbol() -> RockPaperScissors? {
-        guard let inputString = readLine() else {
-            return nil
-        }
+        let inputResult = InputHandler.receiveInput()
         
-        if inputString == "0" {
+        switch inputResult {
+        case .valid(let choice):
+            return choice
+        case .exit:
             willEndGame = true
             return nil
-        }
-        
-        guard let inputInt = Int(inputString),
-              let choice = RockPaperScissors(choiceValue: inputInt) else {
+        case .invalid:
             return nil
         }
-        
-        return choice
     }
 }
