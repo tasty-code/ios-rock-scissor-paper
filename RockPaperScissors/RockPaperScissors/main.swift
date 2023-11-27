@@ -7,29 +7,40 @@
 import Foundation
 
 func main() {
-    var userInput: String?
+    
+    let user = Player(name: "사용자")
+    let computer = Player(name: "컴퓨터")
+    let gameType = GameType.rockScissorPaper
+    var gameMaster = GameMaster(gameType: gameType, user: user, computer: computer, turn: computer)
 
+    var userInput: String?
+    
     gameLoop : repeat {
-        print("가위(1), 바위(2), 보(3)! <종료 : 0> : ", terminator: "")
+        print(gameType.rawValue, terminator: "")
         userInput = readLine()
         
         switch userInput {
         case "0":
             break gameLoop
         case "1", "2", "3":
-            guard let userHand = userInput, let intUserHand = Int(userHand) else {
+            guard let input = userInput, let intUserInput = Int(input) else {
                 break
             }
             
-            let result = playRockPaperScissor(userHand: intUserHand )
-            print(result.rawValue)
+            switch gameMaster.getGameType() {
+            case .rockScissorPaper:
+                gameMaster.playRockScissorPaper(userInput: intUserInput)
+                gameMaster.evaluateRockScissorPaper()
             
-            if result == .win || result == .lose {
-                break gameLoop
+            case .mookJjiBba:
+                gameMaster.playMookJjiBba(userInput: intUserInput)
+                let result = gameMaster.evaluateMookJjiBba()
+                if result == .win {
+                    break gameLoop
+                }
             }
-            
         default :
-            print("잘못된 입력입니다. 다시 시도해주세요.")
+            return
         }
     } while userInput != "0"
     
