@@ -6,6 +6,7 @@
 
 var run: Bool = true
 var menuMessage: MenuMessage = .rps
+var gameState: GameState = .rpsGame
 
 class Player {
     var input: RockPaperScissor
@@ -18,17 +19,23 @@ class Player {
 }
 
 enum RockPaperScissor: Int {
-    case gameOver = 0,
+    case rpsGameOver = 0,
          rock = 1,
          paper = 2,
          scissor = 3,
          noChoice = 4
 }
 
+enum GameState: Int {
+    case gameOver = 0,
+         rpsGame = 1,
+         mjbGame = 2
+}
+
 func convertInputToRockPaperScissor(_ input: Int) -> RockPaperScissor {
     switch input {
     case 0:
-        return .gameOver
+        return .rpsGameOver
     case 1:
         return .rock
     case 2:
@@ -65,12 +72,14 @@ enum RpsGameResult: CustomStringConvertible {
 }
 
 enum MenuMessage: CustomStringConvertible {
-    case rps
+    case rps, mjb
     
     var description: String {
         switch self {
         case .rps:
             return "가위(1), 바위(2), 보(3)! <종료 : 0> : "
+        case .mjb:
+            return "묵(1), 찌(2), 빠(3)! <종료 : 0> : "
         }
     }
 }
@@ -83,20 +92,19 @@ func readInput() -> RockPaperScissor {
     }
 }
 
-func rpsGame(user: Player, opponent: Player) -> Bool {
+func rpsGame(user: Player, opponent: Player) -> GameState {
     switch user.input {
-    case .gameOver:
-        return false
+    case .rpsGameOver:
+        return .gameOver
     case .rock, .scissor, .paper:
         let result: RpsGameResult = decideRpsGameResult(userInput: user.input, opponentInput: opponent.input)
         print(result)
-        
-        
-        
-        return result.decideGameOver()
+        guard result != .draw else { return .rpsGame }
+        changeTurn(user: user, opponent: opponent, userGameResult: result)
+        return .mjbGame
     default:
         print("잘못된 입력입니다. 다시 시도해주세요.")
-        return true
+        return .rpsGame
     }
 }
 
@@ -132,10 +140,32 @@ func makeRandomRockScissorPaperInput() -> RockPaperScissor {
     return convertInputToRockPaperScissor(randomInput)
 }
 
-while (run) {
-    print(menuMessage, terminator: "")
-    let cpuPlayer: Player = Player(input: makeRandomRockScissorPaperInput())
-    let userPlayer: Player = Player(input: readInput())
-    run = rpsGame(user: userPlayer, opponent: cpuPlayer)
+func printMenuMessage(user: Player, opponent: Player) {
+    switch gameState {
+    case .gameOver:
+        print("게임 종료")
+    case .rpsGame:
+        print(MenuMessage.rps, terminator: "")
+    case .mjbGame:
+        let playerName: String = user.isMyTurn == true ? "사용자" : "컴퓨터"
+        print("[\(playerName)의 턴] \(MenuMessage.mjb)", terminator: "")
+    }
 }
-print("게임 종료")
+
+let cpuPlayer: Player = Player(input: .noChoice)
+let userPlayer: Player = Player(input: .noChoice)
+
+repeat {
+    printMenuMessage(user: userPlayer, opponent: cpuPlayer)
+    cpuPlayer.input = makeRandomRockScissorPaperInput() // MARK: make라는 접두어 다른걸로 바꾸기. fatory method 혼동우려
+    userPlayer.input = readInput()
+    
+    switch gameState {
+    case .gameOver:
+        run = false
+    case .rpsGame:
+        gameState = rpsGame(user: userPlayer, opponent: cpuPlayer)
+    case .mjbGame:
+        print("묵찌빠 게임")
+    }
+} while (run)
