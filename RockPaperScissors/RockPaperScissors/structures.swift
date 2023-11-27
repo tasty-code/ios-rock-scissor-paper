@@ -42,3 +42,34 @@ struct Player {
         self.mookJjiBba = MookJjiBba(rawValue: input) ?? .paper
     }
 }
+
+struct GameMaster {
+    private var gameType: GameType
+    private var user: Player
+    private var computer: Player
+    private var turn: Player
+    
+    func getGameType() -> GameType {
+        return self.gameType
+    }
+    
+    mutating func setGameType(to gameType: GameType) {
+        self.gameType = gameType
+    }
+    
+    func getUser() -> Player {
+        return self.user
+    }
+    
+    func getComputer() -> Player {
+        return self.computer
+    }
+    
+    func getTurn() -> Player {
+        return self.turn
+    }
+    
+    mutating func setTurn(to player: Player) {
+        self.turn = player
+    }
+}
