@@ -82,5 +82,46 @@ struct GameMaster {
         user.setMookJjiBba(input: userInput)
         computer.setMookJjiBba(input: Int.random(in: 1...3))
     }
+    
+    mutating func evaluateRockScissorPaper() {
+        if self.user.getRockScissorPaper() == self.computer.getRockScissorPaper() {
+            print(GameResult.draw.rawValue)
+            return
+        }
+        
+        switch user.getRockScissorPaper() {
+        case .rock:
+            self.turn = computer.getRockScissorPaper() == .scissor ? user : computer
+        case .scissor:
+            self.turn = computer.getRockScissorPaper() == .paper ? user : computer
+        case .paper:
+            self.turn = computer.getRockScissorPaper() == .rock ? user : computer
+        }
+        
+        if self.turn.getName() == "사용자" {
+            print(GameResult.win.rawValue)
+        } else {
+            print(GameResult.lose.rawValue)
+        }
+        self.gameType = .mookJjiBba
+    }
+
+    mutating func evaluateMookJjiBba() -> GameResult {
+        if self.user.getMookJjiBba() == self.computer.getMookJjiBba() {
+            print("\(self.getTurn())의 승리!")
+            return .win
+        }
+        
+        switch user.getMookJjiBba() {
+        case .rock:
+            self.turn = computer.getMookJjiBba() == .scissor ? user : computer
+        case .scissor:
+            self.turn = computer.getMookJjiBba() == .paper ? user : computer
+        case .paper:
+            self.turn = computer.getMookJjiBba() == .rock ? user : computer
+        }
+        print("\(self.getTurn())의 턴입니다.")
+        return .draw
+    }
 }
 
