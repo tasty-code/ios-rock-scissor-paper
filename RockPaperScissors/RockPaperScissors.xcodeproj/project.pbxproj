@@ -10,6 +10,8 @@
 		22D021162B0F4120006F0280 /* main.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22D021152B0F4120006F0280 /* main.swift */; };
 		22D021182B0F4136006F0280 /* GameManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22D021172B0F4136006F0280 /* GameManager.swift */; };
 		22D0211A2B0F4147006F0280 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22D021192B0F4147006F0280 /* User.swift */; };
+		C77120C02B1493BF00D155EE /* RockPaperScissors.swift in Sources */ = {isa = PBXBuildFile; fileRef = C77120BF2B1493BF00D155EE /* RockPaperScissors.swift */; };
+		C77120C22B1494F600D155EE /* GameOutcome.swift in Sources */ = {isa = PBXBuildFile; fileRef = C77120C12B1494F500D155EE /* GameOutcome.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -29,6 +31,8 @@
 		22D021152B0F4120006F0280 /* main.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = main.swift; sourceTree = "<group>"; };
 		22D021172B0F4136006F0280 /* GameManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameManager.swift; sourceTree = "<group>"; };
 		22D021192B0F4147006F0280 /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
+		C77120BF2B1493BF00D155EE /* RockPaperScissors.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RockPaperScissors.swift; sourceTree = "<group>"; };
+		C77120C12B1494F500D155EE /* GameOutcome.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameOutcome.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -61,11 +65,21 @@
 		22D0210D2B0F4008006F0280 /* RockPaperScissors */ = {
 			isa = PBXGroup;
 			children = (
+				C77120BE2B14939400D155EE /* Enum */,
 				22D021152B0F4120006F0280 /* main.swift */,
 				22D021172B0F4136006F0280 /* GameManager.swift */,
 				22D021192B0F4147006F0280 /* User.swift */,
 			);
 			path = RockPaperScissors;
+			sourceTree = "<group>";
+		};
+		C77120BE2B14939400D155EE /* Enum */ = {
+			isa = PBXGroup;
+			children = (
+				C77120BF2B1493BF00D155EE /* RockPaperScissors.swift */,
+				C77120C12B1494F500D155EE /* GameOutcome.swift */,
+			);
+			path = Enum;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -128,6 +142,8 @@
 			files = (
 				22D021162B0F4120006F0280 /* main.swift in Sources */,
 				22D021182B0F4136006F0280 /* GameManager.swift in Sources */,
+				C77120C02B1493BF00D155EE /* RockPaperScissors.swift in Sources */,
+				C77120C22B1494F600D155EE /* GameOutcome.swift in Sources */,
 				22D0211A2B0F4147006F0280 /* User.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
