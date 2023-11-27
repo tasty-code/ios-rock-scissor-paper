@@ -1,8 +1,3 @@
-//
-//  RockPaperScissors - main.swift
-//  Created by tacocat.
-//  Copyright © tastycode. All rights reserved.
-//
 
 import Foundation
 
@@ -64,3 +59,5 @@ while isWorking {
         action(com: ChoiceMenu(rawValue: comChoice) ?? .scissor, user: ChoiceMenu(rawValue: userChoice) ?? .other)
     }
 }
+
+
