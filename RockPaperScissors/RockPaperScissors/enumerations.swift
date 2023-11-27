@@ -20,3 +20,8 @@ enum RockScissorPaper: Int {
 enum MookJjiBba: Int {
     case rock = 1, scissor = 2, paper = 3
 }
+
+enum GameType: String {
+    case rockScissorPaper = "가위(1), 바위(2), 보(3)! <종료 : 0> : "
+    case mookJjiBba = "묵(1), 찌(2), 빠(3)! <종료 : 0> : "
+}
