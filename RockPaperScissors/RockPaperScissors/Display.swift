@@ -7,7 +7,6 @@
 
 import Foundation
 
-
 func displayRockScissorsPaperMenu() {
     print(StringNameSpace.rockScissorsPaperExitMenuMessage)
 }

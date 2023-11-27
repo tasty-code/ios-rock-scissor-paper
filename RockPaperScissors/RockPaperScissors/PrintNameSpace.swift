@@ -1,16 +1,11 @@
 //
-//  Enums.swift
+//  PrintNameSpace.swift
 //  RockPaperScissors
 //
-//  Created by MAC2020 on 2023/11/23.
+//  Created by MAC2020 on 2023/11/27.
 //
 
 import Foundation
-
-
-enum RockScissorsPaperCase: Int {
-    case scissors = 1, rock, paper
-}
 
 enum StringNameSpace {
     static let winMessage = "이겼습니다."

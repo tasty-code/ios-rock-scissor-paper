@@ -7,6 +7,8 @@
 
 import Foundation
 
+var isWorkingRockScissorsPaper = true
+
 func initPlayRockScissorsPaperGame() {
     displayRockScissorsPaperMenu()
     userInputReadLine()

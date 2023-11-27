@@ -7,7 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		15FFECB52B0F552000B2FA0E /* Enums.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15FFECB42B0F552000B2FA0E /* Enums.swift */; };
+		158C13522B148BBE005A2D75 /* PrintNameSpace.swift in Sources */ = {isa = PBXBuildFile; fileRef = 158C13512B148BBE005A2D75 /* PrintNameSpace.swift */; };
+		15FFECB52B0F552000B2FA0E /* RockScissorsPaperCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15FFECB42B0F552000B2FA0E /* RockScissorsPaperCase.swift */; };
 		15FFECB72B0F562B00B2FA0E /* RockScissorsPaperLogic.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15FFECB62B0F562B00B2FA0E /* RockScissorsPaperLogic.swift */; };
 		15FFECB92B0F574C00B2FA0E /* Display.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15FFECB82B0F574C00B2FA0E /* Display.swift */; };
 		C7ABA0E1254EA63000B2367D /* main.swift in Sources */ = {isa = PBXBuildFile; fileRef = C7ABA0E0254EA63000B2367D /* main.swift */; };
@@ -26,7 +27,8 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
-		15FFECB42B0F552000B2FA0E /* Enums.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Enums.swift; sourceTree = "<group>"; };
+		158C13512B148BBE005A2D75 /* PrintNameSpace.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PrintNameSpace.swift; sourceTree = "<group>"; };
+		15FFECB42B0F552000B2FA0E /* RockScissorsPaperCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RockScissorsPaperCase.swift; sourceTree = "<group>"; };
 		15FFECB62B0F562B00B2FA0E /* RockScissorsPaperLogic.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RockScissorsPaperLogic.swift; sourceTree = "<group>"; };
 		15FFECB82B0F574C00B2FA0E /* Display.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Display.swift; sourceTree = "<group>"; };
 		C7ABA0DD254EA63000B2367D /* RockPaperScissors */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = RockPaperScissors; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -44,6 +46,15 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		158C13502B148B96005A2D75 /* Enums */ = {
+			isa = PBXGroup;
+			children = (
+				15FFECB42B0F552000B2FA0E /* RockScissorsPaperCase.swift */,
+				158C13512B148BBE005A2D75 /* PrintNameSpace.swift */,
+			);
+			name = Enums;
+			sourceTree = "<group>";
+		};
 		C7ABA0D4254EA63000B2367D = {
 			isa = PBXGroup;
 			children = (
@@ -63,8 +74,8 @@
 		C7ABA0DF254EA63000B2367D /* RockPaperScissors */ = {
 			isa = PBXGroup;
 			children = (
+				158C13502B148B96005A2D75 /* Enums */,
 				C7ABA0E0254EA63000B2367D /* main.swift */,
-				15FFECB42B0F552000B2FA0E /* Enums.swift */,
 				15FFECB62B0F562B00B2FA0E /* RockScissorsPaperLogic.swift */,
 				15FFECB82B0F574C00B2FA0E /* Display.swift */,
 			);
@@ -128,8 +139,9 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				15FFECB52B0F552000B2FA0E /* Enums.swift in Sources */,
+				15FFECB52B0F552000B2FA0E /* RockScissorsPaperCase.swift in Sources */,
 				C7ABA0E1254EA63000B2367D /* main.swift in Sources */,
+				158C13522B148BBE005A2D75 /* PrintNameSpace.swift in Sources */,
 				15FFECB92B0F574C00B2FA0E /* Display.swift in Sources */,
 				15FFECB72B0F562B00B2FA0E /* RockScissorsPaperLogic.swift in Sources */,
 			);
