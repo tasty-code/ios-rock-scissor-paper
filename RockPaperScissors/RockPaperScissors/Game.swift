@@ -48,16 +48,15 @@ final class Game {
         
         let difference: Int = randomInt - userInput
         
-        if difference == 0 {
-            return setGameResult(.draw)
-        }
-        
-        if [-1, 2].contains(difference) {
-            return setGameResult(.lose)
-        }
-        
-        if [1, -2].contains(difference) {
-            return setGameResult(.win)
+        switch difference {
+        case 0:
+            setGameResult(.draw)
+        case -1, 2:
+            setGameResult(.lose)
+        case 1, -2:
+            setGameResult(.win)
+        default:
+            break
         }
     }
     
