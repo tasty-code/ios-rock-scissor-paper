@@ -37,21 +37,20 @@ struct RockPaperScissorsManager {
     mutating func getResult(userValue: Int) {
         randomValue = Int.random(in: 1...3)
         
-        if let randomValue = randomValue {
-            resultValue = userValue - randomValue
-            
-            switch resultValue {
-            case 0:
-                print(GameResult.draw.rawValue)
-            case 1, -2:
-                print(GameResult.win.rawValue)
-                status = false
-            case -1, 2:
-                print(GameResult.lose.rawValue)
-                status = false
-            default:
-                break
-            }
+        guard let computerValue = randomValue else { return }
+        resultValue = (userValue - computerValue + 3) % 3
+        
+        switch ResultType(rawValue: computerValue) {
+        case .draw:
+            print(GameResult.draw.rawValue)
+        case .userWin:
+            print(GameResult.win.rawValue)
+            status = false
+        case .userLose:
+            print(GameResult.lose.rawValue)
+            status = false
+        case .none:
+            break
         }
     }
 }
