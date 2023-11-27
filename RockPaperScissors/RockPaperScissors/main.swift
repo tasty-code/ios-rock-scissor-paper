@@ -1,4 +1,4 @@
 import Foundation
 
-var rpsManager = RockPaperScissorsManager()
-rpsManager.play()
+var rockPaperScissorsManager = RockPaperScissorsManager()
+rockPaperScissorsManager.play()
