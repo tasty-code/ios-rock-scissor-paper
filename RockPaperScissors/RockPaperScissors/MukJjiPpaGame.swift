@@ -11,9 +11,7 @@ struct MukJjiPpaGame {
     mutating func play() {
         rockScissorPaperGame.play()
         
-        let isRunning: Bool = true
-        
-        while isRunning {
+        while true {
             guard 
                 continueGame()
             else {
@@ -29,23 +27,23 @@ struct MukJjiPpaGame {
         let userInput = readLine()
         
         guard 
-            let validator = Validator(value: userInput)
+            let command = Command(value: userInput)
         else {
             rockScissorPaperGame.turn = .computer
-            print(ApplicationStatus.error.message)
+            print(ApplicationStatusMessage.error)
             return true
         }
         
         guard 
-            !validator.isQuit
+            !command.isQuit
         else {
-            print(ApplicationStatus.quit.message)
+            print(ApplicationStatusMessage.quit)
             return false
         }
         
         guard
-            let userChoice = MukJjiPpaChoice(rawValue: validator.userChoice),
-            let computerChoice = MukJjiPpaChoice(rawValue: Int.random(in: 1...3))
+            let userChoice = MukJjiPpaChoice(rawValue: command.userChoice),
+            let computerChoice = MukJjiPpaChoice.allCases.randomElement()
         else {
             return true
         }
@@ -53,11 +51,13 @@ struct MukJjiPpaGame {
         return compareChoice(user: userChoice, computer: computerChoice)
     }
     
-    private func compareChoice(user: MukJjiPpaChoice, computer: MukJjiPpaChoice) -> Bool {
+    private mutating func compareChoice(user: MukJjiPpaChoice, computer: MukJjiPpaChoice) -> Bool {
         switch (user, computer) {
         case (.jji,.muk),(.muk,.ppa),(.ppa,.jji):
+            rockScissorPaperGame.turn = .computer
             return true
         case (.jji,.ppa),(.muk,.jji),(.ppa,.muk):
+            rockScissorPaperGame.turn = .user
             return true
         default:
             print("\(rockScissorPaperGame.turn)의 승리!")
