@@ -24,4 +24,8 @@ enum MookJjiBba: Int {
 enum GameType: String {
     case rockScissorPaper = "가위(1), 바위(2), 보(3)! <종료 : 0> : "
     case mookJjiBba = "묵(1), 찌(2), 빠(3)! <종료 : 0> : "
+    
+    func message(gameType: GameType) -> String {
+        return gameType.rawValue
+    }
 }

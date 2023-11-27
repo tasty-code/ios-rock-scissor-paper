@@ -16,7 +16,7 @@ func main() {
     var userInput: String?
     
     gameLoop : repeat {
-        print(gameType.rawValue, terminator: "")
+        print(gameType.message(gameType: gameMaster.getGameType()), terminator: "")
         userInput = readLine()
         
         switch userInput {
