@@ -57,4 +57,29 @@ final class RockPaperScissorsManager: Playable {
             print("게임 종료")
         }
     }
+    
+    func playGame(_ result: UserGuideMessage) -> UserGuideMessage {
+        while true {
+            showMessage(.default)
+            
+            let input = readLine()
+            let userChoice: RockPaperScissorsType
+            let computerChoice = Int.random(in: 1...3)
+            
+            do {
+                userChoice = try validateUserInput(input)
+            } catch {
+                print("잘못된 입력입니다. 다시 시도해주세요.")
+                continue
+            }
+            
+            let gameResult = judgeGame(user: userChoice,
+                                       computer: RockPaperScissorsType(rawValue: computerChoice))
+            showMessage(gameResult)
+            
+            if gameResult != .draw {
+                return gameResult
+            }
+        }
+    }
 }
