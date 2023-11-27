@@ -8,8 +8,8 @@ import Foundation
 
 
 func playRockPaperScissor(userHand: Int)-> GameResult {
-    let computerHand = GameHand(rawValue: Int.random(in: 1...3))
-    let userHand = GameHand(rawValue: userHand)
+    let computerHand = RockScissorPaper(rawValue: Int.random(in: 1...3))
+    let userHand = RockScissorPaper(rawValue: userHand)
     
     if userHand == computerHand {
         return .draw

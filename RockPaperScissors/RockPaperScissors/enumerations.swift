@@ -13,12 +13,8 @@ enum GameResult: String {
     case lose = "졌습니다!"
 }
 
-enum GameHand: Int {
+enum RockScissorPaper: Int {
     case scissor = 1, rock = 2, paper = 3
-    
-    subscript(index: Int) -> GameHand? {
-        return GameHand(rawValue: index)
-    }
 }
 
 enum MookJjiBba: Int {
