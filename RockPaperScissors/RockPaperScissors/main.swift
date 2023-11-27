@@ -11,7 +11,7 @@ struct Player {
     var input: RockPaperScissor
 }
 
-enum RockPaperScissor: Int, CaseIterable {
+enum RockPaperScissor: Int {
     case gameOver = 0,
          rock = 1,
          paper = 2,
@@ -82,7 +82,7 @@ func rpsGame(user: Player, opponent: Player) -> Bool {
     case .gameOver:
         return false
     case .rock, .scissor, .paper:
-        let result: RpsGameResult = getRpsGameResult(userInput: user.input, opponentInput: opponent.input)
+        let result: RpsGameResult = decideRpsGameResult(userInput: user.input, opponentInput: opponent.input)
         print(result)
         return result.isOver()
     default:
@@ -91,7 +91,7 @@ func rpsGame(user: Player, opponent: Player) -> Bool {
     }
 }
 
-func getRpsGameResult(userInput: RockPaperScissor, opponentInput: RockPaperScissor) -> RpsGameResult {
+func decideRpsGameResult(userInput: RockPaperScissor, opponentInput: RockPaperScissor) -> RpsGameResult {
     let gameInfo = (userInput, opponentInput)
     
     if userInput == opponentInput {
