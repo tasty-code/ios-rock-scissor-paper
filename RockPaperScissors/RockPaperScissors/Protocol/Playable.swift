@@ -11,5 +11,5 @@ protocol Playable {
     
     func validateUserInput(_ input: String?) throws -> RockPaperScissorsType
     func judgeGame(user: RockPaperScissorsType, computer: RockPaperScissorsType?) -> UserGuideMessage
-    func showMessage()
+    func showMessage(_ messageType: UserGuideMessage, _ turn: String)
 }
