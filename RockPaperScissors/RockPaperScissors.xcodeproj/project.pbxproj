@@ -3,15 +3,25 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 50;
+	objectVersion = 56;
 	objects = {
 
 /* Begin PBXBuildFile section */
-		C7ABA0E1254EA63000B2367D /* main.swift in Sources */ = {isa = PBXBuildFile; fileRef = C7ABA0E0254EA63000B2367D /* main.swift */; };
+		22097ABE2B149B37009D66D5 /* main.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22097ABD2B149B37009D66D5 /* main.swift */; };
+		22097AC12B149C34009D66D5 /* Computer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22097AC02B149C34009D66D5 /* Computer.swift */; };
+		22097AC32B149C40009D66D5 /* Referee.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22097AC22B149C40009D66D5 /* Referee.swift */; };
+		22097AC62B149C6F009D66D5 /* Player.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22097AC52B149C6F009D66D5 /* Player.swift */; };
+		22D021182B0F4136006F0280 /* GameManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22D021172B0F4136006F0280 /* GameManager.swift */; };
+		22D0211A2B0F4147006F0280 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22D021192B0F4147006F0280 /* User.swift */; };
+		C77120C02B1493BF00D155EE /* RockPaperScissors.swift in Sources */ = {isa = PBXBuildFile; fileRef = C77120BF2B1493BF00D155EE /* RockPaperScissors.swift */; };
+		C77120C22B1494F600D155EE /* GameOutcome.swift in Sources */ = {isa = PBXBuildFile; fileRef = C77120C12B1494F500D155EE /* GameOutcome.swift */; };
+		C77120C52B14B58B00D155EE /* InputHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = C77120C42B14B58B00D155EE /* InputHandler.swift */; };
+		C77120C72B14B5A700D155EE /* PrintingHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = C77120C62B14B5A700D155EE /* PrintingHandler.swift */; };
+		C77120C92B14B70000D155EE /* InputResult.swift in Sources */ = {isa = PBXBuildFile; fileRef = C77120C82B14B70000D155EE /* InputResult.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
-		C7ABA0DB254EA63000B2367D /* CopyFiles */ = {
+		22D021092B0F4008006F0280 /* CopyFiles */ = {
 			isa = PBXCopyFilesBuildPhase;
 			buildActionMask = 2147483647;
 			dstPath = /usr/share/man/man1/;
@@ -23,12 +33,22 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
-		C7ABA0DD254EA63000B2367D /* RockPaperScissors */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = RockPaperScissors; sourceTree = BUILT_PRODUCTS_DIR; };
-		C7ABA0E0254EA63000B2367D /* main.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = main.swift; sourceTree = "<group>"; };
+		22097ABD2B149B37009D66D5 /* main.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = main.swift; sourceTree = "<group>"; };
+		22097AC02B149C34009D66D5 /* Computer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Computer.swift; sourceTree = "<group>"; };
+		22097AC22B149C40009D66D5 /* Referee.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Referee.swift; sourceTree = "<group>"; };
+		22097AC52B149C6F009D66D5 /* Player.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Player.swift; sourceTree = "<group>"; };
+		22D0210B2B0F4008006F0280 /* RockPaperScissors */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = RockPaperScissors; sourceTree = BUILT_PRODUCTS_DIR; };
+		22D021172B0F4136006F0280 /* GameManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameManager.swift; sourceTree = "<group>"; };
+		22D021192B0F4147006F0280 /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
+		C77120BF2B1493BF00D155EE /* RockPaperScissors.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RockPaperScissors.swift; sourceTree = "<group>"; };
+		C77120C12B1494F500D155EE /* GameOutcome.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameOutcome.swift; sourceTree = "<group>"; };
+		C77120C42B14B58B00D155EE /* InputHandler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InputHandler.swift; sourceTree = "<group>"; };
+		C77120C62B14B5A700D155EE /* PrintingHandler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PrintingHandler.swift; sourceTree = "<group>"; };
+		C77120C82B14B70000D155EE /* InputResult.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InputResult.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
-		C7ABA0DA254EA63000B2367D /* Frameworks */ = {
+		22D021082B0F4008006F0280 /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -38,40 +58,74 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		C7ABA0D4254EA63000B2367D = {
+		22097ABF2B149C21009D66D5 /* Role */ = {
 			isa = PBXGroup;
 			children = (
-				C7ABA0DF254EA63000B2367D /* RockPaperScissors */,
-				C7ABA0DE254EA63000B2367D /* Products */,
+				22D021192B0F4147006F0280 /* User.swift */,
+				22097AC02B149C34009D66D5 /* Computer.swift */,
+				22097AC22B149C40009D66D5 /* Referee.swift */,
+				22D021172B0F4136006F0280 /* GameManager.swift */,
+				22097AC52B149C6F009D66D5 /* Player.swift */,
+			);
+			path = Role;
+			sourceTree = "<group>";
+		};
+		22D021022B0F4008006F0280 = {
+			isa = PBXGroup;
+			children = (
+				22D0210D2B0F4008006F0280 /* RockPaperScissors */,
+				22097ABD2B149B37009D66D5 /* main.swift */,
+				22D0210C2B0F4008006F0280 /* Products */,
 			);
 			sourceTree = "<group>";
 		};
-		C7ABA0DE254EA63000B2367D /* Products */ = {
+		22D0210C2B0F4008006F0280 /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				C7ABA0DD254EA63000B2367D /* RockPaperScissors */,
+				22D0210B2B0F4008006F0280 /* RockPaperScissors */,
 			);
 			name = Products;
 			sourceTree = "<group>";
 		};
-		C7ABA0DF254EA63000B2367D /* RockPaperScissors */ = {
+		22D0210D2B0F4008006F0280 /* RockPaperScissors */ = {
 			isa = PBXGroup;
 			children = (
-				C7ABA0E0254EA63000B2367D /* main.swift */,
+				C77120C32B14B56500D155EE /* Handler */,
+				22097ABF2B149C21009D66D5 /* Role */,
+				C77120BE2B14939400D155EE /* Enum */,
 			);
 			path = RockPaperScissors;
+			sourceTree = "<group>";
+		};
+		C77120BE2B14939400D155EE /* Enum */ = {
+			isa = PBXGroup;
+			children = (
+				C77120BF2B1493BF00D155EE /* RockPaperScissors.swift */,
+				C77120C12B1494F500D155EE /* GameOutcome.swift */,
+				C77120C82B14B70000D155EE /* InputResult.swift */,
+			);
+			path = Enum;
+			sourceTree = "<group>";
+		};
+		C77120C32B14B56500D155EE /* Handler */ = {
+			isa = PBXGroup;
+			children = (
+				C77120C42B14B58B00D155EE /* InputHandler.swift */,
+				C77120C62B14B5A700D155EE /* PrintingHandler.swift */,
+			);
+			path = Handler;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
-		C7ABA0DC254EA63000B2367D /* RockPaperScissors */ = {
+		22D0210A2B0F4008006F0280 /* RockPaperScissors */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = C7ABA0E4254EA63000B2367D /* Build configuration list for PBXNativeTarget "RockPaperScissors" */;
+			buildConfigurationList = 22D021122B0F4008006F0280 /* Build configuration list for PBXNativeTarget "RockPaperScissors" */;
 			buildPhases = (
-				C7ABA0D9254EA63000B2367D /* Sources */,
-				C7ABA0DA254EA63000B2367D /* Frameworks */,
-				C7ABA0DB254EA63000B2367D /* CopyFiles */,
+				22D021072B0F4008006F0280 /* Sources */,
+				22D021082B0F4008006F0280 /* Frameworks */,
+				22D021092B0F4008006F0280 /* CopyFiles */,
 			);
 			buildRules = (
 			);
@@ -79,61 +133,72 @@
 			);
 			name = RockPaperScissors;
 			productName = RockPaperScissors;
-			productReference = C7ABA0DD254EA63000B2367D /* RockPaperScissors */;
+			productReference = 22D0210B2B0F4008006F0280 /* RockPaperScissors */;
 			productType = "com.apple.product-type.tool";
 		};
 /* End PBXNativeTarget section */
 
 /* Begin PBXProject section */
-		C7ABA0D5254EA63000B2367D /* Project object */ = {
+		22D021032B0F4008006F0280 /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
-				LastSwiftUpdateCheck = 1210;
-				LastUpgradeCheck = 1210;
+				BuildIndependentTargetsInParallel = 1;
+				LastSwiftUpdateCheck = 1500;
+				LastUpgradeCheck = 1500;
 				TargetAttributes = {
-					C7ABA0DC254EA63000B2367D = {
-						CreatedOnToolsVersion = 12.1;
+					22D0210A2B0F4008006F0280 = {
+						CreatedOnToolsVersion = 15.0.1;
 					};
 				};
 			};
-			buildConfigurationList = C7ABA0D8254EA63000B2367D /* Build configuration list for PBXProject "RockPaperScissors" */;
-			compatibilityVersion = "Xcode 9.3";
+			buildConfigurationList = 22D021062B0F4008006F0280 /* Build configuration list for PBXProject "RockPaperScissors" */;
+			compatibilityVersion = "Xcode 14.0";
 			developmentRegion = en;
 			hasScannedForEncodings = 0;
 			knownRegions = (
 				en,
 				Base,
 			);
-			mainGroup = C7ABA0D4254EA63000B2367D;
-			productRefGroup = C7ABA0DE254EA63000B2367D /* Products */;
+			mainGroup = 22D021022B0F4008006F0280;
+			productRefGroup = 22D0210C2B0F4008006F0280 /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
-				C7ABA0DC254EA63000B2367D /* RockPaperScissors */,
+				22D0210A2B0F4008006F0280 /* RockPaperScissors */,
 			);
 		};
 /* End PBXProject section */
 
 /* Begin PBXSourcesBuildPhase section */
-		C7ABA0D9254EA63000B2367D /* Sources */ = {
+		22D021072B0F4008006F0280 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				C7ABA0E1254EA63000B2367D /* main.swift in Sources */,
+				22097AC12B149C34009D66D5 /* Computer.swift in Sources */,
+				C77120C52B14B58B00D155EE /* InputHandler.swift in Sources */,
+				22D021182B0F4136006F0280 /* GameManager.swift in Sources */,
+				22097ABE2B149B37009D66D5 /* main.swift in Sources */,
+				C77120C02B1493BF00D155EE /* RockPaperScissors.swift in Sources */,
+				22097AC62B149C6F009D66D5 /* Player.swift in Sources */,
+				C77120C22B1494F600D155EE /* GameOutcome.swift in Sources */,
+				C77120C72B14B5A700D155EE /* PrintingHandler.swift in Sources */,
+				22097AC32B149C40009D66D5 /* Referee.swift in Sources */,
+				22D0211A2B0F4147006F0280 /* User.swift in Sources */,
+				C77120C92B14B70000D155EE /* InputResult.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXSourcesBuildPhase section */
 
 /* Begin XCBuildConfiguration section */
-		C7ABA0E2254EA63000B2367D /* Debug */ = {
+		22D021102B0F4008006F0280 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
+				ASSETCATALOG_COMPILER_GENERATE_SWIFT_ASSET_SYMBOL_EXTENSIONS = YES;
 				CLANG_ANALYZER_NONNULL = YES;
 				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
-				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
-				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++20";
 				CLANG_ENABLE_MODULES = YES;
 				CLANG_ENABLE_OBJC_ARC = YES;
 				CLANG_ENABLE_OBJC_WEAK = YES;
@@ -163,7 +228,8 @@
 				DEBUG_INFORMATION_FORMAT = dwarf;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				ENABLE_TESTABILITY = YES;
-				GCC_C_LANGUAGE_STANDARD = gnu11;
+				ENABLE_USER_SCRIPT_SANDBOXING = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu17;
 				GCC_DYNAMIC_NO_PIC = NO;
 				GCC_NO_COMMON_BLOCKS = YES;
 				GCC_OPTIMIZATION_LEVEL = 0;
@@ -177,24 +243,25 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				MACOSX_DEPLOYMENT_TARGET = 10.15;
+				LOCALIZATION_PREFERS_STRING_CATALOGS = YES;
+				MACOSX_DEPLOYMENT_TARGET = 14.0;
 				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
 				MTL_FAST_MATH = YES;
 				ONLY_ACTIVE_ARCH = YES;
 				SDKROOT = macosx;
-				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "DEBUG $(inherited)";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 			};
 			name = Debug;
 		};
-		C7ABA0E3254EA63000B2367D /* Release */ = {
+		22D021112B0F4008006F0280 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
+				ASSETCATALOG_COMPILER_GENERATE_SWIFT_ASSET_SYMBOL_EXTENSIONS = YES;
 				CLANG_ANALYZER_NONNULL = YES;
 				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
-				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
-				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++20";
 				CLANG_ENABLE_MODULES = YES;
 				CLANG_ENABLE_OBJC_ARC = YES;
 				CLANG_ENABLE_OBJC_WEAK = YES;
@@ -224,7 +291,8 @@
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				ENABLE_NS_ASSERTIONS = NO;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
-				GCC_C_LANGUAGE_STANDARD = gnu11;
+				ENABLE_USER_SCRIPT_SANDBOXING = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu17;
 				GCC_NO_COMMON_BLOCKS = YES;
 				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
 				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
@@ -232,16 +300,16 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				MACOSX_DEPLOYMENT_TARGET = 10.15;
+				LOCALIZATION_PREFERS_STRING_CATALOGS = YES;
+				MACOSX_DEPLOYMENT_TARGET = 14.0;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				MTL_FAST_MATH = YES;
 				SDKROOT = macosx;
 				SWIFT_COMPILATION_MODE = wholemodule;
-				SWIFT_OPTIMIZATION_LEVEL = "-O";
 			};
 			name = Release;
 		};
-		C7ABA0E5254EA63000B2367D /* Debug */ = {
+		22D021132B0F4008006F0280 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				CODE_SIGN_STYLE = Automatic;
@@ -250,7 +318,7 @@
 			};
 			name = Debug;
 		};
-		C7ABA0E6254EA63000B2367D /* Release */ = {
+		22D021142B0F4008006F0280 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				CODE_SIGN_STYLE = Automatic;
@@ -262,25 +330,25 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		C7ABA0D8254EA63000B2367D /* Build configuration list for PBXProject "RockPaperScissors" */ = {
+		22D021062B0F4008006F0280 /* Build configuration list for PBXProject "RockPaperScissors" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
-				C7ABA0E2254EA63000B2367D /* Debug */,
-				C7ABA0E3254EA63000B2367D /* Release */,
+				22D021102B0F4008006F0280 /* Debug */,
+				22D021112B0F4008006F0280 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		C7ABA0E4254EA63000B2367D /* Build configuration list for PBXNativeTarget "RockPaperScissors" */ = {
+		22D021122B0F4008006F0280 /* Build configuration list for PBXNativeTarget "RockPaperScissors" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
-				C7ABA0E5254EA63000B2367D /* Debug */,
-				C7ABA0E6254EA63000B2367D /* Release */,
+				22D021132B0F4008006F0280 /* Debug */,
+				22D021142B0F4008006F0280 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
-	rootObject = C7ABA0D5254EA63000B2367D /* Project object */;
+	rootObject = 22D021032B0F4008006F0280 /* Project object */;
 }
