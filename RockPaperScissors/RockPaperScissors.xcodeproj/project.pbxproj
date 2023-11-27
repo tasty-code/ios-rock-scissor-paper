@@ -66,8 +66,8 @@
 		7776418E2B0F1E2800CFEFEC /* Class */ = {
 			isa = PBXGroup;
 			children = (
-				FE9E95DA2B142F400027D0DC /* AdvancedRockPaperScissorsManager.swift */,
 				777641872B0C9F1200CFEFEC /* RockPaperScissorsManager.swift */,
+				FE9E95DA2B142F400027D0DC /* AdvancedRockPaperScissorsManager.swift */,
 			);
 			path = Class;
 			sourceTree = "<group>";
