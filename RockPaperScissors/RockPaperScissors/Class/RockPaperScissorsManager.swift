@@ -23,18 +23,20 @@ final class RockPaperScissorsManager: Playable {
         }
     }
     
-    func judgeGame(user: RockPaperScissorsType, computer: RockPaperScissorsType?) -> UserGuideMessage {
+    func judgeGame(user: RockPaperScissorsType,
+                            computer: RockPaperScissorsType?,
+                            _ turn: PlayerType = .user) -> UserGuideMessage {
         if user == computer {
             return .draw
         }
         
         switch user {
         case .scissors:
-            return user == .paper ? .win : .lose
+            return computer == .paper ? .win : .lose
         case .rock:
-            return user == .scissors ? .win : .lose
+            return computer == .scissors ? .win : .lose
         case .paper:
-            return user == .rock ? .win : .lose
+            return computer == .rock ? .win : .lose
         case .none:
             return .exit
         }
