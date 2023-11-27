@@ -6,5 +6,6 @@
 
 import Foundation
 
-print("Hello, World!")
+var isWorkingRockScissorsPaper = true
 
+initPlayRockScissorsPaperGame()
