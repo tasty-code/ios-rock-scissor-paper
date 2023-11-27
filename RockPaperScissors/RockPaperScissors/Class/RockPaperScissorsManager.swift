@@ -42,11 +42,11 @@ final class RockPaperScissorsManager: Playable {
         }
     }
     
-    func showMessage(_ messageType: UserGuideMessage, _ turn: String = "") {
+    func showMessage(_ messageType: UserGuideMessage, _ turn: PlayerType = .user) {
         switch messageType {
             
         case .default:
-            print("가위(1), 바위(2), 보(3)! <종료 : 0> : ")
+            print("가위(1), 바위(2), 보(3)! <종료 : 0> : ", terminator: " ")
         case .win:
             print("이겼습니다!")
         case .lose:
