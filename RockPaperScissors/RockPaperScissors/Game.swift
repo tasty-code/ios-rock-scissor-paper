@@ -10,7 +10,7 @@ import Foundation
 final class Game {
     private var loopState: Bool = true
     
-    private var result: Result = .none
+    private var result: Result = .draw
     
     private var inputNum: Int = 0
     
