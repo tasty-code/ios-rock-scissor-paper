@@ -20,3 +20,7 @@ enum GameHand: Int {
         return GameHand(rawValue: index)
     }
 }
+
+enum MookJjiBba: Int {
+    case rock = 1, scissor = 2, paper = 3
+}
