@@ -23,19 +23,33 @@ final class AdvancedRockPaperScissorsManager: Playable {
         }
     }
     
-    func judgeGame(user: RockPaperScissorsType, computer: RockPaperScissorsType?) -> UserGuideMessage {
-        return .default
+    func judgeGame(user: RockPaperScissorsType,
+                   computer: RockPaperScissorsType?,
+                   turn: PlayerType) -> UserGuideMessage {
+        if user != computer {
+            return .draw
+        }
+        
+        switch user {
+        case .none:
+            return .exit
+        default:
+            return turn == .user ? .win : .lose
+        }
     }
     
-    func showMessage(_ messageType: UserGuideMessage, _ turn: String) {
+    func showMessage(_ messageType: UserGuideMessage, _ turn: PlayerType) {
         switch messageType {
             
         case .default:
-            print("[\(turn) 턴] 묵(1), 찌(2), 빠(3)! <종료 : 0> :")
+            print("[\(turn.rawValue) 턴] 묵(1), 찌(2), 빠(3)! <종료 : 0> :", terminator: " ")
         case .win:
-            print("\(turn)의 승리!")
-        case .lose, .draw:
-            print("\(turn)의 턴입니다.")
+            print("\(turn.rawValue)의 승리!")
+        case .lose:
+            let winner = turn == .user ? "컴퓨터" : "사용자"
+            print("\(winner)의 승리!")
+        case .draw:
+            print("\(turn.rawValue)의 턴입니다.")
         case .exit:
             print("게임 종료")
         }
