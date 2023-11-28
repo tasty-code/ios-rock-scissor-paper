@@ -1,18 +1,19 @@
 import Foundation
 
 enum InputHandler {
-    private static let exit = 0
+    private static let exit = "0"
     
-    static func receiveInput() -> InputResult {
-        guard let input = readLine(), let selectedNumber = Int(input) else {
+    static func receiveInput() -> Option {
+        guard let input = readLine() else {
             return .invalid
         }
         
-        if selectedNumber == exit {
+        if input == exit {
             return .exit
         }
         
-        guard let choice = RockPaperScissors(choiceValue: selectedNumber) else {
+        guard let selectedNumber = Int(input),
+              let choice = RockPaperScissors(choiceValue: selectedNumber) else {
             return .invalid
         }
         

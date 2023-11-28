@@ -1,15 +1,11 @@
 import Foundation
 
 struct Computer: Player {
-    private(set) var willEndGame: Bool = false
-    
-    mutating func chooseSymbol() -> RockPaperScissors? {
+    func chooseOption() -> Option {
         guard let choice = RockPaperScissors.random() else {
-            willEndGame = true
-            return nil
+            return .exit
         }
-        
-        return choice
+        return .valid(choice)
     }
 }
 

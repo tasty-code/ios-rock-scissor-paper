@@ -9,12 +9,16 @@ struct GameManager {
     public mutating func playGame() {
         PrintingHandler.showOptions()
         
-        guard let userChoice = user.chooseSymbol(),
-              let computerChoice = computer.chooseSymbol() else {
-            shouldEndGameEarly() ? endGame() : PrintingHandler.notifyInvalidOption()
+        let userOption = user.chooseOption()
+        let computerOption = computer.chooseOption()
+        
+        guard let userChoice = getRockPaperScissors(from: userOption),
+              let computerChoice = getRockPaperScissors(from: computerOption) else {
+            shouldEndGameEarlyBy(userOption, computerOption) ?
+                endGame() : PrintingHandler.notifyInvalidOption()
             return
         }
-                
+        
         let gameOutcome = referee.determineGameOutcome(between: userChoice, and: computerChoice)
         
         PrintingHandler.notifyOutcome(of: gameOutcome)
@@ -24,9 +28,18 @@ struct GameManager {
             return
         }
     }
+    
+    private func getRockPaperScissors(from option: Option) -> RockPaperScissors? {
+        switch option {
+        case .valid(let choice):
+            return choice
+        case .exit, .invalid:
+            return nil
+        }
+    }
         
-    private func shouldEndGameEarly() -> Bool {
-        return user.willEndGame || computer.willEndGame
+    private func shouldEndGameEarlyBy(_ userChoice: Option, _ computerChoice: Option) -> Bool {
+        return userChoice == .exit || computerChoice == .exit
     }
     
     private mutating func endGame() {

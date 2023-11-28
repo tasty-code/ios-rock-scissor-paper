@@ -1,6 +1,6 @@
 import Foundation
 
-enum InputResult {
+enum Option: Equatable {
     case valid(RockPaperScissors)
     case exit
     case invalid
