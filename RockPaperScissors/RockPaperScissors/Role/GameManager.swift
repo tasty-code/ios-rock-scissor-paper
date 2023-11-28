@@ -5,11 +5,12 @@ struct GameManager {
     private var user: Player = User()
     private var computer: Player = Computer()
     private var referee = Referee()
+    private var playerTurn: PlayerTurn = .user
     
     public mutating func playGame() {
         
         ///가위 바위 보
-        PrintingHandler.showOptions()
+        PrintingHandler.showRockPaperScissorsOptions()
 
         let userOption = user.chooseOption()
         let computerOption = computer.chooseOption()
@@ -27,14 +28,18 @@ struct GameManager {
         
         ///묵찌빠
         if gameOutcome == .win {
-            let playerTurn = PlayerTurn.user
+            playerTurn = PlayerTurn.user
         } else if gameOutcome == .loss {
-            let plyaerTurn = PlayerTurn.computer
+            playerTurn = PlayerTurn.computer
         } else {
             return
         }
+        
+        PrintingHandler.showMukJjiPpaOptions(playTurn: playerTurn)
+        
+        
 
-        PrintingHandler.showOptions()
+        PrintingHandler.showRockPaperScissorsOptions()
         
         let userOption2 = user.chooseOption()
         let computerOption2 = computer.chooseOption()
