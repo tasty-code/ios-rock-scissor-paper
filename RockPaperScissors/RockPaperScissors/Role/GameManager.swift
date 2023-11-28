@@ -10,7 +10,7 @@ struct GameManager {
         
         ///가위 바위 보
         PrintingHandler.showOptions()
-        
+
         let userOption = user.chooseOption()
         let computerOption = computer.chooseOption()
         
@@ -20,7 +20,7 @@ struct GameManager {
                 endGame() : PrintingHandler.notifyInvalidOption()
             return
         }
-        
+
         let gameOutcome = referee.determineGameOutcome(between: userChoice, and: computerChoice)
         
         PrintingHandler.notifyOutcome(of: gameOutcome)
@@ -63,7 +63,7 @@ struct GameManager {
         }
         
     }
-    
+
     private func getRockPaperScissors(from option: Option) -> RockPaperScissors? {
         switch option {
         case .valid(let choice):
