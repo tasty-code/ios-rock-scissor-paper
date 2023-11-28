@@ -1,15 +1,14 @@
-
 import Foundation
 
-struct InputHandler {
-    private static let termination = 0
+enum InputHandler {
+    private static let exit = 0
     
     static func receiveInput() -> InputResult {
         guard let input = readLine(), let selectedNumber = Int(input) else {
             return .invalid
         }
         
-        if selectedNumber == termination {
+        if selectedNumber == exit {
             return .exit
         }
         

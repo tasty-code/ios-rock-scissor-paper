@@ -1,7 +1,6 @@
-
 import Foundation
 
-struct PrintingHandler {
+enum PrintingHandler {
     private enum Message: CustomStringConvertible {
         case options
         case gameOver

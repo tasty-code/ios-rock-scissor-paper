@@ -2,8 +2,8 @@ import Foundation
 
 struct GameManager {
     public private(set) var canRun: Bool = true
-    private var user = User()
-    private var computer = Computer()
+    private var user: Player = User()
+    private var computer: Player = Computer()
     private var referee = Referee()
     
     public mutating func playGame() {
