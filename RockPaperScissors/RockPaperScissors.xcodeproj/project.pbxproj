@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		158C13522B148BBE005A2D75 /* PrintNameSpace.swift in Sources */ = {isa = PBXBuildFile; fileRef = 158C13512B148BBE005A2D75 /* PrintNameSpace.swift */; };
+		15A3D3422B158903002E04F2 /* MukchippaLogic.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15A3D3412B158903002E04F2 /* MukchippaLogic.swift */; };
 		15FFECB52B0F552000B2FA0E /* RockScissorsPaperCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15FFECB42B0F552000B2FA0E /* RockScissorsPaperCase.swift */; };
 		15FFECB72B0F562B00B2FA0E /* RockScissorsPaperLogic.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15FFECB62B0F562B00B2FA0E /* RockScissorsPaperLogic.swift */; };
 		15FFECB92B0F574C00B2FA0E /* Display.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15FFECB82B0F574C00B2FA0E /* Display.swift */; };
@@ -28,6 +29,7 @@
 
 /* Begin PBXFileReference section */
 		158C13512B148BBE005A2D75 /* PrintNameSpace.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PrintNameSpace.swift; sourceTree = "<group>"; };
+		15A3D3412B158903002E04F2 /* MukchippaLogic.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MukchippaLogic.swift; sourceTree = "<group>"; };
 		15FFECB42B0F552000B2FA0E /* RockScissorsPaperCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RockScissorsPaperCase.swift; sourceTree = "<group>"; };
 		15FFECB62B0F562B00B2FA0E /* RockScissorsPaperLogic.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RockScissorsPaperLogic.swift; sourceTree = "<group>"; };
 		15FFECB82B0F574C00B2FA0E /* Display.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Display.swift; sourceTree = "<group>"; };
@@ -78,6 +80,7 @@
 				C7ABA0E0254EA63000B2367D /* main.swift */,
 				15FFECB62B0F562B00B2FA0E /* RockScissorsPaperLogic.swift */,
 				15FFECB82B0F574C00B2FA0E /* Display.swift */,
+				15A3D3412B158903002E04F2 /* MukchippaLogic.swift */,
 			);
 			path = RockPaperScissors;
 			sourceTree = "<group>";
@@ -144,6 +147,7 @@
 				158C13522B148BBE005A2D75 /* PrintNameSpace.swift in Sources */,
 				15FFECB92B0F574C00B2FA0E /* Display.swift in Sources */,
 				15FFECB72B0F562B00B2FA0E /* RockScissorsPaperLogic.swift in Sources */,
+				15A3D3422B158903002E04F2 /* MukchippaLogic.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
