@@ -2,7 +2,11 @@
 //  Game.swift
 //  RockPaperScissors
 //
-//  Created by 강창현 on 11/28/23.
+//  Created by mireu & kyle.
 //
 
-import Foundation
+protocol Game {
+    var turn: Turn { get }
+    mutating func play()
+    mutating func continueGame() -> Bool
+}
