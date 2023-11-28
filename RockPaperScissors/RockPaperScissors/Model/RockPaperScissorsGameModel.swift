@@ -5,14 +5,6 @@
 //  Created by Minho on 11/28/23.
 //
 
-enum RockPaperScissor: Int {
-    case rpsGameOver = 0,
-         scissor = 1,
-         rock = 2,
-         paper = 3,
-         noChoice = 4
-}
-
 class RockPaperScissorsGameModel {
     /*
         이 모델은 가위바위보 게임과 관련된 로직을 정의하고,

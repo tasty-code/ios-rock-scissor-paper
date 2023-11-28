@@ -15,6 +15,7 @@
 		FA1EC5E52B15AF66007C1630 /* MukJjiPpaGameModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA1EC5E42B15AF66007C1630 /* MukJjiPpaGameModel.swift */; };
 		FA1F38ED2B15C156003D85D3 /* MenuMessage.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA1F38EC2B15C156003D85D3 /* MenuMessage.swift */; };
 		FA1F38EF2B15C77F003D85D3 /* GameResult.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA1F38EE2B15C77F003D85D3 /* GameResult.swift */; };
+		FA1F38F42B15DA98003D85D3 /* RockPaperScissor.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA1F38F32B15DA98003D85D3 /* RockPaperScissor.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -39,6 +40,7 @@
 		FA1EC5E42B15AF66007C1630 /* MukJjiPpaGameModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MukJjiPpaGameModel.swift; sourceTree = "<group>"; };
 		FA1F38EC2B15C156003D85D3 /* MenuMessage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MenuMessage.swift; sourceTree = "<group>"; };
 		FA1F38EE2B15C77F003D85D3 /* GameResult.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameResult.swift; sourceTree = "<group>"; };
+		FA1F38F32B15DA98003D85D3 /* RockPaperScissor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RockPaperScissor.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -103,6 +105,7 @@
 				FA1EC5E22B15AEAA007C1630 /* GameState.swift */,
 				FA1F38EC2B15C156003D85D3 /* MenuMessage.swift */,
 				FA1F38EE2B15C77F003D85D3 /* GameResult.swift */,
+				FA1F38F32B15DA98003D85D3 /* RockPaperScissor.swift */,
 			);
 			path = NameSpace;
 			sourceTree = "<group>";
@@ -167,6 +170,7 @@
 				FA1EC5DE2B15A895007C1630 /* PlayerModel.swift in Sources */,
 				FA1EC5E12B15AC9C007C1630 /* GameController.swift in Sources */,
 				FA1EC5E32B15AEAA007C1630 /* GameState.swift in Sources */,
+				FA1F38F42B15DA98003D85D3 /* RockPaperScissor.swift in Sources */,
 				FA1F38ED2B15C156003D85D3 /* MenuMessage.swift in Sources */,
 				FA1F38EF2B15C77F003D85D3 /* GameResult.swift in Sources */,
 				FA1EC5DC2B15A7C4007C1630 /* RockPaperScissorsGameModel.swift in Sources */,
