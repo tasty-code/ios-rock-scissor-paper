@@ -52,7 +52,7 @@ final class AdvancedRockPaperScissorsManager: Playable {
         case .win:
             print("\(turn.rawValue)의 승리!")
         case .lose:
-            let winner = turn == .user ? "컴퓨터" : "사용자"
+            let winner = turn == .user ? "사용자": "컴퓨터"
             print("\(winner)의 승리!")
         case .draw:
             print("\(turn.rawValue)의 턴입니다.")
