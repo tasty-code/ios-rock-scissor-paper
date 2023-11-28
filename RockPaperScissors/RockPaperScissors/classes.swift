@@ -17,8 +17,7 @@ class InGameMessage {
         "evaluation,Optional(RockPaperScissors.GameType.rockScissorPaper),Optional(RockPaperScissors.GameResult.win)" : { _ in "이겼습니다!" },
         "evaluation,Optional(RockPaperScissors.GameType.rockScissorPaper),Optional(RockPaperScissors.GameResult.draw)" : { _ in "비겼습니다!" },
         "evaluation,Optional(RockPaperScissors.GameType.rockScissorPaper),Optional(RockPaperScissors.GameResult.lose)" : { _ in "졌습니다!" },
-        "evaluation,Optional(RockPaperScissors.GameType.mookJjiBba),Optional(RockPaperScissors.GameResult.draw" : { playerName in "\(playerName)의 턴입니다." },
-        "evaluation,Optional(RockPaperScissors.GameType.mookJjiBba),Optional(RockPaperScissors.GameResult.win" : { playerName in "\(playerName)의 승리!" },
+        "evaluation,Optional(RockPaperScissors.GameType.mookJjiBba),Optional(RockPaperScissors.GameResult.draw)" : { playerName in "\(playerName)의 턴입니다." },
         
         "falseInput,nil,nil" : { _ in "잘못된 입력입니다. 다시 시도해주세요." },
         "completed,nil,nil" : { playerName in "\(playerName)의 승리!" }
@@ -28,7 +27,13 @@ class InGameMessage {
         
         let keyName = "\(gameStatus),\(String(describing: gameType)),\(String(describing: gameResult))"
 
-        if let closure = self.inGameMessage[keyName] {
+        guard let closure = self.inGameMessage[keyName] else {
+            return
+        }
+        
+        if gameStatus == .ready {
+            print(closure(playerName), terminator: "")
+        } else {
             print(closure(playerName))
         }
     }
