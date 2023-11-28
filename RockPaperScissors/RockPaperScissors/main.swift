@@ -20,9 +20,9 @@ class Player {
 
 enum RockPaperScissor: Int {
     case rpsGameOver = 0,
-         rock = 1,
-         paper = 2,
-         scissor = 3,
+         scissor = 1,
+         rock = 2,
+         paper = 3,
          noChoice = 4
 }
 
@@ -32,23 +32,23 @@ enum GameState: Int {
          mjbGame = 2
 }
 
-func convertInputToRockPaperScissor(_ input: Int) -> RockPaperScissor {
+func convertInputToRockPaperScissor(_ input: Int, _ gameState: GameState) -> RockPaperScissor {
     switch input {
     case 0:
         return .rpsGameOver
     case 1:
-        return .rock
+        return gameState == .rpsGame ? .scissor : .rock
     case 2:
-        return .paper
+        return gameState == .rpsGame ? .rock : .scissor
     case 3:
-        return .scissor
+        return .paper
     default:
         return .noChoice
     }
 }
 
 enum RpsGameResult: CustomStringConvertible {
-    case win, draw, lose
+    case win, draw, lose, rematch
     
     var description: String {
         switch self {
@@ -58,6 +58,8 @@ enum RpsGameResult: CustomStringConvertible {
             return "비겼습니다!"
         case .lose:
             return "졌습니다!"
+        case .rematch:
+            return "다시 고르세요"
         }
     }
 }
@@ -77,7 +79,7 @@ enum MenuMessage: CustomStringConvertible {
 
 func readInput() -> RockPaperScissor {
     if let input = Int(readLine() ?? "") {
-        return convertInputToRockPaperScissor(input)
+        return convertInputToRockPaperScissor(input, gameState)
     } else {
         return .noChoice
     }
@@ -99,6 +101,28 @@ func rpsGame(user: Player, opponent: Player) -> GameState {
     }
 }
 
+func mjbGame(user: Player, opponent: Player) -> GameState {
+    switch user.input {
+    case .rpsGameOver:
+        return .gameOver
+    case .rock, .scissor, .paper:
+        let mjbResult: RpsGameResult = decideMjbGameResult(user: user, opponent: opponent)
+        if mjbResult == RpsGameResult.win || mjbResult == RpsGameResult.lose {
+            print(mjbResult)
+            return .gameOver
+        } else {
+            return .mjbGame
+//            print(mjbResult)
+//            printMenuMessage(user: user, opponent: opponent)
+//            user.input = readInput()
+//            opponent.input = makeRandomRockScissorPaperInput()
+        }
+    default:
+        print("잘못된 입력입니다. 다시 시도해주세요.")
+        return .mjbGame
+    }
+}
+    
 func changeTurn(user: Player, opponent: Player, userGameResult: RpsGameResult) {
     switch userGameResult {
     case .win:
@@ -126,9 +150,18 @@ func decideRpsGameResult(userInput: RockPaperScissor, opponentInput: RockPaperSc
     }
 }
 
+func decideMjbGameResult(user: Player, opponent: Player) -> RpsGameResult {
+    if user.input == opponent.input {
+        return user.isMyTurn ? .win : .lose
+    } else {
+        changeTurn(user: user, opponent: opponent, userGameResult: decideRpsGameResult(userInput: user.input, opponentInput: opponent.input))
+        return .rematch
+    }
+}
+
 func makeRandomRockScissorPaperInput() -> RockPaperScissor {
     let randomInput = Int.random(in: 1...3)
-    return convertInputToRockPaperScissor(randomInput)
+    return convertInputToRockPaperScissor(randomInput, gameState)
 }
 
 func printMenuMessage(user: Player, opponent: Player) {
@@ -146,17 +179,17 @@ func printMenuMessage(user: Player, opponent: Player) {
 let cpuPlayer: Player = Player(input: .noChoice)
 let userPlayer: Player = Player(input: .noChoice)
 
-repeat {
+while gameState != .gameOver {
     printMenuMessage(user: userPlayer, opponent: cpuPlayer)
     cpuPlayer.input = makeRandomRockScissorPaperInput() // MARK: make라는 접두어 다른걸로 바꾸기. fatory method 혼동우려
     userPlayer.input = readInput()
-    
+    print("사용자의 선택 : \(userPlayer.input), 컴퓨터의 선택 : \(cpuPlayer.input)") // MARK: 나중에 지울 debug 문장
     switch gameState {
     case .gameOver:
         run = false
     case .rpsGame:
         gameState = rpsGame(user: userPlayer, opponent: cpuPlayer)
     case .mjbGame:
-        print("묵찌빠 게임")
+        gameState = mjbGame(user: userPlayer, opponent: cpuPlayer)
     }
-} while (run)
+}
