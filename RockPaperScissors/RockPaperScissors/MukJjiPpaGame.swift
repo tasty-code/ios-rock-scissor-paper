@@ -9,6 +9,11 @@ struct MukJjiPpaGame: Game {
     var turn: Turn
     var rockScissorPaperGame: RockScissorPaperGame
     
+    init(turn: Turn, rockScissorPaperGame: RockScissorPaperGame) {
+        self.turn = turn
+        self.rockScissorPaperGame = rockScissorPaperGame
+    }
+    
     mutating func play() {
         rockScissorPaperGame.play()
         turn = rockScissorPaperGame.turn
