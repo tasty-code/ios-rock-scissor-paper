@@ -13,6 +13,7 @@
 		BD368D682B0CA35B00CA5AA4 /* Message.swift in Sources */ = {isa = PBXBuildFile; fileRef = BD368D672B0CA35B00CA5AA4 /* Message.swift */; };
 		BD368D862B0D88CA00CA5AA4 /* Match.swift in Sources */ = {isa = PBXBuildFile; fileRef = BD368D852B0D88CA00CA5AA4 /* Match.swift */; };
 		C1CA5CA62B0EE42000EE372C /* RockPaperScissors.swift in Sources */ = {isa = PBXBuildFile; fileRef = C1CA5CA52B0EE42000EE372C /* RockPaperScissors.swift */; };
+		C1EA17B52B1575D000F1EF96 /* RockPaperScissorsModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C1EA17B42B1575D000F1EF96 /* RockPaperScissorsModel.swift */; };
 		C7ABA0E1254EA63000B2367D /* main.swift in Sources */ = {isa = PBXBuildFile; fileRef = C7ABA0E0254EA63000B2367D /* main.swift */; };
 /* End PBXBuildFile section */
 
@@ -35,6 +36,7 @@
 		BD368D672B0CA35B00CA5AA4 /* Message.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Message.swift; sourceTree = "<group>"; };
 		BD368D852B0D88CA00CA5AA4 /* Match.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Match.swift; sourceTree = "<group>"; };
 		C1CA5CA52B0EE42000EE372C /* RockPaperScissors.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RockPaperScissors.swift; sourceTree = "<group>"; };
+		C1EA17B42B1575D000F1EF96 /* RockPaperScissorsModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RockPaperScissorsModel.swift; sourceTree = "<group>"; };
 		C7ABA0DD254EA63000B2367D /* RockPaperScissors */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = RockPaperScissors; sourceTree = BUILT_PRODUCTS_DIR; };
 		C7ABA0E0254EA63000B2367D /* main.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = main.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -76,6 +78,7 @@
 				BD368D852B0D88CA00CA5AA4 /* Match.swift */,
 				BD3124782B15728E00D5D178 /* Player.swift */,
 				BD31247A2B1572F700D5D178 /* PlayerType.swift */,
+				C1EA17B42B1575D000F1EF96 /* RockPaperScissorsModel.swift */,
 			);
 			path = RockPaperScissors;
 			sourceTree = "<group>";
@@ -137,6 +140,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				C1EA17B52B1575D000F1EF96 /* RockPaperScissorsModel.swift in Sources */,
 				BD368D682B0CA35B00CA5AA4 /* Message.swift in Sources */,
 				C7ABA0E1254EA63000B2367D /* main.swift in Sources */,
 				BD368D662B0C42DA00CA5AA4 /* RockPaperScissorsGame.swift in Sources */,
