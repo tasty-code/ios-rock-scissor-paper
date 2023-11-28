@@ -32,16 +32,15 @@ final class AdvancedRockPaperScissorsManager: Playable {
     func judgeGame(user: RockPaperScissorsType,
                    computer: RockPaperScissorsType?,
                    turn: PlayerType) -> UserGuideMessage {
+        if user == .none {
+            return .exit
+        }
+        
         if user != computer {
             return .draw
         }
         
-        switch user {
-        case .none:
-            return .exit
-        default:
-            return turn == .user ? .win : .lose
-        }
+        return turn == .user ? .win : .lose
     }
     
     func showMessage(_ messageType: UserGuideMessage, _ turn: PlayerType) {
