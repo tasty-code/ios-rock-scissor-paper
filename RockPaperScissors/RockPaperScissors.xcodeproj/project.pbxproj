@@ -10,13 +10,15 @@
 		C7ABA0E1254EA63000B2367D /* main.swift in Sources */ = {isa = PBXBuildFile; fileRef = C7ABA0E0254EA63000B2367D /* main.swift */; };
 		F47327D22B1589E3000849B1 /* IO.swift in Sources */ = {isa = PBXBuildFile; fileRef = F47327D12B1589E3000849B1 /* IO.swift */; };
 		F47327D42B1589F1000849B1 /* Hand.swift in Sources */ = {isa = PBXBuildFile; fileRef = F47327D32B1589F1000849B1 /* Hand.swift */; };
-		F47327D62B158A00000849B1 /* HandGameResult.swift in Sources */ = {isa = PBXBuildFile; fileRef = F47327D52B158A00000849B1 /* HandGameResult.swift */; };
-		F47327D82B158A0D000849B1 /* HandGameRound.swift in Sources */ = {isa = PBXBuildFile; fileRef = F47327D72B158A0D000849B1 /* HandGameRound.swift */; };
-		F47327DA2B158A1C000849B1 /* PlayerType.swift in Sources */ = {isa = PBXBuildFile; fileRef = F47327D92B158A1C000849B1 /* PlayerType.swift */; };
-		F47327DC2B158A28000849B1 /* RPSGame.swift in Sources */ = {isa = PBXBuildFile; fileRef = F47327DB2B158A28000849B1 /* RPSGame.swift */; };
-		F47327DE2B158A3A000849B1 /* MJBGame.swift in Sources */ = {isa = PBXBuildFile; fileRef = F47327DD2B158A3A000849B1 /* MJBGame.swift */; };
 		F47327E02B158A49000849B1 /* RPSError.swift in Sources */ = {isa = PBXBuildFile; fileRef = F47327DF2B158A49000849B1 /* RPSError.swift */; };
 		F47327E22B158A5E000849B1 /* RPSApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = F47327E12B158A5E000849B1 /* RPSApp.swift */; };
+		F47327E42B15C4F9000849B1 /* Playable.swift in Sources */ = {isa = PBXBuildFile; fileRef = F47327E32B15C4F9000849B1 /* Playable.swift */; };
+		F47327E62B15C7B8000849B1 /* RPSIteration.swift in Sources */ = {isa = PBXBuildFile; fileRef = F47327E52B15C7B8000849B1 /* RPSIteration.swift */; };
+		F47327EA2B16066C000849B1 /* PlayerDecision.swift in Sources */ = {isa = PBXBuildFile; fileRef = F47327E92B16066C000849B1 /* PlayerDecision.swift */; };
+		F47327EC2B160687000849B1 /* Gesture.swift in Sources */ = {isa = PBXBuildFile; fileRef = F47327EB2B160687000849B1 /* Gesture.swift */; };
+		F47327EE2B1606C4000849B1 /* GameResultPrintable.swift in Sources */ = {isa = PBXBuildFile; fileRef = F47327ED2B1606C4000849B1 /* GameResultPrintable.swift */; };
+		F47327F22B160737000849B1 /* UserPlayer.swift in Sources */ = {isa = PBXBuildFile; fileRef = F47327F12B160737000849B1 /* UserPlayer.swift */; };
+		F47327F42B160749000849B1 /* ComputerPlayer.swift in Sources */ = {isa = PBXBuildFile; fileRef = F47327F32B160749000849B1 /* ComputerPlayer.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -36,13 +38,15 @@
 		C7ABA0E0254EA63000B2367D /* main.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = main.swift; sourceTree = "<group>"; };
 		F47327D12B1589E3000849B1 /* IO.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IO.swift; sourceTree = "<group>"; };
 		F47327D32B1589F1000849B1 /* Hand.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Hand.swift; sourceTree = "<group>"; };
-		F47327D52B158A00000849B1 /* HandGameResult.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HandGameResult.swift; sourceTree = "<group>"; };
-		F47327D72B158A0D000849B1 /* HandGameRound.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HandGameRound.swift; sourceTree = "<group>"; };
-		F47327D92B158A1C000849B1 /* PlayerType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlayerType.swift; sourceTree = "<group>"; };
-		F47327DB2B158A28000849B1 /* RPSGame.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RPSGame.swift; sourceTree = "<group>"; };
-		F47327DD2B158A3A000849B1 /* MJBGame.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MJBGame.swift; sourceTree = "<group>"; };
 		F47327DF2B158A49000849B1 /* RPSError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RPSError.swift; sourceTree = "<group>"; };
 		F47327E12B158A5E000849B1 /* RPSApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RPSApp.swift; sourceTree = "<group>"; };
+		F47327E32B15C4F9000849B1 /* Playable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Playable.swift; sourceTree = "<group>"; };
+		F47327E52B15C7B8000849B1 /* RPSIteration.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RPSIteration.swift; sourceTree = "<group>"; };
+		F47327E92B16066C000849B1 /* PlayerDecision.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlayerDecision.swift; sourceTree = "<group>"; };
+		F47327EB2B160687000849B1 /* Gesture.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Gesture.swift; sourceTree = "<group>"; };
+		F47327ED2B1606C4000849B1 /* GameResultPrintable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameResultPrintable.swift; sourceTree = "<group>"; };
+		F47327F12B160737000849B1 /* UserPlayer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserPlayer.swift; sourceTree = "<group>"; };
+		F47327F32B160749000849B1 /* ComputerPlayer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ComputerPlayer.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -78,12 +82,14 @@
 				C7ABA0E0254EA63000B2367D /* main.swift */,
 				F47327E12B158A5E000849B1 /* RPSApp.swift */,
 				F47327D12B1589E3000849B1 /* IO.swift */,
+				F47327E32B15C4F9000849B1 /* Playable.swift */,
+				F47327ED2B1606C4000849B1 /* GameResultPrintable.swift */,
+				F47327F12B160737000849B1 /* UserPlayer.swift */,
+				F47327F32B160749000849B1 /* ComputerPlayer.swift */,
 				F47327D32B1589F1000849B1 /* Hand.swift */,
-				F47327D52B158A00000849B1 /* HandGameResult.swift */,
-				F47327D72B158A0D000849B1 /* HandGameRound.swift */,
-				F47327DB2B158A28000849B1 /* RPSGame.swift */,
-				F47327DD2B158A3A000849B1 /* MJBGame.swift */,
-				F47327D92B158A1C000849B1 /* PlayerType.swift */,
+				F47327EB2B160687000849B1 /* Gesture.swift */,
+				F47327E92B16066C000849B1 /* PlayerDecision.swift */,
+				F47327E52B15C7B8000849B1 /* RPSIteration.swift */,
 				F47327DF2B158A49000849B1 /* RPSError.swift */,
 			);
 			path = RockPaperScissors;
@@ -146,16 +152,18 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				F47327EE2B1606C4000849B1 /* GameResultPrintable.swift in Sources */,
+				F47327E42B15C4F9000849B1 /* Playable.swift in Sources */,
 				C7ABA0E1254EA63000B2367D /* main.swift in Sources */,
-				F47327DC2B158A28000849B1 /* RPSGame.swift in Sources */,
+				F47327F22B160737000849B1 /* UserPlayer.swift in Sources */,
+				F47327EA2B16066C000849B1 /* PlayerDecision.swift in Sources */,
+				F47327EC2B160687000849B1 /* Gesture.swift in Sources */,
+				F47327E62B15C7B8000849B1 /* RPSIteration.swift in Sources */,
 				F47327D22B1589E3000849B1 /* IO.swift in Sources */,
-				F47327DE2B158A3A000849B1 /* MJBGame.swift in Sources */,
-				F47327D82B158A0D000849B1 /* HandGameRound.swift in Sources */,
 				F47327D42B1589F1000849B1 /* Hand.swift in Sources */,
-				F47327DA2B158A1C000849B1 /* PlayerType.swift in Sources */,
 				F47327E22B158A5E000849B1 /* RPSApp.swift in Sources */,
-				F47327D62B158A00000849B1 /* HandGameResult.swift in Sources */,
 				F47327E02B158A49000849B1 /* RPSError.swift in Sources */,
+				F47327F42B160749000849B1 /* ComputerPlayer.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

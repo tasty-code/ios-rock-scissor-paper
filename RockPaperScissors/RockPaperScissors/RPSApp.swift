@@ -7,20 +7,26 @@
 
 import Foundation
 
+typealias HandGameDuo = (Playable, Playable)
+
 struct RPSApp {
     private let io: IO
     
-    init(io: IO) {
+    private let (leftPlayer, rightPlayer): HandGameDuo
+    
+    init(io: IO, playerDuo: HandGameDuo) {
         self.io = io
+        (self.leftPlayer, self.rightPlayer) = playerDuo
     }
     
     func run() {
         do {
-            let turn = try RPSGame(io: self.io).play()
-            var mjbGame = MJBGame(io: self.io, turn: turn)
-            try mjbGame.play()
-        } catch RPSError.userWantsToExit {
-            io.printOutput("게임 종료")
-        } catch { return }
+            let game = RPSIteration(between: leftPlayer, and: rightPlayer)
+            let rspGameWinner = try game.start()
+        } catch {
+            if let rpsError = error as? RPSError {
+                io.printRPSError(rpsError)
+            }
+        }
     }
 }
