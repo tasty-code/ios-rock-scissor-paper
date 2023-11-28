@@ -60,15 +60,6 @@ enum RpsGameResult: CustomStringConvertible {
             return "졌습니다!"
         }
     }
-    
-    func decideGameOver() -> Bool {
-        switch self {
-        case .win, .lose:
-            return false
-        case .draw:
-            return true
-        }
-    }
 }
 
 enum MenuMessage: CustomStringConvertible {
