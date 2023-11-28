@@ -1,4 +1,3 @@
-
 import Foundation
 
 enum RockPaperScissors: Int, CaseIterable {
