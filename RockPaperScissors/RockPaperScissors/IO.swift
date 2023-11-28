@@ -10,7 +10,7 @@ import Foundation
 protocol IO {
     func getInput() throws -> String
     func printPrompt(_ prompt: String)
-    func printOutPut(_ output: String)
+    func printOutput(_ output: String)
 }
 
 class ConsoleManager: IO {
@@ -25,7 +25,7 @@ class ConsoleManager: IO {
         print(prompt, terminator: "")
     }
     
-    func printOutPut(_ output: String) {
+    func printOutput(_ output: String) {
         print(output)
     }
 }

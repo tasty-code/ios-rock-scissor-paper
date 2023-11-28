@@ -38,20 +38,19 @@ class MJBGame {
                 let userSideResult = HandGameRound(userHand: userHand).getUserSideResult()
                 switch userSideResult {
                 case .draw:
-                    io.printOutPut("\(self.turn)의 승리!")
+                    io.printOutput("\(self.turn)의 승리!")
                     return
                 case .win:
                     self.turn = .user
-                    continue
                 case .lose:
                     self.turn = .computer
-                    continue
                 }
-                io.printOutPut("\(self.turn)의 턴입니다.")
+                io.printOutput("\(self.turn)의 턴입니다.")
+                continue
             } catch {
                 switch error {
                 case RPSError.invalidInput:
-                    io.printOutPut("잘못된 입력입니다. 다시 시도해주세요.")
+                    io.printOutput("잘못된 입력입니다. 다시 시도해주세요.")
                     continue
                 default:
                     throw error

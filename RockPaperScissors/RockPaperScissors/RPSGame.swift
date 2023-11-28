@@ -46,7 +46,7 @@ struct RPSGame {
             } catch {
                 switch error {
                 case RPSError.invalidInput:
-                    io.printOutPut("잘못된 입력입니다. 다시 시도해주세요.")
+                    io.printOutput("잘못된 입력입니다. 다시 시도해주세요.")
                     continue
                 default:
                     throw error

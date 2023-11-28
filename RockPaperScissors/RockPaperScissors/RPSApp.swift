@@ -23,7 +23,7 @@ final class RPSApp {
         } catch {
             switch error {
             case RPSError.userWantsToExit:
-                io.printOutPut("게임 종료")
+                io.printOutput("게임 종료")
             default:
                 return
             }
