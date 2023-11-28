@@ -13,13 +13,15 @@ class InGameMessage {
     private var inGameMessage: [String : (String) -> String] = [
         "ready,Optional(RockPaperScissors.GameType.rockScissorPaper),nil" : { _ in "가위(1), 바위(2), 보(3)! <종료 : 0> : " },
         "ready,Optional(RockPaperScissors.GameType.mookJjiBba),nil" : { playerName in "[\(playerName) 턴] 묵(1), 찌(2), 빠(3)! <종료 : 0> : " },
+        
         "evaluation,Optional(RockPaperScissors.GameType.rockScissorPaper),Optional(RockPaperScissors.GameResult.win)" : { _ in "이겼습니다!" },
         "evaluation,Optional(RockPaperScissors.GameType.rockScissorPaper),Optional(RockPaperScissors.GameResult.draw)" : { _ in "비겼습니다!" },
         "evaluation,Optional(RockPaperScissors.GameType.rockScissorPaper),Optional(RockPaperScissors.GameResult.lose)" : { _ in "졌습니다!" },
         "evaluation,Optional(RockPaperScissors.GameType.mookJjiBba),Optional(RockPaperScissors.GameResult.draw" : { playerName in "\(playerName)의 턴입니다." },
         "evaluation,Optional(RockPaperScissors.GameType.mookJjiBba),Optional(RockPaperScissors.GameResult.win" : { playerName in "\(playerName)의 승리!" },
+        
         "falseInput,nil,nil" : { _ in "잘못된 입력입니다. 다시 시도해주세요." },
-        "completed,nil,nil" : { _ in "게임 종료" }
+        "completed,nil,nil" : { playerName in "\(playerName)의 승리!" }
     ]
     
     func printMessage( gameStatus: GameStatus, gameType: GameType? = nil, gameResult: GameResult? = nil, playerName: String = "" ) {
@@ -102,7 +104,7 @@ class GameMaster {
         if self.turn.getName() == "사용자" {
             self.inGameMessage.printMessage(gameStatus: .evaluation, gameType: .rockScissorPaper, gameResult: .win)
         } else {
-            self.inGameMessage.printMessage(gameStatus: .evaluation, gameType: .rockScissorPaper, gameResult: .win)
+            self.inGameMessage.printMessage(gameStatus: .evaluation, gameType: .rockScissorPaper, gameResult: .lose)
         }
         self.gameType = .mookJjiBba
     }
@@ -121,7 +123,7 @@ class GameMaster {
         case .paper:
             self.turn = computer.getMookJjiBba() == .rock ? user : computer
         }
-        self.inGameMessage.printMessage(gameStatus: .evaluation, gameType: .mookJjiBba, gameResult: .draw)
+        self.inGameMessage.printMessage(gameStatus: .evaluation, gameType: .mookJjiBba, gameResult: .draw, playerName: self.turn.getName())
         return .draw
     }
     
@@ -158,6 +160,6 @@ class GameMaster {
             }
         } while userInput != "0"
         
-        self.inGameMessage.printMessage(gameStatus: .completed)
+        self.inGameMessage.printMessage(gameStatus: .completed, playerName: self.turn.getName())
     }
 }
