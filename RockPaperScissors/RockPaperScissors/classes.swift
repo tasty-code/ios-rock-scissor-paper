@@ -41,6 +41,7 @@ class GameMaster {
     private var user: Player
     private var computer: Player
     private var turn: Player
+    private var inGameMessage = InGameMessage.shared
     
     init(gameType: GameType, user: Player, computer: Player, turn: Player) {
         self.gameType = gameType
@@ -85,7 +86,7 @@ class GameMaster {
     
     func evaluateRockScissorPaper() {
         if self.user.getRockScissorPaper() == self.computer.getRockScissorPaper() {
-            print(GameResult.draw.rawValue)
+            self.inGameMessage.printMessage(gameStatus: .evaluation, gameType: .rockScissorPaper, gameResult: .draw)
             return
         }
         
@@ -99,16 +100,16 @@ class GameMaster {
         }
         
         if self.turn.getName() == "사용자" {
-            print(GameResult.win.rawValue)
+            self.inGameMessage.printMessage(gameStatus: .evaluation, gameType: .rockScissorPaper, gameResult: .win)
         } else {
-            print(GameResult.lose.rawValue)
+            self.inGameMessage.printMessage(gameStatus: .evaluation, gameType: .rockScissorPaper, gameResult: .win)
         }
         self.gameType = .mookJjiBba
     }
 
     func evaluateMookJjiBba() -> GameResult {
         if self.user.getMookJjiBba() == self.computer.getMookJjiBba() {
-            print("\(self.getTurn().getName())의 승리!")
+            self.inGameMessage.printMessage(gameStatus: .evaluation, gameType: .mookJjiBba, gameResult: .win)
             return .win
         }
         
@@ -120,7 +121,7 @@ class GameMaster {
         case .paper:
             self.turn = computer.getMookJjiBba() == .rock ? user : computer
         }
-        print("\(self.getTurn().getName())의 턴입니다.")
+        self.inGameMessage.printMessage(gameStatus: .evaluation, gameType: .mookJjiBba, gameResult: .draw)
         return .draw
     }
     
@@ -128,7 +129,7 @@ class GameMaster {
         var userInput: String?
         
         gameLoop : repeat {
-            print(gameType.message(gameType: self.getGameType(), turn: self.getTurn()), terminator: "")
+            self.inGameMessage.printMessage(gameStatus: .ready, gameType: self.gameType, playerName: self.turn.getName())
             userInput = readLine()
             
             switch userInput {
@@ -153,10 +154,10 @@ class GameMaster {
                 }
             default :
                 self.setTurn(to: computer)
-                print("잘못된 입력입니다. 다시 시도해주세요.")
+                self.inGameMessage.printMessage(gameStatus: .falseInput)
             }
         } while userInput != "0"
         
-        print("게임 종료")
+        self.inGameMessage.printMessage(gameStatus: .completed)
     }
 }
