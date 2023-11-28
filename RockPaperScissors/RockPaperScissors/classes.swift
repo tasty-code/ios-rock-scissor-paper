@@ -128,7 +128,7 @@ class GameMaster {
         var userInput: String?
         
         gameLoop : repeat {
-            print(gameType.message(gameType: gameMaster.getGameType(), turn: gameMaster.getTurn()), terminator: "")
+            print(gameType.message(gameType: self.getGameType(), turn: self.getTurn()), terminator: "")
             userInput = readLine()
             
             switch userInput {
@@ -139,20 +139,20 @@ class GameMaster {
                     break
                 }
                 
-                switch gameMaster.getGameType() {
+                switch self.getGameType() {
                 case .rockScissorPaper:
-                    gameMaster.playRockScissorPaper(userInput: intUserInput)
-                    gameMaster.evaluateRockScissorPaper()
+                    self.playRockScissorPaper(userInput: intUserInput)
+                    self.evaluateRockScissorPaper()
                 
                 case .mookJjiBba:
-                    gameMaster.playMookJjiBba(userInput: intUserInput)
-                    let result = gameMaster.evaluateMookJjiBba()
+                    self.playMookJjiBba(userInput: intUserInput)
+                    let result = self.evaluateMookJjiBba()
                     if result == .win {
                         break gameLoop
                     }
                 }
             default :
-                gameMaster.setTurn(to: computer)
+                self.setTurn(to: computer)
                 print("잘못된 입력입니다. 다시 시도해주세요.")
             }
         } while userInput != "0"
