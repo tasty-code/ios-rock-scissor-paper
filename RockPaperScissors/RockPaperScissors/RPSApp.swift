@@ -19,13 +19,8 @@ final class RPSApp {
             let turn = try RPSGame(io: self.io).play()
             var mjbGame = MJBGame(io: self.io, turn: turn)
             try mjbGame.play()
-        } catch {
-            switch error {
-            case RPSError.userWantsToExit:
-                io.printOutput("게임 종료")
-            default:
-                return
-            }
-        }
+        } catch RPSError.userWantsToExit {
+            io.printOutput("게임 종료")
+        } catch { return }
     }
 }

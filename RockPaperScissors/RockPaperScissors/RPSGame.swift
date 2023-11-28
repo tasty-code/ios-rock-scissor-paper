@@ -43,15 +43,10 @@ struct RPSGame {
                     print("졌습니다!")
                     return .computer
                 }
-            } catch {
-                switch error {
-                case RPSError.invalidInput:
-                    io.printOutput("잘못된 입력입니다. 다시 시도해주세요.")
-                    continue
-                default:
-                    throw error
-                }
-            }
+            } catch RPSError.invalidInput {
+                io.printOutput("잘못된 입력입니다. 다시 시도해주세요.")
+                continue
+            } catch { throw error }
         }
     }
 }
