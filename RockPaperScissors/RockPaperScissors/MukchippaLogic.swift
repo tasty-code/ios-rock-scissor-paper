@@ -12,17 +12,15 @@ var turnStatus = true
 let computerTurn = false
 let userTurn = true
 
-func compareMukchippa(userChoice: RockScissorsPaperCase, computerChoice: RockScissorsPaperCase) {
-    switch (userChoice, computerChoice) {
+func compareMukchippa(userInputNumber: RockScissorsPaperCase, computerInputNumber: RockScissorsPaperCase) {
+    switch (userInputNumber, computerInputNumber) {
     case (.scissors, .scissors), (.rock, .rock), (.paper, .paper):
-        print("비김")
         printWinMessage()
+        isWorkingRockScissorsPaper = false
     case (.scissors, .paper), (.rock, .scissors), (.paper, .rock):
-        print("사용자가 이김")
         turnStatus = userTurn
         displayMukchippaMenu()
     case (.paper, .scissors), (.scissors, .rock), (.rock, .paper):
-        print("컴퓨터가 이김")
         turnStatus = computerTurn
         displayMukchippaMenu()
     }

@@ -30,20 +30,27 @@ private func userInputReadLine() {
         guard userInputNum != 0 else {
             return print(EndGameMessages.endMessage)
         }
-        compareRockScissorsPaper(userInputNumber: RockScissorsPaperCase(rawValue:userInputNum)!, computerInputNumber: RockScissorsPaperCase(rawValue:computerRandomNum)!)
+        checkingWorkMukchippa(userRandomNum: userInputNum, computerRandomNum: computerRandomNum)
     }
+}
+
+func checkingWorkMukchippa(userRandomNum: Int, computerRandomNum: Int) {
+    isWorkingMukchippa ? compareMukchippa(userInputNumber: RockScissorsPaperCase(rawValue: userRandomNum)!, computerInputNumber: RockScissorsPaperCase(rawValue: computerRandomNum)!) :
+    compareMukchippa(userInputNumber: RockScissorsPaperCase(rawValue: userRandomNum)!, computerInputNumber: RockScissorsPaperCase(rawValue: computerRandomNum)!)
 }
 
 private func compareRockScissorsPaper(userInputNumber: RockScissorsPaperCase, computerInputNumber: RockScissorsPaperCase) {
     switch (userInputNumber, computerInputNumber) {
     case (.scissors, .paper), (.rock, .scissors), (.paper, .rock):
         print(RockScissorsPaperMessages.Results.win)
-        print(EndGameMessages.endMessage)
-        isWorkingRockScissorsPaper = false
+        turnStatus = userTurn
+        displayMukchippaMenu()
+        isWorkingMukchippa = true
     case (.paper, .scissors), (.scissors, .rock), (.rock, .paper):
         print(RockScissorsPaperMessages.Results.lose)
-        print(EndGameMessages.endMessage)
-        isWorkingRockScissorsPaper = false
+        turnStatus = computerTurn
+        displayMukchippaMenu()
+        isWorkingMukchippa = true
     default:
         print(RockScissorsPaperMessages.Results.draw)
         displayRockScissorsPaperMenu()
