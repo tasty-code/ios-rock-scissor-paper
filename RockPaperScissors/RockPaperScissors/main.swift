@@ -4,5 +4,6 @@
 //  Copyright © tastycode. All rights reserved.
 //
 
-var mukJjiPpaGame = MukJjiPpaGame()
+var mukJjiPpaGame = MukJjiPpaGame(turn: .none, 
+                                  rockScissorPaperGame: RockScissorPaperGame())
 mukJjiPpaGame.play()

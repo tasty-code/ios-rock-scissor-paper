@@ -2,9 +2,7 @@
 //  Game.swift
 //  RockPaperScissors
 //
-//  Created by mireu & kyle.
+//  Created by 강창현 on 11/28/23.
 //
 
-protocol Game {
-    
-}
+import Foundation
