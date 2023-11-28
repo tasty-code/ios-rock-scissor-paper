@@ -9,29 +9,35 @@ import Foundation
 
 struct GameView: View {
     func showReadyText(_ attackPlayer: Player) {
-        print("\(attackPlayer.playerSelect.mukJjiBba)... \(attackPlayer.playerSelect.mukJjiBba)...")
+        let space: String = "                  "
+        print("\(space)\(attackPlayer.playerSelect.mukJjiBba)... \(attackPlayer.playerSelect.mukJjiBba)...")
     }
     
     func showRockPaperScissorsSelects(_ userSelect: RockPaperScissors, _ computerSelect: RockPaperScissors) {
-        print("사용자 : \(userSelect.korean), 컴퓨터 : \(computerSelect.korean)")
+        let space: String = "                        "
+        print("사용자 : \(userSelect.korean) \(space) 컴퓨터 : \(computerSelect.korean)")
         showImage(attack: userSelect, defense: computerSelect)
     }
     
     func showMukJjiBbaSelects(_ attackPlayer: Player, _ defensePlayer: Player) {
-        print("\(attackPlayer.playerType.text) : \(attackPlayer.playerSelect.mukJjiBba)!, \(defensePlayer.playerType.text) : \(defensePlayer.playerSelect.mukJjiBba)")
+        let space: String = "                        "
+        print("\(attackPlayer.playerType.text) : \(attackPlayer.playerSelect.mukJjiBba)! \(space) \(defensePlayer.playerType.text) : \(defensePlayer.playerSelect.mukJjiBba)")
         showImage(attack: attackPlayer.playerSelect, defense: defensePlayer.playerSelect)
     }
     
     func rockPaperScissorsWin() {
-        print(Message.win.text)
+        let space: String = "                    "
+        print(space + Message.win.text)
     }
     
     func rockPaperScissorsLose() {
-        print(Message.lose.text)
+        let space: String = "                    "
+        print(space + Message.lose.text)
     }
     
     func rockPaperScissorsDraw() {
-        print(Message.draw.text)
+        let space: String = "                    "
+        print(space + Message.draw.text)
     }
     
     func standardMenu() {
@@ -43,11 +49,13 @@ struct GameView: View {
     }
     
     func finalWin(_ player: Player) {
-        print(Message.finalWin(player).text)
+        let space: String = "                 "
+        print(space + Message.finalWin(player).text)
     }
     
     func turnChange(_ player: Player) {
-        print(Message.turnChange(player).text)
+        let space: String = "                 "
+        print(space + Message.turnChange(player).text)
     }
     
     func wrong() {
