@@ -9,7 +9,7 @@
 /* Begin PBXBuildFile section */
 		70C612622B1577F10076D565 /* Result.swift in Sources */ = {isa = PBXBuildFile; fileRef = 70C612612B1577F10076D565 /* Result.swift */; };
 		70C612642B1577F80076D565 /* ChoiceMenu.swift in Sources */ = {isa = PBXBuildFile; fileRef = 70C612632B1577F80076D565 /* ChoiceMenu.swift */; };
-		70C612672B1578B90076D565 /* File.swift in Sources */ = {isa = PBXBuildFile; fileRef = 70C612662B1578B90076D565 /* File.swift */; };
+		70C612672B1578B90076D565 /* mukjjippa.swift in Sources */ = {isa = PBXBuildFile; fileRef = 70C612662B1578B90076D565 /* mukjjippa.swift */; };
 		C7ABA0E1254EA63000B2367D /* main.swift in Sources */ = {isa = PBXBuildFile; fileRef = C7ABA0E0254EA63000B2367D /* main.swift */; };
 /* End PBXBuildFile section */
 
@@ -28,7 +28,7 @@
 /* Begin PBXFileReference section */
 		70C612612B1577F10076D565 /* Result.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Result.swift; sourceTree = "<group>"; };
 		70C612632B1577F80076D565 /* ChoiceMenu.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChoiceMenu.swift; sourceTree = "<group>"; };
-		70C612662B1578B90076D565 /* File.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = File.swift; sourceTree = "<group>"; };
+		70C612662B1578B90076D565 /* mukjjippa.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = mukjjippa.swift; sourceTree = "<group>"; };
 		C7ABA0DD254EA63000B2367D /* RockPaperScissors */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = RockPaperScissors; sourceTree = BUILT_PRODUCTS_DIR; };
 		C7ABA0E0254EA63000B2367D /* main.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = main.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -48,7 +48,7 @@
 			isa = PBXGroup;
 			children = (
 				70C612632B1577F80076D565 /* ChoiceMenu.swift */,
-				70C612662B1578B90076D565 /* File.swift */,
+				70C612662B1578B90076D565 /* mukjjippa.swift */,
 				70C612612B1577F10076D565 /* Result.swift */,
 			);
 			path = Enum;
@@ -137,7 +137,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				C7ABA0E1254EA63000B2367D /* main.swift in Sources */,
-				70C612672B1578B90076D565 /* File.swift in Sources */,
+				70C612672B1578B90076D565 /* mukjjippa.swift in Sources */,
 				70C612622B1577F10076D565 /* Result.swift in Sources */,
 				70C612642B1577F80076D565 /* ChoiceMenu.swift in Sources */,
 			);

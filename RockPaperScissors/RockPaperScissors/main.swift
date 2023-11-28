@@ -1,6 +1,6 @@
 import Foundation
 
-
+// MARK: - 가위바위보
 
 func endGame() {
     isWorking = false
@@ -51,3 +51,31 @@ while isWorking {
     }
 }
 
+
+
+// MARK: - 묵찌빠
+
+var player:Bool = true
+var turn: String = player == true ? "사용자" : "컴퓨터"
+
+
+func displaymukjjippaGameMessage(turn: String) {
+    print("[\(turn) 턴] 묵(1), 찌(2), 빠(3)! <종료 : 0> :")
+}
+
+func vicmessage(player: String) {
+    print("\(player)의 승리")
+}
+
+var mukccippaGame: Bool = false
+
+
+
+
+func playMukccippa() {
+    
+    
+    
+    
+    
+}
