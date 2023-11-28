@@ -48,11 +48,8 @@ final class AdvancedRockPaperScissorsManager: Playable {
             
         case .default:
             print("[\(turn.rawValue) 턴] 묵(1), 찌(2), 빠(3)! <종료 : 0> :", terminator: " ")
-        case .win:
+        case .win, .lose:
             print("\(turn.rawValue)의 승리!")
-        case .lose:
-            let winner = turn == .user ? "사용자": "컴퓨터"
-            print("\(winner)의 승리!")
         case .draw:
             print("\(turn.rawValue)의 턴입니다.")
         case .exit:
