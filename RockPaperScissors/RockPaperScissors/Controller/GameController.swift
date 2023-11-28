@@ -10,14 +10,14 @@ class GameController {
     static let shared: GameController = GameController()
     
     private var _players: [Player] = []
-    private var _user: Player
-    private var _opponent: Player
+    private let _user: Player
+    private let _opponent: Player
     
-    private var _rpsGame: RockPaperScissorsGameModel
-    private var _mjbGame: MukJjiPpaGameModel
+    private let _rpsGame: RockPaperScissorsGameModel
+    private let _mjbGame: MukJjiPpaGameModel
     private var _gameState: GameState = .rpsGame
     
-    init() {
+    private init() {
         for _ in 0...1 {
             _players.append(Player(input: .noChoice, isMyTurn: true))
         }

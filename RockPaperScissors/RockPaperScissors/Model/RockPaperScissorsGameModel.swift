@@ -18,8 +18,8 @@ class RockPaperScissorsGameModel {
         이 모델은 가위바위보 게임과 관련된 로직을 정의하고,
         해당 게임의 데이터를 들고있도록 한다.
      */
-    internal var _user: Player
-    internal var _opponent: Player
+    internal let _user: Player
+    internal let _opponent: Player
 
     init(players: [Player]) {
         self._user = players[0]

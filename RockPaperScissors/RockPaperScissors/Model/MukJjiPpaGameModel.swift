@@ -8,8 +8,8 @@
 class MukJjiPpaGameModel {
     
     private var _rpsGame: RockPaperScissorsGameModel
-    private var _user: Player
-    private var _opponent: Player
+    private let _user: Player
+    private let _opponent: Player
     
     init(rpsGame: RockPaperScissorsGameModel) {
         self._rpsGame = rpsGame
@@ -25,7 +25,7 @@ class MukJjiPpaGameModel {
             let mjbResult: GameResult = decideGameResult()
             let winnerName: String = _user.isMyTurn ? "사용자" : "컴퓨터"
             guard mjbResult != .rematch else {
-                print("\(winnerName)의 턴입니다")
+                print("\(winnerName)의 턴입니다.")
                 return .mjbGame
             }
             print("\(winnerName)의 승리!")
