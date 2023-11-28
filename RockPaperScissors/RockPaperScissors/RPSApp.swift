@@ -7,7 +7,7 @@
 
 import Foundation
 
-final class RPSApp {
+struct RPSApp {
     private let io: IO
     
     init(io: IO) {

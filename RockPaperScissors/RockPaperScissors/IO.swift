@@ -13,7 +13,7 @@ protocol IO {
     func printOutput(_ output: String)
 }
 
-class ConsoleManager: IO {
+final class ConsoleManager: IO {
     func getInput() throws -> String {
         guard let pureInput = readLine() else { throw RPSError.invalidInput }
         let refinedInput = pureInput.trimmingCharacters(in: .whitespacesAndNewlines)

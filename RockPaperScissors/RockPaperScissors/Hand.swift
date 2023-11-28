@@ -7,11 +7,10 @@
 
 import Foundation
 
-// TODO: 그래서 원시값 쓸 건지 다른 거 쓸 건지
-enum Hand: Int, CaseIterable {
-    case rock = 2
-    case paper = 3
-    case scissor = 1
+enum Hand: CaseIterable {
+    case rock
+    case paper
+    case scissor
     
     static func randomize() -> Self {
         Hand.allCases.randomElement() ?? .rock
