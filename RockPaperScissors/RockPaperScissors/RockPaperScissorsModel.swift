@@ -48,4 +48,15 @@ class RockPaperScissorsModel {
     func random() -> RockPaperScissors {
         return queue[Int.random(in: 0...2)]
     }
+    
+    func convert(_ result: RockPaperScissors) -> RockPaperScissors {
+        if result == .scissors {
+            return .rock
+        }
+        if result == .rock {
+            return .scissors
+        }
+        
+        return result
+    }
 }
