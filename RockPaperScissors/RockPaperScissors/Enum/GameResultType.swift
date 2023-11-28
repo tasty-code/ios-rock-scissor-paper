@@ -1,5 +1,5 @@
 //
-//  UserGuideMessage.swift
+//  GameResultType.swift
 //  RockPaperScissors
 //
 //  Created by EUNJU on 2023/11/21.
@@ -7,7 +7,7 @@
 
 import Foundation
 
-enum UserGuideMessage {
+enum GameResultType {
     case `default`
     case win
     case lose

@@ -10,7 +10,7 @@ import Foundation
 protocol Playable {
     
     func validateUserInput(_ input: String?) throws -> RockPaperScissorsType
-    func judgeGame(user: RockPaperScissorsType, computer: RockPaperScissorsType?, turn: PlayerType) -> UserGuideMessage
-    func showMessage(_ messageType: UserGuideMessage, _ turn: PlayerType)
-    func playGame(_ result: UserGuideMessage) -> UserGuideMessage
+    func judgeGame(user: RockPaperScissorsType, computer: RockPaperScissorsType?, turn: PlayerType) -> GameResultType
+    func showMessage(_ messageType: GameResultType, _ turn: PlayerType)
+    func playGame(_ result: GameResultType) -> GameResultType
 }

@@ -25,7 +25,7 @@ final class RockPaperScissorsManager: Playable {
     
     func judgeGame(user: RockPaperScissorsType,
                             computer: RockPaperScissorsType?,
-                            turn: PlayerType = .user) -> UserGuideMessage {
+                            turn: PlayerType = .user) -> GameResultType {
         if user == computer {
             return .draw
         }
@@ -42,7 +42,7 @@ final class RockPaperScissorsManager: Playable {
         }
     }
     
-    func showMessage(_ messageType: UserGuideMessage, _ turn: PlayerType = .user) {
+    func showMessage(_ messageType: GameResultType, _ turn: PlayerType = .user) {
         switch messageType {
             
         case .default:
@@ -58,7 +58,7 @@ final class RockPaperScissorsManager: Playable {
         }
     }
     
-    func playGame(_ result: UserGuideMessage) -> UserGuideMessage {
+    func playGame(_ result: GameResultType) -> GameResultType {
         while true {
             showMessage(.default)
             
