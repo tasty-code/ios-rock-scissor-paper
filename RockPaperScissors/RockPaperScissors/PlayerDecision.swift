@@ -7,7 +7,7 @@
 
 import Foundation
 
-enum PlayerDecision: Equatable {
-    case go(hand: Hand)
+enum PlayerDecision {
+    case go(gesture: Gesture)
     case stop
 }

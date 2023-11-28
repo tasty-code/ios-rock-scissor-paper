@@ -50,10 +50,8 @@ struct RPSIteration {
     private func getPlayerGestures() throws -> (Gesture, Gesture) {
         let leftDecision = leftPlayer.makeDecision()
         let rightDecision = rightPlayer.makeDecision()
-        if case PlayerDecision.go(let leftHand) = leftDecision,
-           case PlayerDecision.go(let rightHand) = rightDecision {
-            let leftGesture = Gesture(hand: leftHand, owner: leftPlayer)
-            let rightGesture = Gesture(hand: rightHand, owner: rightPlayer)
+        if case PlayerDecision.go(let leftGesture) = leftDecision,
+           case PlayerDecision.go(let rightGesture) = rightDecision {
             return (leftGesture, rightGesture)
         } else {
             throw RPSError.someoneWantsToExit

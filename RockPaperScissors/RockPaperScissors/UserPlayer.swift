@@ -27,7 +27,8 @@ final class UserPlayer {
         io.printPrompt("[\(self.name)] 가위(1), 바위(2), 보(3)! <종료 : 0> :")
         let number = try getNumber()
         if let hand = Hand(rspNumber: number) {
-            return .go(hand: hand)
+            let gesture = Gesture(hand: hand, owner: self)
+            return .go(gesture: gesture)
         } else if number == 0 {
             return .stop
         } else {

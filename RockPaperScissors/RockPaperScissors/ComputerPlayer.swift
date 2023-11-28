@@ -10,6 +10,7 @@ import Foundation
 final class ComputerPlayer: Playable {
     func makeDecision() -> PlayerDecision {
         let hand = Hand.randomize()
-        return .go(hand: hand)
+        let gesture = Gesture(hand: hand, owner: self)
+        return .go(gesture: gesture)
     }
 }

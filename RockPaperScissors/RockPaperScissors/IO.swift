@@ -31,7 +31,7 @@ final class Console: InputGettable {
     }
     
     func printPrompt(_ prompt: String) {
-        print(prompt, terminator: "")
+        print(prompt, terminator: " ")
     }
 }
 
