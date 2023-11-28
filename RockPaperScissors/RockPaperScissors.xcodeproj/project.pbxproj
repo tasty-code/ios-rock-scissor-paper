@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		1DC443792B142C4000A30D94 /* structures.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1DC443782B142C4000A30D94 /* structures.swift */; };
 		1DC4437B2B142CD000A30D94 /* enumerations.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1DC4437A2B142CD000A30D94 /* enumerations.swift */; };
+		8AC0C40D2B1583BF0051988E /* classes.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8AC0C40C2B1583BF0051988E /* classes.swift */; };
 		C7ABA0E1254EA63000B2367D /* main.swift in Sources */ = {isa = PBXBuildFile; fileRef = C7ABA0E0254EA63000B2367D /* main.swift */; };
 /* End PBXBuildFile section */
 
@@ -27,6 +28,7 @@
 /* Begin PBXFileReference section */
 		1DC443782B142C4000A30D94 /* structures.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = structures.swift; sourceTree = "<group>"; };
 		1DC4437A2B142CD000A30D94 /* enumerations.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = enumerations.swift; sourceTree = "<group>"; };
+		8AC0C40C2B1583BF0051988E /* classes.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = classes.swift; sourceTree = "<group>"; };
 		C7ABA0DD254EA63000B2367D /* RockPaperScissors */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = RockPaperScissors; sourceTree = BUILT_PRODUCTS_DIR; };
 		C7ABA0E0254EA63000B2367D /* main.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = main.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -64,6 +66,7 @@
 				C7ABA0E0254EA63000B2367D /* main.swift */,
 				1DC443782B142C4000A30D94 /* structures.swift */,
 				1DC4437A2B142CD000A30D94 /* enumerations.swift */,
+				8AC0C40C2B1583BF0051988E /* classes.swift */,
 			);
 			path = RockPaperScissors;
 			sourceTree = "<group>";
@@ -127,6 +130,7 @@
 			files = (
 				C7ABA0E1254EA63000B2367D /* main.swift in Sources */,
 				1DC443792B142C4000A30D94 /* structures.swift in Sources */,
+				8AC0C40D2B1583BF0051988E /* classes.swift in Sources */,
 				1DC4437B2B142CD000A30D94 /* enumerations.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
