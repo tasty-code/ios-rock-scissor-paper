@@ -8,12 +8,16 @@
 import Foundation
 
 struct GameView: View {
+    func showReadyText(_ attackPlayer: Player) {
+        print("\(attackPlayer.playerSelect.mukJjiBba)... \(attackPlayer.playerSelect.mukJjiBba)...")
+    }
+    
     func showRockPaperScissorsSelects(_ userSelect: RockPaperScissors, _ computerSelect: RockPaperScissors) {
         print("사용자 : \(userSelect.korean), 컴퓨터 : \(computerSelect.korean)")
     }
     
     func showMukJjiBbaSelects(_ attackPlayer: Player, _ defensePlayer: Player) {
-        print("\(attackPlayer.playerType.text) : \(attackPlayer.playerSelect.mukJjiBba), \(defensePlayer.playerType.text) : \(defensePlayer.playerSelect.mukJjiBba)")
+        print("\(attackPlayer.playerType.text) : \(attackPlayer.playerSelect.mukJjiBba)!, \(defensePlayer.playerType.text) : \(defensePlayer.playerSelect.mukJjiBba)")
     }
     
     func rockPaperScissorsWin() {

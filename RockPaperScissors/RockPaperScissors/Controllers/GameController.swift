@@ -70,8 +70,16 @@ class GameController {
         view.showRockPaperScissorsSelects(userSelect, computerSelect)
         let result = model.matchResult(firstPlayer: userSelect, secondPlayer: computerSelect)
         
+        afterRockPaperScissorsProcess(result, userSelect, computerSelect)
+    }
+    
+    func afterRockPaperScissorsProcess(_ result: Match, _ userSelect: RockPaperScissors, _ computerSelect: RockPaperScissors) {
         guard let process = rockPaperScissorsResultDict[result] else { return }
         process()
+        
+        if result != .draw {
+            setSelects(userSelect, computerSelect)
+        }
         
         pushGame()
     }
@@ -91,7 +99,7 @@ class GameController {
             wrongCase()
             return
         }
-        
+        view.showReadyText(attackPlayer)
         setSelects(userSelect, computerSelect)
         view.showMukJjiBbaSelects(attackPlayer, defensePlayer)
         let result = model.matchResult(firstPlayer: userSelect, secondPlayer: computerSelect)

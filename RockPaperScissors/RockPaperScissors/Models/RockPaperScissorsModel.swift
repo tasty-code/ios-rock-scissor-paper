@@ -10,7 +10,7 @@ import Foundation
 class RockPaperScissorsModel {
     private var queue: [RockPaperScissors] = [.scissors, .rock, .paper]
     
-    func enqueue(_ rockPaperScissors: RockPaperScissors) {
+    private func enqueue(_ rockPaperScissors: RockPaperScissors) {
         queue.append(rockPaperScissors)
     }
     
