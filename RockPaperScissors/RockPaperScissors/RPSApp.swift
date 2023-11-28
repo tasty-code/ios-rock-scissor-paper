@@ -17,7 +17,8 @@ final class RPSApp {
     func run() {
         do {
             let turn = try RPSGame(io: self.io).play()
-            try MJBGame(io: self.io, turn: turn).play()
+            var mjbGame = MJBGame(io: self.io, turn: turn)
+            try mjbGame.play()
         } catch {
             switch error {
             case RPSError.userWantsToExit:

@@ -7,8 +7,7 @@
 
 import Foundation
 
-// TODO: class vs. struct
-class MJBGame {
+struct MJBGame {
     private var turn: PlayerType
     
     private let io: IO
@@ -31,7 +30,11 @@ class MJBGame {
         }
     }
     
-    func play() throws {
+    private mutating func changeTurn(to newTurn: PlayerType) {
+        self.turn = newTurn
+    }
+    
+    mutating func play() throws {
         while true {
             do {
                 let userHand = try getUserHand()
@@ -41,9 +44,9 @@ class MJBGame {
                     io.printOutput("\(self.turn)의 승리!")
                     return
                 case .win:
-                    self.turn = .user
+                    changeTurn(to: .user)
                 case .lose:
-                    self.turn = .computer
+                    changeTurn(to: .computer)
                 }
                 io.printOutput("\(self.turn)의 턴입니다.")
                 continue
