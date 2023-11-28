@@ -7,13 +7,14 @@
 
 import Foundation
 
-class RockPaperScissorsGame {
+class GameController {
     private var gameStack: [() -> ()]
     private var rockPaperScissorsResultDict: Dictionary<Match, () -> ()>
     private var mukJjiBbaResultDict: Dictionary<Match, () -> ()>
     private var attackPlayer: Player
     private var defensePlayer: Player
     private var model: RockPaperScissorsModel
+    private let view: View
     
     
     init() {
@@ -23,6 +24,7 @@ class RockPaperScissorsGame {
         attackPlayer = Player()
         defensePlayer = Player()
         model = RockPaperScissorsModel()
+        view = GameView()
         
         gameStack.append(playRockPaperScissorsGame)
         
@@ -51,7 +53,7 @@ class RockPaperScissorsGame {
     }
     
     func playRockPaperScissorsGame() {
-        print(Message.standardMenu.text, terminator: " ")
+        view.standardMenu()
         let userSelect: RockPaperScissors = userInput()
         let comSelect = model.random()
         
@@ -61,7 +63,7 @@ class RockPaperScissorsGame {
         }
         
         if userSelect == .wrongCase {
-            print(Message.wrong.text)
+            view.wrong()
             pushGame()
             return
         }
@@ -82,7 +84,7 @@ class RockPaperScissorsGame {
     }
     
     func playMuckJjiBbaGame() {
-        print(Message.upgradeMenu(attackPlayer).text, terminator: " ")
+        view.upgradeMenu(attackPlayer)
         let userSelect: RockPaperScissors = model.convert(userInput())
         let comSelect = model.random()
         
@@ -92,7 +94,7 @@ class RockPaperScissorsGame {
         }
         
         if userSelect == .wrongCase {
-            print(Message.wrong.text)
+            view.wrong()
             pushGame()
             return
         }
@@ -104,7 +106,7 @@ class RockPaperScissorsGame {
     }
     
     func endGame() {
-        print(Message.end.text)
+        view.end()
     }
     
     func setPlayerType(winPlayer: PlayerType, losePlayer: PlayerType) {
@@ -119,31 +121,31 @@ class RockPaperScissorsGame {
     
     func rockPaperScissorsWin() {
         setPlayerType(winPlayer: .user, losePlayer: .computer)
-        print(Message.win.text)
+        view.rockPaperScissorsWin()
     }
     
     func rockPaperScissorsDraw() {
-        print(Message.draw.text)
+        view.rockPaperScissorsDraw()
     }
     
     func rockPaperScissorsLose() {
         setPlayerType(winPlayer: .computer, losePlayer: .user)
-        print(Message.lose.text)
+        view.rockPaperScissorsLose()
     }
     
     func mukJjiBbaWin() {
-        print(Message.finalWin(attackPlayer).text)
+        view.finalWin(attackPlayer)
     }
     
     func mukJjiBbaDraw() {
         pushGame()
-        print(Message.turnChange(attackPlayer).text)
+        view.turnChange(attackPlayer)
     }
     
     func mukJjiBbaLose() {
         swapPlayer()
         pushGame()
-        print(Message.turnChange(attackPlayer).text)
+        view.turnChange(attackPlayer)
     }
     
     func swapPlayer() {
