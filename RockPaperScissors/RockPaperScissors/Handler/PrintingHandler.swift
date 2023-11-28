@@ -6,6 +6,8 @@ enum PrintingHandler {
         case gameOver
         case invalidOption
         case mukJjiPpaOptions(PlayerTurn)
+        case winner(PlayerTurn)
+        case playerTurn(PlayerTurn)
         
         var description: String {
             switch self {
@@ -17,6 +19,10 @@ enum PrintingHandler {
                 return "잘못된 입력입니다. 다시 시도해 주세요."
             case .mukJjiPpaOptions(let playerTurn):
                 return "[\(playerTurn) 턴]묵(1), 찌(2), 빠(3)! <종료 : 0> : "
+            case .playerTurn(let playerTurn):
+                return "\(playerTurn)의 턴입니다."
+            case .winner(let winner):
+                return "\(winner)의 승리!"
             }
         }
     }
@@ -38,6 +44,14 @@ enum PrintingHandler {
     
     static func notifyOutcome(of gameOutcome: GameOutcome) {
         print(gameOutcome)
+    }
+    
+    static func notifyWinner(winner: PlayerTurn) {
+        print(Message.winner(winner))
+    }
+    
+    static func notifyPlayerTurn(playTurn: PlayerTurn){
+        print(Message.playerTurn(playTurn))
     }
         
 }

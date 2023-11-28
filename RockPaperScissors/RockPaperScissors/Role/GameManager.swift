@@ -55,20 +55,18 @@ struct GameManager {
         
         let gameOutcome2 = referee.determineGameOutcome(between: userChoice, and: computerChoice)
         
-        PrintingHandler.notifyOutcome(of: gameOutcome2)
-        
-        if shouldEndGame(basedOn: gameOutcome2) {
-            endGame()
+        if gameOutcome2 == .win {
+            playerTurn = .user
+            PrintingHandler.notifyPlayerTurn(playTurn: playerTurn)
             return
+        } else if gameOutcome2 == .loss {
+            playerTurn = .computer
+            PrintingHandler.notifyPlayerTurn(playTurn: playerTurn)
+            return
+        } else {
+            PrintingHandler.notifyWinner(winner: playerTurn)
+            endGame()
         }
-        
-        
-        /// 가위바위보 종료
-//        if shouldEndGame(basedOn: gameOutcome) {
-//            endGame()
-//            return
-//        }
-        
     }
 
     private func getRockPaperScissors(from option: Option) -> RockPaperScissors? {
