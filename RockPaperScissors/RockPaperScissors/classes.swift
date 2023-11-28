@@ -10,7 +10,7 @@ import Foundation
 class InGameMessage {
     static let shared = InGameMessage()
     
-    private var inGameMessage: [String : (String) -> String] = [
+    private var message: [String : (String) -> String] = [
         "ready,Optional(RockPaperScissors.GameType.rockScissorsPaper),nil" : { _ in "가위(1), 바위(2), 보(3)! <종료 : 0> : " },
         "ready,Optional(RockPaperScissors.GameType.mookJjiBba),nil" : { playerName in "[\(playerName) 턴] 묵(1), 찌(2), 빠(3)! <종료 : 0> : " },
         
@@ -23,18 +23,18 @@ class InGameMessage {
         "completed,nil,nil" : { playerName in "\(playerName)의 승리!" }
     ]
     
-    func printMessage( gameStatus: GameStatus, gameType: GameType? = nil, gameResult: GameResult? = nil, playerName: String = "" ) {
+    func print( status: GameStatus, type: GameType? = nil, result: GameResult? = nil, playerName: String = "" ) {
         
-        let keyName = "\(gameStatus),\(String(describing: gameType)),\(String(describing: gameResult))"
+        let keyName = "\(status),\(String(describing: type)),\(String(describing: result))"
 
-        guard let closure = self.inGameMessage[keyName] else {
+        guard let closure = self.message[keyName] else {
             return
         }
         
-        if gameStatus == .ready {
-            print(closure(playerName), terminator: "")
+        if status == .ready {
+            Swift.print(closure(playerName), terminator: "")
         } else {
-            print(closure(playerName))
+            Swift.print(closure(playerName))
         }
     }
 }
@@ -44,7 +44,7 @@ class GameMaster {
     private var user: Player
     private var computer: Player
     private var turn: Player
-    private var inGameMessage = InGameMessage.shared
+    private var message = InGameMessage.shared
     
     init(gameType: GameType, user: Player, computer: Player, turn: Player) {
         self.gameType = gameType
@@ -65,7 +65,7 @@ class GameMaster {
     
     func evaluateRockScissorsPaper() {
         if self.user.getRockScissorsPaper() == self.computer.getRockScissorsPaper() {
-            self.inGameMessage.printMessage(gameStatus: .evaluation, gameType: .rockScissorsPaper, gameResult: .draw)
+            self.message.print(status: .evaluation, type: .rockScissorsPaper, result: .draw)
             return
         }
         
@@ -79,16 +79,16 @@ class GameMaster {
         }
         
         if self.turn.getName() == "사용자" {
-            self.inGameMessage.printMessage(gameStatus: .evaluation, gameType: .rockScissorsPaper, gameResult: .win)
+            self.message.print(status: .evaluation, type: .rockScissorsPaper, result: .win)
         } else {
-            self.inGameMessage.printMessage(gameStatus: .evaluation, gameType: .rockScissorsPaper, gameResult: .lose)
+            self.message.print(status: .evaluation, type: .rockScissorsPaper, result: .lose)
         }
         self.gameType = .mookJjiBba
     }
 
     func evaluateMookJjiBba() -> GameResult {
         if self.user.getMookJjiBba() == self.computer.getMookJjiBba() {
-            self.inGameMessage.printMessage(gameStatus: .evaluation, gameType: .mookJjiBba, gameResult: .win)
+            self.message.print(status: .evaluation, type: .mookJjiBba, result: .win)
             return .win
         }
         
@@ -100,7 +100,7 @@ class GameMaster {
         case .bba:
             self.turn = computer.getMookJjiBba() == .mook ? user : computer
         }
-        self.inGameMessage.printMessage(gameStatus: .evaluation, gameType: .mookJjiBba, gameResult: .draw, playerName: self.turn.getName())
+        self.message.print(status: .evaluation, type: .mookJjiBba, result: .draw, playerName: self.turn.getName())
         return .draw
     }
     
@@ -108,7 +108,7 @@ class GameMaster {
         var userInput: String?
         
         gameLoop : repeat {
-            self.inGameMessage.printMessage(gameStatus: .ready, gameType: self.gameType, playerName: self.turn.getName())
+            self.message.print(status: .ready, type: self.gameType, playerName: self.turn.getName())
             userInput = readLine()
             
             switch userInput {
@@ -133,10 +133,10 @@ class GameMaster {
                 }
             default :
                 self.turn = computer
-                self.inGameMessage.printMessage(gameStatus: .falseInput)
+                self.message.print(status: .falseInput)
             }
         } while userInput != "0"
         
-        self.inGameMessage.printMessage(gameStatus: .completed, playerName: self.turn.getName())
+        self.message.print(status: .completed, playerName: self.turn.getName())
     }
 }
