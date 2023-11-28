@@ -1,7 +1,7 @@
 import Foundation
 
 enum PlayerTurn: CustomStringConvertible {
-    case user, computer
+    case user, computer, none
     
     var description: String {
         
@@ -10,8 +10,8 @@ enum PlayerTurn: CustomStringConvertible {
             return "사용자"
         case .computer:
             return "컴퓨터"
+        case .none:
+            return "none"
         }
     }
-    
-    
 }

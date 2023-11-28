@@ -5,49 +5,51 @@ struct GameManager {
     private var user: Player = User()
     private var computer: Player = Computer()
     private var referee = Referee()
-    private var playerTurn: PlayerTurn = .user
+    private var playerTurn: PlayerTurn = .none
     
     public mutating func playGame() {
         
-        ///가위 바위 보
-        PrintingHandler.showRockPaperScissorsOptions()
-
-        let userOption = user.chooseOption()
-        let computerOption = computer.chooseOption()
-        
-        guard let userChoice = getRockPaperScissors(from: userOption),
-              let computerChoice = getRockPaperScissors(from: computerOption) else {
-            shouldEndGameEarlyBy(userOption, computerOption) ?
+        if playerTurn == .none {
+            ///가위 바위 보
+            PrintingHandler.showRockPaperScissorsOptions()
+            
+            let userOption = user.chooseOption()
+            let computerOption = computer.chooseOption()
+            
+            guard let userChoice = getRockPaperScissors(from: userOption),
+                  let computerChoice = getRockPaperScissors(from: computerOption) else {
+                shouldEndGameEarlyBy(userOption, computerOption) ?
                 endGame() : PrintingHandler.notifyInvalidOption()
-            return
-        }
-
-        let gameOutcome = referee.determineGameOutcome(between: userChoice, and: computerChoice)
-        
-        PrintingHandler.notifyOutcome(of: gameOutcome)
-        
-        ///묵찌빠
-        if gameOutcome == .win {
-            playerTurn = PlayerTurn.user
-        } else if gameOutcome == .loss {
-            playerTurn = PlayerTurn.computer
-        } else {
-            return
+                return
+            }
+            
+            let gameOutcome = referee.determineGameOutcome(between: userChoice, and: computerChoice)
+            
+            PrintingHandler.notifyOutcome(of: gameOutcome)
+            
+            ///묵찌빠
+            if gameOutcome == .win {
+                playerTurn = PlayerTurn.user
+            } else if gameOutcome == .loss {
+                playerTurn = PlayerTurn.computer
+            } else {
+                return
+            }
         }
         
         PrintingHandler.showMukJjiPpaOptions(playTurn: playerTurn)
-        
-        
-
-        PrintingHandler.showRockPaperScissorsOptions()
         
         let userOption2 = user.chooseOption()
         let computerOption2 = computer.chooseOption()
         
         guard let userChoice = getRockPaperScissors(from: userOption2),
               let computerChoice = getRockPaperScissors(from: computerOption2) else {
-            shouldEndGameEarlyBy(userOption2, computerOption2) ?
-                endGame() : PrintingHandler.notifyInvalidOption()
+            if shouldEndGameEarlyBy(userOption2, computerOption2) {
+                endGame()
+            } else {
+                PrintingHandler.notifyInvalidOption()
+                playerTurn = .computer
+            }
             return
         }
         
@@ -62,10 +64,10 @@ struct GameManager {
         
         
         /// 가위바위보 종료
-        if shouldEndGame(basedOn: gameOutcome) {
-            endGame()
-            return
-        }
+//        if shouldEndGame(basedOn: gameOutcome) {
+//            endGame()
+//            return
+//        }
         
     }
 
