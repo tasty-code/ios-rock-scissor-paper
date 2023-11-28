@@ -6,8 +6,9 @@ final class GameRules {
     private var result: String?
     private let computerPlayer = ComputerPlayer()
     private let rpsLinkedList = CircularRpsLinkedList()
-    var onRequstMJB: ((GameResult) -> Void)?
+    var onRequstSecondGame: ((GameResult) -> Void)?
     var onRPSResult: ((GameResult, RPSModel?, RPSModel?) -> Void)?
+    
     deinit { print("GameRules Deinit!!") }
 }
 
@@ -19,7 +20,7 @@ extension GameRules {
         guard let userChoice = convertInputToRPSOption(input)
         else { onRPSResult? (.error, nil, nil); return }
         
-        let gameResult = determineWinner(userChoice: userChoice)
+        let gameResult = determineFirstGameWinner(userChoice: userChoice)
         onRPSResult?(gameResult, userChoice, computerPlayer.choice)
     }
     
@@ -36,17 +37,24 @@ extension GameRules {
         }
     }
     
-    private func determineWinner(userChoice: RPSModel) -> GameResult {
+    private func determineFirstGameWinner(userChoice: RPSModel) -> GameResult {
         let computerChoice = computerPlayer.makeRandomChoice()
         guard let computerNode = rpsLinkedList.node(for: computerChoice) 
         else { return .error}
         
-        if computerNode.next?.value == userChoice   { 
-            onRequstMJB?(GameResult.win)
-            return .win }
-        else if computerNode.value == userChoice    { return .draw }
-        else                                        { 
-            onRequstMJB?(GameResult.loss)
-            return .loss }
+        if computerNode.next?.value == userChoice {
+            onRequstSecondGame?(GameResult.win)
+            return .win
+        } else if computerNode.value == userChoice {
+            return .draw
+        } else {
+            onRequstSecondGame?(GameResult.loss)
+            return .loss
+        }
+    }
+    
+    //두번째 게임(묵찌빠)규칙 로직
+    private func determineSecondGameWinner(userChoice: RPSModel) {
+        
     }
 }
