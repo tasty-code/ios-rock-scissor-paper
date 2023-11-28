@@ -37,10 +37,6 @@ class InGameMessage {
             print(closure(playerName))
         }
     }
-    
-    func getInGameMessage() -> [String : (String) -> String] {
-        return self.inGameMessage
-    }
 }
 
 class GameMaster {
