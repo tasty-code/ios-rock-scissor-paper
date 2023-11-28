@@ -76,7 +76,6 @@ final class Game {
             } else {
                 print(Prompt.badInput)
                 print(Prompt.rockScissorsPaperChoice)
-                continue
             }
         }
     }
