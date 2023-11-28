@@ -18,6 +18,7 @@
 		C77120C52B14B58B00D155EE /* InputHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = C77120C42B14B58B00D155EE /* InputHandler.swift */; };
 		C77120C72B14B5A700D155EE /* PrintingHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = C77120C62B14B5A700D155EE /* PrintingHandler.swift */; };
 		C77120C92B14B70000D155EE /* Option.swift in Sources */ = {isa = PBXBuildFile; fileRef = C77120C82B14B70000D155EE /* Option.swift */; };
+		C7E255F52B15C0DE0055F241 /* PlayerTurn.swift in Sources */ = {isa = PBXBuildFile; fileRef = C7E255F42B15C0DE0055F241 /* PlayerTurn.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -45,6 +46,7 @@
 		C77120C42B14B58B00D155EE /* InputHandler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InputHandler.swift; sourceTree = "<group>"; };
 		C77120C62B14B5A700D155EE /* PrintingHandler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PrintingHandler.swift; sourceTree = "<group>"; };
 		C77120C82B14B70000D155EE /* Option.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Option.swift; sourceTree = "<group>"; };
+		C7E255F42B15C0DE0055F241 /* PlayerTurn.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlayerTurn.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -103,6 +105,7 @@
 				C77120BF2B1493BF00D155EE /* RockPaperScissors.swift */,
 				C77120C82B14B70000D155EE /* Option.swift */,
 				C77120C12B1494F500D155EE /* GameOutcome.swift */,
+				C7E255F42B15C0DE0055F241 /* PlayerTurn.swift */,
 			);
 			path = Enum;
 			sourceTree = "<group>";
@@ -175,6 +178,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				22097AC12B149C34009D66D5 /* Computer.swift in Sources */,
+				C7E255F52B15C0DE0055F241 /* PlayerTurn.swift in Sources */,
 				C77120C52B14B58B00D155EE /* InputHandler.swift in Sources */,
 				22D021182B0F4136006F0280 /* GameManager.swift in Sources */,
 				22097ABE2B149B37009D66D5 /* main.swift in Sources */,
