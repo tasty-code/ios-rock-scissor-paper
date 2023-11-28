@@ -28,7 +28,7 @@ class RockPaperScissorsModel {
         var now: RockPaperScissors
         repeat {
             now = getRockPaperScissors()
-        } while now == head
+        } while now != head
     }
     
     func matchResult(firstPlayer: RockPaperScissors, secondPlayer: RockPaperScissors) -> Match {
@@ -49,14 +49,14 @@ class RockPaperScissorsModel {
         return queue[Int.random(in: 0...2)]
     }
     
-    func convert(_ result: RockPaperScissors) -> RockPaperScissors {
-        if result == .scissors {
+    func convertRockPaperScissors(_ input: RockPaperScissors) -> RockPaperScissors {
+        switch input {
+        case .scissors:
             return .rock
-        }
-        if result == .rock {
+        case .rock:
             return .scissors
+        default:
+            return input
         }
-        
-        return result
     }
 }

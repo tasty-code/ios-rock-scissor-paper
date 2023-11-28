@@ -17,4 +17,6 @@ protocol View {
     func turnChange(_ player: Player)
     func wrong()
     func end()
+    func showRockPaperScissorsSelects(_ userSelect: RockPaperScissors, _ computerSelect: RockPaperScissors)
+    func showMukJjiBbaSelects(_ attackPlayer: Player, _ defensePlayer: Player)
 }

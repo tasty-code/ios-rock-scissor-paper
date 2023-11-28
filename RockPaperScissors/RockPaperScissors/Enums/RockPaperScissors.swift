@@ -29,4 +29,30 @@ enum RockPaperScissors: Int {
             self = .wrongCase
         }
     }
+    
+    var korean: String {
+        switch self {
+        case .scissors:
+            return "가위"
+        case .rock:
+            return "바위"
+        case .paper:
+            return "보"
+        default:
+            return "해당 없음"
+        }
+    }
+    
+    var mukJjiBba: String {
+        switch self {
+        case .scissors:
+            return "찌"
+        case .rock:
+            return "묵"
+        case .paper:
+            return "빠"
+        default:
+            return "해당 없음"
+        }
+    }
 }

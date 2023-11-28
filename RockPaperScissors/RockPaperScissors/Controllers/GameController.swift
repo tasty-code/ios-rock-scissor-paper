@@ -55,7 +55,7 @@ class GameController {
     func playRockPaperScissorsGame() {
         view.standardMenu()
         let userSelect: RockPaperScissors = userInput()
-        let comSelect = model.random()
+        let computerSelect = model.random()
         
         if userSelect == .exit {
             endGame()
@@ -63,30 +63,24 @@ class GameController {
         }
         
         if userSelect == .wrongCase {
-            view.wrong()
-            pushGame()
+            wrongCase()
             return
         }
         
-        let result = model.matchResult(firstPlayer: userSelect, secondPlayer: comSelect)
+        view.showRockPaperScissorsSelects(userSelect, computerSelect)
+        let result = model.matchResult(firstPlayer: userSelect, secondPlayer: computerSelect)
         
         guard let process = rockPaperScissorsResultDict[result] else { return }
         process()
         
         pushGame()
     }
-    
-    func userInput() -> RockPaperScissors {
-        let userSelect: String = readLine() ?? String(RockPaperScissors.wrongCase.rawValue)
-        let selectedNum: Int? = Int(userSelect)
-        
-        return RockPaperScissors(userSelect: selectedNum)
-    }
+
     
     func playMuckJjiBbaGame() {
         view.upgradeMenu(attackPlayer)
-        let userSelect: RockPaperScissors = model.convert(userInput())
-        let comSelect = model.random()
+        let userSelect: RockPaperScissors = model.convertRockPaperScissors(userInput())
+        let computerSelect = model.random()
         
         if userSelect == .exit {
             endGame()
@@ -94,19 +88,30 @@ class GameController {
         }
         
         if userSelect == .wrongCase {
-            view.wrong()
-            pushGame()
+            wrongCase()
             return
         }
         
-        let result = model.matchResult(firstPlayer: userSelect, secondPlayer: comSelect)
+        setSelects(userSelect, computerSelect)
+        view.showMukJjiBbaSelects(attackPlayer, defensePlayer)
+        let result = model.matchResult(firstPlayer: userSelect, secondPlayer: computerSelect)
         
         guard let process = mukJjiBbaResultDict[result] else { return }
         process()
     }
     
-    func endGame() {
-        view.end()
+    func userInput() -> RockPaperScissors {
+        let userSelect: String = readLine() ?? String(RockPaperScissors.wrongCase.rawValue)
+        let selectedNum: Int? = Int(userSelect)
+        return RockPaperScissors(userSelect: selectedNum)
+    }
+    
+    func setSelects(_ userSelect: RockPaperScissors, _ computerSelect: RockPaperScissors) {
+        if attackPlayer.playerType == .user {
+            setPlayerSelect(firstPlayer: userSelect, secondPlayer: computerSelect)
+            return
+        }
+        setPlayerSelect(firstPlayer: computerSelect, secondPlayer: userSelect)
     }
     
     func setPlayerType(winPlayer: PlayerType, losePlayer: PlayerType) {
@@ -152,6 +157,15 @@ class GameController {
         let temp:Player = attackPlayer
         attackPlayer = defensePlayer
         defensePlayer = temp
+    }
+    
+    func wrongCase() {
+        view.wrong()
+        pushGame()
+    }
+ 
+    func endGame() {
+        view.end()
     }
     
 }
