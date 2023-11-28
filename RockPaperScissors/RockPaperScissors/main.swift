@@ -6,5 +6,5 @@
 
 import Foundation
 
-print("Hello, World!")
-
+let console = ConsoleManager()
+RPSApp(io: console).run()

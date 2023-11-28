@@ -8,6 +8,15 @@
 
 /* Begin PBXBuildFile section */
 		C7ABA0E1254EA63000B2367D /* main.swift in Sources */ = {isa = PBXBuildFile; fileRef = C7ABA0E0254EA63000B2367D /* main.swift */; };
+		F47327D22B1589E3000849B1 /* IO.swift in Sources */ = {isa = PBXBuildFile; fileRef = F47327D12B1589E3000849B1 /* IO.swift */; };
+		F47327D42B1589F1000849B1 /* Hand.swift in Sources */ = {isa = PBXBuildFile; fileRef = F47327D32B1589F1000849B1 /* Hand.swift */; };
+		F47327D62B158A00000849B1 /* HandGameResult.swift in Sources */ = {isa = PBXBuildFile; fileRef = F47327D52B158A00000849B1 /* HandGameResult.swift */; };
+		F47327D82B158A0D000849B1 /* HandGameRound.swift in Sources */ = {isa = PBXBuildFile; fileRef = F47327D72B158A0D000849B1 /* HandGameRound.swift */; };
+		F47327DA2B158A1C000849B1 /* PlayerType.swift in Sources */ = {isa = PBXBuildFile; fileRef = F47327D92B158A1C000849B1 /* PlayerType.swift */; };
+		F47327DC2B158A28000849B1 /* RPSGame.swift in Sources */ = {isa = PBXBuildFile; fileRef = F47327DB2B158A28000849B1 /* RPSGame.swift */; };
+		F47327DE2B158A3A000849B1 /* MJBGame.swift in Sources */ = {isa = PBXBuildFile; fileRef = F47327DD2B158A3A000849B1 /* MJBGame.swift */; };
+		F47327E02B158A49000849B1 /* RPSError.swift in Sources */ = {isa = PBXBuildFile; fileRef = F47327DF2B158A49000849B1 /* RPSError.swift */; };
+		F47327E22B158A5E000849B1 /* RPSApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = F47327E12B158A5E000849B1 /* RPSApp.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -25,6 +34,15 @@
 /* Begin PBXFileReference section */
 		C7ABA0DD254EA63000B2367D /* RockPaperScissors */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = RockPaperScissors; sourceTree = BUILT_PRODUCTS_DIR; };
 		C7ABA0E0254EA63000B2367D /* main.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = main.swift; sourceTree = "<group>"; };
+		F47327D12B1589E3000849B1 /* IO.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IO.swift; sourceTree = "<group>"; };
+		F47327D32B1589F1000849B1 /* Hand.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Hand.swift; sourceTree = "<group>"; };
+		F47327D52B158A00000849B1 /* HandGameResult.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HandGameResult.swift; sourceTree = "<group>"; };
+		F47327D72B158A0D000849B1 /* HandGameRound.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HandGameRound.swift; sourceTree = "<group>"; };
+		F47327D92B158A1C000849B1 /* PlayerType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlayerType.swift; sourceTree = "<group>"; };
+		F47327DB2B158A28000849B1 /* RPSGame.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RPSGame.swift; sourceTree = "<group>"; };
+		F47327DD2B158A3A000849B1 /* MJBGame.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MJBGame.swift; sourceTree = "<group>"; };
+		F47327DF2B158A49000849B1 /* RPSError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RPSError.swift; sourceTree = "<group>"; };
+		F47327E12B158A5E000849B1 /* RPSApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RPSApp.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -58,6 +76,15 @@
 			isa = PBXGroup;
 			children = (
 				C7ABA0E0254EA63000B2367D /* main.swift */,
+				F47327E12B158A5E000849B1 /* RPSApp.swift */,
+				F47327D12B1589E3000849B1 /* IO.swift */,
+				F47327D32B1589F1000849B1 /* Hand.swift */,
+				F47327D52B158A00000849B1 /* HandGameResult.swift */,
+				F47327D72B158A0D000849B1 /* HandGameRound.swift */,
+				F47327DB2B158A28000849B1 /* RPSGame.swift */,
+				F47327DD2B158A3A000849B1 /* MJBGame.swift */,
+				F47327D92B158A1C000849B1 /* PlayerType.swift */,
+				F47327DF2B158A49000849B1 /* RPSError.swift */,
 			);
 			path = RockPaperScissors;
 			sourceTree = "<group>";
@@ -120,6 +147,15 @@
 			buildActionMask = 2147483647;
 			files = (
 				C7ABA0E1254EA63000B2367D /* main.swift in Sources */,
+				F47327DC2B158A28000849B1 /* RPSGame.swift in Sources */,
+				F47327D22B1589E3000849B1 /* IO.swift in Sources */,
+				F47327DE2B158A3A000849B1 /* MJBGame.swift in Sources */,
+				F47327D82B158A0D000849B1 /* HandGameRound.swift in Sources */,
+				F47327D42B1589F1000849B1 /* Hand.swift in Sources */,
+				F47327DA2B158A1C000849B1 /* PlayerType.swift in Sources */,
+				F47327E22B158A5E000849B1 /* RPSApp.swift in Sources */,
+				F47327D62B158A00000849B1 /* HandGameResult.swift in Sources */,
+				F47327E02B158A49000849B1 /* RPSError.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
