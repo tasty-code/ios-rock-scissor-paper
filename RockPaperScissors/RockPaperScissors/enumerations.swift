@@ -11,16 +11,16 @@ enum GameResult: String {
     case win, draw, lose
 }
 
-enum RockScissorPaper: Int {
-    case scissor = 1, rock = 2, paper = 3
+enum RockScissorsPaper: Int {
+    case scissors = 1, rock = 2, paper = 3
 }
 
 enum MookJjiBba: Int {
-    case rock = 1, scissor = 2, paper = 3
+    case mook = 1, jji = 2, bba = 3
 }
 
 enum GameType: String {
-    case rockScissorPaper, mookJjiBba
+    case rockScissorsPaper, mookJjiBba
 }
 
 enum GameStatus {

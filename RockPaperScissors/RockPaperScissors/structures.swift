@@ -9,36 +9,36 @@ import Foundation
 
 struct Player {
     private var name: String
-    private var rockScissorPaper: RockScissorPaper
+    private var rockScissorsPaper: RockScissorsPaper
     private var mookJjiBba : MookJjiBba
     
-    init(name: String, rockScissorPaper: RockScissorPaper, mookJjiBba: MookJjiBba) {
+    init(name: String, rockScissorsPaper: RockScissorsPaper, mookJjiBba: MookJjiBba) {
         self.name = name
-        self.rockScissorPaper = rockScissorPaper
+        self.rockScissorsPaper = rockScissorsPaper
         self.mookJjiBba = mookJjiBba
     }
     
     init(name: String) {
-        self.init(name: name, rockScissorPaper: .paper, mookJjiBba: .paper)
+        self.init(name: name, rockScissorsPaper: .paper, mookJjiBba: .bba)
     }
     
     func getName() -> String {
         return self.name
     }
     
-    func getRockScissorPaper() -> RockScissorPaper {
-        return self.rockScissorPaper
+    func getRockScissorsPaper() -> RockScissorsPaper {
+        return self.rockScissorsPaper
     }
     
     func getMookJjiBba() -> MookJjiBba {
         return self.mookJjiBba
     }
     
-    mutating func setRockScissorPaper(input: Int) {
-        self.rockScissorPaper = RockScissorPaper(rawValue: input) ?? .paper
+    mutating func setRockScissorsPaper(input: Int) {
+        self.rockScissorsPaper = RockScissorsPaper(rawValue: input) ?? .paper
     }
     
     mutating func setMookJjiBba(input: Int) {
-        self.mookJjiBba = MookJjiBba(rawValue: input) ?? .paper
+        self.mookJjiBba = MookJjiBba(rawValue: input) ?? .bba
     }
 }

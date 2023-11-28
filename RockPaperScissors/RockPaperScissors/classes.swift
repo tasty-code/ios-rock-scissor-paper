@@ -11,12 +11,12 @@ class InGameMessage {
     static let shared = InGameMessage()
     
     private var inGameMessage: [String : (String) -> String] = [
-        "ready,Optional(RockPaperScissors.GameType.rockScissorPaper),nil" : { _ in "가위(1), 바위(2), 보(3)! <종료 : 0> : " },
+        "ready,Optional(RockPaperScissors.GameType.rockScissorsPaper),nil" : { _ in "가위(1), 바위(2), 보(3)! <종료 : 0> : " },
         "ready,Optional(RockPaperScissors.GameType.mookJjiBba),nil" : { playerName in "[\(playerName) 턴] 묵(1), 찌(2), 빠(3)! <종료 : 0> : " },
         
-        "evaluation,Optional(RockPaperScissors.GameType.rockScissorPaper),Optional(RockPaperScissors.GameResult.win)" : { _ in "이겼습니다!" },
-        "evaluation,Optional(RockPaperScissors.GameType.rockScissorPaper),Optional(RockPaperScissors.GameResult.draw)" : { _ in "비겼습니다!" },
-        "evaluation,Optional(RockPaperScissors.GameType.rockScissorPaper),Optional(RockPaperScissors.GameResult.lose)" : { _ in "졌습니다!" },
+        "evaluation,Optional(RockPaperScissors.GameType.rockScissorsPaper),Optional(RockPaperScissors.GameResult.win)" : { _ in "이겼습니다!" },
+        "evaluation,Optional(RockPaperScissors.GameType.rockScissorsPaper),Optional(RockPaperScissors.GameResult.draw)" : { _ in "비겼습니다!" },
+        "evaluation,Optional(RockPaperScissors.GameType.rockScissorsPaper),Optional(RockPaperScissors.GameResult.lose)" : { _ in "졌습니다!" },
         "evaluation,Optional(RockPaperScissors.GameType.mookJjiBba),Optional(RockPaperScissors.GameResult.draw)" : { playerName in "\(playerName)의 턴입니다." },
         
         "falseInput,nil,nil" : { _ in "잘못된 입력입니다. 다시 시도해주세요." },
@@ -53,9 +53,9 @@ class GameMaster {
         self.turn = turn
     }
     
-    func playRockScissorPaper(userInput: Int) {
-        user.setRockScissorPaper(input: userInput)
-        computer.setRockScissorPaper(input: Int.random(in: 1...3))
+    func playRockScissorsPaper(userInput: Int) {
+        user.setRockScissorsPaper(input: userInput)
+        computer.setRockScissorsPaper(input: Int.random(in: 1...3))
     }
     
     func playMookJjiBba(userInput: Int) {
@@ -63,25 +63,25 @@ class GameMaster {
         computer.setMookJjiBba(input: Int.random(in: 1...3))
     }
     
-    func evaluateRockScissorPaper() {
-        if self.user.getRockScissorPaper() == self.computer.getRockScissorPaper() {
-            self.inGameMessage.printMessage(gameStatus: .evaluation, gameType: .rockScissorPaper, gameResult: .draw)
+    func evaluateRockScissorsPaper() {
+        if self.user.getRockScissorsPaper() == self.computer.getRockScissorsPaper() {
+            self.inGameMessage.printMessage(gameStatus: .evaluation, gameType: .rockScissorsPaper, gameResult: .draw)
             return
         }
         
-        switch user.getRockScissorPaper() {
+        switch user.getRockScissorsPaper() {
         case .rock:
-            self.turn = computer.getRockScissorPaper() == .scissor ? user : computer
-        case .scissor:
-            self.turn = computer.getRockScissorPaper() == .paper ? user : computer
+            self.turn = computer.getRockScissorsPaper() == .scissors ? user : computer
+        case .scissors:
+            self.turn = computer.getRockScissorsPaper() == .paper ? user : computer
         case .paper:
-            self.turn = computer.getRockScissorPaper() == .rock ? user : computer
+            self.turn = computer.getRockScissorsPaper() == .rock ? user : computer
         }
         
         if self.turn.getName() == "사용자" {
-            self.inGameMessage.printMessage(gameStatus: .evaluation, gameType: .rockScissorPaper, gameResult: .win)
+            self.inGameMessage.printMessage(gameStatus: .evaluation, gameType: .rockScissorsPaper, gameResult: .win)
         } else {
-            self.inGameMessage.printMessage(gameStatus: .evaluation, gameType: .rockScissorPaper, gameResult: .lose)
+            self.inGameMessage.printMessage(gameStatus: .evaluation, gameType: .rockScissorsPaper, gameResult: .lose)
         }
         self.gameType = .mookJjiBba
     }
@@ -93,12 +93,12 @@ class GameMaster {
         }
         
         switch user.getMookJjiBba() {
-        case .rock:
-            self.turn = computer.getMookJjiBba() == .scissor ? user : computer
-        case .scissor:
-            self.turn = computer.getMookJjiBba() == .paper ? user : computer
-        case .paper:
-            self.turn = computer.getMookJjiBba() == .rock ? user : computer
+        case .mook:
+            self.turn = computer.getMookJjiBba() == .jji ? user : computer
+        case .jji:
+            self.turn = computer.getMookJjiBba() == .bba ? user : computer
+        case .bba:
+            self.turn = computer.getMookJjiBba() == .mook ? user : computer
         }
         self.inGameMessage.printMessage(gameStatus: .evaluation, gameType: .mookJjiBba, gameResult: .draw, playerName: self.turn.getName())
         return .draw
@@ -120,9 +120,9 @@ class GameMaster {
                 }
                 
                 switch self.gameType {
-                case .rockScissorPaper:
-                    self.playRockScissorPaper(userInput: intUserInput)
-                    self.evaluateRockScissorPaper()
+                case .rockScissorsPaper:
+                    self.playRockScissorsPaper(userInput: intUserInput)
+                    self.evaluateRockScissorsPaper()
                 
                 case .mookJjiBba:
                     self.playMookJjiBba(userInput: intUserInput)
