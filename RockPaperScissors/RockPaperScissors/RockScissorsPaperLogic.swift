@@ -20,31 +20,32 @@ private func getComputerRandomNumber() -> Int {
 
 private func userInputReadLine() {
     while isWorkingRockScissorsPaper {
-        let randomValue = getComputerRandomNumber()
-        guard let inputValue = readLine() else { return }
-        if let userInputNum = Int(inputValue), userInputNum >= 1 && userInputNum <= 3 {
-            compareRockScissorsPaper(userChoice: RockScissorsPaperCase(rawValue:userInputNum)!, computerChoice: RockScissorsPaperCase(rawValue:randomValue)!)
-        } else if let userInputNum = Int(inputValue), userInputNum == 0 {
-            print(StringNameSpace.endMessage)
-            isWorkingRockScissorsPaper = false
-        } else {
-            print(StringNameSpace.inputErrorMessage)
+        let computerRandomNum = getComputerRandomNumber()
+        let inputNum = readLine()
+        guard let input = inputNum, let userInputNum = Int(input), userInputNum > -1 && userInputNum < 4 else {
+            print(ErrorMessages.inputError)
+            displayRockScissorsPaperMenu()
+            continue
         }
+        guard userInputNum != 0 else {
+            return print(EndGameMessages.endMessage)
+        }
+        compareRockScissorsPaper(userInputNumber: RockScissorsPaperCase(rawValue:userInputNum)!, computerInputNumber: RockScissorsPaperCase(rawValue:computerRandomNum)!)
     }
 }
 
-private func compareRockScissorsPaper(userChoice: RockScissorsPaperCase, computerChoice: RockScissorsPaperCase) {
-    switch (userChoice, computerChoice) {
+private func compareRockScissorsPaper(userInputNumber: RockScissorsPaperCase, computerInputNumber: RockScissorsPaperCase) {
+    switch (userInputNumber, computerInputNumber) {
     case (.scissors, .paper), (.rock, .scissors), (.paper, .rock):
-        print(StringNameSpace.winMessage)
-        print(StringNameSpace.endMessage)
+        print(RockScissorsPaperMessages.Results.win)
+        print(EndGameMessages.endMessage)
         isWorkingRockScissorsPaper = false
     case (.paper, .scissors), (.scissors, .rock), (.rock, .paper):
-        print(StringNameSpace.loseMessage)
-        print(StringNameSpace.endMessage)
+        print(RockScissorsPaperMessages.Results.lose)
+        print(EndGameMessages.endMessage)
         isWorkingRockScissorsPaper = false
     default:
-        print(StringNameSpace.drawMessage)
+        print(RockScissorsPaperMessages.Results.draw)
         displayRockScissorsPaperMenu()
     }
 }

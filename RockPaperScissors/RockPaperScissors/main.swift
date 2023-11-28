@@ -7,3 +7,5 @@
 import Foundation
 
 initPlayRockScissorsPaperGame()
+
+print(RockScissorsPaperMessages.menu)

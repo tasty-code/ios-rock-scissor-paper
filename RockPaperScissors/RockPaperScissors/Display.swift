@@ -8,5 +8,5 @@
 import Foundation
 
 func displayRockScissorsPaperMenu() {
-    print(StringNameSpace.rockScissorsPaperExitMenuMessage)
+    print(RockScissorsPaperMessages.Default.menu)
 }
