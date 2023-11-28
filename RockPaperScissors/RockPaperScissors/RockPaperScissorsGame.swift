@@ -10,7 +10,7 @@ import Foundation
 class RockPaperScissorsGame {
     private var gameStack: [() -> ()]
     private var rockPaperScissorsResultDict: Dictionary<Match, () -> ()>
-    private var MukJjiBbaResultDict: Dictionary<Match, () -> ()>
+    private var mukJjiBbaResultDict: Dictionary<Match, () -> ()>
     private var attackPlayer: Player
     private var defensePlayer: Player
     private var model: RockPaperScissorsModel
@@ -18,7 +18,7 @@ class RockPaperScissorsGame {
     
     init() {
         rockPaperScissorsResultDict = [:]
-        MukJjiBbaResultDict = [:]
+        mukJjiBbaResultDict = [:]
         gameStack = []
         attackPlayer = Player()
         defensePlayer = Player()
@@ -29,6 +29,10 @@ class RockPaperScissorsGame {
         rockPaperScissorsResultDict[.win] = rockPaperScissorsWin
         rockPaperScissorsResultDict[.draw] = rockPaperScissorsDraw
         rockPaperScissorsResultDict[.lose] = rockPaperScissorsLose
+        
+        mukJjiBbaResultDict[.win] = mukJjiBbaDraw
+        mukJjiBbaResultDict[.draw] = mukJjiBbaWin
+        mukJjiBbaResultDict[.lose] = mukJjiBbaLose
     }
     
     
@@ -41,12 +45,13 @@ class RockPaperScissorsGame {
     func pushGame() {
         if attackPlayer.playerType == .none {
             gameStack.append(playRockPaperScissorsGame)
+            return
         }
         gameStack.append(playMuckJjiBbaGame)
     }
     
     func playRockPaperScissorsGame() {
-        print(Message.menu.text, terminator: " ")
+        print(Message.standardMenu.text, terminator: " ")
         let userSelect: RockPaperScissors = userInput()
         let comSelect = model.random()
         
@@ -56,6 +61,7 @@ class RockPaperScissorsGame {
         }
         
         if userSelect == .wrongCase {
+            print(Message.wrong.text)
             pushGame()
             return
         }
@@ -70,21 +76,35 @@ class RockPaperScissorsGame {
     
     func userInput() -> RockPaperScissors {
         let userSelect: String = readLine() ?? String(RockPaperScissors.wrongCase.rawValue)
-        var selectedNum: Int? = Int(userSelect)
+        let selectedNum: Int? = Int(userSelect)
         
         return RockPaperScissors(userSelect: selectedNum)
     }
     
     func playMuckJjiBbaGame() {
+        print(Message.upgradeMenu(attackPlayer).text, terminator: " ")
+        let userSelect: RockPaperScissors = model.convert(userInput())
+        let comSelect = model.random()
         
+        if userSelect == .exit {
+            endGame()
+            return
+        }
+        
+        if userSelect == .wrongCase {
+            print(Message.wrong.text)
+            pushGame()
+            return
+        }
+        
+        let result = model.matchResult(firstPlayer: userSelect, secondPlayer: comSelect)
+        
+        guard let process = mukJjiBbaResultDict[result] else { return }
+        process()
     }
     
     func endGame() {
         print(Message.end.text)
-    }
-    
-    func setPlayer() {
-        
     }
     
     func setPlayerType(winPlayer: PlayerType, losePlayer: PlayerType) {
@@ -110,4 +130,26 @@ class RockPaperScissorsGame {
         setPlayerType(winPlayer: .computer, losePlayer: .user)
         print(Message.lose.text)
     }
+    
+    func mukJjiBbaWin() {
+        print(Message.finalWin(attackPlayer).text)
+    }
+    
+    func mukJjiBbaDraw() {
+        pushGame()
+        print(Message.turnChange(attackPlayer).text)
+    }
+    
+    func mukJjiBbaLose() {
+        swapPlayer()
+        pushGame()
+        print(Message.turnChange(attackPlayer).text)
+    }
+    
+    func swapPlayer() {
+        let temp:Player = attackPlayer
+        attackPlayer = defensePlayer
+        defensePlayer = temp
+    }
+    
 }
