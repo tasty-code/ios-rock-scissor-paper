@@ -5,7 +5,7 @@
 //  Created by mireu & kyle.
 //
 
-struct RockScissorPaperGame {
+struct RockScissorPaperGame: Game {
     var turn: Turn = .none
     
     mutating func play() {
@@ -18,7 +18,7 @@ struct RockScissorPaperGame {
         }
     }
     
-    private mutating func continueGame() -> Bool {
+    mutating func continueGame() -> Bool {
         print("가위(1), 바위(2), 보(3)! <종료: 0> :", terminator: " ")
         
         let userInput = readLine()

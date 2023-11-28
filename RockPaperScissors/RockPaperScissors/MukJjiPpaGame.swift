@@ -5,14 +5,15 @@
 //  Created by mireu & kyle.
 //
 
-struct MukJjiPpaGame {
-    var rockScissorPaperGame = RockScissorPaperGame()
+struct MukJjiPpaGame: Game {
+    var turn: Turn
+    var rockScissorPaperGame: RockScissorPaperGame
     
     mutating func play() {
         rockScissorPaperGame.play()
-        
+        turn = rockScissorPaperGame.turn
         while true {
-            guard 
+            guard
                 continueGame()
             else {
                 return
@@ -20,21 +21,21 @@ struct MukJjiPpaGame {
         }
     }
     
-    private mutating func continueGame() -> Bool {
-        print("\(rockScissorPaperGame.turn) 턴 입니다.")
-        print("[\(rockScissorPaperGame.turn) 턴] 묵(1), 찌(2), 빠(3)! <종료: 0> :", terminator: " ")
+    mutating func continueGame() -> Bool {
+        print("\(turn) 턴 입니다.")
+        print("[\(turn) 턴] 묵(1), 찌(2), 빠(3)! <종료: 0> :", terminator: " ")
         
         let userInput = readLine()
         
-        guard 
+        guard
             let command = Command(value: userInput)
         else {
-            rockScissorPaperGame.turn = .computer
+            turn = .computer
             print(ApplicationStatusMessage.error)
             return true
         }
         
-        guard 
+        guard
             !command.isQuit
         else {
             print(ApplicationStatusMessage.quit)
@@ -54,13 +55,13 @@ struct MukJjiPpaGame {
     private mutating func compareChoice(user: MukJjiPpaChoice, computer: MukJjiPpaChoice) -> Bool {
         switch (user, computer) {
         case (.jji,.muk),(.muk,.ppa),(.ppa,.jji):
-            rockScissorPaperGame.turn = .computer
+            turn = .computer
             return true
         case (.jji,.ppa),(.muk,.jji),(.ppa,.muk):
-            rockScissorPaperGame.turn = .user
+            turn = .user
             return true
         default:
-            print("\(rockScissorPaperGame.turn)의 승리!")
+            print("\(turn)의 승리!")
             return false
         }
     }
