@@ -14,17 +14,17 @@ class RockPaperScissorsModel {
         queue.append(rockPaperScissors)
     }
     
-    func dequeue() -> RockPaperScissors {
+    private func dequeue() -> RockPaperScissors {
         return queue.removeFirst()
     }
     
-    func getRockPaperScissors() -> RockPaperScissors {
+    private func getRockPaperScissors() -> RockPaperScissors {
         let rockPaperScissors = dequeue()
         enqueue(rockPaperScissors)
         return rockPaperScissors
     }
     
-    func setHead(head: RockPaperScissors) {
+    private func setHead(head: RockPaperScissors) {
         var now: RockPaperScissors
         repeat {
             now = getRockPaperScissors()
