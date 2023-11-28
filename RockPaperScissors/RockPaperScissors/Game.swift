@@ -69,12 +69,15 @@ final class Game {
     }
     
     private func receiveUserInput() {
-        if let input = readLine(), let inputInt = Int(input) {
-            self.userInput = inputInt
-        } else {
-            print(Prompt.badInput)
-            print(Prompt.rockScissorsPaperChoice)
-            receiveUserInput()
+        while true {
+            if let input = readLine(), let inputInt = Int(input) {
+                self.userInput = inputInt
+                break
+            } else {
+                print(Prompt.badInput)
+                print(Prompt.rockScissorsPaperChoice)
+                continue
+            }
         }
     }
     
