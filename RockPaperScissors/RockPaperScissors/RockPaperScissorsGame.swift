@@ -8,14 +8,33 @@
 import Foundation
 
 class RockPaperScissorsGame {
-    var isRunning:Bool = true
+    private var gameStack: [() -> ()]
+    private var rockPaperScissorsResultDict: Dictionary<Match, () -> ()>
+    private var MukJjiBbaResultDict: Dictionary<Match, () -> ()>
+    private var attackPlayer: Player
+    private var defensePlayer: Player
     
-    func play() {
-        if isRunning {
-            print(Message.menu.text, terminator: " ")
-            playRockPaperScissorsGame()
-            play()
+    init() {
+        rockPaperScissorsResultDict = [:]
+        MukJjiBbaResultDict = [:]
+        gameStack = []
+        gameStack.append(playRockPaperScissorsGame)
+        attackPlayer = Player()
+        defensePlayer = Player()
+    }
+    
+    
+    func start() {
+        while let game = gameStack.popLast() {
+            game()
         }
+    }
+    
+    func pushGame() {
+        if attackPlayer.playerType == .none {
+            gameStack.append(playRockPaperScissorsGame)
+        }
+        gameStack.append(playMuckJjiBbaGame)
     }
     
     func playRockPaperScissorsGame() {
@@ -36,6 +55,10 @@ class RockPaperScissorsGame {
         case .lose:
             print(Message.lose.text)
         }
+    }
+    
+    func playMuckJjiBbaGame() {
+        
     }
     
     func earlyExit(_ userSelect: RockPaperScissors) {

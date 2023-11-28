@@ -13,6 +13,7 @@ enum RockPaperScissors: Int {
     case scissors
     case wrongCase = 4
     case exit
+    case none
     
     init(userSelect :Int?) {
         switch userSelect {
