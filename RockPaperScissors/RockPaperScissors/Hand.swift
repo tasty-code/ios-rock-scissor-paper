@@ -35,7 +35,7 @@ enum Hand: Int, CaseIterable {
         }
     }
     
-    private func wins(_ counter: Hand) -> Bool {
+    func wins(_ counter: Hand) -> Bool {
         switch self {
         case .rock:
             return counter == .scissor
@@ -43,15 +43,6 @@ enum Hand: Int, CaseIterable {
             return counter == .rock
         case .scissor:
             return counter == .paper
-        }
-    }
-    
-    func judge(counter: Self) -> HandGameResult {
-        if self == counter {
-            return .draw
-        } else {
-            // 가위바위보 로직
-            return self.wins(counter) ? .win : .lose
         }
     }
 }

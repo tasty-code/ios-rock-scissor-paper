@@ -14,8 +14,16 @@ struct HandGameRound {
         self.userHand = userHand
     }
     
+    private func judgeIf(_ target: Hand, wins counter: Hand) -> HandGameResult {
+        if target == counter {
+            return .draw
+        } else {
+            return target.wins(counter) ? .win : .lose
+        }
+    }
+    
     func getUserSideResult() -> HandGameResult {
         let computerHand = Hand.randomize()
-        return userHand.judge(counter: computerHand)
+        return judgeIf(userHand, wins: computerHand)
     }
 }

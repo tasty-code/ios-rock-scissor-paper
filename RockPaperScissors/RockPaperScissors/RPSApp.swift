@@ -8,8 +8,6 @@
 import Foundation
 
 final class RPSApp {
-    private var isRunning: Bool = true
-    
     private let io: IO
     
     init(io: IO) {
