@@ -57,30 +57,6 @@ class GameMaster {
         self.turn = turn
     }
     
-    func getGameType() -> GameType {
-        return self.gameType
-    }
-    
-    func setGameType(to gameType: GameType) {
-        self.gameType = gameType
-    }
-    
-    func getUser() -> Player {
-        return self.user
-    }
-    
-    func getComputer() -> Player {
-        return self.computer
-    }
-    
-    func getTurn() -> Player {
-        return self.turn
-    }
-    
-    func setTurn(to player: Player) {
-        self.turn = player
-    }
-    
     func playRockScissorPaper(userInput: Int) {
         user.setRockScissorPaper(input: userInput)
         computer.setRockScissorPaper(input: Int.random(in: 1...3))
@@ -147,7 +123,7 @@ class GameMaster {
                     break
                 }
                 
-                switch self.getGameType() {
+                switch self.gameType {
                 case .rockScissorPaper:
                     self.playRockScissorPaper(userInput: intUserInput)
                     self.evaluateRockScissorPaper()
@@ -160,7 +136,7 @@ class GameMaster {
                     }
                 }
             default :
-                self.setTurn(to: computer)
+                self.turn = computer
                 self.inGameMessage.printMessage(gameStatus: .falseInput)
             }
         } while userInput != "0"
