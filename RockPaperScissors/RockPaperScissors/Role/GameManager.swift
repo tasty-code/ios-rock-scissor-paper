@@ -18,8 +18,12 @@ struct GameManager {
             
             guard let userChoice = getRockPaperScissors(from: userOption),
                   let computerChoice = getRockPaperScissors(from: computerOption) else {
-                shouldEndGameEarlyBy(userOption, computerOption) ?
-                endGame() : PrintingHandler.notifyInvalidOption()
+                if shouldEndGameEarlyBy(userOption, computerOption) {
+                    endGame()
+                    PrintingHandler.notifyGameOver()
+                } else {
+                    PrintingHandler.notifyInvalidOption()
+                }
                 return
             }
             
@@ -46,6 +50,7 @@ struct GameManager {
               let computerChoice = getRockPaperScissors(from: computerOption2) else {
             if shouldEndGameEarlyBy(userOption2, computerOption2) {
                 endGame()
+                PrintingHandler.notifyGameOver()
             } else {
                 PrintingHandler.notifyInvalidOption()
                 playerTurn = .computer
@@ -84,7 +89,7 @@ struct GameManager {
     
     private mutating func endGame() {
         canRun = false
-        PrintingHandler.notifyGameOver()
+        
     }
     
     private func shouldEndGame(basedOn gameOutcome: GameOutcome) -> Bool {
