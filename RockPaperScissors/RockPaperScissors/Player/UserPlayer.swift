@@ -24,14 +24,13 @@ final class UserPlayer {
     }
     
     // TODO: 이름
-    private func getRPSDecision() throws -> RPSDecision {
+    private func getRPSDecision() throws -> RPSGesture {
         io.displayPrompt("\(self.name) - 가위(1), 바위(2), 보(3)! <종료 : 0> :")
         let number = try getNumber()
         if let hand = Hand(rpsNumber: number) {
-            let gesture = RPSGesture(hand: hand, owner: self)
-            return .go(gesture: gesture)
+            return RPSGesture(hand: hand, owner: self)
         } else if number == 0 {
-            return .stop
+            throw RPSError.someoneWantsToExit
         } else {
             throw RPSError.invalidInput
         }
@@ -53,17 +52,14 @@ final class UserPlayer {
 
 // MARK: - RPSPlayable
 extension UserPlayer: RPSPlayable {
-    func makeRPSDecision() -> RPSDecision {
+    func makeRPSGesture() throws -> RPSGesture {
         while true {
             do {
                 return try getRPSDecision()
-            } catch {
-                // TODO: 로직 확인하기
-                if let error = error as? RPSError {
-                    io.displayRPSError(error)
-                }
+            } catch RPSError.invalidInput {
+                io.displayRPSError(RPSError.invalidInput)
                 continue
-            }
+            } catch { throw error }
         }
     }
 }

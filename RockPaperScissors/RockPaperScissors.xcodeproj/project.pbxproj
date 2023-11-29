@@ -14,7 +14,6 @@
 		F47327E22B158A5E000849B1 /* RPSApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = F47327E12B158A5E000849B1 /* RPSApp.swift */; };
 		F47327E42B15C4F9000849B1 /* RPSPlayable.swift in Sources */ = {isa = PBXBuildFile; fileRef = F47327E32B15C4F9000849B1 /* RPSPlayable.swift */; };
 		F47327E62B15C7B8000849B1 /* RPSGame.swift in Sources */ = {isa = PBXBuildFile; fileRef = F47327E52B15C7B8000849B1 /* RPSGame.swift */; };
-		F47327EA2B16066C000849B1 /* RPSDecision.swift in Sources */ = {isa = PBXBuildFile; fileRef = F47327E92B16066C000849B1 /* RPSDecision.swift */; };
 		F47327EC2B160687000849B1 /* RPSGesture.swift in Sources */ = {isa = PBXBuildFile; fileRef = F47327EB2B160687000849B1 /* RPSGesture.swift */; };
 		F47327F22B160737000849B1 /* UserPlayer.swift in Sources */ = {isa = PBXBuildFile; fileRef = F47327F12B160737000849B1 /* UserPlayer.swift */; };
 		F47327F42B160749000849B1 /* ComputerPlayer.swift in Sources */ = {isa = PBXBuildFile; fileRef = F47327F32B160749000849B1 /* ComputerPlayer.swift */; };
@@ -51,7 +50,6 @@
 		F47327E12B158A5E000849B1 /* RPSApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RPSApp.swift; sourceTree = "<group>"; };
 		F47327E32B15C4F9000849B1 /* RPSPlayable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RPSPlayable.swift; sourceTree = "<group>"; };
 		F47327E52B15C7B8000849B1 /* RPSGame.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RPSGame.swift; sourceTree = "<group>"; };
-		F47327E92B16066C000849B1 /* RPSDecision.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RPSDecision.swift; sourceTree = "<group>"; };
 		F47327EB2B160687000849B1 /* RPSGesture.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RPSGesture.swift; sourceTree = "<group>"; };
 		F47327F12B160737000849B1 /* UserPlayer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserPlayer.swift; sourceTree = "<group>"; };
 		F47327F32B160749000849B1 /* ComputerPlayer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ComputerPlayer.swift; sourceTree = "<group>"; };
@@ -127,7 +125,6 @@
 			children = (
 				F47327EB2B160687000849B1 /* RPSGesture.swift */,
 				F47327FB2B1612B2000849B1 /* MJBGesture.swift */,
-				F47327E92B16066C000849B1 /* RPSDecision.swift */,
 				F47327F92B161105000849B1 /* MJBDecision.swift */,
 			);
 			path = Decision;
@@ -225,7 +222,6 @@
 				C7ABA0E1254EA63000B2367D /* main.swift in Sources */,
 				F47328062B16F13A000849B1 /* MJBPart.swift in Sources */,
 				F47327F22B160737000849B1 /* UserPlayer.swift in Sources */,
-				F47327EA2B16066C000849B1 /* RPSDecision.swift in Sources */,
 				F47328002B16F0FD000849B1 /* RPSResult.swift in Sources */,
 				F47327EC2B160687000849B1 /* RPSGesture.swift in Sources */,
 				F47327E62B15C7B8000849B1 /* RPSGame.swift in Sources */,
