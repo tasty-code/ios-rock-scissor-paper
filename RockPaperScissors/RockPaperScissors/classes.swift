@@ -39,10 +39,10 @@ class InGameMessage {
     }
 }
 
-class GameMaster {
+struct GameMaster {
     private var gameType: GameType
-    private var user: Player
-    private var computer: Player
+    var user: Player
+    var computer: Player
     private var turn: Player
     private var message = InGameMessage.shared
     
@@ -53,17 +53,17 @@ class GameMaster {
         self.turn = turn
     }
     
-    func playRockScissorsPaper(userInput: Int) {
+    mutating func playRockScissorsPaper(userInput: Int) {
         user.setRockScissorsPaper(input: userInput)
         computer.setRockScissorsPaper(input: Int.random(in: 1...3))
     }
     
-    func playMookJjiBba(userInput: Int) {
+    mutating func playMookJjiBba(userInput: Int) {
         user.setMookJjiBba(input: userInput)
         computer.setMookJjiBba(input: Int.random(in: 1...3))
     }
     
-    func evaluateRockScissorsPaper() {
+    mutating func evaluateRockScissorsPaper() {
         if self.user.getRockScissorsPaper() == self.computer.getRockScissorsPaper() {
             self.message.print(status: .evaluation, type: .rockScissorsPaper, result: .draw)
             return
@@ -86,7 +86,7 @@ class GameMaster {
         self.gameType = .mookJjiBba
     }
 
-    func evaluateMookJjiBba() -> GameResult {
+    mutating func evaluateMookJjiBba() -> GameResult {
         if self.user.getMookJjiBba() == self.computer.getMookJjiBba() {
             self.message.print(status: .evaluation, type: .mookJjiBba, result: .win)
             return .win
@@ -104,7 +104,7 @@ class GameMaster {
         return .draw
     }
     
-    func playGame() {
+    mutating func playGame() {
         var userInput: String?
         
         gameLoop : repeat {

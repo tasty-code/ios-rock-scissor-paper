@@ -9,7 +9,7 @@ import Foundation
 
 struct Player {
     private var name: String
-    private var rockScissorsPaper: RockScissorsPaper
+    var rockScissorsPaper: RockScissorsPaper
     private var mookJjiBba : MookJjiBba
     
     init(name: String, rockScissorsPaper: RockScissorsPaper, mookJjiBba: MookJjiBba) {
