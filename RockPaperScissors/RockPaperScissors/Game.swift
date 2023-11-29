@@ -104,12 +104,11 @@ final class Game {
             
             switch userInput {
             case 1, 2, 3:
-                //TODO: 묵찌빠 결과 계산 메서드 콜 (구현)
                 calculateRockScissorsPaperResult(with: userInput)
-                break
+                return
             case 0:
-                //TODO: 묵찌빠 게임 종료 메서드 콜 (구현)
-                break // 구현후 삭제 코드
+                shutDown()
+                return
             default:
                 print(Prompt.badInput)
                 if currentPlayerTurn == .human {
