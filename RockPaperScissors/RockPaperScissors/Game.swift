@@ -17,6 +17,9 @@ final class Game {
     
     private var currentPlayerTurn: PlayerTurn = .human
     
+    private let MookZziBbaDictionary: [Int: String] = [1: "묵", 2: "찌", 3: "빠"]
+
+    
     func load() {
         playRockScissorsPaper()
     }
@@ -102,6 +105,7 @@ final class Game {
             switch userInput {
             case 1, 2, 3:
                 //TODO: 묵찌빠 결과 계산 메서드 콜 (구현)
+                calculateRockScissorsPaperResult(with: userInput)
                 break
             case 0:
                 //TODO: 묵찌빠 게임 종료 메서드 콜 (구현)
@@ -124,4 +128,53 @@ final class Game {
         self.currentPlayerTurn = currentPlayerTurn
     }
     
+    private func calculateMookZziBbaResult(with input: Int) {
+        
+        let randomInt: Int = Int.random(in: 1...3)
+        
+        let computerChoice: String = MookZziBbaDictionary[randomInt] ?? ""
+        
+        let userChoice: String = MookZziBbaDictionary[userInput] ?? ""
+        
+        print(Prompt.allChoices(computerChoice, userChoice))
+        
+        let difference: Int = randomInt - userInput
+        
+        switch difference {
+        case 0:
+            draw()
+        case -1, 2:
+            computerWin()
+        case 1, -2:
+            userWin()
+        default:
+            break
+        }
+    }
+    
+    private func userWin() {
+        if currentPlayerTurn == .computer {
+            changePlayerTurn()
+        }
+        print(Prompt.currentTurn(currentPlayerTurn))
+        playMookZziBba()
+    }
+    
+    private func computerWin() {
+        if currentPlayerTurn == .human {
+            changePlayerTurn()
+        }
+        print(Prompt.currentTurn(currentPlayerTurn))
+        playMookZziBba()
+    }
+    
+    private func draw() {
+        print(Prompt.winner(currentPlayerTurn))
+        breakLoop()
+    }
+    
+    private func changePlayerTurn() {
+        let playerTurn: PlayerTurn = (self.currentPlayerTurn == .human) ? .computer : .human
+        setCurrentPlayerTurn(playerTurn)
+    }
 }

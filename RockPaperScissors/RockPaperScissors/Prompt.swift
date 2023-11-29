@@ -22,15 +22,15 @@ struct Prompt {
         return "[(playerTurn.rawValue) 턴] 묵(1), 찌(2), 빠(3)! <종료 : 0> :"
     }
     
-    static func winner( playerTurn: PlayerTurn) -> String {
+    static func winner(_ playerTurn: PlayerTurn) -> String {
         return "(playerTurn.rawValue)의 승리!"
     }
     
-    static func currentTurn( playerTurn: PlayerTurn) -> String {
+    static func currentTurn(_ playerTurn: PlayerTurn) -> String {
         return "(playerTurn.rawValue)의 턴입니다"
     }
     
-    static func allChoices( computerChoice: String, _ userChoice: String) -> String {
+    static func allChoices(_ computerChoice: String, _ userChoice: String) -> String {
         return "컴퓨터 : (computerChoice), 유저 : (userChoice)"
     }
 }
