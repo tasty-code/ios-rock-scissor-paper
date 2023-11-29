@@ -64,8 +64,10 @@ struct RockPaperScissorsManager {
             print(GameResult.draw.rawValue)
         case .userWin:
             print(GameResult.win.rawValue)
+            currentTurn = .computerLose
             nextRound = true
         case .userLose:
+            currentTurn = .computerWin
             print(GameResult.lose.rawValue)
             nextRound = true
         case .none:
