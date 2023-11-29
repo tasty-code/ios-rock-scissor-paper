@@ -9,10 +9,32 @@ import Foundation
 
 enum RPS: Int {
     case scissors = 1, rock = 2, paper = 3
+    
+    var logic: [ RPS : RPS ] {
+        get {
+            let dictionary: [ RPS : RPS ] = [
+                .rock : .scissors,
+                .scissors : .paper,
+                .paper : .rock
+            ]
+            return dictionary
+        }
+    }
 }
 
 enum MJB: Int {
     case mook = 1, jji = 2, bba = 3
+    
+    var logic: [ MJB : MJB ] {
+        get {
+            let dictionary: [ MJB : MJB ] = [
+                .mook : .jji,
+                .jji : .bba,
+                .bba : .mook
+            ]
+            return dictionary
+        }
+    }
 }
 
 enum GameResult: String {

@@ -20,14 +20,8 @@ struct MookJjiBba {
             return (.completed, turn)
         }
         
-        switch userHand {
-        case .mook:
-            turn = computerHand == .jji ? .user : .computer
-        case .jji:
-            turn = computerHand == .bba ? .user : .computer
-        case .bba:
-            turn = computerHand == .mook ? .user : .computer
-        }
+        let logic = userHand.logic
+        turn = logic[userHand] == computerHand ? .user : .computer
         
         print("\(turn.rawValue)의 턴입니다.")
         return (.restart, turn)
