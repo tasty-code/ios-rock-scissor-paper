@@ -26,7 +26,7 @@ struct GameManager {
             
             PrintingHandler.notifyOutcome(of: OutcomeRPS)
             
-            guard let determinedTurn = determinePlayerTurn(of: OutcomeRPS) else {
+            guard let determinedTurn = determinePlayerTurnOrWinner(of: OutcomeRPS) else {
                 return
             }
             
@@ -46,30 +46,28 @@ struct GameManager {
         
         let outcomeMJP = referee.determineGameOutcome(between: userChoiceMJP, and: computerChoiceMJP)
         
-        if outcomeMJP == .win {
-            playerTurn = .user
-            PrintingHandler.notifyPlayerTurn(playTurn: playerTurn)
-            return
-        } else if outcomeMJP == .loss {
-            playerTurn = .computer
-            PrintingHandler.notifyPlayerTurn(playTurn: playerTurn)
-            return
-        } else {
+        guard let determinedTurn = determinePlayerTurnOrWinner(of: outcomeMJP) else {
             PrintingHandler.notifyWinner(winner: playerTurn)
             endGame()
+            return
         }
+        
+        playerTurn = determinedTurn
+        
+        PrintingHandler.notifyPlayerTurn(playTurn: playerTurn)
     }
     
-    private func determinePlayerTurn(of gameOutcome: GameOutcome) -> PlayerTurn? {
+    private mutating func determinePlayerTurnOrWinner(of gameOutcome: GameOutcome) -> PlayerTurn? {
+        
         if gameOutcome == .win {
-            return PlayerTurn.user
+            return .user
         } else if gameOutcome == .loss {
-            return PlayerTurn.computer
+            return .computer
         } else {
             return nil
         }
     }
-    
+
     private mutating func processInvalidOrExitOption(userOption: Option, computerOption: Option) {
         if shouldEndGameEarlyBy(userOption, computerOption) {
             endGame()
