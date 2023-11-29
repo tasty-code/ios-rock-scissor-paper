@@ -44,12 +44,16 @@ struct RockPaperScissorsManager {
             print(currentTurn == MukchippaResult.computerLose ? "[사용자 턴] " : "[컴퓨터 턴] ", "묵(1),찌(2),빠(3)! <종료 : 0> : " , terminator: "")
         }
     }
-
-    mutating func getResult(userValue: Int) {
+    
+    mutating func calculateValue(userValue: Int) {
         randomValue = Int.random(in: 1...3)
-        
         guard let computerValue = randomValue else { return }
         resultValue = (userValue - computerValue + 3) % 3
+        print("computer의 값 : ",randomValue) // 코드 테스트 - 삭제
+    }
+
+    mutating func getResult(userValue: Int) {
+        calculateValue(userValue: userValue)
         guard let gameValue = resultValue else { return }
         
         switch ResultType(rawValue: gameValue) {
