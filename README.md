@@ -6,7 +6,7 @@
 
 ### 코드 설명
 
-- GamePlayer : `Stack` 에 게임이 담긴 경우 담긴 게임을 `pop`해 진행
+- GamePlayer : `Stack` 에 게임이 담긴 경우 담긴 게임을 `pop`해 진행, 싱글톤 패턴
 - RockPaperScissorsModel : `Circular Queue`를 활용한 가위바위보 게임 로직 구현
 - MVC Pattern : 요청 처리(`Controller`), 비즈니스 로직(`Model`), 화면(`View`) 별 분리
 
