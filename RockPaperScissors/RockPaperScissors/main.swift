@@ -1,59 +1,94 @@
+
 import Foundation
 
-// MARK: - 가위바위보
-
-func endGame() {
-    isWorking = false
-    print("게임종료")
+enum UserInput: String {
+    case scissor = "1"
+    case rock = "2"
+    case paper = "3"
+    case exit = "0"
 }
 
-func displayStartMessage() {
-    print("가위(1), 바위(2), 보(3)! <종료: 0> : ", terminator: "")
+enum gameMenuPrompt: String {
+    case rockScissorPaperGameMenu = "가위(1), 바위(2), 보(3)! <종료: 0> : "
+    case mukcchippaGameMenu = "묵(1), 찌(2), 빠(3)! <종료 : 0> :"
+    case win = "이겼습니다!"
+    case lose = "졌습니다!"
+    case draw = "비겼습니다!"
+    case exit = "게임 종료"
+    case error = "잘못된 입력입니다. 다시 시도해주세요."
 }
 
-//함수명 변경 startGmae -> calculateResult
-func calculateResult(comInput: ChoiceMenu, userInput: ChoiceMenu) -> Result {
-    if userInput == comInput {
-        return .draw
-    } else if userInput == .exit {
-        return .quitGame
-    } else if (comInput == .scissor && userInput == .rock) ||
-                (comInput == .rock && userInput == .paper) ||
-                (comInput == .paper && userInput == .scissor) {
-        return .win
-    } else {
-        return .lose
-    }
-}
-
-var isWorking: Bool = true
-
-while isWorking {
-    
-    displayStartMessage()
-    
-    if let userInput = readLine(), let userPick = ChoiceMenu(rawValue: userInput) {
-        guard let comPick = ChoiceMenu.allCases.filter({ $0 != .exit }).randomElement() else { continue }
-        //결과값 받는 메서드 추가
-        let result: Result = calculateResult(comInput: comPick, userInput: userPick)
-        print(result.rawValue)
+func processUserInput(comPick: UserInput, userPick: UserInput) {
+    switch userPick {
+    case .exit:
+        gameOver()
+    case .paper, .rock, .scissor:
+        //가위바위보 case에서 묵찌빠 게임 구현
+        let result: gameMenuPrompt = returnResult(comPick: comPick, userPick: userPick)
+        displayGameMenu(for: result)
         
-        
-        if result == .win || result == .lose {
-            endGame()
-        } else if result == .quitGame {
-            isWorking = false
-        } else if result == .draw {
-            continue
-        } else {
-            print("잘못된 입력입니다. 다시 시도해주세요.")
+        switch result {
+        case .win, .lose, .draw:
+            gameOver()
+            //묵찌빠 실행 메서드 호출
+        default:
+            break
         }
     }
 }
 
+func returnResult(comPick: UserInput, userPick: UserInput) -> gameMenuPrompt {
+    if comPick == userPick {
+        return .draw
+    }
+    switch (comPick, userPick) {
+    case (.scissor, .rock), (.rock, .paper), (.paper, .scissor):
+        return .win
+    default:
+        return .lose
+    }
+}
+
+func displayGameMenu(for situation: gameMenuPrompt) {
+    switch situation {
+    case .rockScissorPaperGameMenu:
+        print(situation.rawValue, terminator: "")
+    default:
+        print(situation.rawValue)
+    }
+}
+
+func printGameResult(comPick: UserInput, userPick:UserInput) {
+    let result: gameMenuPrompt = returnResult(comPick: comPick, userPick: userPick)
+    displayGameMenu(for: result)
+}
 
 
-// MARK: - 묵찌빠
+func gameOver() {
+    displayGameMenu(for: .exit)
+    isGameWorking.toggle()
+}
+
+var isGameWorking: Bool = true
+let computerChoice: [String] = ["1", "2", "3"]
+let playerChoices: [String] = ["0", "1", "2", "3"]
+
+while isGameWorking {
+    displayGameMenu(for: .rockScissorPaperGameMenu)
+    guard let randomComChoice = computerChoice.randomElement(), let comPick = UserInput(rawValue: randomComChoice) else { continue }
+    
+    guard let input = readLine(), let userPick = UserInput(rawValue: input), playerChoices.contains(userPick.rawValue) else {
+        displayGameMenu(for: .error)
+        continue
+    }
+    
+    processUserInput(comPick: comPick, userPick: userPick)
+}
+
+
+
+
+
 
 
 
