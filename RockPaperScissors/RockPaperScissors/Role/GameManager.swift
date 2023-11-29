@@ -2,9 +2,9 @@ import Foundation
 
 struct GameManager {
     public private(set) var canRun: Bool = true
-    private var user: Player = User()
-    private var computer: Player = Computer()
-    private var referee = Referee()
+    private let user: Player = User()
+    private let computer: Player = Computer()
+    private let referee = Referee()
     private var playerTurn: PlayerTurn = .none
     
     public mutating func playGame() {
@@ -18,12 +18,7 @@ struct GameManager {
             
             guard let userChoice = getRockPaperScissors(from: userOption),
                   let computerChoice = getRockPaperScissors(from: computerOption) else {
-                if shouldEndGameEarlyBy(userOption, computerOption) {
-                    endGame()
-                    PrintingHandler.notifyGameOver()
-                } else {
-                    PrintingHandler.notifyInvalidOption()
-                }
+                processInvalidOrExitOption(userOption: userOption, computerOption: computerOption)
                 return
             }
             
@@ -94,6 +89,16 @@ struct GameManager {
     
     private func shouldEndGame(basedOn gameOutcome: GameOutcome) -> Bool {
         return gameOutcome != .draw
+    }
+    
+    private mutating func processInvalidOrExitOption(userOption: Option, computerOption: Option) {
+        if shouldEndGameEarlyBy(userOption, computerOption) {
+            endGame()
+            PrintingHandler.notifyGameOver()
+        } else {
+            PrintingHandler.notifyInvalidOption()
+        }
+
     }
 }
 
