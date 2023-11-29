@@ -14,6 +14,8 @@ final class Game {
     
     private var userInput: Int = 0
     
+    private var currentPlayerTurn: PlayerTurn = .human
+    
     func load() {
         playRockScissorsPaper()
     }
@@ -29,9 +31,11 @@ final class Game {
                 
             case 1, 2, 3:
                 calculateRockScissorsPaperResult(with: userInput)
+                
                 print(gameResult.rawValue)
-                if gameResult != .draw {
-                    shutDown()
+                
+                if [.win, .lose].contains(gameResult) {
+                    initMookZziBba()
                 }
                 
             case 0:
@@ -87,5 +91,14 @@ final class Game {
     
     private func breakLoop() {
         self.loopState = false
+    }
+    
+    private func initMookZziBba() {
+        let player: PlayerTurn = (gameResult == .win) ? .human : .computer
+        setCurrentPlayerTurn(player)
+    }
+    
+    private func setCurrentPlayerTurn(_ currentPlayerTurn: PlayerTurn) {
+        self.currentPlayerTurn = currentPlayerTurn
     }
 }
