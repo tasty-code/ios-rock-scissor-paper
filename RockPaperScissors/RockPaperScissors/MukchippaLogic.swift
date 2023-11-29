@@ -29,7 +29,3 @@ func compareMukchippa(userInputNumber: RockScissorsPaperCase, computerInputNumbe
 func printWinMessage() {
     print(turnStatus == userTurn ? "\(MukchippaMessages.UserTurn.win)" : "\(MukchippaMessages.ComputerTurn.win)")
 }
-
-func displayMukchippaMenu() {
-    print(turnStatus == userTurn ? "\(MukchippaMessages.UserTurn.menu)" : "\(MukchippaMessages.ComputerTurn.menu)")
-}

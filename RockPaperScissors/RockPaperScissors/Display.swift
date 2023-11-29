@@ -10,3 +10,7 @@ import Foundation
 func displayRockScissorsPaperMenu() {
     print(RockScissorsPaperMessages.Default.menu)
 }
+
+func displayMukchippaMenu() {
+    print(turnStatus == userTurn ? "\(MukchippaMessages.UserTurn.menu)" : "\(MukchippaMessages.ComputerTurn.menu)")
+}

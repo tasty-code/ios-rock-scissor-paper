@@ -30,13 +30,13 @@ private func userInputReadLine() {
         guard userInputNum != 0 else {
             return print(EndGameMessages.endMessage)
         }
-        checkingWorkMukchippa(userRandomNum: userInputNum, computerRandomNum: computerRandomNum)
+        checkingWorkMukchippa(userInputNumber: userInputNum, computerRandomNumber: computerRandomNum)
     }
 }
 
-func checkingWorkMukchippa(userRandomNum: Int, computerRandomNum: Int) {
-    isWorkingMukchippa ? compareMukchippa(userInputNumber: RockScissorsPaperCase(rawValue: userRandomNum)!, computerInputNumber: RockScissorsPaperCase(rawValue: computerRandomNum)!) :
-    compareMukchippa(userInputNumber: RockScissorsPaperCase(rawValue: userRandomNum)!, computerInputNumber: RockScissorsPaperCase(rawValue: computerRandomNum)!)
+func checkingWorkMukchippa(userInputNumber: Int, computerRandomNumber: Int) {
+    isWorkingMukchippa ? compareMukchippa(userInputNumber: RockScissorsPaperCase(rawValue: userInputNumber)!, computerInputNumber: RockScissorsPaperCase(rawValue: computerRandomNumber)!) :
+    compareRockScissorsPaper(userInputNumber: RockScissorsPaperCase(rawValue: userInputNumber)!, computerInputNumber: RockScissorsPaperCase(rawValue: computerRandomNumber)!)
 }
 
 private func compareRockScissorsPaper(userInputNumber: RockScissorsPaperCase, computerInputNumber: RockScissorsPaperCase) {
@@ -56,5 +56,3 @@ private func compareRockScissorsPaper(userInputNumber: RockScissorsPaperCase, co
         displayRockScissorsPaperMenu()
     }
 }
-
-
