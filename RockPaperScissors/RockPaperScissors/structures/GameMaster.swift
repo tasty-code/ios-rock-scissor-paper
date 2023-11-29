@@ -47,7 +47,8 @@ struct GameMaster {
                     
                 case .mookJjiBba:
                     let mookJjiBba = MookJjiBba()
-                    let result = mookJjiBba.play(user: self.user, computer: self.computer, turn: self.turn, userInput: intUserInput)
+                    let (result, turn) = mookJjiBba.play(user: self.user, computer: self.computer, turn: self.turn, userInput: intUserInput)
+                    self.turn = turn
                     
                     if result == .win {
                         break gameLoop

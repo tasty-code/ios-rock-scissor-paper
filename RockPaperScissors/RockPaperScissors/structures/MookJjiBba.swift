@@ -8,7 +8,7 @@
 import Foundation
 
 struct MookJjiBba {
-    func play(user: Player, computer: Player, turn: Turn, userInput: Int) -> GameResult {
+    func play(user: Player, computer: Player, turn: Turn, userInput: Int) -> (GameResult, Turn) {
         var user = user
         var computer = computer
         var turn = turn
@@ -21,7 +21,7 @@ struct MookJjiBba {
         
         if userHand == computerHand {
             print("\(turn.rawValue)의 승리!")
-            return .win
+            return (.win, turn)
         }
         
         switch userHand {
@@ -33,6 +33,6 @@ struct MookJjiBba {
             turn = computerHand == .mook ? .user : .computer
         }
         print("\(turn.rawValue)의 턴입니다.")
-        return .draw
+        return (.draw, turn)
     }
 }
