@@ -6,4 +6,4 @@
 
 import Foundation
 
-GameController().play()
+GamePlayer.main.play()

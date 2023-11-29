@@ -31,14 +31,14 @@ class RockPaperScissorsModel {
         } while now != head
     }
     
-    func matchResult(firstPlayer: RockPaperScissors, secondPlayer: RockPaperScissors) -> Match {
-        setHead(head: firstPlayer)
+    func matchResult(_ firstPlayer: Player, _ secondPlayer: Player) -> Match {
+        setHead(head: firstPlayer.playerSelect)
         
-        if secondPlayer == nextRockPaperScissors() {
+        if secondPlayer.playerSelect == nextRockPaperScissors() {
             return .lose
         }
         
-        if secondPlayer == nextRockPaperScissors() {
+        if secondPlayer.playerSelect == nextRockPaperScissors() {
             return .win
         }
         

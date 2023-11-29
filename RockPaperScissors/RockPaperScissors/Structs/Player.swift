@@ -15,4 +15,9 @@ struct Player {
         self.playerSelect = .none
         self.playerType = .none
     }
+    
+    init(_ playerSelect: RockPaperScissors) {
+        self.playerType = .none
+        self.playerSelect = playerSelect
+    }
 }
