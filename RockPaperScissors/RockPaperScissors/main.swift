@@ -10,4 +10,4 @@ let console = Console()
 //let duo = HandGameDuo(UserPlayer(io: console, name: "에피"), UserPlayer(io: console, name: "노움"))
 let duo = HandGameDuo(UserPlayer(io: console, name: "에피"), ComputerPlayer())
 
-RPSApp(display: console, playerDuo: duo).run()
+HandGameApp(playerDuo: duo, errorDisplay: console).run()

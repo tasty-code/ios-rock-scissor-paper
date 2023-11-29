@@ -19,7 +19,7 @@ final class UserPlayer {
     
     private func getNumber() throws -> Int {
         let inputString = try io.getInput()
-        guard let number = Int(inputString) else { throw RPSError.invalidInput }
+        guard let number = Int(inputString) else { throw HandGameError.invalidInput }
         return number
     }
     
@@ -29,9 +29,9 @@ final class UserPlayer {
         if let hand = Hand(rpsNumber: number) {
             return RPSGesture(hand: hand, owner: self)
         } else if number == 0 {
-            throw RPSError.someoneWantsToExit
+            throw HandGameError.someoneWantsToExit
         } else {
-            throw RPSError.invalidInput
+            throw HandGameError.invalidInput
         }
     }
     
@@ -41,9 +41,9 @@ final class UserPlayer {
         if let hand = Hand(mjbNumber: number) {
             return MJBGesture(hand: hand, owner: self)
         } else if number == 0 {
-            throw RPSError.someoneWantsToExit
+            throw HandGameError.someoneWantsToExit
         } else {
-            throw RPSError.invalidInput
+            throw HandGameError.invalidInput
         }
     }
 }
@@ -54,8 +54,8 @@ extension UserPlayer: RPSPlayable {
         while true {
             do {
                 return try getRPSGesture()
-            } catch RPSError.invalidInput {
-                io.displayRPSError(RPSError.invalidInput)
+            } catch HandGameError.invalidInput {
+                io.displayRPSError(HandGameError.invalidInput)
                 continue
             } catch { throw error }
         }
@@ -68,8 +68,8 @@ extension UserPlayer: MJBPlayable {
         while true {
             do {
                 return try getMJBGesture(currentTurn: currentTurn)
-            } catch RPSError.invalidInput {
-                io.displayRPSError(RPSError.invalidInput)
+            } catch HandGameError.invalidInput {
+                io.displayRPSError(HandGameError.invalidInput)
                 continue
             } catch { throw error }
         }
