@@ -28,6 +28,7 @@ struct MookJjiBba {
         case .bba:
             turn = computerHand == .mook ? .user : .computer
         }
+        
         print("\(turn.rawValue)의 턴입니다.")
         return (.restart, turn)
     }

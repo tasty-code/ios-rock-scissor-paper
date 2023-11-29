@@ -7,7 +7,7 @@
 
 import Foundation
 
-struct RockScissorsPaper {
+struct RockPaperScissors {
     func play(userInput: Int) -> (GameResult, Turn) {
         var turn: Turn
 
@@ -31,10 +31,10 @@ struct RockScissorsPaper {
         
         if turn == .user {
             print("이겼습니다.")
-            return (.nextGame, turn)
         } else {
             print("졌습니다.")
-            return (.nextGame, turn)
         }
+        return (.nextGame, turn)
+        
     }
 }

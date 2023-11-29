@@ -8,7 +8,7 @@
 import Foundation
 
 struct GameMaster {
-    var gameType: GameType = .rockScissorsPaper
+    var gameType: GameType = .rockPaperScissors
     var turn: Turn = .computer
     
     mutating func playGame() {
@@ -44,7 +44,6 @@ struct GameMaster {
             }
             
         } while userInput != "0"
-        
         print("게임 종료")
     }
 }

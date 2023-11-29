@@ -25,13 +25,13 @@ enum Turn: String {
 }
 
 enum GameType: String {
-    case rockScissorsPaper = "가위(1), 바위(2), 보(3)! <종료 : 0> : "
+    case rockPaperScissors = "가위(1), 바위(2), 보(3)! <종료 : 0> : "
     case mookJjiBba = "묵(1), 찌(2), 빠(3)! <종료 : 0> : "
     
     func message(turn: Turn) -> String {
         switch self {
         
-        case .rockScissorsPaper:
+        case .rockPaperScissors:
             return self.rawValue
         
         case .mookJjiBba:
@@ -40,16 +40,15 @@ enum GameType: String {
     }
     
     func play(turn: Turn, userInput: Int) -> (GameResult, GameType, Turn) {
-        let turn = turn
         
         switch self {
         
-        case .rockScissorsPaper:
-            let rockScissorsPaper = RockScissorsPaper()
+        case .rockPaperScissors:
+            let rockScissorsPaper = RockPaperScissors()
             let (result, turn) = rockScissorsPaper.play(userInput: userInput)
             
             if result == .restart {
-                return (.restart, .rockScissorsPaper, turn)
+                return (.restart, .rockPaperScissors, turn)
             }
             
             return (.nextGame, .mookJjiBba, turn)
