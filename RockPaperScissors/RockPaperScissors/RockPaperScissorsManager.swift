@@ -18,7 +18,7 @@ struct RockPaperScissorsManager {
     
     mutating func play() {
         while status {
-            RoundCheck()
+            stepCheck()
             guard let input = readLine() else { return }
             userValue = Int(input)
             
@@ -28,22 +28,26 @@ struct RockPaperScissorsManager {
                 status = false
             case 1, 2, 3:
                 guard let userChoice = userValue else { return }
-                if !nextRound {
-                    getRockPaperScissorsResult(userValue: userChoice)
-                } else {
-                    getMukchippaResult(userValue: userChoice)
-                }
+                stepType(userChoice: userChoice)
             default:
                 print(GameResult.wrongValue.rawValue)
             }
         }
     }
     
-    mutating func RoundCheck() {
+    mutating func stepCheck() {
         if !nextRound {
             print("가위(1), 바위(2), 보(3)! <종료: 0> : ", terminator: "")
         } else {
             print(currentTurn == MukchippaResult.computerLose ? "[사용자 턴] " : "[컴퓨터 턴] ", "묵(1),찌(2),빠(3)! <종료 : 0> : " , terminator: "")
+        }
+    }
+    
+    mutating func stepType(userChoice: Int) {
+        if !nextRound {
+            getRockPaperScissorsResult(userValue: userChoice)
+        } else {
+            getMukchippaResult(userValue: userChoice)
         }
     }
     
