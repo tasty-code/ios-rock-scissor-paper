@@ -41,10 +41,10 @@ class MukJjiBbaController: Controller {
         view.showMukJjiBbaSelects(GamePlayer.main.attackPlayer, GamePlayer.main.defensePlayer)
         let result = rockPaperScissorModel.matchResult(GamePlayer.main.attackPlayer, GamePlayer.main.defensePlayer)
         
-        guard let process = resultDict[result] else {
+        guard let aterProcess = resultDict[result] else {
             return
         }
-        process()
+        aterProcess()
     }
     
     private func win() {

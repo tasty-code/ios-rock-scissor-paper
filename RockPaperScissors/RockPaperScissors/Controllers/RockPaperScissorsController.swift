@@ -43,10 +43,10 @@ struct RockPaperScissorsController: Controller {
     }
     
     private mutating func afterRockPaperScissorsProcess(_ result: Match, _ userSelect: RockPaperScissors, _ computerSelect: RockPaperScissors) {
-        guard let process = resultDict[result] else {
+        guard let aterProcess = resultDict[result] else {
             return
         }
-        process()
+        aterProcess()
         
         if result != .draw {
             GamePlayer.main.setSelects(userSelect, computerSelect)
