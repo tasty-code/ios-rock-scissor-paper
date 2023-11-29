@@ -1,5 +1,5 @@
 //
-//  RPSError.swift
+//  HandGameError.swift
 //  RockPaperScissors
 //
 //  Created by Effie on 11/28/23.
@@ -7,7 +7,7 @@
 
 import Foundation
 
-enum RPSError: Error {
+enum HandGameError: Error {
     case invalidInput
     case someoneWantsToExit
     case typeError

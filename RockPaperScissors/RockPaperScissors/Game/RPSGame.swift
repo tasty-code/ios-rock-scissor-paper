@@ -17,16 +17,10 @@ struct RPSGame {
         self.rightPlayer = rightPlayer
     }
     
-    // TODO: Playable 사용할 수 있도록 개선해보기
     private func getPlayerGestures() throws -> (RPSGesture, RPSGesture) {
-        let leftDecision = leftPlayer.makeRPSDecision()
-        let rightDecision = rightPlayer.makeRPSDecision()
-        if case RPSDecision.go(let leftGesture) = leftDecision,
-           case RPSDecision.go(let rightGesture) = rightDecision {
-            return (leftGesture, rightGesture)
-        } else {
-            throw RPSError.someoneWantsToExit
-        }
+        let leftGesture = try leftPlayer.makeRPSGesture()
+        let rightGesture = try rightPlayer.makeRPSGesture()
+        return (leftGesture, rightGesture)
     }
     
     private func displayResult(_ result: RPSResult) {

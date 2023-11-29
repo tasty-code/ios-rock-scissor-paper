@@ -19,10 +19,8 @@ protocol OuputDisplayble {
     func displayOutput(_ output: String)
 }
 
-protocol RPSErrorDisplayble {
-    func displayRPSError(_ error: RPSError)
+protocol HandGameErrorDisplayble {
+    func displayRPSError(_ error: HandGameError)
 }
 
-typealias Displayable = PromptDisplayable & OuputDisplayble & RPSErrorDisplayble
-
-typealias IO = InputGettable & Displayable
+typealias IO = InputGettable & PromptDisplayable & OuputDisplayble & HandGameErrorDisplayble

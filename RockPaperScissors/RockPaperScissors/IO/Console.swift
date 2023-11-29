@@ -9,9 +9,9 @@ import Foundation
 
 final class Console: InputGettable {
     func getInput() throws -> String {
-        guard let pureInput = readLine() else { throw RPSError.invalidInput }
+        guard let pureInput = readLine() else { throw HandGameError.invalidInput }
         let refinedInput = pureInput.trimmingCharacters(in: .whitespacesAndNewlines)
-        guard refinedInput.isEmpty == false else { throw RPSError.invalidInput }
+        guard refinedInput.isEmpty == false else { throw HandGameError.invalidInput }
         return refinedInput
     }
 }
@@ -28,8 +28,8 @@ extension Console: OuputDisplayble {
     }
 }
 
-extension Console: RPSErrorDisplayble {
-    func displayRPSError(_ error: RPSError) {
+extension Console: HandGameErrorDisplayble {
+    func displayRPSError(_ error: HandGameError) {
         print(error.description)
     }
 }

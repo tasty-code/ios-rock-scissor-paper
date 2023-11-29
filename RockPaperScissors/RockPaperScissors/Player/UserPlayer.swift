@@ -19,67 +19,59 @@ final class UserPlayer {
     
     private func getNumber() throws -> Int {
         let inputString = try io.getInput()
-        guard let number = Int(inputString) else { throw RPSError.invalidInput }
+        guard let number = Int(inputString) else { throw HandGameError.invalidInput }
         return number
     }
     
-    // TODO: 이름
-    private func getRPSDecision() throws -> RPSDecision {
+    private func getRPSGesture() throws -> RPSGesture {
         io.displayPrompt("\(self.name) - 가위(1), 바위(2), 보(3)! <종료 : 0> :")
         let number = try getNumber()
         if let hand = Hand(rpsNumber: number) {
-            let gesture = RPSGesture(hand: hand, owner: self)
-            return .go(gesture: gesture)
+            return RPSGesture(hand: hand, owner: self)
         } else if number == 0 {
-            return .stop
+            throw HandGameError.someoneWantsToExit
         } else {
-            throw RPSError.invalidInput
+            throw HandGameError.invalidInput
         }
     }
     
-    private func getMJBDecision(currentTurn: MJBPlayable) throws -> MJBDecision {
+    private func getMJBGesture(currentTurn: MJBPlayable) throws -> MJBGesture {
         io.displayPrompt("[\(currentTurn.name) 턴] \(self.name) - 묵(1), 찌(2), 빠(3)! <종료 : 0> :")
         let number = try getNumber()
         if let hand = Hand(mjbNumber: number) {
-            let gesture = MJBGesture(hand: hand, owner: self)
-            return .go(gesture: gesture)
+            return MJBGesture(hand: hand, owner: self)
         } else if number == 0 {
-            return .stop
+            throw HandGameError.someoneWantsToExit
         } else {
-            throw RPSError.invalidInput
+            throw HandGameError.invalidInput
         }
     }
 }
 
 // MARK: - RPSPlayable
 extension UserPlayer: RPSPlayable {
-    func makeRPSDecision() -> RPSDecision {
+    func makeRPSGesture() throws -> RPSGesture {
         while true {
             do {
-                return try getRPSDecision()
-            } catch {
-                // TODO: 로직 확인하기
-                if let error = error as? RPSError {
-                    io.displayRPSError(error)
-                }
+                return try getRPSGesture()
+            } catch HandGameError.invalidInput {
+                io.displayRPSError(HandGameError.invalidInput)
                 continue
-            }
+            } catch { throw error }
         }
     }
 }
 
 // MARK: - MJBPlayable
 extension UserPlayer: MJBPlayable {
-    func makeMJBDecision(currentTurn: MJBPlayable) -> MJBDecision {
+    func makeMJBGesture(currentTurn: MJBPlayable) throws -> MJBGesture {
         while true {
             do {
-                return try getMJBDecision(currentTurn: currentTurn)
-            } catch {
-                if let error = error as? RPSError {
-                    io.displayRPSError(error)
-                }
+                return try getMJBGesture(currentTurn: currentTurn)
+            } catch HandGameError.invalidInput {
+                io.displayRPSError(HandGameError.invalidInput)
                 continue
-            }
+            } catch { throw error }
         }
     }
 }

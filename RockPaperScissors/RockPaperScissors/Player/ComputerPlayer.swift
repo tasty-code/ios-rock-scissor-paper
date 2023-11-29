@@ -10,16 +10,14 @@ import Foundation
 final class ComputerPlayer: HandGamePlayable {
     let name = "컴퓨터"
     
-    func makeRPSDecision() -> RPSDecision {
+    func makeRPSGesture() throws -> RPSGesture {
         let hand = Hand.randomize()
-        let gesture = RPSGesture(hand: hand, owner: self)
-        return .go(gesture: gesture)
+        return RPSGesture(hand: hand, owner: self)
     }
     
-    func makeMJBDecision(currentTurn: MJBPlayable) -> MJBDecision {
+    func makeMJBGesture(currentTurn: MJBPlayable) throws -> MJBGesture {
         let hand = Hand.randomize()
-        let gesture = MJBGesture(hand: hand, owner: self)
-        return .go(gesture: gesture)
+        return MJBGesture(hand: hand, owner: self)
     }
 }
 
