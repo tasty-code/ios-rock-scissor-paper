@@ -7,16 +7,25 @@
 
 import Foundation
 
-enum GameResult: String {
-    case win, draw, lose
-}
-
 enum RPS: Int {
     case scissors = 1, rock = 2, paper = 3
 }
 
 enum MJB: Int {
     case mook = 1, jji = 2, bba = 3
+}
+
+enum GameResult: String {
+    case win, draw, lose
+}
+
+enum GameStatus {
+    case ready, evaluation, falseInput, completed
+}
+
+enum Turn: String {
+    case user = "사용자"
+    case computer = "컴퓨터"
 }
 
 enum GameType: String {
@@ -60,13 +69,4 @@ enum GameType: String {
             return (.mookJjiBba, turn, .draw)
         }
     }
-}
-
-enum GameStatus {
-    case ready, evaluation, falseInput, completed
-}
-
-enum Turn: String {
-    case user = "사용자"
-    case computer = "컴퓨터"
 }
