@@ -40,13 +40,7 @@ struct GameManager {
         
         guard let userChoiceMJP = getRockPaperScissors(from: userOptionMJP),
               let computerChoiceMJP = getRockPaperScissors(from: computerOptionMJP) else {
-            if shouldEndGameEarlyBy(userOptionMJP, computerOptionMJP) {
-                endGame()
-                PrintingHandler.notifyGameOver()
-            } else {
-                PrintingHandler.notifyInvalidOption()
-                playerTurn = .computer
-            }
+            processInvalidOrExitOption(userOption: userOptionMJP, computerOption: computerOptionMJP)
             return
         }
         
@@ -65,7 +59,6 @@ struct GameManager {
             endGame()
         }
     }
-
     
     private func determinePlayerTurn(of gameOutcome: GameOutcome) -> PlayerTurn? {
         if gameOutcome == .win {
@@ -74,6 +67,18 @@ struct GameManager {
             return PlayerTurn.computer
         } else {
             return nil
+        }
+    }
+    
+    private mutating func processInvalidOrExitOption(userOption: Option, computerOption: Option) {
+        if shouldEndGameEarlyBy(userOption, computerOption) {
+            endGame()
+            PrintingHandler.notifyGameOver()
+        } else {
+            PrintingHandler.notifyInvalidOption()
+            if playerTurn != .none {
+                playerTurn = .computer
+            }
         }
     }
 
@@ -99,13 +104,6 @@ struct GameManager {
         return gameOutcome != .draw
     }
     
-    private mutating func processInvalidOrExitOption(userOption: Option, computerOption: Option) {
-        if shouldEndGameEarlyBy(userOption, computerOption) {
-            endGame()
-            PrintingHandler.notifyGameOver()
-        } else {
-            PrintingHandler.notifyInvalidOption()
-        }
-    }
+    
 }
 
