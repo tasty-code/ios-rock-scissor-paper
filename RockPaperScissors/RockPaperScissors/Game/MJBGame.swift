@@ -18,17 +18,13 @@ struct MJBGame {
         return self.turn === leftPlayer ? rightPlayer : leftPlayer
     }
     
-    private let display: PromptDisplayable & OuputDisplayble
-    
     init(
         turn: MJBPlayable,
-        other: MJBPlayable,
-        displayOn display: PromptDisplayable & OuputDisplayble
+        other: MJBPlayable
     ) {
         self.turn = turn
         self.leftPlayer = self.turn
         self.rightPlayer = other
-        self.display = display
     }
     
     private func getPlayerGestures() throws -> (MJBGesture, MJBGesture) {

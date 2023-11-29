@@ -24,8 +24,7 @@ struct RPSApp {
             let mjbPlayers = try playerDuo.prepareMJBPlayers(rpsWinner: rpsWinner)
             var mjbGame = MJBGame(
                 turn: mjbPlayers.winner,
-                other: mjbPlayers.loser,
-                displayOn: self.display
+                other: mjbPlayers.loser
             )
             try mjbGame.start()
         } catch {
