@@ -19,7 +19,6 @@ struct RockPaperScissorsManager {
     mutating func play() {
         while status {
             RoundCheck()
-            
             guard let input = readLine() else { return }
             userValue = Int(input)
             
@@ -30,7 +29,7 @@ struct RockPaperScissorsManager {
             case 1, 2, 3:
                 guard let userChoice = userValue else { return }
                 if !nextRound {
-                    getResult(userValue: userChoice)
+                    getRockPaperScissorsResult(userValue: userChoice)
                 } else {
                     getMukchippaResult(userValue: userChoice)
                 }
@@ -52,14 +51,13 @@ struct RockPaperScissorsManager {
         randomValue = Int.random(in: 1...3)
         guard let computerValue = randomValue else { return }
         resultValue = (userValue - computerValue + 3) % 3
-        print("computer의 값 : ",randomValue) // 코드 테스트 - 삭제
     }
 
-    mutating func getResult(userValue: Int) {
+    mutating func getRockPaperScissorsResult(userValue: Int) {
         calculateValue(userValue: userValue)
         guard let gameValue = resultValue else { return }
         
-        switch ResultType(rawValue: gameValue) {
+        switch RockPaperScissorsResult(rawValue: gameValue) {
         case .draw:
             print(GameResult.draw.rawValue)
         case .userWin:
