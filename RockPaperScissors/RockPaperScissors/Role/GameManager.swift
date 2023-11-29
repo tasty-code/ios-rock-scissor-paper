@@ -9,11 +9,7 @@ struct GameManager {
     
     public mutating func playGame() {
         
-        if playerTurn == .none {
-            PrintingHandler.showRockPaperScissorsOptions()
-        } else {
-            PrintingHandler.showMukJjiPpaOptions(playTurn: playerTurn)
-        }
+        showOptions()
             
         let userOption = user.chooseOption()
         let computerOption = computer.chooseOption()
@@ -28,25 +24,29 @@ struct GameManager {
         
         if playerTurn == .none {
             PrintingHandler.notifyOutcome(of: outcome)
-            guard let determinedTurn = determinePlayerTurnOrWinner(of: outcome) else {
-                return
-            }
-            playerTurn = determinedTurn
-
-        } else {
-            guard let determinedTurn = determinePlayerTurnOrWinner(of: outcome) else {
+        }
+        
+        guard let determinedTurn = determinePlayerTurnOrWinner(of: outcome) else {
+            if playerTurn != .none {
                 PrintingHandler.notifyWinner(winner: playerTurn)
                 endGame()
-                return
             }
-            
-            playerTurn = determinedTurn
-            
+            return
+        }
+    
+        if playerTurn != .none {
             PrintingHandler.notifyPlayerTurn(playTurn: playerTurn)
         }
+        
+        playerTurn = determinedTurn
     }
     
-    private mutating func determinePlayerTurnOrWinner(of gameOutcome: GameOutcome) -> PlayerTurn? {
+    private func showOptions() {
+        playerTurn == .none ? PrintingHandler.showRockPaperScissorsOptions() :
+                PrintingHandler.showMukJjiPpaOptions(playTurn: playerTurn)
+    }
+    
+    private func determinePlayerTurnOrWinner(of gameOutcome: GameOutcome) -> PlayerTurn? {
         
         if gameOutcome == .win {
             return .user
@@ -63,7 +63,7 @@ struct GameManager {
             PrintingHandler.notifyGameOver()
         } else {
             PrintingHandler.notifyInvalidOption()
-            if playerTurn != .none {
+            if playerTurn == .user {
                 playerTurn = .computer
             }
         }
