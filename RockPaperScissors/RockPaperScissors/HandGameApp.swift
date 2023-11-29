@@ -27,10 +27,8 @@ struct HandGameApp {
                 other: mjbPlayers.loser
             )
             try mjbGame.start()
-        } catch {
-            if let rpsError = error as? HandGameError {
-                errorDisplay.displayRPSError(rpsError)
-            }
-        }
+        } catch HandGameError.someoneWantsToExit {
+            errorDisplay.displayRPSError(HandGameError.someoneWantsToExit)
+        } catch { return }
     }
 }
