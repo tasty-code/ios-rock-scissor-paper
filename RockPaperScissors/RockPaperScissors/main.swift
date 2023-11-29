@@ -6,22 +6,23 @@
 
 import Foundation
 
-enum RockScissorsPaper: String {
+enum RockScissorsPaper: String, CaseIterable {
+    case exit = "0"
     case scissors = "1"
     case rock = "2"
     case paper = "3"
 }
 
-func RockScissorsPaperGame(_ myChoice: RockScissorsPaper) -> Bool {
-    let myChoice = Int(myChoice.rawValue)
-    let comChoice = Int.random(in: 1...3)
-    if myChoice == 0 {
+func RockScissorsPaperGame(_ userChoice: RockScissorsPaper) -> Bool {
+    let userHand = Int(userChoice.rawValue)
+    let computerHand = Int.random(in: 1...3)
+    if userHand == 0 {
         return true
-    } else if comChoice == myChoice {
+    } else if computerHand == userHand {
         print("비겼습니다!")
-    } else if (comChoice == 1 && myChoice == 2) ||
-                (comChoice == 2 && myChoice == 3) ||
-                (comChoice == 3 && myChoice == 1)  {
+    } else if (computerHand == 1 && userHand == 2) ||
+                (computerHand == 2 && userHand == 3) ||
+                (computerHand == 3 && userHand == 1)  {
         print("이겼습니다!")
         return true
     }  else {
@@ -31,16 +32,24 @@ func RockScissorsPaperGame(_ myChoice: RockScissorsPaper) -> Bool {
     return false
 }
 
-while true {
+var onGame: Bool = true
+
+func endGame() {
+    onGame.toggle()
+}
+
+func launchGame(_ input: RockScissorsPaper) {
+    if RockScissorsPaperGame(input) {
+        endGame()
+    }
+}
+
+while onGame {
     print("가위(1), 바위(2), 보(3)! <종료 : 0> :")
     if let input = readLine(),
        let select = RockScissorsPaper(rawValue: input) {
-        if RockScissorsPaperGame(select) {
-            break
-        }
+        launchGame(select)
     } else {
         print("잘못된 입력입니다. 다시 시도해주세요.")
     }
 }
-
-print("<프로그램을 종료합니다.>")
