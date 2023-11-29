@@ -18,14 +18,6 @@ struct GameMaster {
         self.computer = computer
     }
     
-    
-    
-    
-    
-    
-
-    
-    
     mutating func playGame() {
         var userInput: String?
         
@@ -45,12 +37,16 @@ struct GameMaster {
                 
                 switch self.gameType {
                 case .rockScissorsPaper:
-                    var rockScissorsPaper = RockScissorsPaper()
-                    self.turn = rockScissorsPaper.play(user: self.user, computer: self.computer, userInput: intUserInput)
+                    let rockScissorsPaper = RockScissorsPaper()
+                    let (result, turn) = rockScissorsPaper.play(user: self.user, computer: self.computer, userInput: intUserInput)
+                    if result == .draw {
+                        break
+                    }
+                    self.turn = turn
                     self.gameType = .mookJjiBba
                     
                 case .mookJjiBba:
-                    var mookJjiBba = MookJjiBba()
+                    let mookJjiBba = MookJjiBba()
                     let result = mookJjiBba.play(user: self.user, computer: self.computer, turn: self.turn, userInput: intUserInput)
                     
                     if result == .win {

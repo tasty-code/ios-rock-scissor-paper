@@ -8,7 +8,7 @@
 import Foundation
 
 struct RockScissorsPaper {
-    func play(user: Player, computer: Player, userInput: Int) -> Turn {
+    func play(user: Player, computer: Player, userInput: Int) -> (GameResult, Turn) {
         var user = user
         var computer = computer
         var turn: Turn
@@ -21,7 +21,7 @@ struct RockScissorsPaper {
         
         if userHand == computerHand {
             print("비겼습니다.")
-            return self.play(user: user, computer: computer, userInput: userInput)
+            return (.draw, .computer)
         }
         
         switch userHand {
@@ -35,9 +35,10 @@ struct RockScissorsPaper {
         
         if turn == .user {
             print("이겼습니다.")
+            return (.win, turn)
         } else {
             print("졌습니다.")
+            return (.lose, turn)
         }
-        return turn
     }
 }
