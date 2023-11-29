@@ -88,27 +88,25 @@ extension UserPlayer: MJBPlayable {
 // MARK: - RPSResultDisplayable
 extension UserPlayer: RPSResultDisplayable {
     func display(result: RPSResult) {
-        var message = "[\(self.name)] "
+        let message: String
         switch result {
         case .win(let winner):
-            if let winner = winner as? Self, winner === self {
-                message += "이겼습니다!"
-            } else {
-                message += "졌습니다!"
-            }
+            message = (winner === self) ? "이겼습니다!" : "졌습니다!"
         case .draw:
-            message += "비겼습니다!"
+            message = "비겼습니다!"
         }
         io.displayOutput(message)
     }
 }
 
+// MARK: - CallablePlayer
 extension UserPlayer: CallablePlayer {
     func getName() -> String {
         return self.name
     }
 }
 
+// MARK: - MJBResultDisplayable
 extension UserPlayer: MJBResultDisplayable {
     func display(result: MJBResult) {
         io.displayOutput(result.description)
