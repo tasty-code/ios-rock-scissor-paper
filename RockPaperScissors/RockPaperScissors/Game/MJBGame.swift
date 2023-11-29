@@ -15,9 +15,7 @@ struct MJBGame {
     private var turn: MJBPlayable
     
     private var other: MJBPlayable {
-        get {
-            return self.turn === leftPlayer ? rightPlayer : leftPlayer
-        }
+        return self.turn === leftPlayer ? rightPlayer : leftPlayer
     }
     
     private let display: PromptDisplayable & OuputDisplayble
@@ -33,9 +31,9 @@ struct MJBGame {
         self.display = display
     }
     
-#warning("displaying 으로 로직 이동시키기")
     private func displayTrun() {
-        let turnName = turn.displayResult()
+#warning("displaying 으로 로직 이동시키기")
+        let turnName = turn.getName()
         display.displayPrompt("[\(turnName) 턴]")
     }
     
@@ -56,11 +54,10 @@ struct MJBGame {
     }
     
     private func displayResult(_ result: MJBResult) {
-        switch result {
-        case .win:
-            display.displayOutput("\(turn.displayResult())의 승리")
-        case .regame:
-            display.displayOutput("\(turn.displayResult())의 턴입니다.")
+        [leftPlayer, rightPlayer].forEach { player in
+            if let displayablePlayer = player as? MJBResultDisplayable {
+                displayablePlayer.display(result: result)
+            }
         }
     }
     
@@ -72,14 +69,12 @@ struct MJBGame {
         while true {
             let (turnGesture, otherGesture) = try getPlayerGestures()
             let result = MJBPart(turn: turnGesture, other: otherGesture).getResult()
-            // TODO: display 로직 고민해보기
+            displayResult(result)
             switch result {
             case .win:
-                displayResult(result)
                 return
             case .regame(let nextTurn):
                 changeTurn(to: nextTurn)
-                displayResult(result)
                 continue
             }
         }

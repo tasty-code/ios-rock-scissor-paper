@@ -21,7 +21,7 @@ struct MJBPart {
         let otherHand = other.hand
         
         if turnHand == otherHand {
-            return .win
+            return .win(winner: turn.owner)
         } else {
             let winningGesture = turnHand.wins(otherHand) ? turn : other
             let nextTurn = winningGesture.owner

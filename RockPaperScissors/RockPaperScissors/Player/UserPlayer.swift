@@ -103,9 +103,14 @@ extension UserPlayer: RPSResultDisplayable {
     }
 }
 
+extension UserPlayer: CallablePlayer {
+    func getName() -> String {
+        return self.name
+    }
+}
+
 extension UserPlayer: MJBResultDisplayable {
-    func displayResult() -> String {
-        #warning("구현?")
-        return name
+    func display(result: MJBResult) {
+        io.displayOutput(result.description)
     }
 }

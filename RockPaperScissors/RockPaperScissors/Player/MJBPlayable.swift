@@ -7,10 +7,14 @@
 
 import Foundation
 
-protocol MJBPlayable: AnyObject, MJBResultDisplayable {
+protocol MJBPlayable: AnyObject, CallablePlayer {
     func makeMJBDecision() -> MJBDecision
 }
 
+protocol CallablePlayer {
+    func getName() -> String
+}
+
 protocol MJBResultDisplayable {
-    func displayResult() -> String
+    func display(result: MJBResult)
 }

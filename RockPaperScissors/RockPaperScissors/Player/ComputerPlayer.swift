@@ -23,9 +23,8 @@ final class ComputerPlayer: HandGamePlayable {
     }
 }
 
-extension ComputerPlayer: MJBResultDisplayable {
-    func displayResult() -> String {
-        #warning("구현?")
-        return name
+extension ComputerPlayer: CallablePlayer {
+    func getName() -> String {
+        return self.name
     }
 }
