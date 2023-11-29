@@ -8,7 +8,6 @@ struct GameManager {
     private var playerTurn: PlayerTurn = .none
     
     public mutating func playGame() {
-        
         showOptions()
             
         let userOption = user.chooseOption()
@@ -22,32 +21,39 @@ struct GameManager {
         
         let outcome = referee.determineGameOutcome(between: userChoice, and: computerChoice)
         
-        if playerTurn == .none {
+        if isRPS() {
             PrintingHandler.notifyOutcome(of: outcome)
         }
         
         guard let determinedTurn = determinePlayerTurnOrWinner(of: outcome) else {
-            if playerTurn != .none {
+            if isMJP() {
                 PrintingHandler.notifyWinner(winner: playerTurn)
                 endGame()
             }
             return
         }
     
-        if playerTurn != .none {
+        if isMJP() {
             PrintingHandler.notifyPlayerTurn(playTurn: playerTurn)
         }
         
         playerTurn = determinedTurn
     }
     
+    private func isRPS() -> Bool {
+        return playerTurn == .none
+    }
+    
+    private func isMJP() -> Bool {
+        return playerTurn != .none
+    }
+    
     private func showOptions() {
-        playerTurn == .none ? PrintingHandler.showRockPaperScissorsOptions() :
+        isRPS() ? PrintingHandler.showRockPaperScissorsOptions() :
                 PrintingHandler.showMukJjiPpaOptions(playTurn: playerTurn)
     }
     
     private func determinePlayerTurnOrWinner(of gameOutcome: GameOutcome) -> PlayerTurn? {
-        
         if gameOutcome == .win {
             return .user
         } else if gameOutcome == .loss {
@@ -58,15 +64,15 @@ struct GameManager {
     }
 
     private mutating func processInvalidOrExitOption(userOption: Option, computerOption: Option) {
-        if shouldEndGameEarlyBy(userOption, computerOption) {
-            endGame()
-            PrintingHandler.notifyGameOver()
-        } else {
+        guard shouldEndGameEarly(userOption, computerOption) else {
             PrintingHandler.notifyInvalidOption()
             if playerTurn == .user {
                 playerTurn = .computer
             }
+            return
         }
+        endGame()
+        PrintingHandler.notifyGameOver()
     }
 
     private func getRockPaperScissors(from option: Option) -> RockPaperScissors? {
@@ -78,7 +84,7 @@ struct GameManager {
         }
     }
         
-    private func shouldEndGameEarlyBy(_ userChoice: Option, _ computerChoice: Option) -> Bool {
+    private func shouldEndGameEarly(_ userChoice: Option, _ computerChoice: Option) -> Bool {
         return userChoice == .exit || computerChoice == .exit
     }
     
