@@ -1,67 +1,52 @@
 //
-//  GameView.swift
+//  MukJjiBbaView.swift
 //  RockPaperScissors
 //
-//  Created by Designer on 11/28/23.
+//  Created by 장우석 on 11/29/23.
 //
 
 import Foundation
 
-struct GameView: View {
-    public func rockPaperScissorsWin() {
-        let space: String = "                    "
-        print(space + Message.win.text)
-    }
-    
-    public func rockPaperScissorsLose() {
-        let space: String = "                    "
-        print(space + Message.lose.text)
-    }
-    
-    public func rockPaperScissorsDraw() {
-        let space: String = "                    "
-        print(space + Message.draw.text)
-    }
-    
-    public func standardMenu() {
-        print(Message.standardMenu.text, terminator: " ")
-    }
-    
-    public func upgradeMenu(_ player: Player) {
-        print(Message.upgradeMenu(player).text, terminator: " ")
-    }
-    
-    public func finalWin(_ player: Player) {
+struct MukJjiBbaView: View {
+    func win(_ player: Player) {
         let space: String = "                 "
         print(space + Message.finalWin(player).text)
     }
     
-    public func turnChange(_ player: Player) {
+    func lose() {
+        let space: String = "                    "
+        print(space + Message.lose.text)
+    }
+    
+    func draw() {
+        let space: String = "                    "
+        print(space + Message.draw.text)
+    }
+    
+    func menu(_ player: Player) {
+        print(Message.upgradeMenu(player).text, terminator: " ")
+    }
+    
+    func turnChange(_ player: Player) {
         let space: String = "                 "
         print(space + Message.turnChange(player).text)
     }
     
-    public func wrong() {
-        print(Message.wrong.text)
-    }
-    
-    public func end() {
-        print(Message.end.text)
-    }
-
-    public func showRockPaperScissorsSelects(_ userSelect: RockPaperScissors, _ computerSelect: RockPaperScissors) {
-        let space: String = "                        "
-        print("사용자 : \(userSelect.korean) \(space) 컴퓨터 : \(computerSelect.korean)")
-        showImage(attack: userSelect, defense: computerSelect)
-    }
-    
-    public func showMukJjiBbaSelects(_ attackPlayer: Player, _ defensePlayer: Player) {
+    func showSelects(_ attackPlayer: Player, _ defensePlayer: Player) {
         let space: String = "                        "
         print("\(attackPlayer.playerType.text) : \(attackPlayer.playerSelect.mukJjiBba)! \(space) \(defensePlayer.playerType.text) : \(defensePlayer.playerSelect.mukJjiBba)")
         showImage(attack: attackPlayer.playerSelect, defense: defensePlayer.playerSelect)
     }
     
-    public func showReadyText(_ attackPlayer: Player) {
+    func wrong() {
+        print(Message.wrong.text)
+    }
+    
+    func end() {
+        print(Message.end.text)
+    }
+    
+    func showReadyText(_ attackPlayer: Player) {
         let space: String = "                  "
         print("\(space)\(attackPlayer.playerSelect.mukJjiBba)... \(attackPlayer.playerSelect.mukJjiBba)...")
     }

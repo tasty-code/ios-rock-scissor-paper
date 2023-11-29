@@ -13,7 +13,7 @@ class MukJjiBbaController: Controller {
     private var rockPaperScissorModel: RockPaperScissorsModel
     
     init() {
-        view = GameView()
+        view = MukJjiBbaView()
         rockPaperScissorModel = RockPaperScissorsModel()
         resultDict = Dictionary()
         resultDict[.draw] = win
@@ -22,7 +22,7 @@ class MukJjiBbaController: Controller {
     }
     
     func process() {
-        view.upgradeMenu(GamePlayer.main.attackPlayer)
+        view.menu(GamePlayer.main.attackPlayer)
         let userSelect: RockPaperScissors = rockPaperScissorModel.convertRockPaperScissors(userInput())
         let computerSelect = rockPaperScissorModel.random()
         
@@ -38,7 +38,7 @@ class MukJjiBbaController: Controller {
         
         view.showReadyText(GamePlayer.main.attackPlayer)
         GamePlayer.main.setSelects(userSelect, computerSelect)
-        view.showMukJjiBbaSelects(GamePlayer.main.attackPlayer, GamePlayer.main.defensePlayer)
+        view.showSelects(GamePlayer.main.attackPlayer, GamePlayer.main.defensePlayer)
         let result = rockPaperScissorModel.matchResult(GamePlayer.main.attackPlayer, GamePlayer.main.defensePlayer)
         
         guard let aterProcess = resultDict[result] else {
@@ -48,7 +48,7 @@ class MukJjiBbaController: Controller {
     }
     
     private func win() {
-        view.finalWin(GamePlayer.main.attackPlayer)
+        view.win(GamePlayer.main.attackPlayer)
         endGame()
     }
     

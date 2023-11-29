@@ -13,7 +13,7 @@ struct RockPaperScissorsController: Controller {
     private var rockPaperScissorModel: RockPaperScissorsModel
     
     init() {
-        view = GameView()
+        view = RockPaperScissorsView()
         rockPaperScissorModel = RockPaperScissorsModel()
         resultDict = Dictionary()
         resultDict[.draw] = draw
@@ -22,7 +22,7 @@ struct RockPaperScissorsController: Controller {
     }
     
     public mutating func process() {
-        view.standardMenu()
+        view.menu(GamePlayer.main.attackPlayer)
         let userSelect: RockPaperScissors = userInput()
         let computerSelect = rockPaperScissorModel.random()
         
@@ -36,7 +36,7 @@ struct RockPaperScissorsController: Controller {
             return
         }
         
-        view.showRockPaperScissorsSelects(userSelect, computerSelect)
+        view.showSelects(Player(userSelect), Player(computerSelect))
         let result = rockPaperScissorModel.matchResult(Player(userSelect), Player(computerSelect))
         
         afterRockPaperScissorsProcess(result, userSelect, computerSelect)
@@ -63,16 +63,16 @@ struct RockPaperScissorsController: Controller {
     
     private func win() {
         GamePlayer.main.setPlayerType(winPlayer: .user, losePlayer: .computer)
-        view.rockPaperScissorsWin()
+        view.win(GamePlayer.main.attackPlayer)
     }
     
     private func draw() {
-        view.rockPaperScissorsDraw()
+        view.draw()
     }
     
     private func lose() {
         GamePlayer.main.setPlayerType(winPlayer: .computer, losePlayer: .user)
-        view.rockPaperScissorsLose()
+        view.lose()
     }
     
     private func wrongCase() {
