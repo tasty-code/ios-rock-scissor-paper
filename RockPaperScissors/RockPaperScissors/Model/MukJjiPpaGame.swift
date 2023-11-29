@@ -1,17 +1,17 @@
 //
-//  MukJjiPpaGameModel.swift
+//  MukJjiPpaGame.swift
 //  RockPaperScissors
 //
 //  Created by Minho on 11/28/23.
 //
 
-class MukJjiPpaGameModel {
+class MukJjiPpaGame : Playable {
     
-    private var _rpsGame: RockPaperScissorsGameModel
+    private var _rpsGame: RockPaperScissorsGame
     private let _user: Player
     private let _opponent: Player
     
-    init(rpsGame: RockPaperScissorsGameModel) {
+    init(rpsGame: RockPaperScissorsGame) {
         self._rpsGame = rpsGame
         _user = _rpsGame._user
         _opponent = _rpsGame._opponent
@@ -19,8 +19,8 @@ class MukJjiPpaGameModel {
     
     func playGame() -> GameState {
         switch _user.input {
-        case .rpsGameOver:
-            return .gameOver
+        case .exitGame:
+            return .endGame
         case .rock, .scissor, .paper:
             let mjbResult: GameResult = decideGameResult()
             let winnerName: String = _user.isMyTurn ? "사용자" : "컴퓨터"
@@ -29,7 +29,7 @@ class MukJjiPpaGameModel {
                 return .mjbGame
             }
             print("\(winnerName)의 승리!")
-            return .gameOver
+            return .endGame
         default:
             print("잘못된 입력입니다. 다시 시도해주세요.")
             _user.isMyTurn = false // MARK: 반복되는 부분이므로 함수화 할 수 있으면 함수화
@@ -47,5 +47,25 @@ class MukJjiPpaGameModel {
             _opponent.isMyTurn = result == .lose ? true : false
             return .rematch
         }
+    }
+    
+    func convertInput(_ input: Int) -> RockPaperScissor{
+        switch input {
+        case 0:
+            return .exitGame
+        case 1:
+            return .rock
+        case 2:
+            return .scissor
+        case 3:
+            return .paper
+        default:
+            return .noChoice
+        }
+    }
+    
+    func printMenuMessage() {
+        let playerName: String = _user.isMyTurn == true ? "사용자" : "컴퓨터"
+        print("[\(playerName)의 턴] \(MenuMessage.mjb)", terminator: "")
     }
 }

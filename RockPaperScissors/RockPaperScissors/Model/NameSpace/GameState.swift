@@ -6,7 +6,7 @@
 //
 
 enum GameState: Int {
-    case gameOver = 0,
+    case endGame = 0,
          rpsGame = 1,
          mjbGame = 2
 }

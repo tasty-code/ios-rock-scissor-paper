@@ -1,5 +1,5 @@
 //
-//  PlayerModel.swift
+//  Player.swift
 //  RockPaperScissors
 //
 //  Created by Minho on 11/28/23.

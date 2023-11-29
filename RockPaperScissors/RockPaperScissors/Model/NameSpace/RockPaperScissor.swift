@@ -6,7 +6,7 @@
 //
 
 enum RockPaperScissor: Int {
-    case rpsGameOver = 0,
+    case exitGame = 0,
          scissor = 1,
          rock = 2,
          paper = 3,
