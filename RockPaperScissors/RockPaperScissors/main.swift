@@ -9,7 +9,6 @@ import Foundation
 
 let user = Player()
 let computer = Player()
-let gameType = GameType.rockScissorsPaper
-var gameMaster = GameMaster(gameType: gameType, user: user, computer: computer, turn: computer)
+var gameMaster = GameMaster(user: user, computer: computer)
 
 gameMaster.playGame()

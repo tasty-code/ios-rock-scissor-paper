@@ -8,16 +8,14 @@
 import Foundation
 
 struct GameMaster {
-    var gameType: GameType
+    var gameType: GameType = .rockScissorsPaper
     var user: Player
     var computer: Player
-    var turn: Turn
+    var turn: Turn = .computer
     
-    init(gameType: GameType, user: Player, computer: Player, turn: Player) {
-        self.gameType = gameType
+    init(user: Player, computer: Player) {
         self.user = user
         self.computer = computer
-        self.turn = .computer
     }
     
     mutating func playRockScissorsPaper(userInput: Int) {

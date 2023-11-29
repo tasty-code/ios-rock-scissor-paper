@@ -28,5 +28,6 @@ enum GameStatus {
 }
 
 enum Turn: String {
-    case user = "사용자" , computer = "컴퓨터"
+    case user = "사용자"
+    case computer = "컴퓨터"
 }
