@@ -48,27 +48,27 @@ struct MJBIteration {
         }
     }
     
-    private let printer: PromptPrintable & OuputPritable
+    private let display: PromptDisplayable & OuputDisplayble
     
-    init(turn: MJBPlayable, other: MJBPlayable, resultPrinter: PromptPrintable & OuputPritable) {
+    init(turn: MJBPlayable, other: MJBPlayable, display: PromptDisplayable & OuputDisplayble) {
         self.turn = turn
         self.leftPlayer = self.turn
         self.rightPlayer = other
-        self.printer = resultPrinter
+        self.display = display
     }
     
 #warning("displaying 으로 로직 이동시키기")
-    private func printTrun() {
+    private func displayTrun() {
         let turnName = turn.displayResult()
-        printer.printPrompt("[\(turnName) 턴]")
+        display.displayPrompt("[\(turnName) 턴]")
     }
     
     // TODO: Playable 사용할 수 있도록 개선해보기
     private func getPlayerGestures() throws -> (MJBGesture, MJBGesture) {
         #warning("displaying 으로 로직 이동시키기")
-        printTrun()
+        displayTrun()
         let turnDecision = turn.makeMJBDecision()
-        printTrun()
+        displayTrun()
         let otherDecision = other.makeMJBDecision()
         
         if case MJBDecision.go(let turnGesture) = turnDecision,
@@ -79,12 +79,12 @@ struct MJBIteration {
         }
     }
     
-    private func printResult(_ result: MJBResult) {
+    private func displayResult(_ result: MJBResult) {
         switch result {
         case .win:
-            printer.printOutput("\(turn.displayResult())의 승리")
+            display.displayOutput("\(turn.displayResult())의 승리")
         case .regame:
-            printer.printOutput("\(turn.displayResult())의 턴입니다.")
+            display.displayOutput("\(turn.displayResult())의 턴입니다.")
         }
     }
     
@@ -96,14 +96,14 @@ struct MJBIteration {
         while true {
             let (turnGesture, otherGesture) = try getPlayerGestures()
             let result = MJBPart(turn: turnGesture, other: otherGesture).getResult()
-            // TODO: print 로직 고민해보기
+            // TODO: display 로직 고민해보기
             switch result {
             case .win:
-                printResult(result)
+                displayResult(result)
                 return
             case .regame(let nextTurn):
                 changeTurn(to: nextTurn)
-                printResult(result)
+                displayResult(result)
                 continue
             }
         }

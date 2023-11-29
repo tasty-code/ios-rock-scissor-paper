@@ -8,7 +8,7 @@
 import Foundation
 
 final class ComputerPlayer: HandGamePlayable {
-    let name = "컴퓨터"
+    private let name = "컴퓨터"
     
     func makeRPSDecision() -> RPSDecision {
         let hand = Hand.randomize()

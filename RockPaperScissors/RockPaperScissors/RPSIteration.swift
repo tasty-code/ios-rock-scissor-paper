@@ -58,10 +58,10 @@ struct RPSIteration {
         }
     }
     
-    private func printResult(_ result: RPSResult) {
+    private func displayResult(_ result: RPSResult) {
         [leftPlayer, rightPlayer].forEach { player in
-            if let printablePlayer = player as? RPSResultPrintable {
-                printablePlayer.print(result: result)
+            if let displayablePlayer = player as? RPSResultDisplayable {
+                displayablePlayer.display(result: result)
             }
         }
     }
@@ -70,7 +70,7 @@ struct RPSIteration {
         while true {
             let (leftGesture, rightGesture) = try getPlayerGestures()
             let result = RPSPart(between: leftGesture, and: rightGesture).getResult()
-            printResult(result)
+            displayResult(result)
             switch result {
             case .win(let winner):
                 return winner

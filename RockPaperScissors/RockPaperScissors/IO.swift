@@ -7,23 +7,25 @@
 
 import Foundation
 
-protocol PromptPrintable {
-    func printPrompt(_ prompt: String)
+protocol PromptDisplayable {
+    func displayPrompt(_ prompt: String)
 }
 
-protocol InputGettable: PromptPrintable {
+protocol InputGettable {
     func getInput() throws -> String
 }
 
-protocol OuputPritable {
-    func printOutput(_ output: String)
+protocol OuputDisplayble {
+    func displayOutput(_ output: String)
 }
 
-protocol RPSErrorPrintable {
-    func printRPSError(_ error: RPSError)
+protocol RPSErrorDisplayble {
+    func displayRPSError(_ error: RPSError)
 }
 
-typealias IO = InputGettable & OuputPritable & RPSErrorPrintable
+typealias Displayable = PromptDisplayable & OuputDisplayble & RPSErrorDisplayble
+
+typealias IO = InputGettable & Displayable
 
 final class Console: InputGettable {
     func getInput() throws -> String {
@@ -32,20 +34,22 @@ final class Console: InputGettable {
         guard refinedInput.isEmpty == false else { throw RPSError.invalidInput }
         return refinedInput
     }
-    
-    func printPrompt(_ prompt: String) {
+}
+
+extension Console: PromptDisplayable {
+    func displayPrompt(_ prompt: String) {
         print(prompt, terminator: " ")
     }
 }
 
-extension Console: OuputPritable {
-    func printOutput(_ output: String) {
+extension Console: OuputDisplayble {
+    func displayOutput(_ output: String) {
         print(output)
     }
 }
 
-extension Console: RPSErrorPrintable {
-    func printRPSError(_ error: RPSError) {
+extension Console: RPSErrorDisplayble {
+    func displayRPSError(_ error: RPSError) {
         print(error.description)
     }
 }

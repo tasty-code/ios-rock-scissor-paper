@@ -11,6 +11,11 @@ struct HandGameDuo {
     let leftPlayer: HandGamePlayable
     let rightPlayer: HandGamePlayable
     
+    init(_ leftPlayer: HandGamePlayable, _ rightPlayer: HandGamePlayable) {
+        self.leftPlayer = leftPlayer
+        self.rightPlayer = rightPlayer
+    }
+    
     func prepareMJBPlayers(rpsWinner: RPSPlayable) throws -> (winner: MJBPlayable, loser: MJBPlayable) {
         guard let rpsWinner = rpsWinner as? HandGamePlayable else {
             throw RPSError.typeError

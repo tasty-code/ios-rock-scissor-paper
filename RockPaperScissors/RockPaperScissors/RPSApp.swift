@@ -8,12 +8,12 @@
 import Foundation
 
 struct RPSApp {
-    private let io: IO
+    private let display: Displayable
     
     private let playerDuo: HandGameDuo
     
-    init(io: IO, playerDuo: HandGameDuo) {
-        self.io = io
+    init(display: IO, playerDuo: HandGameDuo) {
+        self.display = display
         self.playerDuo = playerDuo
     }
     
@@ -22,11 +22,11 @@ struct RPSApp {
             let rpsGame = RPSIteration(between: playerDuo.leftPlayer, and: playerDuo.rightPlayer)
             let rpsWinner = try rpsGame.start()
             let mjbPlayers = try playerDuo.prepareMJBPlayers(rpsWinner: rpsWinner)
-            var mjbGame = MJBIteration(turn: mjbPlayers.winner, other: mjbPlayers.loser, resultPrinter: self.io)
+            var mjbGame = MJBIteration(turn: mjbPlayers.winner, other: mjbPlayers.loser, display: self.display)
             try mjbGame.start()
         } catch {
             if let rpsError = error as? RPSError {
-                io.printRPSError(rpsError)
+                display.displayRPSError(rpsError)
             }
         }
     }

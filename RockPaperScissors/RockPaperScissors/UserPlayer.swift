@@ -8,7 +8,7 @@
 import Foundation
 
 final class UserPlayer {
-    let name: String
+    private let name: String
     
     private let io: IO
     
@@ -25,7 +25,7 @@ final class UserPlayer {
     
     // TODO: 이름
     private func getRPSDecision() throws -> RPSDecision {
-        io.printPrompt("[\(self.name)] 가위(1), 바위(2), 보(3)! <종료 : 0> :")
+        io.displayPrompt("[\(self.name)] 가위(1), 바위(2), 보(3)! <종료 : 0> :")
         let number = try getNumber()
         if let hand = Hand(rpsNumber: number) {
             let gesture = RPSGesture(hand: hand, owner: self)
@@ -39,7 +39,7 @@ final class UserPlayer {
     
     private func getMJBDecision() throws -> MJBDecision {
         #warning("displaying 로직 바꾸면서 같이 바꿔야 함")
-        io.printPrompt("\(self.name) - 묵(1), 찌(2), 빠(3)! <종료 : 0> :")
+        io.displayPrompt("\(self.name) - 묵(1), 찌(2), 빠(3)! <종료 : 0> :")
         let number = try getNumber()
         if let hand = Hand(mjbNumber: number) {
             let gesture = MJBGesture(hand: hand, owner: self)
@@ -59,8 +59,9 @@ extension UserPlayer: RPSPlayable {
             do {
                 return try getRPSDecision()
             } catch {
+                // TODO: 로직 확인하기
                 if let error = error as? RPSError {
-                    io.printRPSError(error)
+                    io.displayRPSError(error)
                 }
                 continue
             }
@@ -76,7 +77,7 @@ extension UserPlayer: MJBPlayable {
                 return try getMJBDecision()
             } catch {
                 if let error = error as? RPSError {
-                    io.printRPSError(error)
+                    io.displayRPSError(error)
                 }
                 continue
             }
@@ -84,9 +85,9 @@ extension UserPlayer: MJBPlayable {
     }
 }
 
-// MARK: - RPSResultPrintable
-extension UserPlayer: RPSResultPrintable {
-    func print(result: RPSResult) {
+// MARK: - RPSResultDisplayable
+extension UserPlayer: RPSResultDisplayable {
+    func display(result: RPSResult) {
         var message = "[\(self.name)] "
         switch result {
         case .win(let winner):
@@ -98,7 +99,7 @@ extension UserPlayer: RPSResultPrintable {
         case .draw:
             message += "비겼습니다!"
         }
-        io.printOutput(message)
+        io.displayOutput(message)
     }
 }
 

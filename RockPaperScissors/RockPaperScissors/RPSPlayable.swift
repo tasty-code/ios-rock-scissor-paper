@@ -13,6 +13,6 @@ protocol RPSPlayable: AnyObject {
     func makeRPSDecision() -> RPSDecision
 }
 
-protocol RPSResultPrintable {
-    func print(result: RPSResult)
+protocol RPSResultDisplayable {
+    func display(result: RPSResult)
 }
