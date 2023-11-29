@@ -98,7 +98,7 @@ final class Game {
     // MARK: MookZziBba
     private func playMookZziBba() {
         while true {
-            print(Prompt.MookZziBbaChoice(currentPlayerTurn))
+            print(Prompt.MookZziBbaChoice(currentPlayerTurn), terminator: " ")
             
             receiveUserInput()
             
