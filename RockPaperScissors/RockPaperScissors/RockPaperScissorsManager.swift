@@ -28,8 +28,11 @@ struct RockPaperScissorsManager {
                 print(GameResult.exit.rawValue)
                 status = false
             case 1, 2, 3:
-                if let userChoice = userValue {
+                guard let userChoice = userValue else { return }
+                if !nextRound {
                     getResult(userValue: userChoice)
+                } else {
+                    getMukchippaResult(userValue: userChoice)
                 }
             default:
                 print(GameResult.wrongValue.rawValue)
