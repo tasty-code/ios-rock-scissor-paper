@@ -7,8 +7,6 @@
 import Foundation
 
 
-let user = Player()
-let computer = Player()
-var gameMaster = GameMaster(user: user, computer: computer)
+var gameMaster = GameMaster()
 
 gameMaster.playGame()

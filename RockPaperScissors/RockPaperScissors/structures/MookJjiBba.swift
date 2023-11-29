@@ -8,16 +8,12 @@
 import Foundation
 
 struct MookJjiBba {
-    func play(user: Player, computer: Player, turn: Turn, userInput: Int) -> (GameResult, Turn) {
-        var user = user
-        var computer = computer
+    func play(turn: Turn, userInput: Int) -> (GameResult, Turn) {
         var turn = turn
         
-        user.chooseMookJjiBba(input: userInput)
-        computer.chooseMookJjiBba(input: Int.random(in: 1...3))
-        
-        let userHand = user.retrieveMookJjiBba()
-        let computerHand = computer.retrieveMookJjiBba()
+        guard let userHand = MJB(rawValue: userInput), let computerHand = MJB(rawValue: Int.random(in: 1...3)) else {
+            return (.draw, .computer)
+        }
         
         if userHand == computerHand {
             print("\(turn.rawValue)의 승리!")

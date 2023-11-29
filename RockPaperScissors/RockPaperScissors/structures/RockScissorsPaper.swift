@@ -8,16 +8,12 @@
 import Foundation
 
 struct RockScissorsPaper {
-    func play(user: Player, computer: Player, userInput: Int) -> (GameResult, Turn) {
-        var user = user
-        var computer = computer
+    func play(userInput: Int) -> (GameResult, Turn) {
         var turn: Turn
-        
-        user.chooseRockScissorsPaper(input: userInput)
-        computer.chooseRockScissorsPaper(input: Int.random(in: 1...3))
-        
-        let userHand = user.retrieveRockScissorsPaper()
-        let computerHand = computer.retrieveRockScissorsPaper()
+
+        guard let userHand = RPS(rawValue: userInput), let computerHand = RPS(rawValue: Int.random(in: 1...3)) else {
+            return (.draw, .computer)
+        }
         
         if userHand == computerHand {
             print("비겼습니다.")

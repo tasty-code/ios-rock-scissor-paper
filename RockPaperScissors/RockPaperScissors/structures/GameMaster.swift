@@ -9,14 +9,7 @@ import Foundation
 
 struct GameMaster {
     var gameType: GameType = .rockScissorsPaper
-    var user: Player
-    var computer: Player
     var turn: Turn = .computer
-    
-    init(user: Player, computer: Player) {
-        self.user = user
-        self.computer = computer
-    }
     
     mutating func playGame() {
         var userInput: String?
@@ -38,7 +31,7 @@ struct GameMaster {
                 switch self.gameType {
                 case .rockScissorsPaper:
                     let rockScissorsPaper = RockScissorsPaper()
-                    let (result, turn) = rockScissorsPaper.play(user: self.user, computer: self.computer, userInput: intUserInput)
+                    let (result, turn) = rockScissorsPaper.play(userInput: intUserInput)
                     if result == .draw {
                         break
                     }
@@ -47,7 +40,7 @@ struct GameMaster {
                     
                 case .mookJjiBba:
                     let mookJjiBba = MookJjiBba()
-                    let (result, turn) = mookJjiBba.play(user: self.user, computer: self.computer, turn: self.turn, userInput: intUserInput)
+                    let (result, turn) = mookJjiBba.play(turn: self.turn, userInput: intUserInput)
                     self.turn = turn
                     
                     if result == .win {
