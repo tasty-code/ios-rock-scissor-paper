@@ -30,11 +30,11 @@ struct GameMaster {
                     break
                 }
                 
-                let (gameType, turn, gameResult) = self.gameType.play(turn: self.turn, userInput: intUserInput)
+                let (gameResult, gameType, turn) = self.gameType.play(turn: self.turn, userInput: intUserInput)
                 self.gameType = gameType
                 self.turn = turn
                 
-                if gameResult == .win {
+                if gameResult == .completed {
                     break gameLoop
                 }
                 

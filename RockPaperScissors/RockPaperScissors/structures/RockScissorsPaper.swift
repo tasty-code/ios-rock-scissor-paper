@@ -12,12 +12,12 @@ struct RockScissorsPaper {
         var turn: Turn
 
         guard let userHand = RPS(rawValue: userInput), let computerHand = RPS(rawValue: Int.random(in: 1...3)) else {
-            return (.draw, .computer)
+            return (.restart, .computer)
         }
         
         if userHand == computerHand {
             print("비겼습니다.")
-            return (.draw, .computer)
+            return (.restart, .computer)
         }
         
         switch userHand {
@@ -31,10 +31,10 @@ struct RockScissorsPaper {
         
         if turn == .user {
             print("이겼습니다.")
-            return (.win, turn)
+            return (.nextGame, turn)
         } else {
             print("졌습니다.")
-            return (.lose, turn)
+            return (.nextGame, turn)
         }
     }
 }

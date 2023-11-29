@@ -12,12 +12,12 @@ struct MookJjiBba {
         var turn = turn
         
         guard let userHand = MJB(rawValue: userInput), let computerHand = MJB(rawValue: Int.random(in: 1...3)) else {
-            return (.draw, .computer)
+            return (.restart, .computer)
         }
         
         if userHand == computerHand {
             print("\(turn.rawValue)의 승리!")
-            return (.win, turn)
+            return (.completed, turn)
         }
         
         switch userHand {
@@ -29,6 +29,6 @@ struct MookJjiBba {
             turn = computerHand == .mook ? .user : .computer
         }
         print("\(turn.rawValue)의 턴입니다.")
-        return (.draw, turn)
+        return (.restart, turn)
     }
 }

@@ -16,11 +16,7 @@ enum MJB: Int {
 }
 
 enum GameResult: String {
-    case win, draw, lose
-}
-
-enum GameStatus {
-    case ready, evaluation, falseInput, completed
+    case completed, restart, nextGame
 }
 
 enum Turn: String {
@@ -43,7 +39,7 @@ enum GameType: String {
         }
     }
     
-    func play(turn: Turn, userInput: Int) -> (GameType, Turn, GameResult) {
+    func play(turn: Turn, userInput: Int) -> (GameResult, GameType, Turn) {
         let turn = turn
         
         switch self {
@@ -52,21 +48,21 @@ enum GameType: String {
             let rockScissorsPaper = RockScissorsPaper()
             let (result, turn) = rockScissorsPaper.play(userInput: userInput)
             
-            if result == .draw {
-                return (.rockScissorsPaper, turn, .draw)
+            if result == .restart {
+                return (.restart, .rockScissorsPaper, turn)
             }
             
-            return (.mookJjiBba, turn, .lose)
+            return (.nextGame, .mookJjiBba, turn)
             
         case .mookJjiBba:
             let mookJjiBba = MookJjiBba()
             let (result, turn) = mookJjiBba.play(turn: turn, userInput: userInput)
             
-            if result == .win {
-                return (.mookJjiBba, turn, .win)
+            if result == .completed {
+                return (.completed, .mookJjiBba, turn)
             }
             
-            return (.mookJjiBba, turn, .draw)
+            return (.restart, .mookJjiBba, turn)
         }
     }
 }
