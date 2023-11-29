@@ -8,13 +8,13 @@
 import Foundation
 
 protocol MJBPlayable: AnyObject, CallablePlayer {
-    func makeMJBDecision() -> MJBDecision
-}
-
-protocol CallablePlayer {
-    func getName() -> String
+    func makeMJBDecision(currentTurn: MJBPlayable) -> MJBDecision
 }
 
 protocol MJBResultDisplayable {
     func display(result: MJBResult)
+}
+
+protocol CallablePlayer {
+    var name: String { get }
 }

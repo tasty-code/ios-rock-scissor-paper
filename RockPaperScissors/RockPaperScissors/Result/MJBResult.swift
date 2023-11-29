@@ -14,10 +14,10 @@ enum MJBResult {
     var description: String {
         switch self {
         case .win(let winner):
-            let winnerName = winner.getName()
+            let winnerName = winner.name
             return "\(winnerName)의 승리!"
         case .regame(let nextTurn):
-            let nextTurnName = nextTurn.getName()
+            let nextTurnName = nextTurn.name
             return "\(nextTurnName)의 턴입니다."
         }
     }

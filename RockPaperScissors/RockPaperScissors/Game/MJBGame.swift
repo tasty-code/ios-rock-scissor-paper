@@ -31,19 +31,10 @@ struct MJBGame {
         self.display = display
     }
     
-    private func displayTrun() {
-#warning("displaying 으로 로직 이동시키기")
-        let turnName = turn.getName()
-        display.displayPrompt("[\(turnName) 턴]")
-    }
-    
     // TODO: Playable 사용할 수 있도록 개선해보기
     private func getPlayerGestures() throws -> (MJBGesture, MJBGesture) {
-        #warning("displaying 으로 로직 이동시키기")
-        displayTrun()
-        let turnDecision = turn.makeMJBDecision()
-        displayTrun()
-        let otherDecision = other.makeMJBDecision()
+        let turnDecision = turn.makeMJBDecision(currentTurn: self.turn)
+        let otherDecision = other.makeMJBDecision(currentTurn: self.turn)
         
         if case MJBDecision.go(let turnGesture) = turnDecision,
            case MJBDecision.go(let otherGesture) = otherDecision {
