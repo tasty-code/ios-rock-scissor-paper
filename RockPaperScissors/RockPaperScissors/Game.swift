@@ -21,7 +21,7 @@ final class Game {
     private func playRockScissorsPaper() {
         while loopState {
             
-            print(Prompt.rockScissorsPaperChoice)
+            print(Prompt.rockScissorsPaperChoice, terminator: " ")
             
             receiveUserInput()
             
@@ -75,7 +75,7 @@ final class Game {
                 break
             } else {
                 print(Prompt.badInput)
-                print(Prompt.rockScissorsPaperChoice)
+                print(Prompt.rockScissorsPaperChoice, terminator: " ")
             }
         }
     }
