@@ -57,10 +57,10 @@ struct RockPaperScissorsManager {
             print(GameResult.draw.rawValue)
         case .userWin:
             print(GameResult.win.rawValue)
-            status = false
+            nextRound = true
         case .userLose:
             print(GameResult.lose.rawValue)
-            status = false
+            nextRound = true
         case .none:
             break
         }
