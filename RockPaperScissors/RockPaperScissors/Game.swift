@@ -112,7 +112,7 @@ final class Game {
             default:
                 print(Prompt.badInput)
                 if currentPlayerTurn == .human {
-                    //TODO: 잘못된 입력을 받은 경우 PlayerTurn 넘기는 메서드 콜 (구현)
+                    changePlayerTurn()
                 }
             }
         }
