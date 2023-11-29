@@ -23,12 +23,41 @@ enum GameType: String {
     case rockScissorsPaper = "가위(1), 바위(2), 보(3)! <종료 : 0> : "
     case mookJjiBba = "묵(1), 찌(2), 빠(3)! <종료 : 0> : "
     
-    func message(turn: Turn) -> String{
+    func message(turn: Turn) -> String {
         switch self {
+        
         case .rockScissorsPaper:
             return self.rawValue
+        
         case .mookJjiBba:
             return "[\(turn.rawValue) 턴] " + self.rawValue
+        }
+    }
+    
+    func play(turn: Turn, userInput: Int) -> (GameType, Turn, GameResult) {
+        let turn = turn
+        
+        switch self {
+        
+        case .rockScissorsPaper:
+            let rockScissorsPaper = RockScissorsPaper()
+            let (result, turn) = rockScissorsPaper.play(userInput: userInput)
+            
+            if result == .draw {
+                return (.rockScissorsPaper, turn, .draw)
+            }
+            
+            return (.mookJjiBba, turn, .lose)
+            
+        case .mookJjiBba:
+            let mookJjiBba = MookJjiBba()
+            let (result, turn) = mookJjiBba.play(turn: turn, userInput: userInput)
+            
+            if result == .win {
+                return (.mookJjiBba, turn, .win)
+            }
+            
+            return (.mookJjiBba, turn, .draw)
         }
     }
 }
