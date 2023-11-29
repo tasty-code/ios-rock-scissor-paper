@@ -13,11 +13,17 @@ import Foundation
 
 
 
-class IOmanager {
+struct RockScissorPaperIOmanager {
     
     //입출력만담당 ?
     
 }
+
+
+
+
+
+
 
 
 

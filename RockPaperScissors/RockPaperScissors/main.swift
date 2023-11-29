@@ -1,32 +1,8 @@
 import Foundation
 
-enum UserInput: String {
-    case scissor = "1"
-    case rock = "2"
-    case paper = "3"
-    case exit = "0"
-}
-
-enum GameMenuPrompt: String {
-    case menu = "가위(1), 바위(2), 보(3)! <종료: 0> : "
-    case win = "이겼습니다!"
-    case lose = "졌습니다!"
-    case draw = "비겼습니다!"
-    case exit = "게임 종료"
-    case mukChiPPaMenu = "묵(1), 찌(2), 빠(3)! <종료: 0> : "
-    case error = "잘못된 입력입니다. 다시 시도해주세요."
-}
-
-enum MukChiPPaOption: String {
-    case muk = "1"
-    case chi = "2"
-    case ppa = "3"
-    case exit = "게임종료"
-}
-
 var isGameRunning: Bool = true
 
-func processUserInput(comPick: UserInput, userPick: UserInput) {
+func handleUserInput(comPick: UserMenuOption, userPick: UserMenuOption) {
     switch userPick {
     case .exit:
         endGame()
@@ -39,17 +15,17 @@ func processUserInput(comPick: UserInput, userPick: UserInput) {
         } else {
             let userWon = result == .win ? true : false
             if userWon {
-                print("[사용자 턴] ", terminator: "")
+                print("[사용자 턴]", terminator: "")
                 playMukChiPPa(turn: .user)
             } else {
-                print("[컴퓨터 턴] ", terminator: "")
+                print("[컴퓨터 턴]", terminator: "")
                 playMukChiPPa(turn: .computer)
             }
         }
     }
 }
 
-func determineGameResult(comPick: UserInput, userPick: UserInput) -> GameMenuPrompt {
+func determineGameResult(comPick: UserMenuOption, userPick: UserMenuOption) -> GameMenuPrompt {
     if comPick == userPick {
         return .draw
     }
@@ -76,20 +52,6 @@ func showGameMenu(for situation: GameMenuPrompt) {
 func endGame() {
     showGameMenu(for: .exit)
     isGameRunning = false
-}
-
-enum mukchippaGamreTurn {
-    case user
-    case computer
-    
-    mutating func toggle() {
-        switch self {
-        case .user:
-            self = .computer
-        case .computer:
-            self = .user
-        }
-    }
 }
 
 func playMukChiPPa(turn: mukchippaGamreTurn) {
@@ -128,17 +90,20 @@ func playMukChiPPa(turn: mukchippaGamreTurn) {
 while isGameRunning {
     showGameMenu(for: .menu)
     
-    guard let randomComChoice = UserInput(rawValue: String(Int.random(in: 1...3))) else {
+    guard let randomComChoice = UserMenuOption(rawValue: String(Int.random(in: 1...3))) else {
         continue
     }
     
-    guard let input = readLine(), let userPick = UserInput(rawValue: input) else {
+    guard let input = readLine(), let userPick = UserMenuOption(rawValue: input) else {
         showGameMenu(for: .error)
         continue
     }
     
     let result = determineGameResult(comPick: randomComChoice, userPick: userPick)
-    processUserInput(comPick: randomComChoice, userPick: userPick)
+    handleUserInput(comPick: randomComChoice, userPick: userPick)
 }
+
+
+
 
 
