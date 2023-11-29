@@ -7,8 +7,11 @@
 
 import Foundation
 
-protocol InputGettable {
+protocol PromptPrintable {
     func printPrompt(_ prompt: String)
+}
+
+protocol InputGettable: PromptPrintable {
     func getInput() throws -> String
 }
 

@@ -16,8 +16,8 @@ enum Hand: CaseIterable {
         Hand.allCases.randomElement() ?? .rock
     }
     
-    init?(rspNumber: Int) {
-        switch rspNumber {
+    init?(rpsNumber: Int) {
+        switch rpsNumber {
         case 1: self = .scissor
         case 2: self = .rock
         case 3: self = .paper

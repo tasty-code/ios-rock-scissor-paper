@@ -7,7 +7,7 @@
 
 import Foundation
 
-struct Gesture {
+struct RPSGesture {
     let hand: Hand
-    let owner: Playable
+    let owner: RPSPlayable
 }

@@ -8,7 +8,7 @@
 import Foundation
 
 final class UserPlayer {
-    private let name: String
+    let name: String
     
     private let io: IO
     
@@ -23,11 +23,26 @@ final class UserPlayer {
         return number
     }
     
-    private func getDecision() throws -> PlayerDecision {
+    // TODO: 이름
+    private func getRPSDecision() throws -> RPSDecision {
         io.printPrompt("[\(self.name)] 가위(1), 바위(2), 보(3)! <종료 : 0> :")
         let number = try getNumber()
-        if let hand = Hand(rspNumber: number) {
-            let gesture = Gesture(hand: hand, owner: self)
+        if let hand = Hand(rpsNumber: number) {
+            let gesture = RPSGesture(hand: hand, owner: self)
+            return .go(gesture: gesture)
+        } else if number == 0 {
+            return .stop
+        } else {
+            throw RPSError.invalidInput
+        }
+    }
+    
+    private func getMJBDecision() throws -> MJBDecision {
+        #warning("displaying 로직 바꾸면서 같이 바꿔야 함")
+        io.printPrompt("\(self.name) - 묵(1), 찌(2), 빠(3)! <종료 : 0> :")
+        let number = try getNumber()
+        if let hand = Hand(mjbNumber: number) {
+            let gesture = MJBGesture(hand: hand, owner: self)
             return .go(gesture: gesture)
         } else if number == 0 {
             return .stop
@@ -37,11 +52,12 @@ final class UserPlayer {
     }
 }
 
-extension UserPlayer: Playable {
-    func makeDecision() -> PlayerDecision {
+// MARK: - RPSPlayable
+extension UserPlayer: RPSPlayable {
+    func makeRPSDecision() -> RPSDecision {
         while true {
             do {
-                return try getDecision()
+                return try getRPSDecision()
             } catch {
                 if let error = error as? RPSError {
                     io.printRPSError(error)
@@ -52,17 +68,43 @@ extension UserPlayer: Playable {
     }
 }
 
-extension UserPlayer: GameResultPrintable {
+// MARK: - MJBPlayable
+extension UserPlayer: MJBPlayable {
+    func makeMJBDecision() -> MJBDecision {
+        while true {
+            do {
+                return try getMJBDecision()
+            } catch {
+                if let error = error as? RPSError {
+                    io.printRPSError(error)
+                }
+                continue
+            }
+        }
+    }
+}
+
+// MARK: - RPSResultPrintable
+extension UserPlayer: RPSResultPrintable {
     func print(result: RPSResult) {
+        var message = "[\(self.name)] "
         switch result {
         case .win(let winner):
             if let winner = winner as? Self, winner === self {
-                io.printOutput("[\(self.name)] 이겼습니다!")
+                message += "이겼습니다!"
             } else {
-                io.printOutput("[\(self.name)] 졌습니다!")
+                message += "졌습니다!"
             }
         case .draw:
-            io.printOutput("[\(self.name)] 비겼습니다!")
+            message += "비겼습니다!"
         }
+        io.printOutput(message)
+    }
+}
+
+extension UserPlayer: MJBResultDisplayable {
+    func displayResult() -> String {
+        #warning("구현?")
+        return name
     }
 }

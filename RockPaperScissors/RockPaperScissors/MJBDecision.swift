@@ -1,5 +1,5 @@
 //
-//  PlayerDecision.swift
+//  MJBDecision.swift
 //  RockPaperScissors
 //
 //  Created by Effie on 11/28/23.
@@ -7,7 +7,7 @@
 
 import Foundation
 
-enum PlayerDecision {
-    case go(gesture: Gesture)
+enum MJBDecision {
+    case go(gesture: MJBGesture)
     case stop
 }

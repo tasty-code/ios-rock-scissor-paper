@@ -12,13 +12,17 @@
 		F47327D42B1589F1000849B1 /* Hand.swift in Sources */ = {isa = PBXBuildFile; fileRef = F47327D32B1589F1000849B1 /* Hand.swift */; };
 		F47327E02B158A49000849B1 /* RPSError.swift in Sources */ = {isa = PBXBuildFile; fileRef = F47327DF2B158A49000849B1 /* RPSError.swift */; };
 		F47327E22B158A5E000849B1 /* RPSApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = F47327E12B158A5E000849B1 /* RPSApp.swift */; };
-		F47327E42B15C4F9000849B1 /* Playable.swift in Sources */ = {isa = PBXBuildFile; fileRef = F47327E32B15C4F9000849B1 /* Playable.swift */; };
+		F47327E42B15C4F9000849B1 /* RPSPlayable.swift in Sources */ = {isa = PBXBuildFile; fileRef = F47327E32B15C4F9000849B1 /* RPSPlayable.swift */; };
 		F47327E62B15C7B8000849B1 /* RPSIteration.swift in Sources */ = {isa = PBXBuildFile; fileRef = F47327E52B15C7B8000849B1 /* RPSIteration.swift */; };
-		F47327EA2B16066C000849B1 /* PlayerDecision.swift in Sources */ = {isa = PBXBuildFile; fileRef = F47327E92B16066C000849B1 /* PlayerDecision.swift */; };
-		F47327EC2B160687000849B1 /* Gesture.swift in Sources */ = {isa = PBXBuildFile; fileRef = F47327EB2B160687000849B1 /* Gesture.swift */; };
-		F47327EE2B1606C4000849B1 /* GameResultPrintable.swift in Sources */ = {isa = PBXBuildFile; fileRef = F47327ED2B1606C4000849B1 /* GameResultPrintable.swift */; };
+		F47327EA2B16066C000849B1 /* RPSDecision.swift in Sources */ = {isa = PBXBuildFile; fileRef = F47327E92B16066C000849B1 /* RPSDecision.swift */; };
+		F47327EC2B160687000849B1 /* RPSGesture.swift in Sources */ = {isa = PBXBuildFile; fileRef = F47327EB2B160687000849B1 /* RPSGesture.swift */; };
 		F47327F22B160737000849B1 /* UserPlayer.swift in Sources */ = {isa = PBXBuildFile; fileRef = F47327F12B160737000849B1 /* UserPlayer.swift */; };
 		F47327F42B160749000849B1 /* ComputerPlayer.swift in Sources */ = {isa = PBXBuildFile; fileRef = F47327F32B160749000849B1 /* ComputerPlayer.swift */; };
+		F47327F62B160B71000849B1 /* MJBIteration.swift in Sources */ = {isa = PBXBuildFile; fileRef = F47327F52B160B71000849B1 /* MJBIteration.swift */; };
+		F47327F82B160E21000849B1 /* MJBPlayable.swift in Sources */ = {isa = PBXBuildFile; fileRef = F47327F72B160E21000849B1 /* MJBPlayable.swift */; };
+		F47327FA2B161105000849B1 /* MJBDecision.swift in Sources */ = {isa = PBXBuildFile; fileRef = F47327F92B161105000849B1 /* MJBDecision.swift */; };
+		F47327FC2B1612B2000849B1 /* MJBGesture.swift in Sources */ = {isa = PBXBuildFile; fileRef = F47327FB2B1612B2000849B1 /* MJBGesture.swift */; };
+		F47327FE2B16CC8B000849B1 /* HandGameDuo.swift in Sources */ = {isa = PBXBuildFile; fileRef = F47327FD2B16CC8B000849B1 /* HandGameDuo.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -40,13 +44,17 @@
 		F47327D32B1589F1000849B1 /* Hand.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Hand.swift; sourceTree = "<group>"; };
 		F47327DF2B158A49000849B1 /* RPSError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RPSError.swift; sourceTree = "<group>"; };
 		F47327E12B158A5E000849B1 /* RPSApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RPSApp.swift; sourceTree = "<group>"; };
-		F47327E32B15C4F9000849B1 /* Playable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Playable.swift; sourceTree = "<group>"; };
+		F47327E32B15C4F9000849B1 /* RPSPlayable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RPSPlayable.swift; sourceTree = "<group>"; };
 		F47327E52B15C7B8000849B1 /* RPSIteration.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RPSIteration.swift; sourceTree = "<group>"; };
-		F47327E92B16066C000849B1 /* PlayerDecision.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlayerDecision.swift; sourceTree = "<group>"; };
-		F47327EB2B160687000849B1 /* Gesture.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Gesture.swift; sourceTree = "<group>"; };
-		F47327ED2B1606C4000849B1 /* GameResultPrintable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameResultPrintable.swift; sourceTree = "<group>"; };
+		F47327E92B16066C000849B1 /* RPSDecision.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RPSDecision.swift; sourceTree = "<group>"; };
+		F47327EB2B160687000849B1 /* RPSGesture.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RPSGesture.swift; sourceTree = "<group>"; };
 		F47327F12B160737000849B1 /* UserPlayer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserPlayer.swift; sourceTree = "<group>"; };
 		F47327F32B160749000849B1 /* ComputerPlayer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ComputerPlayer.swift; sourceTree = "<group>"; };
+		F47327F52B160B71000849B1 /* MJBIteration.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MJBIteration.swift; sourceTree = "<group>"; };
+		F47327F72B160E21000849B1 /* MJBPlayable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MJBPlayable.swift; sourceTree = "<group>"; };
+		F47327F92B161105000849B1 /* MJBDecision.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MJBDecision.swift; sourceTree = "<group>"; };
+		F47327FB2B1612B2000849B1 /* MJBGesture.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MJBGesture.swift; sourceTree = "<group>"; };
+		F47327FD2B16CC8B000849B1 /* HandGameDuo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HandGameDuo.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -82,14 +90,18 @@
 				C7ABA0E0254EA63000B2367D /* main.swift */,
 				F47327E12B158A5E000849B1 /* RPSApp.swift */,
 				F47327D12B1589E3000849B1 /* IO.swift */,
-				F47327E32B15C4F9000849B1 /* Playable.swift */,
-				F47327ED2B1606C4000849B1 /* GameResultPrintable.swift */,
+				F47327E32B15C4F9000849B1 /* RPSPlayable.swift */,
+				F47327F72B160E21000849B1 /* MJBPlayable.swift */,
 				F47327F12B160737000849B1 /* UserPlayer.swift */,
 				F47327F32B160749000849B1 /* ComputerPlayer.swift */,
+				F47327FD2B16CC8B000849B1 /* HandGameDuo.swift */,
 				F47327D32B1589F1000849B1 /* Hand.swift */,
-				F47327EB2B160687000849B1 /* Gesture.swift */,
-				F47327E92B16066C000849B1 /* PlayerDecision.swift */,
+				F47327EB2B160687000849B1 /* RPSGesture.swift */,
+				F47327FB2B1612B2000849B1 /* MJBGesture.swift */,
+				F47327E92B16066C000849B1 /* RPSDecision.swift */,
+				F47327F92B161105000849B1 /* MJBDecision.swift */,
 				F47327E52B15C7B8000849B1 /* RPSIteration.swift */,
+				F47327F52B160B71000849B1 /* MJBIteration.swift */,
 				F47327DF2B158A49000849B1 /* RPSError.swift */,
 			);
 			path = RockPaperScissors;
@@ -152,18 +164,22 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				F47327EE2B1606C4000849B1 /* GameResultPrintable.swift in Sources */,
-				F47327E42B15C4F9000849B1 /* Playable.swift in Sources */,
+				F47327E42B15C4F9000849B1 /* RPSPlayable.swift in Sources */,
+				F47327F62B160B71000849B1 /* MJBIteration.swift in Sources */,
+				F47327FC2B1612B2000849B1 /* MJBGesture.swift in Sources */,
 				C7ABA0E1254EA63000B2367D /* main.swift in Sources */,
 				F47327F22B160737000849B1 /* UserPlayer.swift in Sources */,
-				F47327EA2B16066C000849B1 /* PlayerDecision.swift in Sources */,
-				F47327EC2B160687000849B1 /* Gesture.swift in Sources */,
+				F47327EA2B16066C000849B1 /* RPSDecision.swift in Sources */,
+				F47327EC2B160687000849B1 /* RPSGesture.swift in Sources */,
 				F47327E62B15C7B8000849B1 /* RPSIteration.swift in Sources */,
 				F47327D22B1589E3000849B1 /* IO.swift in Sources */,
+				F47327FE2B16CC8B000849B1 /* HandGameDuo.swift in Sources */,
 				F47327D42B1589F1000849B1 /* Hand.swift in Sources */,
 				F47327E22B158A5E000849B1 /* RPSApp.swift in Sources */,
 				F47327E02B158A49000849B1 /* RPSError.swift in Sources */,
 				F47327F42B160749000849B1 /* ComputerPlayer.swift in Sources */,
+				F47327F82B160E21000849B1 /* MJBPlayable.swift in Sources */,
+				F47327FA2B161105000849B1 /* MJBDecision.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

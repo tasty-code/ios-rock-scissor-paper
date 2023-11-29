@@ -7,10 +7,25 @@
 
 import Foundation
 
-final class ComputerPlayer: Playable {
-    func makeDecision() -> PlayerDecision {
+final class ComputerPlayer: HandGamePlayable {
+    let name = "컴퓨터"
+    
+    func makeRPSDecision() -> RPSDecision {
         let hand = Hand.randomize()
-        let gesture = Gesture(hand: hand, owner: self)
+        let gesture = RPSGesture(hand: hand, owner: self)
         return .go(gesture: gesture)
+    }
+    
+    func makeMJBDecision() -> MJBDecision {
+        let hand = Hand.randomize()
+        let gesture = MJBGesture(hand: hand, owner: self)
+        return .go(gesture: gesture)
+    }
+}
+
+extension ComputerPlayer: MJBResultDisplayable {
+    func displayResult() -> String {
+        #warning("구현?")
+        return name
     }
 }
