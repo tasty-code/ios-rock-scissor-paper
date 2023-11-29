@@ -6,7 +6,7 @@
 //
 
 enum GameResult: CustomStringConvertible {
-    case win, draw, lose, rematch, prepareMatch
+    case win, draw, lose, rematch
     
     var description: String {
         switch self {
@@ -18,8 +18,6 @@ enum GameResult: CustomStringConvertible {
             return "졌습니다!"
         case .rematch:
             return "재매치" // MARK: 다른 처리 방안 고려 (사용하지 않는 메시지)
-        case .prepareMatch:
-            return "매치 시작 전"
         }
     }
 }

@@ -6,7 +6,6 @@
 //
 
 protocol Playable {
-    func playGame() -> GameState
-    func decideGameResult() -> GameResult
+    func decideGameResult(user: Player, opponent: Player) -> GameResult
     func convertInput(_ input: Int) -> RockPaperScissor
 }

@@ -6,31 +6,26 @@
 //
 
 class RpsGameController {
-    private let _user: Player
-    private let _opponent: Player
+    private let rpsGame: RockPaperScissorsGame
     
-    private let _rpsGame: RockPaperScissorsGame
-    
-    init(user: Player, opponent: Player, rpsGame: RockPaperScissorsGame) { // MARK: 외부에서 init을 여러 번 호출할 수도 있는 문제가 있음.
-        self._user = user
-        self._opponent = opponent
-        self._rpsGame = rpsGame
+    init(rpsGame: RockPaperScissorsGame) { // MARK: 외부에서 init을 여러 번 호출할 수도 있는 문제가 있음.
+        self.rpsGame = rpsGame
     }
     
-    func printMenuMessage(message: MenuMessage) {
-        print(message, terminator: "")
+    func printMenuMessage() {
+        print(rpsGame.menuMessage, terminator: "")
     }
     
-    func playGame() -> GameState {
+    func playGame(user: Player, opponent: Player) -> GameState {
         opponent.input = makeRandomRockScissorPaperInput()
         user.input = readInput() // MARK: 함수화 고려
         
-        switch _user.input {
+        switch user.input {
         case .exitGame:
             print("게임 종료")
             return .endGame
         case .rock, .paper, .scissor:
-            let gameResult: GameResult = _rpsGame.decideGameResult()
+            let gameResult: GameResult = rpsGame.decideGameResult(user: user, opponent: opponent)
             print(gameResult)
             guard gameResult != .draw else { return .rpsGame }
             initPlayersTurn(gameResult: gameResult)
@@ -55,14 +50,14 @@ class RpsGameController {
     
     func readInput() -> RockPaperScissor {
         if let input = Int(readLine() ?? "") {
-            return _rpsGame.convertInput(input)
+            return rpsGame.convertInput(input)
         } else {
             return .noChoice
         }
     }
     
-    func makeRandomRockScissorPaperInput() -> RockPaperScissor {
+    func makeRandomRockScissorPaperInput() -> RockPaperScissor { // MARK: 이름 변경 고려
         let randomInput = Int.random(in: 1...3)
-        return _rpsGame.convertInput(randomInput)
+        return rpsGame.convertInput(randomInput)
     }
 }
