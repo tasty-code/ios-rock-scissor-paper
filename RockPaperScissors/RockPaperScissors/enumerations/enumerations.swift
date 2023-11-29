@@ -11,11 +11,11 @@ enum GameResult: String {
     case win, draw, lose
 }
 
-enum RockScissorsPaper: Int {
+enum RPS: Int {
     case scissors = 1, rock = 2, paper = 3
 }
 
-enum MookJjiBba: Int {
+enum MJB: Int {
     case mook = 1, jji = 2, bba = 3
 }
 

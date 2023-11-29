@@ -8,22 +8,22 @@
 import Foundation
 
 struct Player {
-    var rockScissorsPaper: RockScissorsPaper = .paper
-    var mookJjiBba : MookJjiBba = .mook
+    var rockScissorsPaper: RPS = .paper
+    var mookJjiBba : MJB = .mook
     
-    func retrieveRockScissorsPaper() -> RockScissorsPaper {
+    func retrieveRockScissorsPaper() -> RPS {
         return self.rockScissorsPaper
     }
     
-    func retrieveMookJjiBba() -> MookJjiBba {
+    func retrieveMookJjiBba() -> MJB {
         return self.mookJjiBba
     }
     
     mutating func chooseRockScissorsPaper(input: Int) {
-        self.rockScissorsPaper = RockScissorsPaper(rawValue: input) ?? .paper
+        self.rockScissorsPaper = RPS(rawValue: input) ?? .paper
     }
     
     mutating func chooseMookJjiBba(input: Int) {
-        self.mookJjiBba = MookJjiBba(rawValue: input) ?? .bba
+        self.mookJjiBba = MJB(rawValue: input) ?? .bba
     }
 }

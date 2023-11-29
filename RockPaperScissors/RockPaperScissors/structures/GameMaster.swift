@@ -18,63 +18,13 @@ struct GameMaster {
         self.computer = computer
     }
     
-    mutating func playRockScissorsPaper(userInput: Int) {
-        user.chooseRockScissorsPaper(input: userInput)
-        computer.chooseRockScissorsPaper(input: Int.random(in: 1...3))
-    }
     
-    mutating func playMookJjiBba(userInput: Int) {
-        user.chooseMookJjiBba(input: userInput)
-        computer.chooseMookJjiBba(input: Int.random(in: 1...3))
-    }
     
-    mutating func evaluateRockScissorsPaper() {
-        let userHand = user.retrieveRockScissorsPaper()
-        let computerHand = computer.retrieveRockScissorsPaper()
-        
-        if userHand == computerHand {
-            print("비겼습니다.")
-            return
-        }
-        
-        switch userHand {
-        case .rock:
-            self.turn = computerHand == .scissors ? .user : .computer
-        case .scissors:
-            self.turn = computerHand == .paper ? .user : .computer
-        case .paper:
-            self.turn = computerHand == .rock ? .user : .computer
-        }
-        
-        if self.turn == .user {
-            print("이겼습니다.")
-        } else {
-            print("졌습니다.")
-        }
-        self.gameType = .mookJjiBba
-    }
+    
+    
+    
 
-    mutating func evaluateMookJjiBba() -> GameResult {
-        
-        let userHand = user.retrieveMookJjiBba()
-        let computerHand = computer.retrieveMookJjiBba()
-        
-        if userHand == computerHand {
-            print("\(self.turn.rawValue)의 승리!")
-            return .win
-        }
-        
-        switch userHand {
-        case .mook:
-            self.turn = computerHand == .jji ? .user : .computer
-        case .jji:
-            self.turn = computerHand == .bba ? .user : .computer
-        case .bba:
-            self.turn = computerHand == .mook ? .user : .computer
-        }
-        print("\(self.turn.rawValue)의 턴입니다.")
-        return .draw
-    }
+    
     
     mutating func playGame() {
         var userInput: String?
@@ -95,12 +45,14 @@ struct GameMaster {
                 
                 switch self.gameType {
                 case .rockScissorsPaper:
-                    self.playRockScissorsPaper(userInput: intUserInput)
-                    self.evaluateRockScissorsPaper()
-                
+                    var rockScissorsPaper = RockScissorsPaper()
+                    self.turn = rockScissorsPaper.play(user: self.user, computer: self.computer, userInput: intUserInput)
+                    self.gameType = .mookJjiBba
+                    
                 case .mookJjiBba:
-                    self.playMookJjiBba(userInput: intUserInput)
-                    let result = self.evaluateMookJjiBba()
+                    var mookJjiBba = MookJjiBba()
+                    let result = mookJjiBba.play(user: self.user, computer: self.computer, turn: self.turn, userInput: intUserInput)
+                    
                     if result == .win {
                         break gameLoop
                     }
