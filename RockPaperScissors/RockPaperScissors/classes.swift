@@ -7,44 +7,11 @@
 
 import Foundation
 
-class InGameMessage {
-    static let shared = InGameMessage()
-    
-    private var message: [String : (String) -> String] = [
-        "ready,Optional(RockPaperScissors.GameType.rockScissorsPaper),nil" : { _ in "가위(1), 바위(2), 보(3)! <종료 : 0> : " },
-        "ready,Optional(RockPaperScissors.GameType.mookJjiBba),nil" : { playerName in "[\(playerName) 턴] 묵(1), 찌(2), 빠(3)! <종료 : 0> : " },
-        
-        "evaluation,Optional(RockPaperScissors.GameType.rockScissorsPaper),Optional(RockPaperScissors.GameResult.win)" : { _ in "이겼습니다!" },
-        "evaluation,Optional(RockPaperScissors.GameType.rockScissorsPaper),Optional(RockPaperScissors.GameResult.draw)" : { _ in "비겼습니다!" },
-        "evaluation,Optional(RockPaperScissors.GameType.rockScissorsPaper),Optional(RockPaperScissors.GameResult.lose)" : { _ in "졌습니다!" },
-        "evaluation,Optional(RockPaperScissors.GameType.mookJjiBba),Optional(RockPaperScissors.GameResult.draw)" : { playerName in "\(playerName)의 턴입니다." },
-        
-        "falseInput,nil,nil" : { _ in "잘못된 입력입니다. 다시 시도해주세요." },
-        "completed,nil,nil" : { playerName in "\(playerName)의 승리!" }
-    ]
-    
-    func print( status: GameStatus, type: GameType? = nil, result: GameResult? = nil, playerName: String = "" ) {
-        
-        let keyName = "\(status),\(String(describing: type)),\(String(describing: result))"
-
-        guard let closure = self.message[keyName] else {
-            return
-        }
-        
-        if status == .ready {
-            Swift.print(closure(playerName), terminator: "")
-        } else {
-            Swift.print(closure(playerName))
-        }
-    }
-}
-
 struct GameMaster {
     private var gameType: GameType
     var user: Player
     var computer: Player
     private var turn: Player
-    private var message = InGameMessage.shared
     
     init(gameType: GameType, user: Player, computer: Player, turn: Player) {
         self.gameType = gameType
@@ -65,7 +32,7 @@ struct GameMaster {
     
     mutating func evaluateRockScissorsPaper() {
         if self.user.getRockScissorsPaper() == self.computer.getRockScissorsPaper() {
-            self.message.print(status: .evaluation, type: .rockScissorsPaper, result: .draw)
+            print("비겼습니다.")
             return
         }
         
@@ -79,16 +46,16 @@ struct GameMaster {
         }
         
         if self.turn.getName() == "사용자" {
-            self.message.print(status: .evaluation, type: .rockScissorsPaper, result: .win)
+            print("이겼습니다.")
         } else {
-            self.message.print(status: .evaluation, type: .rockScissorsPaper, result: .lose)
+            print("졌습니다.")
         }
         self.gameType = .mookJjiBba
     }
 
     mutating func evaluateMookJjiBba() -> GameResult {
         if self.user.getMookJjiBba() == self.computer.getMookJjiBba() {
-            self.message.print(status: .evaluation, type: .mookJjiBba, result: .win)
+            print("\(self.turn.getName())의 승리!")
             return .win
         }
         
@@ -100,7 +67,7 @@ struct GameMaster {
         case .bba:
             self.turn = computer.getMookJjiBba() == .mook ? user : computer
         }
-        self.message.print(status: .evaluation, type: .mookJjiBba, result: .draw, playerName: self.turn.getName())
+        print("\(self.turn.getName())의 턴입니다.")
         return .draw
     }
     
@@ -108,7 +75,15 @@ struct GameMaster {
         var userInput: String?
         
         gameLoop : repeat {
-            self.message.print(status: .ready, type: self.gameType, playerName: self.turn.getName())
+            
+            switch self.gameType {
+            case .mookJjiBba:
+                print("[\(self.turn.getName()) 턴] 묵(1), 찌(2), 빠(3)! <종료 : 0> : ", terminator: "")
+            case .rockScissorsPaper:
+                print("가위(1), 바위(2), 보(3)! <종료 : 0> : ", terminator: "")
+            
+            }
+            
             userInput = readLine()
             
             switch userInput {
@@ -133,10 +108,10 @@ struct GameMaster {
                 }
             default :
                 self.turn = computer
-                self.message.print(status: .falseInput)
+                print("잘못된 입력입니다. 다시 시도해주세요.")
             }
         } while userInput != "0"
         
-        self.message.print(status: .completed, playerName: self.turn.getName())
+        print("게임 종료")
     }
 }
