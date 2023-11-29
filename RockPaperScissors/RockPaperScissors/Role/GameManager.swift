@@ -10,51 +10,40 @@ struct GameManager {
     public mutating func playGame() {
         
         if playerTurn == .none {
-            ///가위 바위 보
             PrintingHandler.showRockPaperScissorsOptions()
+        } else {
+            PrintingHandler.showMukJjiPpaOptions(playTurn: playerTurn)
+        }
             
-            let userOptionRPS = user.chooseOption()
-            let computerOptionRPS = computer.chooseOption()
-            
-            guard let userChoiceRPS = getRockPaperScissors(from: userOptionRPS),
-                  let computerChoiceRPS = getRockPaperScissors(from: computerOptionRPS) else {
-                processInvalidOrExitOption(userOption: userOptionRPS, computerOption: computerOptionRPS)
+        let userOption = user.chooseOption()
+        let computerOption = computer.chooseOption()
+        
+        guard let userChoice = getRockPaperScissors(from: userOption),
+              let computerChoice = getRockPaperScissors(from: computerOption) else {
+            processInvalidOrExitOption(userOption: userOption, computerOption: computerOption)
+            return
+        }
+        
+        let outcome = referee.determineGameOutcome(between: userChoice, and: computerChoice)
+        
+        if playerTurn == .none {
+            PrintingHandler.notifyOutcome(of: outcome)
+            guard let determinedTurn = determinePlayerTurnOrWinner(of: outcome) else {
                 return
             }
-            
-            let OutcomeRPS = referee.determineGameOutcome(between: userChoiceRPS, and: computerChoiceRPS)
-            
-            PrintingHandler.notifyOutcome(of: OutcomeRPS)
-            
-            guard let determinedTurn = determinePlayerTurnOrWinner(of: OutcomeRPS) else {
+            playerTurn = determinedTurn
+
+        } else {
+            guard let determinedTurn = determinePlayerTurnOrWinner(of: outcome) else {
+                PrintingHandler.notifyWinner(winner: playerTurn)
+                endGame()
                 return
             }
             
             playerTurn = determinedTurn
+            
+            PrintingHandler.notifyPlayerTurn(playTurn: playerTurn)
         }
-        
-        PrintingHandler.showMukJjiPpaOptions(playTurn: playerTurn)
-        
-        let userOptionMJP = user.chooseOption()
-        let computerOptionMJP = computer.chooseOption()
-        
-        guard let userChoiceMJP = getRockPaperScissors(from: userOptionMJP),
-              let computerChoiceMJP = getRockPaperScissors(from: computerOptionMJP) else {
-            processInvalidOrExitOption(userOption: userOptionMJP, computerOption: computerOptionMJP)
-            return
-        }
-        
-        let outcomeMJP = referee.determineGameOutcome(between: userChoiceMJP, and: computerChoiceMJP)
-        
-        guard let determinedTurn = determinePlayerTurnOrWinner(of: outcomeMJP) else {
-            PrintingHandler.notifyWinner(winner: playerTurn)
-            endGame()
-            return
-        }
-        
-        playerTurn = determinedTurn
-        
-        PrintingHandler.notifyPlayerTurn(playTurn: playerTurn)
     }
     
     private mutating func determinePlayerTurnOrWinner(of gameOutcome: GameOutcome) -> PlayerTurn? {
