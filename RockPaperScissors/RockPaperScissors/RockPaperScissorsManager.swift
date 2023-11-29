@@ -14,7 +14,6 @@ struct RockPaperScissorsManager {
     private var status: Bool = true
     private var currentTurn: MukchippaResult = .draw
     private var nextRound: Bool = false
-    private var lastTurn: MukchippaResult = .draw
     
     mutating func play() {
         while status {
@@ -83,15 +82,13 @@ struct RockPaperScissorsManager {
             
         switch MukchippaResult(rawValue: gameValue) {
         case .computerWin:
-            lastTurn = .computerWin
             currentTurn = .computerWin
             print("컴퓨터의 턴입니다.")
         case .computerLose:
-            lastTurn = .computerLose
             currentTurn = .computerLose
             print("사용자의 턴입니다")
         case .draw:
-            print(lastTurn == .computerLose ? "사용자의 승리" : "컴퓨터의 승리")
+            print(currentTurn == .computerLose ? "사용자의 승리" : "컴퓨터의 승리")
             status = false
         case .none:
             break
