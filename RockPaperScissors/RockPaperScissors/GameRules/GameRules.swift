@@ -2,13 +2,13 @@ import Foundation
 
 //MARK: - GameRules init & deinit
 final class GameRules {
-    
     private let computerPlayer = ComputerPlayer()
     private let rpsLinkedList = CircularRpsLinkedList()
-    var onRequstSecondGame: ((GameResult) -> Void)?
-    var onSecondGameResult: ((Bool, RPSModel?, RPSModel?) -> Void)?
+    var onRequstSecondGame: (() -> Void)?
     var onUpdateMessage: ((String) -> Void)?
     var onReStartGame: (() -> Void)?
+    var gameTurn: TurnModel?
+    
     deinit { print("GameRules Deinit!!") }
 }
 
@@ -21,10 +21,24 @@ extension GameRules {
         
         let gameResult = determineFirstGameWinner(userChoice: userChoice)
     }
+    
     func playSecondGameWithUserInput( input: String) {
+        
         guard let userChoice = convertInputToRPSOption(input)
-        else { onUpdateMessage? (GameResult.endGame.message); return }
+        else { onUpdateMessage? (GameResult.error.message); return }
+        
         let secoundGamsResult = determineSecondGameWinner(userChoice: userChoice)
+    }
+    
+    func dipslaySecondGameComment() {
+        switch gameTurn {
+        case .userTurn:
+            onUpdateMessage? (TurnModel.userTurn.message)
+        case .computerTurn:
+            onUpdateMessage? (TurnModel.computerTurn.message)
+        default:
+            break
+        }
     }
     
     func convertInputToRPSOption(_ input: String) -> RPSModel? {
@@ -40,36 +54,43 @@ extension GameRules {
         }
     }
     
-    private func determineFirstGameWinner(userChoice: RPSModel) -> GameResult {
+    private func determineFirstGameWinner(userChoice: RPSModel) {
         let computerChoice = computerPlayer.makeRandomChoice()
+        
         onUpdateMessage?("유저 선택:::\(userChoice), 컴퓨터 선택:::\(computerChoice)")
         
         guard let computerNode = rpsLinkedList.node(for: computerChoice)
-        else { return .error}
+        else { return }
         
         if computerNode.next?.value == userChoice {
             onUpdateMessage?(GameResult.win.message)
-            onRequstSecondGame?(GameResult.win)
-            return .win
+            gameTurn = .userTurn
+            onRequstSecondGame?()
         } else if computerNode.value == userChoice {
             onUpdateMessage?(GameResult.draw.message)
             onReStartGame?()
-            return .draw
         } else {
             onUpdateMessage?(GameResult.loss.message)
-            onRequstSecondGame?(GameResult.loss)
+            gameTurn = .computerTurn
+            onRequstSecondGame?()
             
-            return .loss
         }
     }
     
     //두번째 게임(묵찌빠)규칙 로직
     private func determineSecondGameWinner(userChoice: RPSModel)  {
         let computerChoice = computerPlayer.makeRandomChoice()
-        if userChoice == computerChoice {
-            onSecondGameResult?(true, userChoice, computerChoice)
+        
+        if gameTurn == .userTurn && computerChoice == userChoice {
+            onUpdateMessage?("사용자 승")
+        } else if gameTurn == .userTurn && computerChoice != userChoice {
+            onUpdateMessage?("컴퓨터 턴입니다.")
+            onUpdateMessage?(TurnModel.computerTurn.message)
+        } else if gameTurn == .computerTurn && computerChoice == userChoice {
+            onUpdateMessage?("컴퓨터 승")
         } else {
-            onSecondGameResult?(false, userChoice, computerChoice)
+            onUpdateMessage?("사용자 턴입니다.")
+            onUpdateMessage?(TurnModel.userTurn.message)
         }
     }
 }

@@ -13,6 +13,7 @@
 		08A323232B0DC43100FDA3CB /* RPSModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 08A323222B0DC43100FDA3CB /* RPSModel.swift */; };
 		08A323252B0DC5EA00FDA3CB /* RPSLinkedList.swift in Sources */ = {isa = PBXBuildFile; fileRef = 08A323242B0DC5EA00FDA3CB /* RPSLinkedList.swift */; };
 		99F43F202B103D2A000C8C91 /* GameResultModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 99F43F1F2B103D2A000C8C91 /* GameResultModel.swift */; };
+		99F43F602B172B10000C8C91 /* TurnModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 99F43F5F2B172B10000C8C91 /* TurnModel.swift */; };
 		C7ABA0E1254EA63000B2367D /* main.swift in Sources */ = {isa = PBXBuildFile; fileRef = C7ABA0E0254EA63000B2367D /* main.swift */; };
 /* End PBXBuildFile section */
 
@@ -35,6 +36,7 @@
 		08A323222B0DC43100FDA3CB /* RPSModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RPSModel.swift; sourceTree = "<group>"; };
 		08A323242B0DC5EA00FDA3CB /* RPSLinkedList.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RPSLinkedList.swift; sourceTree = "<group>"; };
 		99F43F1F2B103D2A000C8C91 /* GameResultModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameResultModel.swift; sourceTree = "<group>"; };
+		99F43F5F2B172B10000C8C91 /* TurnModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = TurnModel.swift; path = "../../../../../../.Trash/ios-rock-scissor-paper 오후 9.18.35/RockPaperScissors/RockPaperScissors/Model/TurnModel.swift"; sourceTree = "<group>"; };
 		C7ABA0DD254EA63000B2367D /* RockPaperScissors */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = RockPaperScissors; sourceTree = BUILT_PRODUCTS_DIR; };
 		C7ABA0E0254EA63000B2367D /* main.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = main.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -55,6 +57,7 @@
 			children = (
 				08A323222B0DC43100FDA3CB /* RPSModel.swift */,
 				99F43F1F2B103D2A000C8C91 /* GameResultModel.swift */,
+				99F43F5F2B172B10000C8C91 /* TurnModel.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -173,6 +176,7 @@
 				08A323212B0DC42700FDA3CB /* Players.swift in Sources */,
 				08A323232B0DC43100FDA3CB /* RPSModel.swift in Sources */,
 				08A3231D2B0DC41400FDA3CB /* GameView.swift in Sources */,
+				99F43F602B172B10000C8C91 /* TurnModel.swift in Sources */,
 				99F43F202B103D2A000C8C91 /* GameResultModel.swift in Sources */,
 				C7ABA0E1254EA63000B2367D /* main.swift in Sources */,
 				08A3231F2B0DC41E00FDA3CB /* GameRules.swift in Sources */,

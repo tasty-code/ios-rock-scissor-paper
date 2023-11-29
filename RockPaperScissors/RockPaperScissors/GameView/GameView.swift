@@ -3,9 +3,6 @@ import Foundation
 //MARK: - GameView init & deinit
 final class GameView {
     private let gameRules: GameRules
-    private var gameContinue = true
-    var gameStatus: GameComment = .rps
-    
     
     init(gameRules: GameRules) {
         self.gameRules = gameRules
@@ -13,21 +10,25 @@ final class GameView {
         startSecondGame()
         reStartGame()
     }
+    
     deinit { print("gameView deinit") }
 }
 
 //MARK: - GameView Method
 extension GameView {
     func startGame() {
-        print(GameComment.rps.rawValue, terminator: "")
-        guard let playerInput = readLine() else { print("입력오류!"); return}
-        gameRules.playGameWithUserInput(input: playerInput)
+        print("가위(1), 바위(2), 보(3) ! <종료: 0> : ", terminator: "")
+        if let playerInput = readLine() {
+            gameRules.playGameWithUserInput(input: playerInput)
+        }
     }
     
     private func startSecondGame() {
-        gameRules.onRequstSecondGame = { [weak self] result in
-            print(GameComment.mookJjiBba.rawValue, terminator: "")
-            guard let playerInput = readLine() else { print("입력오류!"); return
+        gameRules.onRequstSecondGame = { [weak self] in
+            self?.gameRules.dipslaySecondGameComment()
+
+            if let playerInput = readLine() {
+                self?.gameRules.playSecondGameWithUserInput(input: playerInput)
             }
         }
     }
