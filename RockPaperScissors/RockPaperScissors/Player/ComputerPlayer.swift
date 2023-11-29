@@ -15,10 +15,9 @@ final class ComputerPlayer: HandGamePlayable {
         return RPSGesture(hand: hand, owner: self)
     }
     
-    func makeMJBDecision(currentTurn: MJBPlayable) -> MJBDecision {
+    func makeMJBGesture(currentTurn: MJBPlayable) throws -> MJBGesture {
         let hand = Hand.randomize()
-        let gesture = MJBGesture(hand: hand, owner: self)
-        return .go(gesture: gesture)
+        return MJBGesture(hand: hand, owner: self)
     }
 }
 

@@ -31,17 +31,10 @@ struct MJBGame {
         self.display = display
     }
     
-    // TODO: Playable 사용할 수 있도록 개선해보기
     private func getPlayerGestures() throws -> (MJBGesture, MJBGesture) {
-        let turnDecision = turn.makeMJBDecision(currentTurn: self.turn)
-        let otherDecision = other.makeMJBDecision(currentTurn: self.turn)
-        
-        if case MJBDecision.go(let turnGesture) = turnDecision,
-           case MJBDecision.go(let otherGesture) = otherDecision {
-            return (turnGesture, otherGesture)
-        } else {
-            throw RPSError.someoneWantsToExit
-        }
+        let turnGesture = try turn.makeMJBGesture(currentTurn: self.turn)
+        let otherGesture = try other.makeMJBGesture(currentTurn: self.turn)
+        return (turnGesture, otherGesture)
     }
     
     private func displayResult(_ result: MJBResult) {

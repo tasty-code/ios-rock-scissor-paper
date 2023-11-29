@@ -23,8 +23,7 @@ final class UserPlayer {
         return number
     }
     
-    // TODO: 이름
-    private func getRPSDecision() throws -> RPSGesture {
+    private func getRPSGesture() throws -> RPSGesture {
         io.displayPrompt("\(self.name) - 가위(1), 바위(2), 보(3)! <종료 : 0> :")
         let number = try getNumber()
         if let hand = Hand(rpsNumber: number) {
@@ -36,14 +35,13 @@ final class UserPlayer {
         }
     }
     
-    private func getMJBDecision(currentTurn: MJBPlayable) throws -> MJBDecision {
+    private func getMJBGesture(currentTurn: MJBPlayable) throws -> MJBGesture {
         io.displayPrompt("[\(currentTurn.name) 턴] \(self.name) - 묵(1), 찌(2), 빠(3)! <종료 : 0> :")
         let number = try getNumber()
         if let hand = Hand(mjbNumber: number) {
-            let gesture = MJBGesture(hand: hand, owner: self)
-            return .go(gesture: gesture)
+            return MJBGesture(hand: hand, owner: self)
         } else if number == 0 {
-            return .stop
+            throw RPSError.someoneWantsToExit
         } else {
             throw RPSError.invalidInput
         }
@@ -55,7 +53,7 @@ extension UserPlayer: RPSPlayable {
     func makeRPSGesture() throws -> RPSGesture {
         while true {
             do {
-                return try getRPSDecision()
+                return try getRPSGesture()
             } catch RPSError.invalidInput {
                 io.displayRPSError(RPSError.invalidInput)
                 continue
@@ -66,16 +64,14 @@ extension UserPlayer: RPSPlayable {
 
 // MARK: - MJBPlayable
 extension UserPlayer: MJBPlayable {
-    func makeMJBDecision(currentTurn: MJBPlayable) -> MJBDecision {
+    func makeMJBGesture(currentTurn: MJBPlayable) throws -> MJBGesture {
         while true {
             do {
-                return try getMJBDecision(currentTurn: currentTurn)
-            } catch {
-                if let error = error as? RPSError {
-                    io.displayRPSError(error)
-                }
+                return try getMJBGesture(currentTurn: currentTurn)
+            } catch RPSError.invalidInput {
+                io.displayRPSError(RPSError.invalidInput)
                 continue
-            }
+            } catch { throw error }
         }
     }
 }

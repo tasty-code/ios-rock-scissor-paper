@@ -7,7 +7,7 @@
 
 import Foundation
 
-enum MJBDecision {
-    case go(gesture: MJBGesture)
-    case stop
-}
+//enum MJBDecision {
+//    case go(gesture: MJBGesture)
+//    case stop
+//}
