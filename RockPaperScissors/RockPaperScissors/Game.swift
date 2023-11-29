@@ -104,7 +104,7 @@ final class Game {
             
             switch userInput {
             case 1, 2, 3:
-                calculateRockScissorsPaperResult(with: userInput)
+                calculateMookZziBbaResult(with: userInput)
                 return
             case 0:
                 shutDown()
