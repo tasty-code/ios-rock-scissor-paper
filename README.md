@@ -53,6 +53,7 @@ case .lose:
 		rockPaperScissorsLose()
 }
 ```
+PR 링크 : https://github.com/tasty-code/ios-rock-scissor-paper/pull/55
 
 ### 스크린샷
 
