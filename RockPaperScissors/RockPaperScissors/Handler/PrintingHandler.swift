@@ -11,12 +11,12 @@ enum PrintingHandler {
             switch self {
             case .rpsOptions:
                 return "가위(1), 바위(2), 보(3)! <종료: 0> : "
-            case .mjpOptions(let playerTurn):
-                return "[\(playerTurn) 턴]묵(1), 찌(2), 빠(3)! <종료 : 0> : "
-            case .playerTurn(let playerTurn):
-                return "\(playerTurn)의 턴입니다."
-            case .winner(let winner):
-                return "\(winner)의 승리!"
+            case .mjpOptions(let player):
+                return "[\(player) 턴]묵(1), 찌(2), 빠(3)! <종료 : 0> : "
+            case .playerTurn(let player):
+                return "\(player)의 턴입니다."
+            case .winner(let player):
+                return "\(player)의 승리!"
             case .invalidOption:
                 return "잘못된 입력입니다. 다시 시도해 주세요."
             case .gameOver:
@@ -34,8 +34,8 @@ enum PrintingHandler {
         print(Message.mjpOptions(playerTurn), terminator: "")
     }
     
-    static func notifyRPSOutcome(of gameOutcome: GameOutcome) {
-        print(gameOutcome)
+    static func notifyRPSOutcome(of rpsOutcome: RPSOutcome) {
+        print(rpsOutcome)
     }
     
     static func notifyMJPTurn(of playerTurn: PlayerTurn){

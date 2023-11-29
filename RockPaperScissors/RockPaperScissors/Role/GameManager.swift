@@ -19,17 +19,14 @@ struct GameManager {
             return
         }
         
-        let outcome = referee.determineRPSOutcome(between: userChoice, and: computerChoice)
+        let rpsOutcome = referee.determineRPSOutcome(between: userChoice, and: computerChoice)
         
         if isRPS() {
-            PrintingHandler.notifyRPSOutcome(of: outcome)
+            PrintingHandler.notifyRPSOutcome(of: rpsOutcome)
         }
         
-        guard let determinedTurn = determinePlayerTurnOrWinner(from: outcome) else {
-            if isMJP() {
-                PrintingHandler.notifyMJPWinner(of: playerTurn)
-                endGame()
-            }
+        guard let determinedTurn = determinePlayerTurn(from: rpsOutcome) else {
+            endGameIfWinnerDetermined()
             return
         }
     
@@ -46,7 +43,7 @@ struct GameManager {
     }
     
     private mutating func processInvalidOrExitBy(_ userOption: Option, _ computerOption: Option) {
-        guard shouldEndGameEarly(userOption, computerOption) else {
+        guard shouldEndGameEarlyBy(userOption, computerOption) else {
             PrintingHandler.notifyInvalidOption()
             if playerTurn == .user {
                 playerTurn = .computer
@@ -58,7 +55,7 @@ struct GameManager {
         endGame()
     }
     
-    private func shouldEndGameEarly(_ userChoice: Option, _ computerChoice: Option) -> Bool {
+    private func shouldEndGameEarlyBy(_ userChoice: Option, _ computerChoice: Option) -> Bool {
         return userChoice == .exit || computerChoice == .exit
     }
     
@@ -70,14 +67,21 @@ struct GameManager {
         return playerTurn != .none
     }
     
-    private func determinePlayerTurnOrWinner(from gameOutcome: GameOutcome) -> PlayerTurn? {
-        switch gameOutcome {
+    private func determinePlayerTurn(from rpsOutcome: RPSOutcome) -> PlayerTurn? {
+        switch rpsOutcome {
         case .win: 
             return .user
         case .loss: 
             return .computer
         case .draw: 
             return nil
+        }
+    }
+    
+    private mutating func endGameIfWinnerDetermined() {
+        if isMJP() {
+            PrintingHandler.notifyMJPWinner(of: playerTurn)
+            endGame()
         }
     }
     
