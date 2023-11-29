@@ -81,13 +81,7 @@ struct GameMaster {
         
         gameLoop : repeat {
             
-            switch self.gameType {
-            case .mookJjiBba:
-                print("[\(self.turn.rawValue) 턴] 묵(1), 찌(2), 빠(3)! <종료 : 0> : ", terminator: "")
-            case .rockScissorsPaper:
-                print("가위(1), 바위(2), 보(3)! <종료 : 0> : ", terminator: "")
-            
-            }
+            print(self.gameType.message(turn: self.turn), terminator: "")
             
             userInput = readLine()
             
