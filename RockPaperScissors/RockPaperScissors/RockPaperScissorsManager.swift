@@ -69,4 +69,25 @@ struct RockPaperScissorsManager {
             break
         }
     }
+    
+    mutating func getMukchippaResult(userValue: Int) {
+        calculateValue(userValue: userValue)
+        guard let gameValue = resultValue else { return }
+            
+        switch MukchippaResult(rawValue: gameValue) {
+        case .computerWin:
+            lastTurn = .computerWin
+            currentTurn = .computerWin
+            print("컴퓨터의 턴입니다.")
+        case .computerLose:
+            lastTurn = .computerLose
+            currentTurn = .computerLose
+            print("사용자의 턴입니다")
+        case .draw:
+            print(lastTurn == .computerLose ? "사용자의 승리" : "컴퓨터의 승리")
+            status = false
+        case .none:
+            break
+        }
+    }
 }
