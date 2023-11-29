@@ -1,5 +1,5 @@
 //
-//  MJBIteration.swift
+//  MJBGame.swift
 //  RockPaperScissors
 //
 //  Created by Effie on 11/28/23.
@@ -7,35 +7,7 @@
 
 import Foundation
 
-enum MJBResult {
-    case win
-    case regame(nextTurn: MJBPlayable)
-}
-
-struct MJBPart {
-    private let turn: MJBGesture
-    private let other: MJBGesture
-    
-    init(turn: MJBGesture, other: MJBGesture) {
-        self.turn = turn
-        self.other = other
-    }
-    
-    func getResult() -> MJBResult {
-        let turnHand = turn.hand
-        let otherHand = other.hand
-        
-        if turnHand == otherHand {
-            return .win
-        } else {
-            let winningGesture = turnHand.wins(otherHand) ? turn : other
-            let nextTurn = winningGesture.owner
-            return .regame(nextTurn: nextTurn)
-        }
-    }
-}
-
-struct MJBIteration {
+struct MJBGame {
     private let leftPlayer: MJBPlayable
     
     private let rightPlayer: MJBPlayable
@@ -50,7 +22,11 @@ struct MJBIteration {
     
     private let display: PromptDisplayable & OuputDisplayble
     
-    init(turn: MJBPlayable, other: MJBPlayable, display: PromptDisplayable & OuputDisplayble) {
+    init(
+        turn: MJBPlayable,
+        other: MJBPlayable,
+        displayOn display: PromptDisplayable & OuputDisplayble
+    ) {
         self.turn = turn
         self.leftPlayer = self.turn
         self.rightPlayer = other

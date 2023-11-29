@@ -19,10 +19,14 @@ struct RPSApp {
     
     func run() {
         do {
-            let rpsGame = RPSIteration(between: playerDuo.leftPlayer, and: playerDuo.rightPlayer)
+            let rpsGame = RPSGame(between: playerDuo.leftPlayer, and: playerDuo.rightPlayer)
             let rpsWinner = try rpsGame.start()
             let mjbPlayers = try playerDuo.prepareMJBPlayers(rpsWinner: rpsWinner)
-            var mjbGame = MJBIteration(turn: mjbPlayers.winner, other: mjbPlayers.loser, display: self.display)
+            var mjbGame = MJBGame(
+                turn: mjbPlayers.winner,
+                other: mjbPlayers.loser,
+                displayOn: self.display
+            )
             try mjbGame.start()
         } catch {
             if let rpsError = error as? RPSError {
