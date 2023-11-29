@@ -18,7 +18,7 @@ class RockPaperScissorsModel {
         return queue.removeFirst()
     }
     
-    private func getRockPaperScissors() -> RockPaperScissors {
+    private func nextRockPaperScissors() -> RockPaperScissors {
         let rockPaperScissors = dequeue()
         enqueue(rockPaperScissors)
         return rockPaperScissors
@@ -27,18 +27,18 @@ class RockPaperScissorsModel {
     private func setHead(head: RockPaperScissors) {
         var now: RockPaperScissors
         repeat {
-            now = getRockPaperScissors()
+            now = nextRockPaperScissors()
         } while now != head
     }
     
     func matchResult(firstPlayer: RockPaperScissors, secondPlayer: RockPaperScissors) -> Match {
         setHead(head: firstPlayer)
         
-        if secondPlayer == getRockPaperScissors() {
+        if secondPlayer == nextRockPaperScissors() {
             return .lose
         }
         
-        if secondPlayer == getRockPaperScissors() {
+        if secondPlayer == nextRockPaperScissors() {
             return .win
         }
         
