@@ -18,7 +18,8 @@ final class Game {
     private var currentPlayerTurn: PlayerTurn = .human
     
     private let MookZziBbaDictionary: [Int: String] = [1: "묵", 2: "찌", 3: "빠"]
-
+    
+    private var isPlayingMookZziBba: Bool = false
     
     func load() {
         playRockScissorsPaper()
@@ -30,7 +31,10 @@ final class Game {
             
             print(Prompt.rockScissorsPaperChoice, terminator: " ")
             
-            receiveUserInput()
+            receiveUserInput() {
+                print(Prompt.badInput)
+                print(self.isPlayingMookZziBba ? Prompt.MookZziBbaChoice(self.currentPlayerTurn) : Prompt.rockScissorsPaperChoice, terminator: " ")
+            }
             
             switch userInput {
                 
@@ -40,6 +44,7 @@ final class Game {
                 print(gameResult.rawValue)
                 
                 if [.win, .lose].contains(gameResult) {
+                    isPlayingMookZziBba = true
                     initMookZziBba()
                     playMookZziBba()
                 }
@@ -74,14 +79,13 @@ final class Game {
         self.gameResult = gameResult
     }
     
-    private func receiveUserInput() {
+    private func receiveUserInput(completion: () -> Void) {
         while true {
             if let input = readLine(), let inputInt = Int(input) {
                 self.userInput = inputInt
                 break
             } else {
-                print(Prompt.badInput)
-                print(Prompt.rockScissorsPaperChoice, terminator: " ")
+                completion()
             }
         }
     }
@@ -100,7 +104,13 @@ final class Game {
         while true {
             print(Prompt.MookZziBbaChoice(currentPlayerTurn), terminator: " ")
             
-            receiveUserInput()
+            receiveUserInput() {
+                if self.currentPlayerTurn == .human {
+                    self.changePlayerTurn()
+                }
+                print(Prompt.badInput)
+                print(self.isPlayingMookZziBba ? Prompt.MookZziBbaChoice(self.currentPlayerTurn) : Prompt.rockScissorsPaperChoice, terminator: " ")
+            }
             
             switch userInput {
             case 1, 2, 3:
