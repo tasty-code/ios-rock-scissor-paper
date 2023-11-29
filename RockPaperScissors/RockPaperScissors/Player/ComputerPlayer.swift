@@ -8,7 +8,7 @@
 import Foundation
 
 final class ComputerPlayer: HandGamePlayable {
-    private let name = "컴퓨터"
+    let name = "컴퓨터"
     
     func makeRPSDecision() -> RPSDecision {
         let hand = Hand.randomize()
@@ -16,16 +16,15 @@ final class ComputerPlayer: HandGamePlayable {
         return .go(gesture: gesture)
     }
     
-    func makeMJBDecision() -> MJBDecision {
+    func makeMJBDecision(currentTurn: MJBPlayable) -> MJBDecision {
         let hand = Hand.randomize()
         let gesture = MJBGesture(hand: hand, owner: self)
         return .go(gesture: gesture)
     }
 }
 
-extension ComputerPlayer: MJBResultDisplayable {
-    func displayResult() -> String {
-        #warning("구현?")
-        return name
+extension ComputerPlayer: CallablePlayer {
+    func getName() -> String {
+        return self.name
     }
 }

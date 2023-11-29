@@ -7,6 +7,8 @@
 
 import Foundation
 
+typealias HandGamePlayable = RPSPlayable & MJBPlayable
+
 struct HandGameDuo {
     let leftPlayer: HandGamePlayable
     let rightPlayer: HandGamePlayable

@@ -7,8 +7,6 @@
 
 import Foundation
 
-typealias HandGamePlayable = RPSPlayable & MJBPlayable
-
 protocol RPSPlayable: AnyObject {
     func makeRPSDecision() -> RPSDecision
 }
