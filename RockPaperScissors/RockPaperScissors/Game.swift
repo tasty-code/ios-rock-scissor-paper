@@ -51,7 +51,7 @@ final class Game {
     }
     
     private func calculateRockScissorsPaperResult(with userInput: Int) {
-        let randomInt: Int = randomInt()
+        let randomInt: Int = Int.random(in: 1...3)
         
         let difference: Int = randomInt - userInput
         
@@ -65,10 +65,6 @@ final class Game {
         default:
             break
         }
-    }
-    
-    private func randomInt() -> Int {
-        return Int.random(in: 1...3)
     }
     
     private func setGameResult(_ gameResult: GameResult) {
