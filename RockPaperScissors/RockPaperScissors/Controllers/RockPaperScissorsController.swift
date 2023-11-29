@@ -8,9 +8,9 @@
 import Foundation
 
 struct RockPaperScissorsController: Controller {
-    internal var view: View
+    internal let view: View
     internal var resultDict: Dictionary<Match, () -> ()>
-    private var rockPaperScissorModel: RockPaperScissorsModel
+    private let rockPaperScissorModel: RockPaperScissorsModel
     
     init() {
         view = RockPaperScissorsView()

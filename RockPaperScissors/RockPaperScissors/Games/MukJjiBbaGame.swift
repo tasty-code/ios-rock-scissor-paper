@@ -13,5 +13,4 @@ struct MukJjiBbaGame: Game {
     mutating func play() {
         controller.process()
     }
-    
 }
