@@ -26,3 +26,7 @@ enum GameType: String {
 enum GameStatus {
     case ready, evaluation, falseInput, completed
 }
+
+enum Turn: String {
+    case user = "사용자" , computer = "컴퓨터"
+}

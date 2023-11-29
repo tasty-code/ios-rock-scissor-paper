@@ -8,44 +8,47 @@
 import Foundation
 
 struct GameMaster {
-    private var gameType: GameType
+    var gameType: GameType
     var user: Player
     var computer: Player
-    private var turn: Player
+    var turn: Turn
     
     init(gameType: GameType, user: Player, computer: Player, turn: Player) {
         self.gameType = gameType
         self.user = user
         self.computer = computer
-        self.turn = turn
+        self.turn = .computer
     }
     
     mutating func playRockScissorsPaper(userInput: Int) {
-        user.setRockScissorsPaper(input: userInput)
-        computer.setRockScissorsPaper(input: Int.random(in: 1...3))
+        user.chooseRockScissorsPaper(input: userInput)
+        computer.chooseRockScissorsPaper(input: Int.random(in: 1...3))
     }
     
     mutating func playMookJjiBba(userInput: Int) {
-        user.setMookJjiBba(input: userInput)
-        computer.setMookJjiBba(input: Int.random(in: 1...3))
+        user.chooseMookJjiBba(input: userInput)
+        computer.chooseMookJjiBba(input: Int.random(in: 1...3))
     }
     
     mutating func evaluateRockScissorsPaper() {
-        if self.user.getRockScissorsPaper() == self.computer.getRockScissorsPaper() {
+        let userHand = user.retrieveRockScissorsPaper()
+        let computerHand = computer.retrieveRockScissorsPaper()
+        
+        if userHand == computerHand {
             print("비겼습니다.")
             return
         }
         
-        switch user.getRockScissorsPaper() {
+        switch userHand {
         case .rock:
-            self.turn = computer.getRockScissorsPaper() == .scissors ? user : computer
+            self.turn = computerHand == .scissors ? .user : .computer
         case .scissors:
-            self.turn = computer.getRockScissorsPaper() == .paper ? user : computer
+            self.turn = computerHand == .paper ? .user : .computer
         case .paper:
-            self.turn = computer.getRockScissorsPaper() == .rock ? user : computer
+            self.turn = computerHand == .rock ? .user : .computer
         }
         
-        if self.turn.getName() == "사용자" {
+        if self.turn == .user {
             print("이겼습니다.")
         } else {
             print("졌습니다.")
@@ -54,20 +57,24 @@ struct GameMaster {
     }
 
     mutating func evaluateMookJjiBba() -> GameResult {
-        if self.user.getMookJjiBba() == self.computer.getMookJjiBba() {
-            print("\(self.turn.getName())의 승리!")
+        
+        let userHand = user.retrieveMookJjiBba()
+        let computerHand = computer.retrieveMookJjiBba()
+        
+        if userHand == computerHand {
+            print("\(self.turn.rawValue)의 승리!")
             return .win
         }
         
-        switch user.getMookJjiBba() {
+        switch userHand {
         case .mook:
-            self.turn = computer.getMookJjiBba() == .jji ? user : computer
+            self.turn = computerHand == .jji ? .user : .computer
         case .jji:
-            self.turn = computer.getMookJjiBba() == .bba ? user : computer
+            self.turn = computerHand == .bba ? .user : .computer
         case .bba:
-            self.turn = computer.getMookJjiBba() == .mook ? user : computer
+            self.turn = computerHand == .mook ? .user : .computer
         }
-        print("\(self.turn.getName())의 턴입니다.")
+        print("\(self.turn.rawValue)의 턴입니다.")
         return .draw
     }
     
@@ -78,7 +85,7 @@ struct GameMaster {
             
             switch self.gameType {
             case .mookJjiBba:
-                print("[\(self.turn.getName()) 턴] 묵(1), 찌(2), 빠(3)! <종료 : 0> : ", terminator: "")
+                print("[\(self.turn.rawValue) 턴] 묵(1), 찌(2), 빠(3)! <종료 : 0> : ", terminator: "")
             case .rockScissorsPaper:
                 print("가위(1), 바위(2), 보(3)! <종료 : 0> : ", terminator: "")
             
@@ -107,7 +114,7 @@ struct GameMaster {
                     }
                 }
             default :
-                self.turn = computer
+                self.turn = .computer
                 print("잘못된 입력입니다. 다시 시도해주세요.")
             }
         } while userInput != "0"
