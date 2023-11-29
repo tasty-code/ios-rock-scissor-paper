@@ -1,7 +1,7 @@
 import Foundation
 
 struct Referee {
-    func determineGameOutcome(between userChoice: RockPaperScissors,
+    func determineRPSOutcome(between userChoice: RockPaperScissors,
                               and computerChoice: RockPaperScissors) -> GameOutcome {
         if userChoice == computerChoice {
             return .draw

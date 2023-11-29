@@ -4,7 +4,6 @@ enum PlayerTurn: CustomStringConvertible {
     case user, computer, none
     
     var description: String {
-        
         switch self {
         case .user:
             return "사용자"
