@@ -7,7 +7,6 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		275535402B1583F9000F256A /* Game.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2755353F2B1583F9000F256A /* Game.swift */; };
 		277D0B4A2B0C9A8700127682 /* GameChoice.swift in Sources */ = {isa = PBXBuildFile; fileRef = 277D0B492B0C9A8700127682 /* GameChoice.swift */; };
 		277D0B4C2B0CB3F800127682 /* GameResultMessage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 277D0B4B2B0CB3F800127682 /* GameResultMessage.swift */; };
 		27F78B8A2B0F3D9A00870464 /* Command.swift in Sources */ = {isa = PBXBuildFile; fileRef = 27F78B892B0F3D9A00870464 /* Command.swift */; };
@@ -31,7 +30,6 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
-		2755353F2B1583F9000F256A /* Game.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Game.swift; sourceTree = "<group>"; };
 		277D0B492B0C9A8700127682 /* GameChoice.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameChoice.swift; sourceTree = "<group>"; };
 		277D0B4B2B0CB3F800127682 /* GameResultMessage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameResultMessage.swift; sourceTree = "<group>"; };
 		27F78B892B0F3D9A00870464 /* Command.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Command.swift; sourceTree = "<group>"; };
@@ -88,7 +86,6 @@
 				4E11C6682B0CADCB0055DC53 /* RockScissorPaperGame.swift */,
 				4E2647CB2B1091FC0093EE80 /* MukJjiPpaGame.swift */,
 				27F78B892B0F3D9A00870464 /* Command.swift */,
-				2755353F2B1583F9000F256A /* Game.swift */,
 				4E11C66D2B0EEF380055DC53 /* NameSpace */,
 			);
 			path = RockPaperScissors;
@@ -152,7 +149,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				277D0B4A2B0C9A8700127682 /* GameChoice.swift in Sources */,
-				275535402B1583F9000F256A /* Game.swift in Sources */,
 				4E11C6692B0CADCB0055DC53 /* RockScissorPaperGame.swift in Sources */,
 				277D0B4C2B0CB3F800127682 /* GameResultMessage.swift in Sources */,
 				4E11C66F2B0EEF750055DC53 /* ApplicationStatusMessage.swift in Sources */,

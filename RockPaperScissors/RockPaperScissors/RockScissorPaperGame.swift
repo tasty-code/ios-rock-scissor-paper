@@ -5,7 +5,7 @@
 //  Created by mireu & kyle.
 //
 
-struct RockScissorPaperGame: Game {
+struct RockScissorPaperGame {
     var turn: Turn?
     var isRunning: Bool = true
     
@@ -20,7 +20,7 @@ struct RockScissorPaperGame: Game {
         }
     }
     
-    mutating func continueGame() -> Bool {
+    private mutating func continueGame() -> Bool {
         print("가위(1), 바위(2), 보(3)! <종료: 0> :", terminator: " ")
         
         let userInput = readLine()
@@ -50,13 +50,13 @@ struct RockScissorPaperGame: Game {
         return compareChoice(user: userChoice, computer: computerChoice)
     }
     
-     mutating func compareChoice(user: RockScissorPaperChoice, computer: RockScissorPaperChoice) -> Bool {
+    private mutating func compareChoice(user: RockScissorPaperChoice, computer: RockScissorPaperChoice) -> Bool {
         switch (user, computer) {
-        case (.scissor,.rock),(.rock,.paper),(.paper,.scissor):
+        case (.scissor, .rock),(.rock, .paper),(.paper, .scissor):
             print(GameResultMessage.lose)
             turn = .computer
             return false
-        case (.scissor,.paper),(.rock,.scissor),(.paper,.rock):
+        case (.scissor, .paper),(.rock, .scissor),(.paper, .rock):
             print(GameResultMessage.win)
             turn = .user
             return false
