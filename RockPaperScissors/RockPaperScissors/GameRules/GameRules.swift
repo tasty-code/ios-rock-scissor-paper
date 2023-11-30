@@ -37,10 +37,9 @@ extension GameRules {
         case "0":
             onUpdateMessage?(GameResult.endGame.message)
         case "1","2","3":
-            guard let userChoice = convertInputToRPSOption(input)
-            else { onUpdateMessage? (GameResult.error.message); return }
-            
-            let gameResult = determineFirstGameWinner(userChoice: userChoice)
+            if let userChoice = convertInputToRPSOption(input) {
+                let gameResult = determineFirstGameWinner(userChoice: userChoice)
+            }
         default:
             onUpdateMessage?(GameResult.error.message)
             onRestartFirstGame?()
@@ -79,10 +78,10 @@ extension GameRules {
         case "0":
             onUpdateMessage?(GameResult.endGame.message)
         case "1","2","3":
-            guard let userChoice = convertInputToRPSOption(input)
-            else { onUpdateMessage? (GameResult.error.message); return }
+            if let userChoice = convertInputToRPSOption(input) {
+                let secondGamsResult = determineSecondGameWinner(userChoice: userChoice)
+            }
             
-            let secoundGamsResult = determineSecondGameWinner(userChoice: userChoice)
         default:
             onUpdateMessage?(GameResult.error.message)
             gameTurn = .computerTurn
@@ -103,9 +102,7 @@ extension GameRules {
     }
     
     private func determineSecondGameWinner(userChoice: RPSModel)  {
-        
-        let computerChoice = computerPlayer.makeRandomChoice()
-        
+                
     secondGameRoop: while true {
         let computerChoice = computerPlayer.makeRandomChoice()
         
