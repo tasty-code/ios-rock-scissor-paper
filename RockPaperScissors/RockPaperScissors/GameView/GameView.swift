@@ -1,3 +1,4 @@
+
 import Foundation
 
 //MARK: - GameView init & deinit
@@ -8,7 +9,7 @@ final class GameView {
         self.gameRules = gameRules
         displayMessage()
         startSecondGame()
-        reStartGame()
+        restartFirstGame()
     }
     
     deinit { print("gameView deinit") }
@@ -19,7 +20,7 @@ extension GameView {
     func startGame() {
         print("가위(1), 바위(2), 보(3) ! <종료: 0> : ", terminator: "")
         if let playerInput = readLine() {
-            gameRules.playGameWithUserInput(input: playerInput)
+            gameRules.playFirstGameWithUserInput(input: playerInput)
         }
     }
     
@@ -33,7 +34,7 @@ extension GameView {
         }
     }
     
-    private func reStartGame() {
+    private func restartFirstGame() {
         gameRules.onReStartGame = { [weak self]  in
             self?.startGame()
         }

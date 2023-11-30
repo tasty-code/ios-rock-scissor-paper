@@ -1,3 +1,4 @@
+
 import Foundation
 
 //MARK: - GameRules init & deinit
@@ -12,34 +13,8 @@ final class GameRules {
     deinit { print("GameRules Deinit!!") }
 }
 
-//MARK: - GameRules method
+//MARK: - Common GameRules method
 extension GameRules {
-    func playGameWithUserInput( input: String) {
-        
-        guard let userChoice = convertInputToRPSOption(input)
-        else { onUpdateMessage? (GameResult.error.message); return }
-        
-        let gameResult = determineFirstGameWinner(userChoice: userChoice)
-    }
-    
-    func playSecondGameWithUserInput( input: String) {
-        
-        guard let userChoice = convertInputToRPSOption(input)
-        else { onUpdateMessage? (GameResult.error.message); return }
-        
-        let secoundGamsResult = determineSecondGameWinner(userChoice: userChoice)
-    }
-    
-    func dipslaySecondGameComment() {
-        switch gameTurn {
-        case .userTurn:
-            onUpdateMessage? (TurnModel.userTurn.message)
-        case .computerTurn:
-            onUpdateMessage? (TurnModel.computerTurn.message)
-        default:
-            break
-        }
-    }
     
     func convertInputToRPSOption(_ input: String) -> RPSModel? {
         switch Int(input) {
@@ -53,7 +28,18 @@ extension GameRules {
             return nil
         }
     }
-    
+}
+
+//MARK: - First GameRules method (가위바위보)
+extension GameRules {
+    func playFirstGameWithUserInput( input: String) {
+        
+        guard let userChoice = convertInputToRPSOption(input)
+        else { onUpdateMessage? (GameResult.error.message); return }
+        
+        let gameResult = determineFirstGameWinner(userChoice: userChoice)
+    }
+
     private func determineFirstGameWinner(userChoice: RPSModel) {
         let computerChoice = computerPlayer.makeRandomChoice()
         
@@ -76,8 +62,29 @@ extension GameRules {
             
         }
     }
+}
+
+
+//MARK: - Second GameRules method (묵찌빠)
+extension GameRules {
+    func playSecondGameWithUserInput( input: String) {
+        guard let userChoice = convertInputToRPSOption(input)
+        else { onUpdateMessage? (GameResult.error.message); return }
+        
+        let secoundGamsResult = determineSecondGameWinner(userChoice: userChoice)
+    }
     
-    //두번째 게임(묵찌빠)규칙 로직
+    func dipslaySecondGameComment() {
+        switch gameTurn {
+        case .userTurn:
+            onUpdateMessage? (TurnModel.userTurn.message)
+        case .computerTurn:
+            onUpdateMessage? (TurnModel.computerTurn.message)
+        default:
+            break
+        }
+    }
+    
     private func determineSecondGameWinner(userChoice: RPSModel)  {
         let computerChoice = computerPlayer.makeRandomChoice()
         
