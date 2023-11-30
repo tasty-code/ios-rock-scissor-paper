@@ -15,6 +15,10 @@ final class AdvancedRockPaperScissorsManager: Playable {
         self.rockPaperScissorsManager = rockPaperScissorsManager
     }
     
+    private func judgeWinner(_ gameResult: GameResultType) -> PlayerType {
+        return gameResult == .win ? .user : .computer
+    }
+    
     func judgeGame(userChoice: AdvancedRockPaperScissorsType?,
                    computerChoice: AdvancedRockPaperScissorsType?,
                    turn: PlayerType) -> GameResultType {

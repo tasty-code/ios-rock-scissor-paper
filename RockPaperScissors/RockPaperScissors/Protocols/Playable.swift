@@ -14,7 +14,6 @@ protocol Playable {
     func judgeGame(userChoice: GameType?, computerChoice: GameType?, turn: PlayerType) -> GameResultType
     func showMessage(_ messageType: GameResultType, _ turn: PlayerType)
     func playGame(_ result: GameResultType) -> GameResultType
-    func judgeWinner(_ gameResult: GameResultType) -> PlayerType
 }
 
 extension Playable {
@@ -27,9 +26,5 @@ extension Playable {
         }
         
         return num
-    }
-    
-    func judgeWinner(_ gameResult: GameResultType) -> PlayerType {
-        return gameResult == .win ? .user : .computer
     }
 }
