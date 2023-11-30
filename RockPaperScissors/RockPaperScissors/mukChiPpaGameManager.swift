@@ -17,7 +17,6 @@ struct mukChiPpaGameManager {
             guard let input = readLine(), let userChoice = MukChiPpaUserOption(rawValue: input) else {
                 GameIOmanager.showGameMenu(for: .error)
                 print("[컴퓨터 턴]", terminator: "")
-                playMukChiPpa(turn: .computer)
                 continue
             }
             if userChoice == .exit {

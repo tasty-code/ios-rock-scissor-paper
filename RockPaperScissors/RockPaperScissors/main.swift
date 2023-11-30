@@ -12,3 +12,5 @@ while isGameRunning {
     let result =  GameIOmanager()
     result.handleUserInput(computerPick: randomComputerPick, userChoice: userPick)
 }
+1
+
