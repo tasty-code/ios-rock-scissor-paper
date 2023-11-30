@@ -25,7 +25,7 @@ struct GameManager {
             PrintingHandler.notifyRPSOutcome(of: rpsOutcome)
         }
         
-        guard let nextPlayerTurn = determineNextPlayerTurn(basedOn: rpsOutcome) else {
+        guard let nextPlayerTurn = referee.determineNextPlayerTurn(basedOn: rpsOutcome) else {
             endGameIfWinnerDetermined()
             return
         }
@@ -65,17 +65,6 @@ struct GameManager {
     
     private func isMJP() -> Bool {
         return currentPlayerTurn != .none
-    }
-    
-    private func determineNextPlayerTurn(basedOn rpsOutcome: RPSOutcome) -> PlayerTurn? {
-        switch rpsOutcome {
-        case .win: 
-            return .user
-        case .loss: 
-            return .computer
-        case .draw: 
-            return nil
-        }
     }
     
     private mutating func endGameIfWinnerDetermined() {
