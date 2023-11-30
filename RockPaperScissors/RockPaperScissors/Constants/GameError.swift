@@ -1,5 +1,5 @@
 //
-//  RockPaperScissorsError.swift
+//  GameError.swift
 //  RockPaperScissors
 //
 //  Created by EUNJU on 2023/11/23.

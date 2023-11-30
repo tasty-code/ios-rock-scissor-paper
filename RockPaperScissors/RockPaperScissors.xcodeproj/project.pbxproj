@@ -56,7 +56,7 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		7776418D2B0F1E0300CFEFEC /* Enum */ = {
+		7776418D2B0F1E0300CFEFEC /* Constants */ = {
 			isa = PBXGroup;
 			children = (
 				777641852B0C9BA400CFEFEC /* GameResultType.swift */,
@@ -65,25 +65,25 @@
 				777641CE2B146F5700CFEFEC /* PlayerType.swift */,
 				FE9E95D82B1425920027D0DC /* GameError.swift */,
 			);
-			path = Enum;
+			path = Constants;
 			sourceTree = "<group>";
 		};
-		7776418E2B0F1E2800CFEFEC /* Class */ = {
+		7776418E2B0F1E2800CFEFEC /* GameManagers */ = {
 			isa = PBXGroup;
 			children = (
 				777641872B0C9F1200CFEFEC /* RockPaperScissorsManager.swift */,
 				FE9E95DA2B142F400027D0DC /* AdvancedRockPaperScissorsManager.swift */,
 			);
-			path = Class;
+			path = GameManagers;
 			sourceTree = "<group>";
 		};
-		7776418F2B10462700CFEFEC /* Protocol */ = {
+		7776418F2B10462700CFEFEC /* Protocols */ = {
 			isa = PBXGroup;
 			children = (
 				777641902B10463B00CFEFEC /* Playable.swift */,
 				777641D62B1712C000CFEFEC /* Convertible.swift */,
 			);
-			path = Protocol;
+			path = Protocols;
 			sourceTree = "<group>";
 		};
 		C7ABA0D4254EA63000B2367D = {
@@ -106,9 +106,9 @@
 			isa = PBXGroup;
 			children = (
 				C7ABA0E0254EA63000B2367D /* main.swift */,
-				7776418F2B10462700CFEFEC /* Protocol */,
-				7776418E2B0F1E2800CFEFEC /* Class */,
-				7776418D2B0F1E0300CFEFEC /* Enum */,
+				7776418F2B10462700CFEFEC /* Protocols */,
+				7776418E2B0F1E2800CFEFEC /* GameManagers */,
+				7776418D2B0F1E0300CFEFEC /* Constants */,
 			);
 			path = RockPaperScissors;
 			sourceTree = "<group>";
