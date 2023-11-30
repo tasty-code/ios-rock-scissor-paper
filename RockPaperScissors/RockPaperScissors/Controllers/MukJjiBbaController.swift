@@ -8,11 +8,13 @@
 import Foundation
 
 class MukJjiBbaController: Controller {
+    var handler: Handler
     internal let view: View
     internal var resultDict: Dictionary<Match, () -> ()>
     private let rockPaperScissorModel: RockPaperScissorsModel
     
     init() {
+        handler = Handler()
         view = MukJjiBbaView()
         rockPaperScissorModel = RockPaperScissorsModel()
         resultDict = Dictionary()
@@ -23,18 +25,11 @@ class MukJjiBbaController: Controller {
     
     func process() {
         view.menu(GamePlayer.main.attackPlayer)
-        let userSelect: RockPaperScissors = rockPaperScissorModel.convertRockPaperScissors(userInput())
+        guard var userSelect = handler.inputHandler() else {
+            return
+        }
+        userSelect = rockPaperScissorModel.convertRockPaperScissors(userSelect)
         let computerSelect = rockPaperScissorModel.random()
-        
-        if userSelect == .exit {
-            endGame()
-            return
-        }
-        
-        if userSelect == .wrongCase {
-            wrongCase()
-            return
-        }
         
         view.showReadyText(GamePlayer.main.attackPlayer)
         GamePlayer.main.setSelects(userSelect, computerSelect)
@@ -49,7 +44,7 @@ class MukJjiBbaController: Controller {
     
     private func win() {
         view.win(GamePlayer.main.attackPlayer)
-        endGame()
+        handler.endGame()
     }
     
     private func draw() {
@@ -61,21 +56,6 @@ class MukJjiBbaController: Controller {
         GamePlayer.main.swapPlayer()
         GamePlayer.main.pushGame()
         view.turnChange(GamePlayer.main.attackPlayer)
-    }
-    
-    internal func userInput() -> RockPaperScissors {
-        let userSelect: String = readLine() ?? String(RockPaperScissors.wrongCase.rawValue)
-        let selectedNum: Int? = Int(userSelect)
-        return RockPaperScissors(userSelect: selectedNum)
-    }
-    
-    private func wrongCase() {
-        view.wrong()
-        GamePlayer.main.pushGame()
-    }
- 
-    private func endGame() {
-        view.end()
     }
     
 }

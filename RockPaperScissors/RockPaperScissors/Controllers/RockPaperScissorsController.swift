@@ -8,11 +8,13 @@
 import Foundation
 
 struct RockPaperScissorsController: Controller {
+    var handler: Handler
     internal let view: View
     internal var resultDict: Dictionary<Match, () -> ()>
     private let rockPaperScissorModel: RockPaperScissorsModel
     
     init() {
+        handler = Handler()
         view = RockPaperScissorsView()
         rockPaperScissorModel = RockPaperScissorsModel()
         resultDict = Dictionary()
@@ -23,18 +25,10 @@ struct RockPaperScissorsController: Controller {
     
     public mutating func process() {
         view.menu(GamePlayer.main.attackPlayer)
-        let userSelect: RockPaperScissors = userInput()
+        guard let userSelect: RockPaperScissors = handler.inputHandler() else {
+            return 
+        }
         let computerSelect = rockPaperScissorModel.random()
-        
-        if userSelect == .exit {
-            endGame()
-            return
-        }
-        
-        if userSelect == .wrongCase {
-            wrongCase()
-            return
-        }
         
         view.showSelects(Player(userSelect), Player(computerSelect))
         let result = rockPaperScissorModel.matchResult(Player(userSelect), Player(computerSelect))
@@ -55,12 +49,6 @@ struct RockPaperScissorsController: Controller {
         GamePlayer.main.pushGame()
     }
     
-    internal func userInput() -> RockPaperScissors {
-        let userSelect: String = readLine() ?? String(RockPaperScissors.wrongCase.rawValue)
-        let selectedNum: Int? = Int(userSelect)
-        return RockPaperScissors(userSelect: selectedNum)
-    }
-    
     private func win() {
         GamePlayer.main.setPlayerType(winPlayer: .user, losePlayer: .computer)
         view.win(GamePlayer.main.attackPlayer)
@@ -73,14 +61,5 @@ struct RockPaperScissorsController: Controller {
     private func lose() {
         GamePlayer.main.setPlayerType(winPlayer: .computer, losePlayer: .user)
         view.lose()
-    }
-    
-    private func wrongCase() {
-        view.wrong()
-        GamePlayer.main.pushGame()
-    }
- 
-    private func endGame() {
-        view.end()
     }
 }

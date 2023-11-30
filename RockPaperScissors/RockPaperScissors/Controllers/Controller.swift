@@ -8,8 +8,8 @@
 import Foundation
 
 protocol Controller {
+    var handler: Handler { get }
     var view: View { get }
     var resultDict: Dictionary<Match, () -> ()> { get set }
     mutating func process()
-    func userInput() -> RockPaperScissors
 }

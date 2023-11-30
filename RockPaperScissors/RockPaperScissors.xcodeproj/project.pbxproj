@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		BD1711E42B18185700B16801 /* Handler.swift in Sources */ = {isa = PBXBuildFile; fileRef = BD1711E32B18185700B16801 /* Handler.swift */; };
 		BD3124792B15728E00D5D178 /* Player.swift in Sources */ = {isa = PBXBuildFile; fileRef = BD3124782B15728E00D5D178 /* Player.swift */; };
 		BD31247B2B1572F700D5D178 /* PlayerType.swift in Sources */ = {isa = PBXBuildFile; fileRef = BD31247A2B1572F700D5D178 /* PlayerType.swift */; };
 		BD368D682B0CA35B00CA5AA4 /* Message.swift in Sources */ = {isa = PBXBuildFile; fileRef = BD368D672B0CA35B00CA5AA4 /* Message.swift */; };
@@ -39,6 +40,7 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		BD1711E32B18185700B16801 /* Handler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Handler.swift; sourceTree = "<group>"; };
 		BD3124782B15728E00D5D178 /* Player.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Player.swift; sourceTree = "<group>"; };
 		BD31247A2B1572F700D5D178 /* PlayerType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlayerType.swift; sourceTree = "<group>"; };
 		BD368D672B0CA35B00CA5AA4 /* Message.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Message.swift; sourceTree = "<group>"; };
@@ -86,6 +88,7 @@
 				BDEAB08E2B16D90100EA8479 /* RockPaperScissorsController.swift */,
 				BDEAB0902B16D91300EA8479 /* MukJjiBbaController.swift */,
 				BDEAB0922B16DC1000EA8479 /* Controller.swift */,
+				BD1711E32B18185700B16801 /* Handler.swift */,
 			);
 			path = Controllers;
 			sourceTree = "<group>";
@@ -221,6 +224,7 @@
 				C1EA17B92B158A4100F1EF96 /* View.swift in Sources */,
 				BD7FA94B2B17239F00FC7E89 /* MukJjiBbaView.swift in Sources */,
 				C7ABA0E1254EA63000B2367D /* main.swift in Sources */,
+				BD1711E42B18185700B16801 /* Handler.swift in Sources */,
 				BDEAB0932B16DC1000EA8479 /* Controller.swift in Sources */,
 				BDEAB0912B16D91300EA8479 /* MukJjiBbaController.swift in Sources */,
 				BDEAB08B2B16D1B200EA8479 /* RockPaperScissorsGame.swift in Sources */,
