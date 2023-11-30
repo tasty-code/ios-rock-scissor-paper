@@ -31,14 +31,15 @@ struct RPSGame {
         }
     }
     
-    func start() throws -> RPSPlayable {
+    func start() throws -> (winner: RPSPlayable, loser: RPSPlayable) {
         while true {
             let (leftGesture, rightGesture) = try getPlayerGestures()
             let result = RPSPart(between: leftGesture, and: rightGesture).getResult()
             displayResult(result)
             switch result {
             case .win(let winner):
-                return winner
+                let loser = winner === leftPlayer ? rightPlayer : leftPlayer
+                return (winner, loser)
             case .draw:
                 continue
             }

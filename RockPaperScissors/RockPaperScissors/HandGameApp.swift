@@ -20,12 +20,12 @@ struct HandGameApp {
     func run() {
         do {
             let rpsGame = RPSGame(between: playerDuo.leftPlayer, and: playerDuo.rightPlayer)
-            let rpsWinner = try rpsGame.start()
-            let mjbPlayers = try playerDuo.prepareMJBPlayers(rpsWinner: rpsWinner)
-            var mjbGame = MJBGame(
-                turn: mjbPlayers.winner,
-                other: mjbPlayers.loser
-            )
+            let (rpsWinner, rpsLoser) = try rpsGame.start()
+            guard let turn = rpsWinner as? MJBPlayable,
+                  let other = rpsLoser as? MJBPlayable else {
+                return
+            }
+            var mjbGame = MJBGame(turn: turn, other: other)
             try mjbGame.start()
         } catch HandGameError.someoneWantsToExit {
             errorDisplay.displayRPSError(HandGameError.someoneWantsToExit)

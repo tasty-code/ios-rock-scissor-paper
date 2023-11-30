@@ -18,15 +18,15 @@ struct HandGameDuo {
         self.rightPlayer = rightPlayer
     }
     
-    func prepareMJBPlayers(rpsWinner: RPSPlayable) throws -> (winner: MJBPlayable, loser: MJBPlayable) {
-        guard let rpsWinner = rpsWinner as? HandGamePlayable else {
-            throw HandGameError.typeError
-        }
-        
-        if rpsWinner === leftPlayer {
-            return (leftPlayer, rightPlayer)
-        } else {
-            return (rightPlayer, leftPlayer)
-        }
-    }
+//    func prepareMJBPlayers(rpsWinner: RPSPlayable) throws -> (winner: MJBPlayable, loser: MJBPlayable) {
+//        guard let rpsWinner = rpsWinner as? HandGamePlayable else {
+//            throw HandGameError.typeError
+//        }
+//        
+//        if rpsWinner === leftPlayer {
+//            return (leftPlayer, rightPlayer)
+//        } else {
+//            return (rightPlayer, leftPlayer)
+//        }
+//    }
 }
