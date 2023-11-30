@@ -62,16 +62,14 @@ struct Refree {
                               computerHand: RockScissorsPaper?) -> Result {
         if playerHand == .exit {
             return Result.exit
+        } else if (playerHand == computerHand) {
+            return Result.draw
+        } else if (playerHand == .rock && computerHand == .scissors) ||
+                    (playerHand == .scissors && computerHand == .paper) ||
+                    (playerHand == .paper && computerHand == .rock) {
+            return Result.win
         } else {
-            if playerHand == computerHand {
-                return Result.draw
-            } else if (playerHand == .rock && computerHand == .scissors) ||
-                        (playerHand == .scissors && computerHand == .paper) ||
-                        (playerHand == .paper && computerHand == .rock) {
-                return Result.win
-            } else {
-                return Result.lose
-            }
+            return Result.lose
         }
     }
     
@@ -91,7 +89,6 @@ struct Refree {
     func runMukJiPa(rockScissorsPaperResult: Result, user: Player, computer: Player) {
         var shadowUser = user
         var shadowComputer = computer
-        // print("\(rockScissorsPaperResult)")
         
         if rockScissorsPaperResult == Result.win {
             print("[사용자 턴] 묵(1) 찌(2) 빠(3)! <종료 : 0> : ", terminator: "")
@@ -102,19 +99,11 @@ struct Refree {
             exit(0)
         }
         
-        
-        
         shadowUser.choiceMukJiPaHand()
         shadowComputer.randomMukJiPaHand()
-
+        
         if shadowUser.mukJiPaHand == shadowComputer.mukJiPaHand {
-            if rockScissorsPaperResult == Result.win {
-                print("사용자의 승리!")
-                endGame()
-            } else {
-                print("컴퓨터의 승리...")
-                endGame()
-            }
+            judgeMukJiPa(rockScissorsPaperResult)
         } else if (shadowUser.mukJiPaHand == .muk && shadowComputer.mukJiPaHand == .ji) ||
                     (shadowUser.mukJiPaHand == .ji && shadowComputer.mukJiPaHand == .pa) ||
                     (shadowUser.mukJiPaHand == .pa && shadowComputer.mukJiPaHand == .muk) {
@@ -131,18 +120,29 @@ struct Refree {
                        computer: shadowComputer)
         } else if shadowUser.mukJiPaHand == nil {
             print("잘못된 입력, 턴이 넘어갑니다.")
-            runMukJiPa(rockScissorsPaperResult: Result.lose, user: shadowUser, computer: shadowComputer)
+            runMukJiPa(rockScissorsPaperResult: Result.lose, 
+                       user: shadowUser,
+                       computer: shadowComputer)
         } else {
-            endGame()
+            shutDown()
         }
         
+        func judgeMukJiPa(_ : Result) {
+            if rockScissorsPaperResult == Result.win {
+                print("사용자의 승리!")
+                shutDown()
+            } else {
+                print("컴퓨터의 승리...")
+                shutDown()
+            }
+        }
     }
 }
 
-var onGame: Bool = true
+var power: Bool = true
 
-func endGame() {
-    onGame.toggle()
+func shutDown() {
+    power.toggle()
 }
 
 func startGame() {
@@ -159,7 +159,7 @@ func startGame() {
     
     switch rockScissorPaperResult {
     case .exit:
-        endGame()
+        shutDown()
     case .draw:
         print("비겼습니다!")
         startGame()
@@ -172,6 +172,6 @@ func startGame() {
     }
 }
 
-while onGame {
+while power {
     startGame()
 }
