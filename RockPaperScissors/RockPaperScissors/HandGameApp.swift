@@ -10,16 +10,19 @@ import Foundation
 struct HandGameApp {
     private let errorDisplay: HandGameErrorDisplayble
     
-    private let playerDuo: HandGameDuo
-    
-    init(playerDuo: HandGameDuo, errorDisplay: HandGameErrorDisplayble) {
-        self.playerDuo = playerDuo
+    init(errorDisplay: HandGameErrorDisplayble) {
         self.errorDisplay = errorDisplay
     }
     
-    func run() {
+    private func prepareUsers() -> (HandGamePlayable, HandGamePlayable) {
+        let leftPlayer: HandGamePlayable = UserPlayer(io: console, name: "에피")
+        let rightPlayer: HandGamePlayable = ComputerPlayer()
+        return (leftPlayer, rightPlayer)
+    }
+    
+    private func startGame(with leftPlayer: HandGamePlayable, and rightPlayer: HandGamePlayable) {
         do {
-            let rpsGame = RPSGame(between: playerDuo.leftPlayer, and: playerDuo.rightPlayer)
+            let rpsGame = RPSGame(between: leftPlayer, and: rightPlayer)
             let (rpsWinner, rpsLoser) = try rpsGame.start()
             guard let turn = rpsWinner as? MJBPlayable,
                   let other = rpsLoser as? MJBPlayable else {
@@ -30,5 +33,10 @@ struct HandGameApp {
         } catch HandGameError.someoneWantsToExit {
             errorDisplay.displayRPSError(HandGameError.someoneWantsToExit)
         } catch { return }
+    }
+    
+    func run() {
+        let playerDuo = prepareUsers()
+        startGame(with: playerDuo.0, and: playerDuo.1)
     }
 }

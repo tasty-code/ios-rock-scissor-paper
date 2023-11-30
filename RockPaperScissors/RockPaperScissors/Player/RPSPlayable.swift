@@ -14,3 +14,5 @@ protocol RPSPlayable: AnyObject {
 protocol RPSResultDisplayable {
     func display(result: RPSResult)
 }
+
+typealias HandGamePlayable = RPSPlayable & MJBPlayable
