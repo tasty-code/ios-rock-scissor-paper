@@ -8,10 +8,7 @@
 import Foundation
 
 protocol Playable {
-    associatedtype GameType
-    
     func validateUserInput(_ input: String?) throws -> Int
-    func judgeGame(userChoice: GameType?, computerChoice: GameType?, turn: PlayerType) -> GameResultType
     func showMessage(_ messageType: GameResultType, _ turn: PlayerType)
     func playGame(_ result: GameResultType) -> GameResultType
 }

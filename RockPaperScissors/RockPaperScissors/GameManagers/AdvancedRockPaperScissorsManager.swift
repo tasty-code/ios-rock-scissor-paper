@@ -7,7 +7,7 @@
 
 import Foundation
 
-final class AdvancedRockPaperScissorsManager: Playable {
+final class AdvancedRockPaperScissorsManager: Playable, JudgeAdvancedRockPaperScissors {
     
     private let rockPaperScissorsManager: RockPaperScissorsManager
     

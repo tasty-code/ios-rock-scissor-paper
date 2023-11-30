@@ -7,11 +7,9 @@
 
 import Foundation
 
-final class RockPaperScissorsManager: Playable {
-    
-    func judgeGame(userChoice: RockPaperScissorsType?,
-                            computerChoice: RockPaperScissorsType?,
-                            turn: PlayerType = .user) -> GameResultType {
+final class RockPaperScissorsManager: Playable, JudgeRockPaperScissors {
+
+    func judgeGame(userChoice: RockPaperScissorsType?, computerChoice: RockPaperScissorsType?) -> GameResultType {
         if userChoice == computerChoice {
             return .draw
         }
