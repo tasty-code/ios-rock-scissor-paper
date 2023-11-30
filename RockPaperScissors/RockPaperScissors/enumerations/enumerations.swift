@@ -10,7 +10,7 @@ import Foundation
 enum RPS: Int {
     case scissors = 1, rock = 2, paper = 3
     
-    var logic: [ RPS : RPS ] {
+    var winningLogic: [RPS:RPS] {
         get {
             let dictionary: [ RPS : RPS ] = [
                 .rock : .scissors,
@@ -25,7 +25,7 @@ enum RPS: Int {
 enum MJB: Int {
     case mook = 1, jji = 2, bba = 3
     
-    var logic: [ MJB : MJB ] {
+    var winningLogic: [MJB:MJB] {
         get {
             let dictionary: [ MJB : MJB ] = [
                 .mook : .jji,
@@ -62,7 +62,6 @@ enum GameType: String {
     }
     
     func play(turn: Turn, userInput: Int) -> (GameResult, GameType, Turn) {
-        
         switch self {
         
         case .rockPaperScissors:

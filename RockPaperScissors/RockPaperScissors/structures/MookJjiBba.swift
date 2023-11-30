@@ -20,7 +20,7 @@ struct MookJjiBba {
             return (.completed, turn)
         }
         
-        let winningLogic = userHand.logic
+        let winningLogic = userHand.winningLogic
         turn = winningLogic[userHand] == computerHand ? .user : .computer
         
         print("\(turn.rawValue)의 턴입니다.")

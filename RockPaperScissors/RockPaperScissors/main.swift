@@ -7,6 +7,6 @@
 import Foundation
 
 
-var gameMaster = GameMaster()
+let gameMaster = GameMaster()
 
 gameMaster.playGame()
