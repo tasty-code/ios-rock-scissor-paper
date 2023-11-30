@@ -24,11 +24,7 @@ struct HandGameApp {
         do {
             let rpsGame = RPSGame(between: leftPlayer, and: rightPlayer)
             let (rpsWinner, rpsLoser) = try rpsGame.start()
-            guard let turn = rpsWinner as? MJBPlayable,
-                  let other = rpsLoser as? MJBPlayable else {
-                return
-            }
-            var mjbGame = MJBGame(turn: turn, other: other)
+            guard var mjbGame = MJBGame(rpsWinner: rpsWinner, rpsLoser: rpsLoser) else { return }
             try mjbGame.start()
         } catch HandGameError.someoneWantsToExit {
             errorDisplay.displayRPSError(HandGameError.someoneWantsToExit)
