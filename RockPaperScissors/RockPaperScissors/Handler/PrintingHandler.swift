@@ -12,7 +12,7 @@ enum PrintingHandler {
             case .rpsOptions:
                 return "가위(1), 바위(2), 보(3)! <종료: 0> : "
             case .mjpOptions(let player):
-                return "[\(player) 턴]묵(1), 찌(2), 빠(3)! <종료 : 0> : "
+                return "[\(player) 턴] 묵(1), 찌(2), 빠(3)! <종료 : 0> : "
             case .playerTurn(let player):
                 return "\(player)의 턴입니다."
             case .winner(let player):
@@ -30,7 +30,7 @@ enum PrintingHandler {
         print(Message.rpsOptions, terminator: "")
     }
     
-    static func showMJPOptions(of playerTurn: PlayerTurn) {
+    static func showMJPOptions(for playerTurn: PlayerTurn) {
         print(Message.mjpOptions(playerTurn), terminator: "")
     }
     
