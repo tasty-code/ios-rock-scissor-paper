@@ -13,9 +13,9 @@ import Foundation
 
 
 
-struct RockScissorPaperIOmanager {
+struct GameIOmanager {
     
-    //입출력만담당 ?
+   
     
 }
 

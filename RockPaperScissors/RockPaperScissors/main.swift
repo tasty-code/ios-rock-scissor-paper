@@ -19,11 +19,13 @@ func handleUserInput(comPick: UserMenuOption, userPick: UserMenuOption) {
                 playMukChiPPa(turn: .user)
             } else {
                 print("[컴퓨터 턴]", terminator: "")
+                // 사용자 입력이 유효하지 않은 경우, 컴퓨터에게 턴을 넘김
                 playMukChiPPa(turn: .computer)
             }
         }
     }
 }
+
 
 func determineGameResult(comPick: UserMenuOption, userPick: UserMenuOption) -> GameMenuPrompt {
     if comPick == userPick {
@@ -62,6 +64,8 @@ func playMukChiPPa(turn: mukchippaGamreTurn) {
         
         guard let input = readLine(), let userMukChiPPa = MukChiPPaOption(rawValue: input) else {
             showGameMenu(for: .error)
+            print("[컴퓨터턴]", terminator: "")
+            playMukChiPPa(turn: .computer)
             continue
         }
         
@@ -71,7 +75,10 @@ func playMukChiPPa(turn: mukchippaGamreTurn) {
             break
         }
         
-        let comMukChiPPa = MukChiPPaOption(rawValue: String(Int.random(in: 1...3)))!
+//        let comMukChiPPa = MukChiPPaOption(rawValue: String(Int.random(in: 1...3)))!
+        guard let comMukChiPPa = MukChiPPaOption(rawValue: String(Int.random(in: 1...3))) else {
+            continue
+        }
         
         if userMukChiPPa == comMukChiPPa {
             if currentTurn == .user {
@@ -83,6 +90,11 @@ func playMukChiPPa(turn: mukchippaGamreTurn) {
             break
         } else {
             currentTurn.toggle()
+            if currentTurn == .user {
+                print("사용자의 턴입니다.")
+            } else {
+                print("컴퓨터의 턴입니다.")
+            }
             print(currentTurn == .user ? "[사용자 턴]" : "[컴퓨터 턴]" ,terminator: "" )
         }
     }
@@ -90,9 +102,7 @@ func playMukChiPPa(turn: mukchippaGamreTurn) {
 while isGameRunning {
     showGameMenu(for: .menu)
     
-    guard let randomComChoice = UserMenuOption(rawValue: String(Int.random(in: 1...3))) else {
-        continue
-    }
+    guard let randomComChoice = UserMenuOption.allCases.randomElement() else { continue }
     
     guard let input = readLine(), let userPick = UserMenuOption(rawValue: input) else {
         showGameMenu(for: .error)

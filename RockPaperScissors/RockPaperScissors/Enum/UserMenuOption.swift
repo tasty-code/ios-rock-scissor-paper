@@ -7,7 +7,7 @@
 
 import Foundation
 
-enum UserMenuOption: String {
+enum UserMenuOption: String, CaseIterable {
     case scissor = "1"
     case rock = "2"
     case paper = "3"
