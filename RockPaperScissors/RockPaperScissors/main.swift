@@ -6,4 +6,4 @@
 
 import Foundation
 
-RockPaperScissorsGame().play()
+GamePlayer.main.play()
