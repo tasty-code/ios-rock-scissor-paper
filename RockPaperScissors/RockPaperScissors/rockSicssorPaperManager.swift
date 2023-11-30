@@ -9,5 +9,15 @@ import Foundation
 
 struct rockSicssorPaperGameManager {
     
-    //가위바위보 로직 구현
+    func determineGameResult(comPick: UserMenuOption, userChoice: UserMenuOption) -> GameMenuPrompt {
+        if comPick == userChoice {
+            return .draw
+        }
+        switch (comPick, userChoice) {
+        case (.scissor, .rock), (.rock, .paper), (.paper, .scissor):
+            return .win
+        default:
+            return .lose
+        }
+    }
 }

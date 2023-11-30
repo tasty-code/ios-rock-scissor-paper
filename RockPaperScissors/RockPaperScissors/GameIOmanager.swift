@@ -15,7 +15,7 @@ struct GameIOmanager {
         case .exit:
             GameIOmanager.endGame()
         case .scissor, .rock, .paper:
-            let result: GameMenuPrompt = determineGameResult(comPick: comPick, userChoice: userPick)
+            let result: GameMenuPrompt = rockSicssorPaperGameManager().determineGameResult(comPick: comPick, userChoice: userPick)
             GameIOmanager.showGameMenu(for: result)
             if result == .draw {
                 return
@@ -29,17 +29,6 @@ struct GameIOmanager {
                     mukcchippaGameManager().playMukChiPPa(turn: .computer)
                 }
             }
-        }
-    }
-    func determineGameResult(comPick: UserMenuOption, userChoice: UserMenuOption) -> GameMenuPrompt {
-        if comPick == userChoice {
-            return .draw
-        }
-        switch (comPick, userChoice) {
-        case (.scissor, .rock), (.rock, .paper), (.paper, .scissor):
-            return .win
-        default:
-            return .lose
         }
     }
     
