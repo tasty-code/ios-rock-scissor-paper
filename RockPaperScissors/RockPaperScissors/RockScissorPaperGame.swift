@@ -6,7 +6,7 @@
 //
 
 struct RockScissorPaperGame {
-    var turn: Turn?
+    var winner: Turn?
     var isRunning: Bool = true
     
     mutating func play() {
@@ -54,11 +54,11 @@ struct RockScissorPaperGame {
         switch (user, computer) {
         case (.scissor, .rock),(.rock, .paper),(.paper, .scissor):
             print(GameResultMessage.lose)
-            turn = .computer
+            winner = .computer
             return false
         case (.scissor, .paper),(.rock, .scissor),(.paper, .rock):
             print(GameResultMessage.win)
-            turn = .user
+            winner = .user
             return false
         default:
             print(GameResultMessage.draw)
