@@ -15,5 +15,10 @@ enum GameMenuPrompt: String {
     case exit = "게임 종료"
     case mukChiPpaMenu = " 묵(1), 찌(2), 빠(3)! <종료: 0> : "
     case error = "잘못된 입력입니다. 다시 시도해주세요"
+    case mukchippaUserWin = "사용자의 승리"
+    case mukchippaComputerWin = "컴퓨터의 승리"
 }
+
+
+
 

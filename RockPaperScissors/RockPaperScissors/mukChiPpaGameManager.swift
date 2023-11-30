@@ -28,19 +28,14 @@ struct mukChiPpaGameManager {
             else { continue }
             if userChoice == randomComputerPick {
                 if currentTurn == .user {
-                    print("사용자의 승리!")
+                    GameIOmanager.showGameMenu(for: .mukchippaUserWin)
                 } else {
-                    print("컴퓨터의 승리!")
+                    GameIOmanager.showGameMenu(for: .mukchippaComputerWin)
                 }
                 GameIOmanager.endGame()
                 break
             } else {
                 currentTurn.toggle()
-                if currentTurn == .user {
-                    print("사용자의 턴입니다.")
-                } else {
-                    print("컴퓨터의 턴입니다.")
-                }
                 print(currentTurn == .user ? "[사용자 턴]" : "[컴퓨터 턴]" ,terminator: "" )
             }
         }

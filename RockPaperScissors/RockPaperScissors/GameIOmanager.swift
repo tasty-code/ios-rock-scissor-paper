@@ -42,5 +42,5 @@ struct GameIOmanager {
     static func endGame() {
         showGameMenu(for: .exit)
         isGameRunning = false
-    }    
+    } 
 }
