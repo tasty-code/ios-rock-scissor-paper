@@ -6,6 +6,4 @@
 
 import Foundation
 
-var isWorkingRockScissorsPaper = true
-
 initPlayRockScissorsPaperGame()

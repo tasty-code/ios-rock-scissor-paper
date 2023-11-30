@@ -7,7 +7,10 @@
 
 import Foundation
 
-
 func displayRockScissorsPaperMenu() {
-    print(StringNameSpace.rockScissorsPaperExitMenuMessage)
+    print(RockScissorsPaperMessages.Default.menu)
+}
+
+func displayMukchippaMenu() {
+    print(isWhoTurn == isUserTurn ? "\(MukchippaMessages.UserTurn.menu)" : "\(MukchippaMessages.ComputerTurn.menu)")
 }
