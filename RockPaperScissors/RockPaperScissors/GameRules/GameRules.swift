@@ -46,7 +46,7 @@ extension GameRules {
             onRestartFirstGame?()
         }
     }
-
+    
     private func determineFirstGameWinner(userChoice: RPSModel) {
         let computerChoice = computerPlayer.makeRandomChoice()
         
@@ -88,7 +88,6 @@ extension GameRules {
             gameTurn = .computerTurn
             onUpdateMessage?(TurnModel.computerTurn.message)
             onRestartSecondGame?()
-            
         }
     }
     
@@ -104,32 +103,38 @@ extension GameRules {
     }
     
     private func determineSecondGameWinner(userChoice: RPSModel)  {
+        
         let computerChoice = computerPlayer.makeRandomChoice()
         
-        if gameTurn == .userTurn && computerChoice == userChoice {
-            onUpdateMessage?("사용자 승")
-        } else if gameTurn == .userTurn && computerChoice != userChoice {
-            onUpdateMessage?("컴퓨터 턴입니다.")
-            onUpdateMessage?(TurnModel.computerTurn.message)
-            if gameTurn == .userTurn {
-                gameTurn = .computerTurn
-                onRestartSecondGame?()
+    secondGameRoop: while true {
+        let computerChoice = computerPlayer.makeRandomChoice()
+        
+        switch gameTurn {
+        case .userTurn:
+            if userChoice == computerChoice {
+                onUpdateMessage?("사용자 승")
+                break secondGameRoop
             } else {
                 gameTurn = .computerTurn
-                return
+                onUpdateMessage?("컴퓨터 턴입니다.")
+                onRequstSecondGame?()
+                break secondGameRoop
             }
-        } else if gameTurn == .computerTurn && computerChoice == userChoice {
-            onUpdateMessage?("컴퓨터 승")
-        } else {
-            onUpdateMessage?("사용자 턴입니다.")
-            onUpdateMessage?(TurnModel.userTurn.message)
-            if gameTurn == .computerTurn {
-                gameTurn = .userTurn
-                onRestartSecondGame?()
+            
+        case .computerTurn:
+            if userChoice == computerChoice {
+                onUpdateMessage?("컴퓨터 승")
+                break secondGameRoop
             } else {
                 gameTurn = .userTurn
-                return
+                onUpdateMessage?("사용자 턴입니다.")
+                onRequstSecondGame?()
+                break secondGameRoop
             }
+            
+        default:
+            break secondGameRoop
         }
+    }
     }
 }

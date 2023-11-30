@@ -28,7 +28,7 @@ extension GameView {
     private func startSecondGame() {
         gameRules.onRequstSecondGame = { [weak self] in
             self?.gameRules.dipslaySecondGameComment()
-
+            
             if let playerInput = readLine() {
                 self?.gameRules.playSecondGameWithUserInput(input: playerInput)
             }
