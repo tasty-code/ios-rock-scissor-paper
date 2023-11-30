@@ -51,16 +51,16 @@ struct GameManager {
     }
     
     private mutating func handleInvalidOrExitBy(_ userOption: Option, _ computerOption: Option) {
-        guard shouldEndGameEarlyBy(userOption, computerOption) else {
+        if shouldEndGameEarlyBy(userOption, computerOption) {
+            PrintingHandler.notifyGameOver()
+            endGame()
+        } else {
             PrintingHandler.notifyInvalidOption()
             if currentPlayerTurn == .user {
                 currentPlayerTurn = .computer
             }
             return
         }
-       
-        PrintingHandler.notifyGameOver()
-        endGame()
     }
     
     private func shouldEndGameEarlyBy(_ userChoice: Option, _ computerChoice: Option) -> Bool {
