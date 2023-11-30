@@ -10,6 +10,7 @@ final class GameView {
         displayMessage()
         startSecondGame()
         restartFirstGame()
+        restartSecondGame()
     }
     
     deinit { print("gameView deinit") }
@@ -35,8 +36,16 @@ extension GameView {
     }
     
     private func restartFirstGame() {
-        gameRules.onReStartGame = { [weak self]  in
+        gameRules.onRestartFirstGame = { [weak self]  in
             self?.startGame()
+        }
+    }
+    
+    private func restartSecondGame() {
+        gameRules.onRestartSecondGame = { [weak self] in
+            if let playerInput = readLine() {
+                self?.gameRules.playSecondGameWithUserInput(input: playerInput)
+            }
         }
     }
     
