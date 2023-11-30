@@ -30,16 +30,16 @@ enum PrintingHandler {
         print(Message.rpsOptions, terminator: "")
     }
     
-    static func showMJPOptions(for playerTurn: PlayerTurn) {
-        print(Message.mjpOptions(playerTurn), terminator: "")
+    static func showMJPOptions(for player: PlayerTurn) {
+        print(Message.mjpOptions(player), terminator: "")
     }
     
     static func notifyRPSOutcome(of rpsOutcome: RPSOutcome) {
         print(rpsOutcome)
     }
     
-    static func notifyMJPTurn(of playerTurn: PlayerTurn){
-        print(Message.playerTurn(playerTurn))
+    static func notifyMJPTurn(of player: PlayerTurn){
+        print(Message.playerTurn(player))
     }
     
     static func notifyMJPWinner(of player: PlayerTurn) {
