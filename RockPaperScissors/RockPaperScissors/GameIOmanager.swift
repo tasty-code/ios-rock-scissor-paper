@@ -29,7 +29,6 @@ struct GameIOmanager {
             }
         }
     }
-    
     static func showGameMenu(for situation: GameMenuPrompt) {
         switch situation {
         case .menu, .mukChiPpaMenu:
@@ -38,7 +37,6 @@ struct GameIOmanager {
             print(situation.rawValue)
         }
     }
-
     static func endGame() {
         showGameMenu(for: .exit)
         isGameRunning = false
