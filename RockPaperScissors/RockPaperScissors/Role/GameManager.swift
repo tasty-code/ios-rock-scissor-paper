@@ -9,10 +9,10 @@ struct GameManager {
     
     public mutating func playGame() {
         showOptions()
-            
-        let userOption = user.chooseOption()
-        let computerOption = computer.chooseOption()
-        
+        processGameOutcome(between: user.chooseOption(), and: computer.chooseOption())
+    }
+    
+    private mutating func processGameOutcome(between userOption: Option, and computerOption: Option) {
         guard let userChoice = Option.getRockPaperScissors(from: userOption),
               let computerChoice = Option.getRockPaperScissors(from: computerOption) else {
             handleInvalidOrExitBy(userOption, computerOption)
@@ -20,25 +20,33 @@ struct GameManager {
         }
         
         let rpsOutcome = referee.determineRPSOutcome(between: userChoice, and: computerChoice)
-        
-        if isRPS() {
-            PrintingHandler.notifyRPSOutcome(of: rpsOutcome)
-        }
-        
-        guard let nextPlayerTurn = referee.determineNextPlayerTurn(basedOn: rpsOutcome) else {
-            endGameIfWinnerDetermined()
-            return
-        }
+        processRefereeOutcome(basedOn: rpsOutcome)
+    }
     
-        if isMJP() {
-            PrintingHandler.notifyMJPTurn(of: nextPlayerTurn)
+    private mutating func processRefereeOutcome(basedOn: RPSOutcome) {
+        if currentPlayerTurn == .none {
+            PrintingHandler.notifyRPSOutcome(of: basedOn)
         }
         
-        currentPlayerTurn = nextPlayerTurn
+        let nextPlayerTurn = referee.determineNextPlayerTurn(basedOn: basedOn)
+        
+        if nextPlayerTurn == .none {
+            if currentPlayerTurn != .none {
+                PrintingHandler.notifyMJPWinner(of: currentPlayerTurn)
+                endGame()
+            }
+            return
+            
+        } else {
+            if currentPlayerTurn != .none {
+                PrintingHandler.notifyMJPTurn(of: nextPlayerTurn)
+            }
+            currentPlayerTurn = nextPlayerTurn
+        }
     }
     
     private func showOptions() {
-        isRPS() ? PrintingHandler.showRPSOptions() :
+        currentPlayerTurn == .none ? PrintingHandler.showRPSOptions() :
                 PrintingHandler.showMJPOptions(for: currentPlayerTurn)
     }
     
@@ -59,20 +67,20 @@ struct GameManager {
         return userChoice == .exit || computerChoice == .exit
     }
     
-    private func isRPS() -> Bool {
-        return currentPlayerTurn == .none
-    }
-    
-    private func isMJP() -> Bool {
-        return currentPlayerTurn != .none
-    }
-    
-    private mutating func endGameIfWinnerDetermined() {
-        if isMJP() {
-            PrintingHandler.notifyMJPWinner(of: currentPlayerTurn)
-            endGame()
-        }
-    }
+//    private func isRPS() -> Bool {
+//        return currentPlayerTurn == .none
+//    }
+//    
+//    private func isMJP() -> Bool {
+//        return currentPlayerTurn != .none
+//    }
+//    
+//    private mutating func endGameIfWinnerDetermined() {
+//        if currentPlayerTurn != .none {
+//            PrintingHandler.notifyMJPWinner(of: currentPlayerTurn)
+//            endGame()
+//        }
+//    }
     
     private mutating func endGame() {
         canRun = false

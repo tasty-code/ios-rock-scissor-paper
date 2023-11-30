@@ -12,14 +12,14 @@ struct Referee {
         }
     }
     
-    func determineNextPlayerTurn(basedOn rpsOutcome: RPSOutcome) -> PlayerTurn? {
+    func determineNextPlayerTurn(basedOn rpsOutcome: RPSOutcome) -> PlayerTurn {
         switch rpsOutcome {
         case .win:
             return .user
         case .loss:
             return .computer
         case .draw:
-            return nil
+            return .none
         }
     }
 }
