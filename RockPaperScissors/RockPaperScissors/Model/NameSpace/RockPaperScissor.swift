@@ -2,7 +2,7 @@
 //  RockPaperScissor.swift
 //  RockPaperScissors
 //
-//  Created by Minho on 11/28/23.
+//  Created by misung & UngQ on 11/28/23.
 //
 
 enum RockPaperScissor: Int {

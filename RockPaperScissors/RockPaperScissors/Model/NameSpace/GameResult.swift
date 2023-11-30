@@ -2,7 +2,7 @@
 //  GameResult.swift
 //  RockPaperScissors
 //
-//  Created by Minho on 11/28/23.
+//  Created by misung & UngQ on 11/28/23.
 //
 
 enum GameResult: CustomStringConvertible {
@@ -17,7 +17,7 @@ enum GameResult: CustomStringConvertible {
         case .lose:
             return "졌습니다!"
         case .rematch:
-            return "재매치" // MARK: 다른 처리 방안 고려 (사용하지 않는 메시지)
+            return "재매치"
         }
     }
 }

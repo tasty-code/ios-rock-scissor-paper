@@ -4,27 +4,28 @@
 //  Copyright © tastycode. All rights reserved.
 //
 
-let user: Player = Player(input: .noChoice)
-let opponent: Player = Player(input: .noChoice)
+let user: Player = Player(input: .noChoice, name: "사용자")
+let opponent: Player = Player(input: .noChoice, name: "컴퓨터")
 
-let rpsGame: RockPaperScissorsGame = RockPaperScissorsGame()
-let mjbGame: MukJjiPpaGame = MukJjiPpaGame(rpsGame: rpsGame)
+let rockPaperScissorsGame: RockPaperScissorsGame = RockPaperScissorsGame()
+let mukJjiPpaGame: MukJjiPpaGame = MukJjiPpaGame(rockPaperScissorsGame: rockPaperScissorsGame)
 
-let rpsGameController: RpsGameController =
-RpsGameController(rpsGame: rpsGame)
-let mjbGameController: MjbGameController =
-MjbGameController(mjbGame: mjbGame)
+let rpsGameController: RockPaperScissorsGameController = 
+RockPaperScissorsGameController(rockPaperScissorsGame: rockPaperScissorsGame)
 
-var gameState: GameState = .rpsGame
+let mjbGameController: MukJjiPpaGameController =
+MukJjiPpaGameController(mukJjiPpaGame: mukJjiPpaGame)
+
+var gameState: GameType = .rockPaperScissors
 
 while gameState != .endGame {
     switch gameState {
     case .endGame:
         break
-    case .rpsGame:
+    case .rockPaperScissors:
         rpsGameController.printMenuMessage()
         gameState = rpsGameController.playGame(user: user, opponent: opponent)
-    case .mjbGame:
+    case .mukJjiPpaGame:
         mjbGameController.printMenuMessage()
         gameState = mjbGameController.playGame(user: user, opponent: opponent)
     }

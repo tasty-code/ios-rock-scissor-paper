@@ -2,16 +2,16 @@
 //  RockPaperScissorsGame.swift
 //  RockPaperScissors
 //
-//  Created by Minho on 11/28/23.
+//  Created by misung & UngQ on 11/28/23.
 //
 
 class RockPaperScissorsGame : Playable {
     
-    private let _menuMessage: MenuMessage = .rps
+    private let _menuMessage: MenuMessage = .rockPaperScissors
     
     var menuMessage: MenuMessage {
         get {
-            return .rps
+            return .rockPaperScissors
         }
     }
 
@@ -26,21 +26,6 @@ class RockPaperScissorsGame : Playable {
             return .win
         } else {
             return .lose
-        }
-    }
-    
-    func convertInput(_ input: Int) -> RockPaperScissor{
-        switch input {
-        case 0:
-            return .exitGame
-        case 1:
-            return .scissor
-        case 2:
-            return .rock
-        case 3:
-            return .paper
-        default:
-            return .noChoice
         }
     }
 }

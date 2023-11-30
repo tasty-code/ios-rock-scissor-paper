@@ -2,30 +2,33 @@
 //  MukJjiPpaGame.swift
 //  RockPaperScissors
 //
-//  Created by Minho on 11/28/23.
+//  Created by misung & UngQ on 11/28/23.
 //
 
 class MukJjiPpaGame : Playable {
     
-    private var rpsGame: RockPaperScissorsGame
-    private let _menuMessage: MenuMessage = .rps
+    private var rockPaperScissorsGame: RockPaperScissorsGame
+    private let _menuMessage: MenuMessage = .rockPaperScissors
     
-    init(rpsGame: RockPaperScissorsGame) {
-        self.rpsGame = rpsGame
+    init(rockPaperScissorsGame: RockPaperScissorsGame) {
+        self.rockPaperScissorsGame = rockPaperScissorsGame
     }
     
     var menuMessage: MenuMessage {
         get {
-            return .mjb
+            return .mukJjiPpa
         }
     }
 
     func decideGameResult(user: Player, opponent: Player) -> GameResult {
-        if user.input == opponent.input {
+        let rpsGameResult = rockPaperScissorsGame.decideGameResult(user: user, opponent: opponent)
+        switch rpsGameResult {
+        case .draw:
             return user.isMyTurn ? .win : .lose
-        } else {
-            let rpsGameResult = rpsGame.decideGameResult(user: user, opponent: opponent)
+        case .win, .lose:
             changeTurn(user: user, opponent: opponent, result: rpsGameResult)
+            return .rematch
+        default:
             return .rematch
         }
     }
@@ -41,21 +44,6 @@ class MukJjiPpaGame : Playable {
         default:
             user.isMyTurn = false
             opponent.isMyTurn = true
-        }
-    }
-    
-    func convertInput(_ input: Int) -> RockPaperScissor{
-        switch input {
-        case 0:
-            return .exitGame
-        case 1:
-            return .rock
-        case 2:
-            return .scissor
-        case 3:
-            return .paper
-        default:
-            return .noChoice
         }
     }
 }
