@@ -11,7 +11,7 @@ protocol Playable {
     associatedtype GameType
     
     func validateUserInput(_ input: String?) throws -> Int
-    func judgeGame(user: GameType?, computer: GameType?, turn: PlayerType) -> GameResultType
+    func judgeGame(userChoice: GameType?, computerChoice: GameType?, turn: PlayerType) -> GameResultType
     func showMessage(_ messageType: GameResultType, _ turn: PlayerType)
     func playGame(_ result: GameResultType) -> GameResultType
     func judgeWinner(_ gameResult: GameResultType) -> PlayerType

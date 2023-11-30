@@ -9,20 +9,20 @@ import Foundation
 
 final class RockPaperScissorsManager: Playable {
     
-    func judgeGame(user: RockPaperScissorsType?,
-                            computer: RockPaperScissorsType?,
+    func judgeGame(userChoice: RockPaperScissorsType?,
+                            computerChoice: RockPaperScissorsType?,
                             turn: PlayerType = .user) -> GameResultType {
-        if user == computer {
+        if userChoice == computerChoice {
             return .draw
         }
         
-        switch user {
+        switch userChoice {
         case .scissors:
-            return computer == .paper ? .win : .lose
+            return computerChoice == .paper ? .win : .lose
         case .rock:
-            return computer == .scissors ? .win : .lose
+            return computerChoice == .scissors ? .win : .lose
         case .paper:
-            return computer == .rock ? .win : .lose
+            return computerChoice == .rock ? .win : .lose
         default:
             return .exit
         }
@@ -59,7 +59,7 @@ final class RockPaperScissorsManager: Playable {
                 continue
             }
             
-            let gameResult = judgeGame(user: userChoice, computer: computerChoice)
+            let gameResult = judgeGame(userChoice: userChoice, computerChoice: computerChoice)
             showMessage(gameResult)
             
             if gameResult != .draw {

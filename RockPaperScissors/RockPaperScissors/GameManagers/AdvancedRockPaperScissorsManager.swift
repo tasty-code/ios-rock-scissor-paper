@@ -15,14 +15,14 @@ final class AdvancedRockPaperScissorsManager: Playable {
         self.rockPaperScissorsManager = rockPaperScissorsManager
     }
     
-    func judgeGame(user: AdvancedRockPaperScissorsType?,
-                   computer: AdvancedRockPaperScissorsType?,
+    func judgeGame(userChoice: AdvancedRockPaperScissorsType?,
+                   computerChoice: AdvancedRockPaperScissorsType?,
                    turn: PlayerType) -> GameResultType {
-        if user == AdvancedRockPaperScissorsType.none {
+        if userChoice == AdvancedRockPaperScissorsType.none {
             return .exit
         }
         
-        if user != computer {
+        if userChoice != computerChoice {
             return .draw
         }
         
@@ -63,15 +63,15 @@ final class AdvancedRockPaperScissorsManager: Playable {
                 continue
             }
             
-            let gameResult = judgeGame(user: userChoice,
-                                       computer: computerChoice,
+            let gameResult = judgeGame(userChoice: userChoice,
+                                       computerChoice: computerChoice,
                                        turn: turn)
             switch gameResult {
             case .win, .lose:
                 showMessage(gameResult, turn)
                 return .exit
             case .draw:
-                let result = rockPaperScissorsManager.judgeGame(user: userChoice?.convertedType, computer: computerChoice?.convertedType)
+                let result = rockPaperScissorsManager.judgeGame(userChoice: userChoice?.convertedType, computerChoice: computerChoice?.convertedType)
                 let nextTurn: PlayerType = judgeWinner(result)
                 showMessage(.draw, nextTurn)
                 turn = nextTurn
