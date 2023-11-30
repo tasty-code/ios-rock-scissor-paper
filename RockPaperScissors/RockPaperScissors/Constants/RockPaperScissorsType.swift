@@ -7,7 +7,6 @@
 
 import Foundation
 
-@frozen
 enum RockPaperScissorsType: Int {
     case none = 0
     case scissors = 1

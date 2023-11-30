@@ -6,32 +6,15 @@
 
 import Foundation
 
-let rockPaperScissorsManager = RockPaperScissorsManager()
-var computerChoice = Int.random(in: 1...3)
+private let rockPaperScissorsManager = RockPaperScissorsManager()
+private let advancedRockPaperScissorsManager = AdvancedRockPaperScissorsManager(rockPaperScissorsManager: rockPaperScissorsManager)
 
-func playGame() {
-    while true {
-        UserGuideMessage.default.showMessage()
-        
-        let input = readLine()
-        let userChoice: RockPaperScissorsType
-        
-        do {
-            userChoice = try rockPaperScissorsManager.validateUserInput(input)
-        } catch {
-            print("잘못된 입력입니다. 다시 시도해주세요.")
-            continue
-        }
-        
-        let gameResult = rockPaperScissorsManager.judgeGame(user: userChoice,
-                                                            computer: RockPaperScissorsType(rawValue: computerChoice))
-        gameResult.showMessage()
-        
-        if gameResult != .draw {
-            return
-        }
-    }
+private let rockPaperScissorsResult = rockPaperScissorsManager.playGame(.default)
+
+switch rockPaperScissorsResult {
+case .exit:
+    break
+default:
+    advancedRockPaperScissorsManager.playGame(rockPaperScissorsResult)
 }
-
-playGame()
 
