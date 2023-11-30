@@ -5,10 +5,10 @@
 //  Created by misung & UngQ on 11/28/23.
 //
 
-enum RockPaperScissor: Int {
-    case exitGame = 0,
-         scissor = 1,
-         rock = 2,
-         paper = 3,
-         noChoice = 4
+enum RockPaperScissor {
+    case exitGame,
+         scissor,
+         rock,
+         paper,
+         noChoice
 }
