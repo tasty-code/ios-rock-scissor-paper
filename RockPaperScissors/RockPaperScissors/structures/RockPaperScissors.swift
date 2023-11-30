@@ -23,11 +23,8 @@ struct RockPaperScissors {
         let winningLogic = userHand.logic
         turn = winningLogic[userHand] == computerHand ? .user : .computer
 
-        if turn == .user {
-            print("이겼습니다.")
-        } else {
-            print("졌습니다.")
-        }
+        turn == .user ? print("이겼습니다.") : print("졌습니다.")
+        
         return (.nextGame, turn)
         
     }
