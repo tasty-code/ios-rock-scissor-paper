@@ -6,7 +6,8 @@
 //
 
 protocol Game {
-    var turn: Turn { get }
+    associatedtype ChoiceType 
     mutating func play()
     mutating func continueGame() -> Bool
+    mutating func compareChoice(user: ChoiceType, computer: ChoiceType) -> Bool
 }
