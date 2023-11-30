@@ -26,6 +26,7 @@ enum Result: String {
 
 struct Player {
     var rockScissorsPaperHand: RockScissorsPaper?
+    var mukJiPaHand: MukJiPa?
     
     mutating func choiceRockScissorsPaperHand() {
         if let input = readLine(),
@@ -40,10 +41,22 @@ struct Player {
     }
     
     mutating func randomRockScissorsPaperHand() {
-        let exceptExitCase = RockScissorsPaper.allCases.filter{ $0.rawValue != "0" }
+        let exceptExitCase = RockScissorsPaper.allCases.filter { $0.rawValue != "0" }
         self.rockScissorsPaperHand = exceptExitCase.randomElement()
     }
     
+    mutating func choiceMukJiPaHand() {
+        if let input = readLine(),
+           let select = MukJiPa(rawValue: input) {
+            let playerHand = select
+            self.mukJiPaHand = playerHand
+        }
+    }
+    
+    mutating func randomMukJiPaHand() {
+        let exceptExitCase = MukJiPa.allCases.filter { $0.rawValue != "0" }
+        self.mukJiPaHand = exceptExitCase.randomElement()
+    }
 }
 
 struct Refree {
@@ -61,6 +74,65 @@ struct Refree {
             } else {
                 return Result.lose
             }
+        }
+    }
+    
+    func noticeRockScissorPaperResult(_ rockScissorsPaperResult: Result) {
+        switch rockScissorsPaperResult {
+        case .win:
+            print("이겼습니다!")
+        case .lose:
+            print("졌습니다!")
+        case .draw:
+            print("error: 00")
+        case .exit:
+            print("error: 01")
+        }
+    }
+    
+    func runMukJiPa(rockScissorsPaperResult: Result, user: Player, computer: Player) {
+        var shadowUser = user
+        var shadowComputer = computer
+        print("\(rockScissorsPaperResult)")
+        
+        shadowUser.choiceMukJiPaHand()
+        shadowComputer.randomMukJiPaHand()
+        
+        if rockScissorsPaperResult == Result.win {
+            print("[사용자 턴] 묵(1) 찌(2) 빠(3)! <종료 : 0> :")
+        } else if rockScissorsPaperResult == Result.lose {
+            print("[컴퓨터 턴] 묵(1) 찌(2) 빠(3)! <종료 : 0> :")
+        } else {
+            print("error: 02")
+            exit(0)
+        }
+        
+        shadowUser.choiceMukJiPaHand()
+        shadowComputer.randomMukJiPaHand()
+        
+        if shadowUser.mukJiPaHand == shadowComputer.mukJiPaHand {
+            print("\(shadowUser.mukJiPaHand!), \(shadowComputer.mukJiPaHand!)")
+            if rockScissorsPaperResult == Result.win {
+                print("사용자 승리")
+                return
+            } else {
+                print("컴퓨터 승리")
+                return
+            }
+        } else if (shadowUser.mukJiPaHand == .muk && shadowComputer.mukJiPaHand == .ji) ||
+                    (shadowUser.mukJiPaHand == .ji && shadowComputer.mukJiPaHand == .pa) ||
+                    (shadowUser.mukJiPaHand == .pa && shadowComputer.mukJiPaHand == .muk) {
+            print("\(shadowUser.mukJiPaHand!), \(shadowComputer.mukJiPaHand!)")
+            runMukJiPa(rockScissorsPaperResult: Result.win, user: shadowUser, computer: shadowComputer)
+        } else if (shadowUser.mukJiPaHand == .ji && shadowComputer.mukJiPaHand == .muk) ||
+                    (shadowUser.mukJiPaHand == .pa && shadowComputer.mukJiPaHand == .ji) ||
+                    (shadowUser.mukJiPaHand == .muk && shadowComputer.mukJiPaHand == .pa) {
+            print("\(shadowUser.mukJiPaHand!), \(shadowComputer.mukJiPaHand!)")
+            runMukJiPa(rockScissorsPaperResult: Result.lose, user: shadowUser, computer: shadowComputer)
+        } else {
+            shadowUser.mukJiPaHand = nil
+            print("잘못된 입력, 턴이 넘어갑니다.")
+            runMukJiPa(rockScissorsPaperResult: Result.lose, user: shadowUser, computer: shadowComputer)
         }
     }
 }
