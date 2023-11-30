@@ -7,7 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		705075EA2B16FDBE00ADBD92 /* IOmanager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 705075E92B16FDBE00ADBD92 /* IOmanager.swift */; };
+		705075EA2B16FDBE00ADBD92 /* GameIOmanager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 705075E92B16FDBE00ADBD92 /* GameIOmanager.swift */; };
 		705075EE2B17176B00ADBD92 /* UserMenuOption.swift in Sources */ = {isa = PBXBuildFile; fileRef = 705075ED2B17176B00ADBD92 /* UserMenuOption.swift */; };
 		705075F02B17179000ADBD92 /* GameMenuPrompt.swift in Sources */ = {isa = PBXBuildFile; fileRef = 705075EF2B17179000ADBD92 /* GameMenuPrompt.swift */; };
 		705075F22B1717A500ADBD92 /* MukChiPPaOption.swift in Sources */ = {isa = PBXBuildFile; fileRef = 705075F12B1717A500ADBD92 /* MukChiPPaOption.swift */; };
@@ -30,7 +30,7 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
-		705075E92B16FDBE00ADBD92 /* IOmanager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IOmanager.swift; sourceTree = "<group>"; };
+		705075E92B16FDBE00ADBD92 /* GameIOmanager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameIOmanager.swift; sourceTree = "<group>"; };
 		705075ED2B17176B00ADBD92 /* UserMenuOption.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserMenuOption.swift; sourceTree = "<group>"; };
 		705075EF2B17179000ADBD92 /* GameMenuPrompt.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameMenuPrompt.swift; sourceTree = "<group>"; };
 		705075F12B1717A500ADBD92 /* MukChiPPaOption.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MukChiPPaOption.swift; sourceTree = "<group>"; };
@@ -83,9 +83,9 @@
 			isa = PBXGroup;
 			children = (
 				70C612652B15787A0076D565 /* Enum */,
-				705075E92B16FDBE00ADBD92 /* IOmanager.swift */,
-				705075F62B17295800ADBD92 /* rockSicssorPaperManager.swift */,
+				705075E92B16FDBE00ADBD92 /* GameIOmanager.swift */,
 				705075F82B1729C700ADBD92 /* mukcchippaGameManager.swift */,
+				705075F62B17295800ADBD92 /* rockSicssorPaperManager.swift */,
 				C7ABA0E0254EA63000B2367D /* main.swift */,
 			);
 			path = RockPaperScissors;
@@ -155,7 +155,7 @@
 				705075EE2B17176B00ADBD92 /* UserMenuOption.swift in Sources */,
 				705075F22B1717A500ADBD92 /* MukChiPPaOption.swift in Sources */,
 				705075F72B17295800ADBD92 /* rockSicssorPaperManager.swift in Sources */,
-				705075EA2B16FDBE00ADBD92 /* IOmanager.swift in Sources */,
+				705075EA2B16FDBE00ADBD92 /* GameIOmanager.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
