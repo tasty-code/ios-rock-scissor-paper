@@ -6,10 +6,10 @@
 
 import Foundation
 
-let rockPaperScissorsManager = RockPaperScissorsManager()
-let advancedRockPaperScissorsManager = AdvancedRockPaperScissorsManager(rockPaperScissorsManager: rockPaperScissorsManager)
+private let rockPaperScissorsManager = RockPaperScissorsManager()
+private let advancedRockPaperScissorsManager = AdvancedRockPaperScissorsManager(rockPaperScissorsManager: rockPaperScissorsManager)
 
-let rockPaperScissorsResult = rockPaperScissorsManager.playGame(.default)
+private let rockPaperScissorsResult = rockPaperScissorsManager.playGame(.default)
 
 switch rockPaperScissorsResult {
 case .exit:

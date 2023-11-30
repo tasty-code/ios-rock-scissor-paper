@@ -9,7 +9,7 @@ import Foundation
 
 final class AdvancedRockPaperScissorsManager: Playable {
     
-    let rockPaperScissorsManager: RockPaperScissorsManager
+    private let rockPaperScissorsManager: RockPaperScissorsManager
     
     init(rockPaperScissorsManager: RockPaperScissorsManager) {
         self.rockPaperScissorsManager = rockPaperScissorsManager
