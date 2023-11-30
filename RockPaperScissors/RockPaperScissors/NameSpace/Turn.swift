@@ -6,7 +6,6 @@
 //
 
 enum Turn {
-    case none
     case user
     case computer
 }
@@ -14,8 +13,6 @@ enum Turn {
 extension Turn: CustomStringConvertible {
     var description: String {
         switch self {
-        case .none:
-            "미결정"
         case .user:
             "사용자"
         case .computer:

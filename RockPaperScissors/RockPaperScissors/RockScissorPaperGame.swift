@@ -6,10 +6,12 @@
 //
 
 struct RockScissorPaperGame: Game {
-    var turn: Turn = .none
+    var turn: Turn?
+    var isRunning: Bool = true
     
     mutating func play() {
-        while true {
+        
+        while isRunning {
             guard
                 continueGame()
             else {
@@ -34,6 +36,7 @@ struct RockScissorPaperGame: Game {
             !command.isQuit
         else {
             print(ApplicationStatusMessage.quit)
+            isRunning = false
             return false
         }
         
@@ -47,7 +50,7 @@ struct RockScissorPaperGame: Game {
         return compareChoice(user: userChoice, computer: computerChoice)
     }
     
-    private mutating func compareChoice(user: RockScissorPaperChoice, computer: RockScissorPaperChoice) -> Bool {
+     mutating func compareChoice(user: RockScissorPaperChoice, computer: RockScissorPaperChoice) -> Bool {
         switch (user, computer) {
         case (.scissor,.rock),(.rock,.paper),(.paper,.scissor):
             print(GameResultMessage.lose)
