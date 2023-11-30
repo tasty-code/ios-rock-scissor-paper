@@ -32,6 +32,10 @@ struct Player {
            let select = RockScissorsPaper(rawValue: input) {
             let playerHand = select
             self.rockScissorsPaperHand = playerHand
+        } else {
+            print("잘못된 입력입니다. 다시 시도해주세요")
+            choiceRockScissorsPaperHand()
+            return
         }
     }
     
@@ -43,7 +47,8 @@ struct Player {
 }
 
 struct Refree {
-    func runRockScissorsPaper(playerHand: RockScissorsPaper?, computerHand: RockScissorsPaper?) -> Result {
+    func runRockScissorsPaper(playerHand: RockScissorsPaper?, 
+                              computerHand: RockScissorsPaper?) -> Result {
         if playerHand == .exit {
             return Result.exit
         } else {
@@ -60,25 +65,6 @@ struct Refree {
     }
 }
 
-func RockScissorsPaperGame(_ userChoice: RockScissorsPaper) -> Bool {
-    let userHand = Int(userChoice.rawValue)
-    let computerHand = Int.random(in: 1...3)
-    if userHand == 0 {
-        return true
-    } else if computerHand == userHand {
-        print("비겼습니다!")
-    } else if (computerHand == 1 && userHand == 2) ||
-                (computerHand == 2 && userHand == 3) ||
-                (computerHand == 3 && userHand == 1)  {
-        print("이겼습니다!")
-        return true
-    }  else {
-        print("졌습니다!")
-        return true
-    }
-    return false
-}
-
 var onGame: Bool = true
 
 func endGame() {
@@ -86,7 +72,7 @@ func endGame() {
 }
 
 func startGame() {
-    print("가위(1), 바위(2), 보(3)! <종료 : 0> :")
+    print("가위(1), 바위(2), 보(3)! <종료 : 0> :", terminator: "")
     let refree = Refree()
     var user = Player()
     var computer = Player()
@@ -96,6 +82,7 @@ func startGame() {
     
     let rockScissorPaperResult = refree.runRockScissorsPaper(playerHand: user.rockScissorsPaperHand,
                                                              computerHand: computer.rockScissorsPaperHand)
+    
     switch rockScissorPaperResult {
     case .exit:
         endGame()
@@ -104,7 +91,7 @@ func startGame() {
         startGame()
         return
     default:
-        print("승리/패배-묵찌빠로")
+        print("\(rockScissorPaperResult), 묵찌빠로")
     }
 }
 
