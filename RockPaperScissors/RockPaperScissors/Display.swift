@@ -12,5 +12,5 @@ func displayRockScissorsPaperMenu() {
 }
 
 func displayMukchippaMenu() {
-    print(turnStatus == userTurn ? "\(MukchippaMessages.UserTurn.menu)" : "\(MukchippaMessages.ComputerTurn.menu)")
+    print(isWhoTurn == isUserTurn ? "\(MukchippaMessages.UserTurn.menu)" : "\(MukchippaMessages.ComputerTurn.menu)")
 }

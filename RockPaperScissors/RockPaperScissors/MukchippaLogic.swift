@@ -8,9 +8,9 @@
 import Foundation
 
 var isWorkingMukchippa = false
-var turnStatus = true
-let computerTurn = false
-let userTurn = true
+var isWhoTurn = true
+let isComputerTurn = false
+let isUserTurn = true
 
 func compareMukchippa(userInputNumber: RockScissorsPaperCase, computerInputNumber: RockScissorsPaperCase) {
     switch (userInputNumber, computerInputNumber) {
@@ -18,14 +18,14 @@ func compareMukchippa(userInputNumber: RockScissorsPaperCase, computerInputNumbe
         printWinMessage()
         isWorkingRockScissorsPaper = false
     case (.scissors, .paper), (.rock, .scissors), (.paper, .rock):
-        turnStatus = userTurn
+        isWhoTurn = isUserTurn
         displayMukchippaMenu()
     case (.paper, .scissors), (.scissors, .rock), (.rock, .paper):
-        turnStatus = computerTurn
+        isWhoTurn = isComputerTurn
         displayMukchippaMenu()
     }
 }
 
 func printWinMessage() {
-    print(turnStatus == userTurn ? "\(MukchippaMessages.UserTurn.win)" : "\(MukchippaMessages.ComputerTurn.win)")
+    print(isWhoTurn == isUserTurn ? "\(MukchippaMessages.UserTurn.win)" : "\(MukchippaMessages.ComputerTurn.win)")
 }
