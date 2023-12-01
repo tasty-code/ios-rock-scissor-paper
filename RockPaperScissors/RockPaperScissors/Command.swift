@@ -6,6 +6,7 @@
 //
 
 struct Command {
+    static let validInputs = [0, 1, 2, 3]
     let userChoice: Int
     var isQuit: Bool {
         return userChoice == 0
@@ -19,8 +20,7 @@ struct Command {
             return nil
         }
         
-        let validInputs = [0, 1, 2, 3]
-        let isValid = validInputs.contains(converted)
+        let isValid = Command.validInputs.contains(converted)
         
         guard isValid else { return nil }
         self.userChoice = converted
