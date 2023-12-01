@@ -45,7 +45,7 @@ final class Game {
                 
                 if [.win, .lose].contains(gameResult) {
                     isPlayingMookZziBba = true
-                    initMookZziBba()
+                    makeInitialSettingForMookZziBba()
                     playMookZziBba()
                 }
                 
@@ -128,7 +128,7 @@ final class Game {
         }
     }
     
-    private func initMookZziBba() {
+    private func makeInitialSettingForMookZziBba() {
         let player: PlayerTurn = (gameResult == .win) ? .human : .computer
         setCurrentPlayerTurn(player)
     }
