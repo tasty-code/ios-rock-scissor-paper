@@ -3,9 +3,9 @@
 ## **소개 :** 사용자의 입력을 받아서 묵, 찌, 빠 대결을 하는 콘솔 프로그램
 
 ## **팀원**
-@llamang
+라마: https://github.com/llamang/
 
-@hemil0102
+Harry: https://github.com/hemil0102/
 
 ## **타임라인 :** 시간 순으로 프로젝트의 주요 진행 척도를 표시
 [![타임라인1](https://github.com/llamang/ios-rock-scissor-paper/blob/d_llama/docs/Readme%20Material/RPS_TimeLine_Step1.png)](#)
