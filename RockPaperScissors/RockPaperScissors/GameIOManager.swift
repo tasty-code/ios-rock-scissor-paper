@@ -38,7 +38,7 @@ struct GameIOManager {
         }
     }
     static func endGame() {
-        showGameMenu(for: .exit)
+        GameIOManager.showGameMenu(for: .exit)
         isGameRunning = false
     } 
 }
