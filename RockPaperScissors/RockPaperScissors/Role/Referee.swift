@@ -2,19 +2,14 @@ import Foundation
 
 struct Referee {
     private(set) var isGameOver = false
+    private(set) var game = Game.rps
     private(set) var previousTurn = PlayerTurn.none
     private var currentTurn = PlayerTurn.none
-    private var isCurrentTurn: Bool {
-        currentTurn != .none
-    }
     private var isDraw: Bool {
         currentTurn == .none
     }
-    var isRPS: Bool {
-        previousTurn == .none
-    }
-    private var isMJP: Bool {
-        previousTurn != .none
+    private var isCurrentTurn: Bool {
+        currentTurn != .none
     }
     
     mutating func determineGameOutcome(between userOption: Option, and computerOption: Option) {
@@ -23,14 +18,20 @@ struct Referee {
             handleInvalidOrExitBy(userOption, computerOption)
             return
         }
+        print("userChoice: \(userChoice)")
+        print("computerChoice: \(computerChoice)")
+        
         mappingIfMJP(&userChoice, &computerChoice)
+        
+        print("userChoice: \(userChoice)")
+        print("computerChoice: \(computerChoice)")
         processPlayerChoices(userChoice, computerChoice)
     }
     
     private mutating func handleInvalidOrExitBy(_ userOption: Option, _ computerOption: Option) {
         if shouldEndGameEarlyBy(userOption, computerOption) {
             isGameOver = true
-            PrintingHandler.notifyGameOver()
+            PrintingHandler.notifyExitByPlayer()
         } else {
             handleInvalidOption()
         }
@@ -50,11 +51,15 @@ struct Referee {
     private mutating func processPlayerChoices(_ userChoice: RockPaperScissors, _ computerChoice: RockPaperScissors) {
         let rpsOutcome = getRPSOutcome(between: userChoice, and: computerChoice)
         
-        if isRPS {
+        if game == .rps {
             PrintingHandler.notifyRPSOutcome(of: rpsOutcome)
         }
         
         currentTurn = getNextTurn(basedOn: rpsOutcome)
+        
+        if isCurrentTurn {
+            game = .mjp
+        }
         
         determineMJPOutcome()
     }
@@ -71,13 +76,13 @@ struct Referee {
     }
     
     private mutating func determineMJPOutcome() {
-        if isMJP && isDraw {
+        if game == .mjp && isDraw {
             PrintingHandler.notifyMJPWinner(of: previousTurn)
             isGameOver = true
             return
         }
   
-        if isMJP && isCurrentTurn {
+        if game == .mjp && isCurrentTurn {
             PrintingHandler.notifyMJPTurn(of: currentTurn)
         }
         
@@ -96,7 +101,7 @@ struct Referee {
     }
     
     private func mappingIfMJP(_ userChoice: inout RockPaperScissors, _ computerChoice: inout RockPaperScissors) {
-        guard isMJP else { return }
+        guard game == .mjp else { return }
         
         userChoice = userChoice == .scissors
         ? .rock

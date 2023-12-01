@@ -50,7 +50,7 @@ enum PrintingHandler {
         print(Message.invalidOption)
     }
     
-    static func notifyGameOver() {
+    static func notifyExitByPlayer() {
         print(Message.gameOver)
     }
 }
