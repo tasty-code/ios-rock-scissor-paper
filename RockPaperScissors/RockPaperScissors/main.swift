@@ -4,76 +4,83 @@
 //  Copyright © tastycode. All rights reserved.
 //
 
-enum RockScissorsPaper: String, CaseIterable {
-    case exit = "0"
+enum Hand: String, CaseIterable {
     case scissors = "1"
     case rock = "2"
     case paper = "3"
 }
 
-enum MukJiPa: String, CaseIterable {
-    case exit = "0"
-    case muk = "1"
-    case ji = "2"
-    case pa = "3"
-}
-
-enum Result: String {
-    case exit, win, draw, lose
+enum GameResult: String {
+    case win, draw, lose
 }
 
 struct Player {
-    var rockScissorsPaperHand: RockScissorsPaper?
-    var mukJiPaHand: MukJiPa?
+    var hand: Hand?
     
-    mutating func choiceRockScissorsPaperHand() {
-        if let input = readLine(),
-           let select = RockScissorsPaper(rawValue: input) {
-            let playerHand = select
-            self.rockScissorsPaperHand = playerHand
-        } else {
-            print("잘못된 입력입니다. 다시 시도해주세요")
-            choiceRockScissorsPaperHand()
-            return
+    mutating func selectRockScissorsPaperHandByInput() {
+        print("가위(1), 바위(2), 보(3)! <종료 : 0> : ", terminator: "")
+        if let input = readLine() {
+            if input == "0" {
+                shutDown()
+                print("\(power)")
+                return
+            }
+            else {
+                self.hand = Hand(rawValue: input)
+                if self.hand == nil {
+                    print("잘못된 입력입니다. 다시 시도해주세요")
+                    selectRockScissorsPaperHandByInput()
+                    return
+                }
+            }
+                
         }
     }
     
-    mutating func randomRockScissorsPaperHand() {
-        let exceptExitCase = RockScissorsPaper.allCases.filter { $0.rawValue != "0" }
-        self.rockScissorsPaperHand = exceptExitCase.randomElement()
+    mutating func selectRockScissorsPaperHandRandomly() {
+        self.hand = Hand.allCases.randomElement()
     }
     
-    mutating func choiceMukJiPaHand() {
-        if let input = readLine(),
-           let select = MukJiPa(rawValue: input) {
-            let playerHand = select
-            self.mukJiPaHand = playerHand
+    mutating func selectMukJiPaHandByInput() {
+        if let input = readLine() {
+            if input == "0" {
+                shutDown()
+            } else if input == "1" {
+                self.hand = .rock
+            } else if input == "2" {
+                self.hand = .scissors
+            } else {
+                self.hand = Hand(rawValue: input)
+            }
         }
     }
     
-    mutating func randomMukJiPaHand() {
-        let exceptExitCase = MukJiPa.allCases.filter { $0.rawValue != "0" }
-        self.mukJiPaHand = exceptExitCase.randomElement()
+    mutating func selectMukJiPaHandRandomly() {
+        self.hand = Hand.allCases.randomElement()
     }
 }
 
 struct Refree {
-    func runRockScissorsPaper(playerHand: RockScissorsPaper?,
-                              computerHand: RockScissorsPaper?) -> Result {
-        if playerHand == .exit {
-            return Result.exit
-        } else if (playerHand == computerHand) {
-            return Result.draw
+    
+    func runRockScissorsPaper(playerHand: Hand?,
+                              computerHand: Hand?) -> GameResult {
+        if (playerHand == computerHand) {
+            print("\(playerHand),\(computerHand)")
+            return GameResult.draw
         } else if (playerHand == .rock && computerHand == .scissors) ||
                     (playerHand == .scissors && computerHand == .paper) ||
                     (playerHand == .paper && computerHand == .rock) {
-            return Result.win
+            print("\(playerHand),\(computerHand)")
+
+            return GameResult.win
         } else {
-            return Result.lose
+            print("\(playerHand),\(computerHand)")
+
+            return GameResult.lose
         }
     }
     
-    func noticeRockScissorPaperResult(_ rockScissorsPaperResult: Result) {
+    func noticeRockScissorPaperResult(_ rockScissorsPaperResult: GameResult) {
         switch rockScissorsPaperResult {
         case .win:
             print("이겼습니다!")
@@ -81,54 +88,55 @@ struct Refree {
             print("졌습니다!")
         case .draw:
             print("error: 00")
-        case .exit:
-            print("error: 01")
         }
     }
     
-    func runMukJiPa(rockScissorsPaperResult: Result, user: Player, computer: Player) {
-        var shadowUser = user
-        var shadowComputer = computer
+    func runMukJiPa(rockScissorsPaperResult: GameResult) {
+        var user = Player()
+        var computer = Player()
         
-        if rockScissorsPaperResult == Result.win {
+        
+        if rockScissorsPaperResult == GameResult.win {
             print("[사용자 턴] 묵(1) 찌(2) 빠(3)! <종료 : 0> : ", terminator: "")
-        } else if rockScissorsPaperResult == Result.lose {
+        } else if rockScissorsPaperResult == GameResult.lose {
             print("[컴퓨터 턴] 묵(1) 찌(2) 빠(3)! <종료 : 0> : ", terminator: "")
         } else {
             print("error: 02")
             exit(0)
         }
         
-        shadowUser.choiceMukJiPaHand()
-        shadowComputer.randomMukJiPaHand()
+        user.selectMukJiPaHandByInput()
+        computer.selectMukJiPaHandRandomly()
         
-        if shadowUser.mukJiPaHand == shadowComputer.mukJiPaHand {
+        if user.hand == computer.hand {
+            print("\(user.hand),\(computer.hand)")
+
             judgeMukJiPa(rockScissorsPaperResult)
-        } else if (shadowUser.mukJiPaHand == .muk && shadowComputer.mukJiPaHand == .ji) ||
-                    (shadowUser.mukJiPaHand == .ji && shadowComputer.mukJiPaHand == .pa) ||
-                    (shadowUser.mukJiPaHand == .pa && shadowComputer.mukJiPaHand == .muk) {
+        } else if (user.hand == .rock && computer.hand == .scissors) ||
+                    (user.hand == .scissors && computer.hand == .paper) ||
+                    (user.hand == .paper && computer.hand == .rock) {
+            print("\(user.hand),\(computer.hand)")
+
             print("사용자의 턴입니다.")
-            runMukJiPa(rockScissorsPaperResult: Result.win,
-                       user: shadowUser,
-                       computer: shadowComputer)
-        } else if (shadowUser.mukJiPaHand == .ji && shadowComputer.mukJiPaHand == .muk) ||
-                    (shadowUser.mukJiPaHand == .pa && shadowComputer.mukJiPaHand == .ji) ||
-                    (shadowUser.mukJiPaHand == .muk && shadowComputer.mukJiPaHand == .pa) {
+            runMukJiPa(rockScissorsPaperResult: GameResult.win)
+        } else if (user.hand == .scissors && computer.hand == .rock) ||
+                    (user.hand == .paper && computer.hand == .scissors) ||
+                    (user.hand == .rock && computer.hand == .paper) {
+            print("\(user.hand),\(computer.hand)")
+
             print("컴퓨터의 턴입니다.")
-            runMukJiPa(rockScissorsPaperResult: Result.lose,
-                       user: shadowUser, 
-                       computer: shadowComputer)
-        } else if shadowUser.mukJiPaHand == nil {
+            runMukJiPa(rockScissorsPaperResult: GameResult.lose)
+        } else if user.hand == nil {
+            print("\(user.hand),\(computer.hand)")
+
             print("잘못된 입력, 턴이 넘어갑니다.")
-            runMukJiPa(rockScissorsPaperResult: Result.lose, 
-                       user: shadowUser,
-                       computer: shadowComputer)
+            runMukJiPa(rockScissorsPaperResult: GameResult.lose)
         } else {
             shutDown()
         }
         
-        func judgeMukJiPa(_ : Result) {
-            if rockScissorsPaperResult == Result.win {
+        func judgeMukJiPa(_ : GameResult) {
+            if rockScissorsPaperResult == GameResult.win {
                 print("사용자의 승리!")
                 shutDown()
             } else {
@@ -136,6 +144,7 @@ struct Refree {
                 shutDown()
             }
         }
+        
     }
 }
 
@@ -146,29 +155,25 @@ func shutDown() {
 }
 
 func startGame() {
-    print("가위(1), 바위(2), 보(3)! <종료 : 0> : ", terminator: "")
+    
     let refree = Refree()
     var user = Player()
     var computer = Player()
     
-    user.choiceRockScissorsPaperHand()
-    computer.randomRockScissorsPaperHand()
+    user.selectRockScissorsPaperHandByInput()
+    computer.selectRockScissorsPaperHandRandomly()
     
-    let rockScissorPaperResult = refree.runRockScissorsPaper(playerHand: user.rockScissorsPaperHand,
-                                                             computerHand: computer.rockScissorsPaperHand)
+    let rockScissorPaperResult = refree.runRockScissorsPaper(playerHand: user.hand,
+                                                             computerHand: computer.hand)
     
     switch rockScissorPaperResult {
-    case .exit:
-        shutDown()
+        
     case .draw:
         print("비겼습니다!")
         startGame()
-        return
     default:
         refree.noticeRockScissorPaperResult(rockScissorPaperResult)
-        refree.runMukJiPa(rockScissorsPaperResult: rockScissorPaperResult, 
-                          user: user,
-                          computer: computer)
+        refree.runMukJiPa(rockScissorsPaperResult: rockScissorPaperResult)
     }
 }
 
