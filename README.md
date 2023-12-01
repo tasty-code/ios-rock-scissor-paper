@@ -144,7 +144,7 @@ RockScissorsPaper-iOS/
 
 <br/>
 
-**수정 후**
+**수정 전**
 
 ```swift
 private func determineSecondGameWinner(userChoice: RPSModel)  {
