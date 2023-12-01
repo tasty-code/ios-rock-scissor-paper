@@ -61,7 +61,6 @@ struct Player {
 }
 
 struct Refree {
-    
     func runRockScissorsPaper(playerHand: Hand?,
                               computerHand: Hand?) -> GameResult {
         if (playerHand == computerHand) {
@@ -75,7 +74,6 @@ struct Refree {
             return GameResult.win
         } else {
             print("\(playerHand),\(computerHand)")
-
             return GameResult.lose
         }
     }
@@ -85,16 +83,20 @@ struct Refree {
         case .win:
             print("이겼습니다!")
         case .lose:
-            print("졌습니다!")
+            print(power ? "졌습니다!" : "게임이 종료되었습니다.")
         case .draw:
             print("error: 00")
         }
     }
     
     func runMukJiPa(rockScissorsPaperResult: GameResult) {
+    
+        if power == false {
+            return
+        }
+        
         var user = Player()
         var computer = Player()
-        
         
         if rockScissorsPaperResult == GameResult.win {
             print("[사용자 턴] 묵(1) 찌(2) 빠(3)! <종료 : 0> : ", terminator: "")
@@ -116,7 +118,6 @@ struct Refree {
                     (user.hand == .scissors && computer.hand == .paper) ||
                     (user.hand == .paper && computer.hand == .rock) {
             print("\(user.hand),\(computer.hand)")
-
             print("사용자의 턴입니다.")
             runMukJiPa(rockScissorsPaperResult: GameResult.win)
         } else if (user.hand == .scissors && computer.hand == .rock) ||
@@ -128,7 +129,11 @@ struct Refree {
             runMukJiPa(rockScissorsPaperResult: GameResult.lose)
         } else if user.hand == nil {
             print("\(user.hand),\(computer.hand)")
-
+            
+            if power == false {
+                return
+            }
+            
             print("잘못된 입력, 턴이 넘어갑니다.")
             runMukJiPa(rockScissorsPaperResult: GameResult.lose)
         } else {
@@ -181,3 +186,8 @@ struct Game {
 
 let game = Game()
 game.startGame()
+
+
+
+
+
