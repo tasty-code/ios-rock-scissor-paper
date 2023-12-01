@@ -1,7 +1,6 @@
 import Foundation
 
 var  isGameRunning: Bool = true
-
 while isGameRunning {
     GameIOmanager.showGameMenu(for: .menu)
     guard let randomComputerPick = RockScissorPaperUserOption.allCases.filter({ $0 != .exit }).randomElement() else { continue }

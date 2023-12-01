@@ -8,7 +8,6 @@
 import Foundation
 
 struct RockSicssorPaperGameManager {
-    
     func determineGameResult(computerPick: RockScissorPaperUserOption, userChoice: RockScissorPaperUserOption) -> GameMenuPrompt {
 //        if comPick == userChoice {
 //            return .draw

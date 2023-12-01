@@ -13,7 +13,7 @@ struct GameIOmanager {
         case .exit:
             GameIOmanager.endGame()
         case .scissor, .rock, .paper:
-            let result: GameMenuPrompt = rockSicssorPaperGameManager().determineGameResult(computerPick: computerPick, userChoice: userChoice)
+            let result: GameMenuPrompt = RockSicssorPaperGameManager().determineGameResult(computerPick: computerPick, userChoice: userChoice)
             GameIOmanager.showGameMenu(for: result)
             if result == .draw {
                 return
@@ -21,10 +21,10 @@ struct GameIOmanager {
                 let iswon = result == .win
                 if iswon {
                     print("[사용자 턴]", terminator: "")
-                        mukChiPpaGameManager().playMukChiPpa(turn: .user)
+                        MukChiPpaGameManager().playMukChiPpa(turn: .user)
                 } else {
                     print("[컴퓨터 턴]", terminator: "")
-                    mukChiPpaGameManager().playMukChiPpa(turn: .computer)
+                    MukChiPpaGameManager().playMukChiPpa(turn: .computer)
                 }
             }
         }

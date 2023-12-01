@@ -1,5 +1,5 @@
 //
-//  mukChiPpaGameManager.swift
+//  MukChiPpaGameManager.swift
 //  RockPaperScissors
 //
 //  Created by 권태호 on 29/11/2023.
@@ -7,9 +7,7 @@
 
 import Foundation
 
-
-struct mukChiPpaGameManager {
-    
+struct MukChiPpaGameManager {
     func playMukChiPpa(turn: MuckChiPpaGameTurn) {
         var currentTurn = turn
         while true {

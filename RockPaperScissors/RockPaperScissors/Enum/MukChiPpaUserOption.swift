@@ -8,10 +8,8 @@
 import Foundation
 
 enum MukChiPpaUserOption: String, CaseIterable {
-    
     case exit = "0"
     case muk = "1"
     case chi = "2"
     case ppa = "3"
-    
 }
