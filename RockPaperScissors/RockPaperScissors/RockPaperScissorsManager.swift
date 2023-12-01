@@ -37,7 +37,9 @@ struct RockPaperScissorsManager {
         if !isNextRound {
             print("가위(1), 바위(2), 보(3)! <종료: 0> : ", terminator: "")
         } else {
-            print(currentTurn == MukchippaResult.computerLose ? "[사용자 턴] " : "[컴퓨터 턴] ", "묵(1),찌(2),빠(3)! <종료 : 0> : " , terminator: "")
+            let turnMessage = currentTurn == MukchippaResult.computerLose ? "[사용자 턴]" : "[컴퓨터 턴]"
+            let mukchippaMessage = "묵(1),찌(2),빠(3)! <종료 : 0> : "
+            print(turnMessage, mukchippaMessage , terminator: "")
         }
     }
     
