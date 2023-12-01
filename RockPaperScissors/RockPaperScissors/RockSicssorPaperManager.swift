@@ -7,7 +7,7 @@
 
 import Foundation
 
-struct rockSicssorPaperGameManager {
+struct RockSicssorPaperGameManager {
     
     func determineGameResult(computerPick: RockScissorPaperUserOption, userChoice: RockScissorPaperUserOption) -> GameMenuPrompt {
 //        if comPick == userChoice {
