@@ -13,11 +13,11 @@ struct RockPaperScissorsManager {
     private var resultValue: Int?
     private var status: Bool = true
     private var currentTurn: MukchippaResult = .draw
-    private var nextRound: Bool = false
+    private var isNextRound: Bool = false
     
     mutating func play() {
         while status {
-            stepCheck()
+            checkStepPrint()
             guard let input = readLine() else { return }
             userValue = Int(input)
             
@@ -27,23 +27,23 @@ struct RockPaperScissorsManager {
                 status = false
             case 1, 2, 3:
                 guard let userChoice = userValue else { return }
-                stepType(userChoice: userChoice)
+                checkStepType(userChoice: userChoice)
             default:
                 print(GameResult.wrongValue.rawValue)
             }
         }
     }
     
-    mutating func stepCheck() {
-        if !nextRound {
+    mutating func checkStepPrint() {
+        if !isNextRound {
             print("가위(1), 바위(2), 보(3)! <종료: 0> : ", terminator: "")
         } else {
             print(currentTurn == MukchippaResult.computerLose ? "[사용자 턴] " : "[컴퓨터 턴] ", "묵(1),찌(2),빠(3)! <종료 : 0> : " , terminator: "")
         }
     }
     
-    mutating func stepType(userChoice: Int) {
-        if !nextRound {
+    mutating func checkStepType(userChoice: Int) {
+        if !isNextRound {
             getRockPaperScissorsResult(userValue: userChoice)
         } else {
             getMukchippaResult(userValue: userChoice)
@@ -66,11 +66,11 @@ struct RockPaperScissorsManager {
         case .userWin:
             print(GameResult.win.rawValue)
             currentTurn = .computerLose
-            nextRound = true
+            isNextRound = true
         case .userLose:
             currentTurn = .computerWin
             print(GameResult.lose.rawValue)
-            nextRound = true
+            isNextRound = true
         case .none:
             break
         }
