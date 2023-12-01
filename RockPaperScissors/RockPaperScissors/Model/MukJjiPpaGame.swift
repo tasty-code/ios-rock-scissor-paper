@@ -5,7 +5,7 @@
 //  Created by misung & UngQ on 11/28/23.
 //
 
-class MukJjiPpaGame : Playable {
+class MukJjiPpaGame: Playable {
     
     private var rockPaperScissorsGame: RockPaperScissorsGame
     private let _menuMessage: MenuMessage = .rockPaperScissors
