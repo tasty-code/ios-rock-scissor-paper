@@ -154,29 +154,30 @@ func shutDown() {
     power.toggle()
 }
 
-func startGame() {
-    
-    let refree = Refree()
-    var user = Player()
-    var computer = Player()
-    
-    user.selectRockScissorsPaperHandByInput()
-    computer.selectRockScissorsPaperHandRandomly()
-    
-    let rockScissorPaperResult = refree.runRockScissorsPaper(playerHand: user.hand,
-                                                             computerHand: computer.hand)
-    
-    switch rockScissorPaperResult {
+struct Game {
+    func startGame() {
         
-    case .draw:
-        print("비겼습니다!")
-        startGame()
-    default:
-        refree.noticeRockScissorPaperResult(rockScissorPaperResult)
-        refree.runMukJiPa(rockScissorsPaperResult: rockScissorPaperResult)
+        let refree = Refree()
+        var user = Player()
+        var computer = Player()
+        
+        user.selectRockScissorsPaperHandByInput()
+        computer.selectRockScissorsPaperHandRandomly()
+        
+        let rockScissorPaperResult = refree.runRockScissorsPaper(playerHand: user.hand,
+                                                                 computerHand: computer.hand)
+        
+        switch rockScissorPaperResult {
+            
+        case .draw:
+            print("비겼습니다!")
+            startGame()
+        default:
+            refree.noticeRockScissorPaperResult(rockScissorPaperResult)
+            refree.runMukJiPa(rockScissorsPaperResult: rockScissorPaperResult)
+        }
     }
 }
 
-while power {
-    startGame()
-}
+let game = Game()
+game.startGame()
