@@ -12,7 +12,6 @@ struct RockSicssorPaperGameManager {
         if computerPick == userChoice {
             return .draw
         }
-        
         switch(computerPick , userChoice){
         case (let computerPick, let userChoice) where computerPick == userChoice:
             return.draw
