@@ -6,63 +6,61 @@
 //
 
 struct RockScissorPaperGame {
-    var winner: Turn?
-    var isRunning: Bool = true
-    
-    mutating func play() {
-        
-        while isRunning {
+    mutating func play() -> GameResult? {
+        while true {
             guard
-                continueGame()
+                let result = continueGame()
             else {
-                return
+                return nil
             }
+            
+            guard result != .draw else {
+                continue
+            }
+            
+            return result
         }
     }
     
-    private mutating func continueGame() -> Bool {
+    private mutating func continueGame() -> GameResult? {
         print("가위(1), 바위(2), 보(3)! <종료: 0> :", terminator: " ")
         
         let userInput = readLine()
-        
         guard
             let command = Command(value: userInput)
         else {
-            print(ApplicationStatusMessage.error)
-            return true
+            print(GameGuideMessage.error)
+            return .draw
         }
         
         guard
             !command.isQuit
         else {
-            print(ApplicationStatusMessage.quit)
-            isRunning = false
-            return false
+            print(GameGuideMessage.quit)
+            return nil
         }
         
         guard
             let userChoice = RockScissorPaperChoice(rawValue: command.userChoice),
             let computerChoice = RockScissorPaperChoice.allCases.randomElement()
         else {
-            return true
+            return .none
         }
         
         return compareChoice(user: userChoice, computer: computerChoice)
     }
     
-    private mutating func compareChoice(user: RockScissorPaperChoice, computer: RockScissorPaperChoice) -> Bool {
+    private mutating func compareChoice(user: RockScissorPaperChoice, computer: RockScissorPaperChoice) -> GameResult {
         switch (user, computer) {
         case (.scissor, .rock),(.rock, .paper),(.paper, .scissor):
-            print(GameResultMessage.lose)
-            winner = .computer
-            return false
+            print(GameResult.lose.message)
+            return .lose
         case (.scissor, .paper),(.rock, .scissor),(.paper, .rock):
-            print(GameResultMessage.win)
-            winner = .user
-            return false
+            print(GameResult.win.message)
+            return .win
         default:
-            print(GameResultMessage.draw)
-            return true
+            print(GameResult.draw.message)
+            return .draw
         }
     }
 }
