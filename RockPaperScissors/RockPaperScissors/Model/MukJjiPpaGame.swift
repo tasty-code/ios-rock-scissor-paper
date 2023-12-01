@@ -8,16 +8,11 @@
 class MukJjiPpaGame: Playable {
     
     private var rockPaperScissorsGame: RockPaperScissorsGame
-    private let _menuMessage: MenuMessage = .rockPaperScissors
+    let menuMessage: MenuMessage
     
-    init(rockPaperScissorsGame: RockPaperScissorsGame) {
+    init(rockPaperScissorsGame: RockPaperScissorsGame, menuMessage: MenuMessage) {
         self.rockPaperScissorsGame = rockPaperScissorsGame
-    }
-    
-    var menuMessage: MenuMessage {
-        get {
-            return .mukJjiPpa
-        }
+        self.menuMessage = menuMessage
     }
 
     func decideGameResult(user: Player, opponent: Player) -> GameResult {

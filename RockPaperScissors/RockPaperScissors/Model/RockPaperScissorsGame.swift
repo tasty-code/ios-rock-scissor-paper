@@ -7,12 +7,10 @@
 
 class RockPaperScissorsGame : Playable {
     
-    private let _menuMessage: MenuMessage = .rockPaperScissors
+    let menuMessage: MenuMessage
     
-    var menuMessage: MenuMessage {
-        get {
-            return .rockPaperScissors
-        }
+    init (menuMessage: MenuMessage) {
+        self.menuMessage = menuMessage
     }
 
     func decideGameResult(user: Player, opponent: Player) -> GameResult {

@@ -7,8 +7,8 @@
 let user: Player = Player(input: .noChoice, name: "사용자")
 let opponent: Player = Player(input: .noChoice, name: "컴퓨터")
 
-let rockPaperScissorsGame: RockPaperScissorsGame = RockPaperScissorsGame()
-let mukJjiPpaGame: MukJjiPpaGame = MukJjiPpaGame(rockPaperScissorsGame: rockPaperScissorsGame)
+let rockPaperScissorsGame: RockPaperScissorsGame = RockPaperScissorsGame(menuMessage: .rockPaperScissors)
+let mukJjiPpaGame: MukJjiPpaGame = MukJjiPpaGame(rockPaperScissorsGame: rockPaperScissorsGame, menuMessage: .mukJjiPpa)
 
 let rpsGameController: RockPaperScissorsGameController = 
 RockPaperScissorsGameController(rockPaperScissorsGame: rockPaperScissorsGame)
