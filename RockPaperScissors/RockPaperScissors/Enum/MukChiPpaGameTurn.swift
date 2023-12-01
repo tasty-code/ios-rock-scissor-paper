@@ -21,22 +21,3 @@ enum MukChiPpaGameTurn {
         }
     }
 }
-
-enum WonrockScissorPaper {
-    case didWon
-    case didLose
-    case didDraw
-    case `default`
-    func runMCP() -> Bool {
-        switch self {
-        case .didWon:
-            return true
-        case .didLose:
-            return true
-        case .didDraw:
-            return false
-        case .default:
-            return true
-        }
-    }
-}

@@ -45,7 +45,6 @@ struct GameIOManager {
     static func didWinOrLose(result: GameMenuPrompt) -> Bool {
         return result == .win || result == .lose
     }
-    
 }
 
 
