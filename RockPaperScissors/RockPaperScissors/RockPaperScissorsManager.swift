@@ -9,7 +9,6 @@ import Foundation
 
 struct RockPaperScissorsManager {
     private var userValue: Int?
-    private var randomValue: Int?
     private var resultValue: Int?
     private var status: Bool = true
     private var currentTurn: MukchippaResult = .draw
@@ -50,15 +49,13 @@ struct RockPaperScissorsManager {
         }
     }
     
-    mutating func calculateValue(userValue: Int) {
-        randomValue = Int.random(in: 1...3)
-        guard let computerValue = randomValue else { return }
-        resultValue = (userValue - computerValue + 3) % 3
+    mutating func calculateValue(userValue: Int) -> Int {
+        let randomValue = Int.random(in: 1...3)
+        return (userValue - randomValue + 3) % 3
     }
 
     mutating func getRockPaperScissorsResult(userValue: Int) {
-        calculateValue(userValue: userValue)
-        guard let gameValue = resultValue else { return }
+        let gameValue = calculateValue(userValue: userValue)
         
         switch RockPaperScissorsResult(rawValue: gameValue) {
         case .draw:
@@ -77,8 +74,7 @@ struct RockPaperScissorsManager {
     }
     
     mutating func getMukchippaResult(userValue: Int) {
-        calculateValue(userValue: userValue)
-        guard let gameValue = resultValue else { return }
+        let gameValue = calculateValue(userValue: userValue)
             
         switch MukchippaResult(rawValue: gameValue) {
         case .computerWin:
