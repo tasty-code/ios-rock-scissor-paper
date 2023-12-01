@@ -16,7 +16,7 @@ struct RockPaperScissorsManager {
 
     mutating func play() {
         while status {
-            checkStepPrint()
+            printStep()
             guard let input = readLine() else { return }
             userValue = Int(input)
             
@@ -33,7 +33,7 @@ struct RockPaperScissorsManager {
         }
     }
     
-    private mutating func checkStepPrint() {
+    private mutating func printStep() {
         if !isNextRound {
             print("가위(1), 바위(2), 보(3)! <종료: 0> : ", terminator: "")
         } else {
