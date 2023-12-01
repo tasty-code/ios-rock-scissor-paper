@@ -21,7 +21,7 @@ struct Referee {
         print("userChoice: \(userChoice)")
         print("computerChoice: \(computerChoice)")
         
-        mappingIfMJP(&userChoice, &computerChoice)
+        mapIfMJP(&userChoice, &computerChoice)
         
         print("userChoice: \(userChoice)")
         print("computerChoice: \(computerChoice)")
@@ -75,7 +75,7 @@ struct Referee {
         }
     }
     
-    private mutating func determineMJPOutcome() {
+    private mutating func determineMJPOutcome() {        
         if game == .mjp && isDraw {
             PrintingHandler.notifyMJPWinner(of: previousTurn)
             isGameOver = true
@@ -100,7 +100,7 @@ struct Referee {
         }
     }
     
-    private func mappingIfMJP(_ userChoice: inout RockPaperScissors, _ computerChoice: inout RockPaperScissors) {
+    private func mapIfMJP(_ userChoice: inout RockPaperScissors, _ computerChoice: inout RockPaperScissors) {
         guard game == .mjp else { return }
         
         userChoice = userChoice == .scissors
