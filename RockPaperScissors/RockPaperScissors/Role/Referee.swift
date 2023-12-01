@@ -26,8 +26,6 @@ struct Referee {
         }
         
         mappingIfMJP(&userChoice, &computerChoice)
-        print("userChoice: \(userChoice)")
-        print("computerChoice: \(computerChoice)")
         processPlayerChoices(userChoice, computerChoice)
     }
     
