@@ -2,19 +2,19 @@ import Foundation
 
 struct Referee {
     private(set) var isGameOver = false
-    private(set) var currentTurn = PlayerTurn.none
-    private var nextTurn = PlayerTurn.none
-    private var isNextTurn: Bool {
-        nextTurn != .none
+    private(set) var previousTurn = PlayerTurn.none
+    private var currentTurn = PlayerTurn.none
+    private var isCurrentTurn: Bool {
+        currentTurn != .none
     }
     private var isDraw: Bool {
-        nextTurn == .none
-    }
-    var isRPS: Bool {
         currentTurn == .none
     }
+    var isRPS: Bool {
+        previousTurn == .none
+    }
     private var isMJP: Bool {
-        currentTurn != .none
+        previousTurn != .none
     }
     
     mutating func determineGameOutcome(_ userOption: Option, _ computerOption: Option) {
@@ -23,7 +23,6 @@ struct Referee {
             handleInvalidOrExitBy(userOption, computerOption)
             return
         }
-        
         mappingIfMJP(&userChoice, &computerChoice)
         processPlayerChoices(userChoice, computerChoice)
     }
@@ -39,8 +38,8 @@ struct Referee {
     
     private mutating func handleInvalidOption() {
         PrintingHandler.notifyInvalidOption()
-        if currentTurn == .user {
-            currentTurn = .computer
+        if previousTurn == .user {
+            previousTurn = .computer
         }
     }
     
@@ -55,7 +54,7 @@ struct Referee {
             PrintingHandler.notifyRPSOutcome(of: rpsOutcome)
         }
         
-        nextTurn = getNextTurn(basedOn: rpsOutcome)
+        currentTurn = getNextTurn(basedOn: rpsOutcome)
         
         determineMJPOutcome()
     }
@@ -73,16 +72,16 @@ struct Referee {
     
     private mutating func determineMJPOutcome() {
         if isMJP && isDraw {
-            PrintingHandler.notifyMJPWinner(of: currentTurn)
+            PrintingHandler.notifyMJPWinner(of: previousTurn)
             isGameOver = true
             return
         }
   
-        if isMJP && isNextTurn {
-            PrintingHandler.notifyMJPTurn(of: nextTurn)
+        if isMJP && isCurrentTurn {
+            PrintingHandler.notifyMJPTurn(of: currentTurn)
         }
         
-        currentTurn = nextTurn
+        previousTurn = currentTurn
     }
     
     private func getNextTurn(basedOn rpsOutcome: RPSOutcome) -> PlayerTurn {
