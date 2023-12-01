@@ -41,11 +41,8 @@ class Player {
     }
     
     func readInput(gameType: GameType) -> RockPaperScissor {
-        if let input = Int(readLine() ?? "") {
-            return convertInput(input, gameType: gameType)
-        } else {
-            return .noChoice
-        }
+        guard let input = Int(readLine() ?? "") else { return .noChoice }
+        return convertInput(input, gameType: gameType)
     }
     
     func convertInput(_ input: Int, gameType: GameType) -> RockPaperScissor {
