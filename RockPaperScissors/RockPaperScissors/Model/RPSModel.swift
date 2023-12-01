@@ -7,3 +7,4 @@ enum RPSModel: Int, CaseIterable {
     case rock = 2
     case paper = 3
 }
+

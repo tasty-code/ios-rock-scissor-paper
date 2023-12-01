@@ -4,71 +4,56 @@ import Foundation
 //MARK: - GameView init & deinit
 final class GameView {
     private let gameRules: GameRules
-    private var gameContinue = true
     
     init(gameRules: GameRules) {
         self.gameRules = gameRules
-        gameRules.onRequstMJB = { _ in
-            print("이벤트 전달")
-            readLine()
-            
-        }
-        gameRules.onRPSResult = { [weak self] result, userChoice, computerChoice in
-            self?.displayChoices(userChoice, computerChoice)
-            self?.handleGameResult(result)
-        }
+        displayMessageHandler()
+        startSecondGameHandler()
+        restartFirstGameHandler()
+        restartSecondGameHandler()
     }
     
-    deinit {
-        print("gameView deinit")
-    }
+    deinit { print("gameView deinit") }
 }
 
 //MARK: - GameView Method
 extension GameView {
-    func gameStart() {
-        while gameContinue {
-            print("가위(1), 바위(2), 보(3) ! <종료: 0> : ", terminator: "")
+    func startGame() {
+        print("가위(1), 바위(2), 보(3) ! <종료: 0> : ", terminator: "")
+        if let playerInput = readLine() {
+            gameRules.playFirstGameWithUserInput(input: playerInput)
+        }
+    }
+    
+    private func startSecondGameHandler() {
+        gameRules.onRequstSecondGame = { [weak self] in
+            self?.gameRules.dipslaySecondGameComment()
+            
             if let playerInput = readLine() {
-                handleUserInsertNum(playerInput)
+                self?.gameRules.playSecondGameWithUserInput(input: playerInput)
             }
         }
     }
     
-    private func handleUserInsertNum(_ playerInsert: String) {
-        switch Int(playerInsert) {
-        case 0:
-            handleGameResult(.endGame)
-        case 1, 2, 3:
-            gameRules.playGameWithUserInput(playerInsert)
-            
-        default:
-            handleGameResult(.error)
+    private func restartFirstGameHandler() {
+        gameRules.onRestartFirstGame = { [weak self]  in
+            self?.startGame()
         }
     }
     
-    private func displayChoices(_ userChoice: RPSModel?, _ computerChoice: RPSModel?) {
-        if let userChoice = userChoice, let computerChoice = computerChoice {
-            print("나의 선택: \(userChoice)")
-            print("컴퓨터의 선택: \(computerChoice)")
+    private func restartSecondGameHandler() {
+        gameRules.onRestartSecondGame = { [weak self] in
+            if let playerInput = readLine() {
+                self?.gameRules.playSecondGameWithUserInput(input: playerInput)
+            }
         }
     }
     
-    private func handleGameResult(_ result: GameResult) {
-        switch result {
-        case .win:
-            print(GameResult.win.message)
-            gameContinue = false
-        case .loss:
-            print(GameResult.loss.message)
-            gameContinue = false
-        case .draw:
-            print(GameResult.draw.message)
-        case .endGame:
-            print(GameResult.endGame.message)
-            gameContinue = false 
-        default:
-            print(GameResult.error.message)
+    private func displayMessageHandler() {
+        gameRules.onUpdateMessage = { message in
+            print(message)
         }
     }
 }
+
+
