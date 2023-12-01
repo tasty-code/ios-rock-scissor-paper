@@ -18,7 +18,6 @@ struct Referee {
     }
     
     mutating func determineGameOutcome(_ userOption: Option, _ computerOption: Option) {
-        
         guard var userChoice = Option.getRockPaperScissors(from: userOption),
               var computerChoice = Option.getRockPaperScissors(from: computerOption) else {
             handleInvalidOrExitBy(userOption, computerOption)
@@ -99,17 +98,13 @@ struct Referee {
     
     private func mappingIfMJP(_ userChoice: inout RockPaperScissors, _ computerChoice: inout RockPaperScissors) {
         if isMJP {
-            if userChoice == RockPaperScissors.scissors {
-                userChoice = RockPaperScissors.rock
-            } else if userChoice == RockPaperScissors.rock {
-                userChoice = RockPaperScissors.scissors
-            }
-            if computerChoice == RockPaperScissors.scissors {
-                computerChoice = RockPaperScissors.rock
-            } else if computerChoice == RockPaperScissors.rock {
-                computerChoice = RockPaperScissors.scissors
-            }
+            userChoice = userChoice == .scissors
+            ? .rock
+            : (userChoice == .rock ? .scissors : .paper)
+
+            computerChoice = computerChoice == .scissors
+            ? .rock
+            : (computerChoice == .rock ? .scissors : .paper)
         }
     }
-
 }
