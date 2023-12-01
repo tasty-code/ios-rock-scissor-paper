@@ -17,7 +17,7 @@ class RockPaperScissorsGameController {
     }
     
     func playGame(user: Player, opponent: Player) -> GameType {
-        opponent.input = opponent.randomRockScissorPaperInput(gameType: .rockPaperScissors)
+        opponent.input = opponent.generateRandomRockScissorPaperInput(gameType: .rockPaperScissors)
         user.input = user.readInput(gameType: .rockPaperScissors)
         
         switch user.input {

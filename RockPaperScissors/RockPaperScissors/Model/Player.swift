@@ -63,7 +63,7 @@ class Player {
         }
     }
     
-    func randomRockScissorPaperInput(gameType: GameType) -> RockPaperScissor {
+    func generateRandomRockScissorPaperInput(gameType: GameType) -> RockPaperScissor {
         let randomInput = Int.random(in: 1...3)
         return convertInput(randomInput, gameType: gameType)
     }

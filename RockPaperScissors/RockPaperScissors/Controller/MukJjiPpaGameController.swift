@@ -18,7 +18,7 @@ class MukJjiPpaGameController {
     }
     
     func playGame(user: Player, opponent: Player) -> GameType {
-        opponent.input = opponent.randomRockScissorPaperInput(gameType: .mukJjiPpaGame)
+        opponent.input = opponent.generateRandomRockScissorPaperInput(gameType: .mukJjiPpaGame)
         user.input = user.readInput(gameType: .mukJjiPpaGame)
         
         switch user.input {
