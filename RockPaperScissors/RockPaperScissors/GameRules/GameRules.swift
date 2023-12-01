@@ -9,7 +9,11 @@ final class GameRules {
     var onUpdateMessage: ((String) -> Void)?
     var onRestartFirstGame: (() -> Void)?
     var onRestartSecondGame: (() -> Void)?
-    var gameTurn: TurnModel?
+    var gameTurn: TurnModel
+    
+    init() {
+        gameTurn = .userTurn
+    }
     
     deinit { print("GameRules Deinit!!") }
 }
@@ -93,45 +97,32 @@ extension GameRules {
     func dipslaySecondGameComment() {
         switch gameTurn {
         case .userTurn:
-            onUpdateMessage? (TurnModel.userTurn.message)
+            onUpdateMessage?(TurnModel.userTurn.message)
         case .computerTurn:
-            onUpdateMessage? (TurnModel.computerTurn.message)
-        default:
-            break
+            onUpdateMessage?(TurnModel.computerTurn.message)
         }
     }
     
     private func determineSecondGameWinner(userChoice: RPSModel)  {
-                
-    secondGameRoop: while true {
-        let computerChoice = computerPlayer.makeRandomChoice()
+        secondGameRoop: while true {
+            let computerChoice = computerPlayer.makeRandomChoice()
         
-        switch gameTurn {
-        case .userTurn:
-            if userChoice == computerChoice {
+            switch (gameTurn, userChoice == computerChoice) {
+            case (.userTurn, true):
                 onUpdateMessage?("사용자 승")
                 break secondGameRoop
-            } else {
-                gameTurn = .computerTurn
+            case (.userTurn, false):
                 onUpdateMessage?("컴퓨터 턴입니다.")
-                onRequstSecondGame?()
-                break secondGameRoop
-            }
-            
-        case .computerTurn:
-            if userChoice == computerChoice {
+                gameTurn = .computerTurn
+            case (.computerTurn, true):
                 onUpdateMessage?("컴퓨터 승")
                 break secondGameRoop
-            } else {
-                gameTurn = .userTurn
+            default:
                 onUpdateMessage?("사용자 턴입니다.")
-                onRequstSecondGame?()
-                break secondGameRoop
+                gameTurn = .userTurn
             }
-            
-        default:
+            onRequstSecondGame?()
             break secondGameRoop
         }
-    }
     }
 }
