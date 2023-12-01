@@ -12,7 +12,7 @@ enum RPS: Int {
     
     var winningLogic: [RPS:RPS] {
         get {
-            let dictionary: [ RPS : RPS ] = [
+            let dictionary: [RPS:RPS] = [
                 .rock : .scissors,
                 .scissors : .paper,
                 .paper : .rock
@@ -27,7 +27,7 @@ enum MJB: Int {
     
     var winningLogic: [MJB:MJB] {
         get {
-            let dictionary: [ MJB : MJB ] = [
+            let dictionary: [MJB:MJB] = [
                 .mook : .jji,
                 .jji : .bba,
                 .bba : .mook
@@ -86,3 +86,4 @@ enum GameType: String {
         }
     }
 }
+
