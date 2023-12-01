@@ -145,7 +145,7 @@ final class Game {
         
         let userChoice: String = MookZziBbaDictionary[userInput] ?? ""
         
-        print(Prompt.allChoices(computerChoice, userChoice))
+        print(Prompt.makeAllChoicesMessage(computerChoice, userChoice))
         
         let difference: Int = randomInt - userInput
         
@@ -153,24 +153,16 @@ final class Game {
         case 0:
             draw()
         case -1, 2:
-            computerWin()
+            handleWinningSituation(loser: .human)
         case 1, -2:
-            userWin()
+            handleWinningSituation(loser: .computer)
         default:
             break
         }
     }
     
-    private func userWin() {
-        if currentPlayerTurn == .computer {
-            changePlayerTurn()
-        }
-        print(Prompt.currentTurn(currentPlayerTurn))
-        playMookZziBba()
-    }
-    
-    private func computerWin() {
-        if currentPlayerTurn == .human {
+    private func handleWinningSituation(loser: PlayerTurn) {
+        if currentPlayerTurn == loser {
             changePlayerTurn()
         }
         print(Prompt.currentTurn(currentPlayerTurn))
@@ -178,7 +170,7 @@ final class Game {
     }
     
     private func draw() {
-        print(Prompt.winner(currentPlayerTurn))
+        print(Prompt.winnerMessage(currentPlayerTurn))
         breakLoop()
     }
     
