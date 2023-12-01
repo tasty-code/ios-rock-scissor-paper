@@ -23,7 +23,6 @@ struct GameManager {
     
     private mutating func endGame() {
         isGameActive = false
-    }
-    
+    }    
 }
 
