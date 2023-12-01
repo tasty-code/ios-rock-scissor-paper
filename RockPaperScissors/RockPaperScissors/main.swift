@@ -22,7 +22,6 @@ struct Player {
         if let input = readLine() {
             if input == "0" {
                 shutDown()
-                print("\(power)")
                 return
             }
             else {
@@ -64,16 +63,12 @@ struct Refree {
     func runRockScissorsPaper(playerHand: Hand?,
                               computerHand: Hand?) -> GameResult {
         if (playerHand == computerHand) {
-            print("\(playerHand),\(computerHand)")
             return GameResult.draw
         } else if (playerHand == .rock && computerHand == .scissors) ||
                     (playerHand == .scissors && computerHand == .paper) ||
                     (playerHand == .paper && computerHand == .rock) {
-            print("\(playerHand),\(computerHand)")
-
             return GameResult.win
         } else {
-            print("\(playerHand),\(computerHand)")
             return GameResult.lose
         }
     }
@@ -83,15 +78,14 @@ struct Refree {
         case .win:
             print("이겼습니다!")
         case .lose:
-            print(power ? "졌습니다!" : "게임이 종료되었습니다.")
+            print(OnGame ? "졌습니다!" : "게임이 종료되었습니다.")
         case .draw:
             print("error: 00")
         }
     }
     
     func runMukJiPa(rockScissorsPaperResult: GameResult) {
-    
-        if power == false {
+        if OnGame == false {
             return
         }
         
@@ -117,20 +111,17 @@ struct Refree {
         } else if (user.hand == .rock && computer.hand == .scissors) ||
                     (user.hand == .scissors && computer.hand == .paper) ||
                     (user.hand == .paper && computer.hand == .rock) {
-            print("\(user.hand),\(computer.hand)")
             print("사용자의 턴입니다.")
             runMukJiPa(rockScissorsPaperResult: GameResult.win)
         } else if (user.hand == .scissors && computer.hand == .rock) ||
                     (user.hand == .paper && computer.hand == .scissors) ||
                     (user.hand == .rock && computer.hand == .paper) {
-            print("\(user.hand),\(computer.hand)")
-
             print("컴퓨터의 턴입니다.")
             runMukJiPa(rockScissorsPaperResult: GameResult.lose)
         } else if user.hand == nil {
-            print("\(user.hand),\(computer.hand)")
             
-            if power == false {
+            if OnGame == false {
+                print("게임이 종료되었습니다.")
                 return
             }
             
@@ -153,10 +144,10 @@ struct Refree {
     }
 }
 
-var power: Bool = true
+var OnGame: Bool = true
 
 func shutDown() {
-    power.toggle()
+    OnGame.toggle()
 }
 
 struct Game {
