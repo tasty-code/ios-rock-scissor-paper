@@ -18,13 +18,7 @@ struct Referee {
             handleInvalidOrExitBy(userOption, computerOption)
             return
         }
-        print("userChoice: \(userChoice)")
-        print("computerChoice: \(computerChoice)")
-        
         mapIfMJP(&userChoice, &computerChoice)
-        
-        print("userChoice: \(userChoice)")
-        print("computerChoice: \(computerChoice)")
         processPlayerChoices(userChoice, computerChoice)
     }
     
@@ -75,7 +69,7 @@ struct Referee {
         }
     }
     
-    private mutating func determineMJPOutcome() {        
+    private mutating func determineMJPOutcome() {
         if game == .mjp && isDraw {
             PrintingHandler.notifyMJPWinner(of: previousTurn)
             isGameOver = true
