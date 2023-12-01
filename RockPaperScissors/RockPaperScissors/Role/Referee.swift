@@ -8,7 +8,7 @@ struct Referee {
     private var isDraw: Bool {
         currentTurn == .none
     }
-    private var isCurrentTurn: Bool {
+    private var isPlayerTurnDetermined: Bool {
         currentTurn != .none
     }
     
@@ -18,8 +18,38 @@ struct Referee {
             handleInvalidOrExitBy(userOption, computerOption)
             return
         }
+
         mapIfMJP(&userChoice, &computerChoice)
         processPlayerChoices(userChoice, computerChoice)
+    }
+    
+    private mutating func processPlayerChoices(_ userChoice: RockPaperScissors, _ computerChoice: RockPaperScissors) {
+        let rpsOutcome = getRPSOutcome(between: userChoice, and: computerChoice)
+        
+        if game == .rps {
+            PrintingHandler.notifyRPSOutcome(of: rpsOutcome)
+        }
+        
+        currentTurn = getNextTurn(basedOn: rpsOutcome)
+        
+        if isPlayerTurnDetermined {
+            game = .mjp
+        }
+        
+        determineMJPOutcome()
+        previousTurn = currentTurn
+    }
+    
+    private mutating func determineMJPOutcome() {
+        if game == .mjp && isDraw {
+            PrintingHandler.notifyMJPWinner(of: previousTurn)
+            isGameOver = true
+            return
+        }
+  
+        if game == .mjp && isPlayerTurnDetermined {
+            PrintingHandler.notifyMJPTurn(of: currentTurn)
+        }
     }
     
     private mutating func handleInvalidOrExitBy(_ userOption: Option, _ computerOption: Option) {
@@ -42,22 +72,6 @@ struct Referee {
         return userOption == .exit || computerOption == .exit
     }
     
-    private mutating func processPlayerChoices(_ userChoice: RockPaperScissors, _ computerChoice: RockPaperScissors) {
-        let rpsOutcome = getRPSOutcome(between: userChoice, and: computerChoice)
-        
-        if game == .rps {
-            PrintingHandler.notifyRPSOutcome(of: rpsOutcome)
-        }
-        
-        currentTurn = getNextTurn(basedOn: rpsOutcome)
-        
-        if isCurrentTurn {
-            game = .mjp
-        }
-        
-        determineMJPOutcome()
-    }
-    
     private func getRPSOutcome(between userChoice: RockPaperScissors,
                                and computerChoice: RockPaperScissors) -> RPSOutcome {
         if userChoice == computerChoice {
@@ -67,20 +81,6 @@ struct Referee {
         } else {
             return .win
         }
-    }
-    
-    private mutating func determineMJPOutcome() {
-        if game == .mjp && isDraw {
-            PrintingHandler.notifyMJPWinner(of: previousTurn)
-            isGameOver = true
-            return
-        }
-  
-        if game == .mjp && isCurrentTurn {
-            PrintingHandler.notifyMJPTurn(of: currentTurn)
-        }
-        
-        previousTurn = currentTurn
     }
     
     private func getNextTurn(basedOn rpsOutcome: RPSOutcome) -> PlayerTurn {
