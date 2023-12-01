@@ -3,12 +3,12 @@ import Foundation
 struct Referee {
     private(set) var isGameOver = false
     private(set) var game = Game.rps
-    private(set) var previousTurn = PlayerTurn.none
-    private var currentTurn = PlayerTurn.none
+    private(set) var currentTurn = PlayerTurn.none
+    private var nextTurn = PlayerTurn.none
     private var isDraw: Bool {
-        currentTurn == .none
+        nextTurn == .none
     }
-    private var isPlayerTurnDetermined: Bool {
+    private var isPlayerTurn: Bool {
         currentTurn != .none
     }
     
@@ -29,26 +29,26 @@ struct Referee {
             PrintingHandler.notifyRPSOutcome(of: rpsOutcome)
         }
         
-        currentTurn = getNextTurn(basedOn: rpsOutcome)
+        nextTurn = getPlayerTurn(basedOn: rpsOutcome)
+        determineMJPOutcome()
         
-        if isPlayerTurnDetermined {
+        if isPlayerTurn {
             game = .mjp
         }
-        
-        determineMJPOutcome()
-        previousTurn = currentTurn
     }
     
     private mutating func determineMJPOutcome() {
         if game == .mjp && isDraw {
-            PrintingHandler.notifyMJPWinner(of: previousTurn)
+            PrintingHandler.notifyMJPWinner(of: currentTurn)
             isGameOver = true
             return
         }
   
-        if game == .mjp && isPlayerTurnDetermined {
-            PrintingHandler.notifyMJPTurn(of: currentTurn)
+        if game == .mjp && isPlayerTurn {
+            PrintingHandler.notifyMJPTurn(of: nextTurn)
         }
+        
+        currentTurn = nextTurn
     }
     
     private mutating func handleInvalidOrExitBy(_ userOption: Option, _ computerOption: Option) {
@@ -62,8 +62,8 @@ struct Referee {
     
     private mutating func handleInvalidOption() {
         PrintingHandler.notifyInvalidOption()
-        if previousTurn == .user {
-            previousTurn = .computer
+        if currentTurn == .user {
+            currentTurn = .computer
         }
     }
     
@@ -82,7 +82,7 @@ struct Referee {
         }
     }
     
-    private func getNextTurn(basedOn rpsOutcome: RPSOutcome) -> PlayerTurn {
+    private func getPlayerTurn(basedOn rpsOutcome: RPSOutcome) -> PlayerTurn {
         switch rpsOutcome {
         case .win:
             return .user

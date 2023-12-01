@@ -18,7 +18,7 @@ struct GameManager {
     private func showOptions() {
         referee.game == .rps
         ? PrintingHandler.showRPSOptions()
-        : PrintingHandler.showMJPOptions(for: referee.previousTurn)
+        : PrintingHandler.showMJPOptions(for: referee.currentTurn)
     }
     
     private mutating func endGame() {
