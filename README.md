@@ -4,7 +4,7 @@
 
 **버드:** <br/>
 
-@Jin0Yun 
+@Jin0Yun <br/>
 @suojae3
 
 
@@ -206,9 +206,97 @@ private func determineSecondGameWinner(userChoice: RPSModel)  {
     }
 ```
 
+<img src="readmeImage.jpeg" width="200" height="auto">
+
 <br/>
 
 ---
 
 <br/>
+
+### 고민5. GameView와 GameRules 데이터를 공유하는 데 있어서 꼭 함수 리턴값을 통해야 할까?
+
+```swift
+
+//GameView.swift
+private func handleUserInsertNum(playerInsert: String) {
+     switch Int(playerInsert) {
+     case 0:
+          print("게임 종료")
+     case 1,2,3:
+          let (result, userChoice, computerChoice) = gameRules.playGameWithUserInput(playerInsert)
+          displayChoices(userChoice, computerChoice)
+          handleGameResult(result)
+     default:
+          print("잘못된 입력입니다 다시 시도해주세요")
+     }
+   }
+}
+```
+```swift
+//GameRules.swift
+func playGameWithUserInput(_ input: String) -> (result: GameResult, userChoice: RPSModel?, computerChoice: RPSModel?) {
+        
+     guard let userChoice = convertInputToRPSOption(input)
+     else { return (.error, nil, nil) }
+        
+     let gameResult = determineWinner(userChoice: userChoice)
+          return (gameResult, userChoice, computerPlayer.choice)
+     }
+}
+```
+
+1. 게임뷰에서 유저의 입력값을 받고 게임룰의 메서드에 입력값을 넣었습니다
+2. 게임룰의 메서드가 입력값을 받아 결과를 `return`을 통해 게임뷰에 전달했습니다
+3. 게임뷰는 다시 `return`값을 이용해 다음작업을 이어나갔습니다
+
+- 위와 같은 코드의 경우 함수의 리턴값을 사용하기 때문에 데이터를 넣고 결과값을 이용하는데 있어서 1대1 대응관계를 유지했어야했습니다
+
+<br/>
+
+#
+
+```swift
+//GameView.swift
+final class GameView {
+    private let gameRules: GameRules
+    
+    init(gameRules: GameRules) {
+        self.gameRules = gameRules
+        displayMessageHandler()
+
+        ...  
+    }
+}
+
+private func displayMessageHandler() {
+     gameRules.onUpdateMessage = { message in
+          print(message)
+     }
+}
+```
+```swift
+//GameRules.swift
+func playFirstGameWithUserInput( input: String) {
+     switch input {
+     case "0":
+         onUpdateMessage?(GameResult.endGame.message)
+     case "1","2","3":
+          if let userChoice = convertInputToRPSOption(input) {
+               let gameResult = determineFirstGameWinner(userChoice: userChoice)
+          }
+     default:
+          onUpdateMessage?(GameResult.error.message)
+          onRestartFirstGame?()
+     }
+}
+```
+- 위 코드와 같이 클로저를 통한 데이터 바인딩으로 힙메모리에 있는 결과값을 뷰는 단지 참조함으로써 1대1 대응관계에서 벗어날 수 있었습니다(재사용성 증가)
+- 또한 뷰에서 맡기에는 부적절한 로직처리를 게임룰에 위임하여 적절한 책임분배를 위해 노력했습니다
+
+<img src="readmeImage.jpeg" width="200" height="auto">
+
+
+
+
 
