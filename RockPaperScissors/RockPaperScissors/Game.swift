@@ -33,7 +33,7 @@ final class Game {
             
             receiveUserInput() {
                 print(Prompt.badInput)
-                print(self.isPlayingMookZziBba ? Prompt.MookZziBbaChoice(self.currentPlayerTurn) : Prompt.rockScissorsPaperChoice, terminator: " ")
+                print(Prompt.rockScissorsPaperChoice, terminator: " ")
             }
             
             switch userInput {
@@ -109,7 +109,7 @@ final class Game {
                     self.changePlayerTurn()
                 }
                 print(Prompt.badInput)
-                print(self.isPlayingMookZziBba ? Prompt.MookZziBbaChoice(self.currentPlayerTurn) : Prompt.rockScissorsPaperChoice, terminator: " ")
+                print(Prompt.MookZziBbaChoice(self.currentPlayerTurn), terminator: " ")
             }
             
             switch userInput {
