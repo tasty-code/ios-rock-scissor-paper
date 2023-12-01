@@ -77,12 +77,10 @@ turn = winningLogic[userHand] == computerHand ? .user : .computer
 
 ### 프로그램 출력 예
 ##### 전체 프로그램 예시
-
-![스크린샷 2023-12-01 오전 10.04.35](https://hackmd.io/_uploads/Bk_KW2LHp.png)
+![스크린샷 2023-12-01 오전 10 04 35](https://github.com/eensungkim/ios-rock-scissor-paper/assets/73898006/486bf1b5-f71a-471a-b5bf-8b0f4280987b)
 
 ##### 오입력 및 종료 입력 예시
-
-![스크린샷 2023-12-01 오전 10.05.03](https://hackmd.io/_uploads/BkYjW3LBa.png)
+![스크린샷 2023-12-01 오전 10 05 03](https://github.com/eensungkim/ios-rock-scissor-paper/assets/73898006/0fcaa155-570d-40ff-84d0-8f9d29d39f64)
 
 ---
 
