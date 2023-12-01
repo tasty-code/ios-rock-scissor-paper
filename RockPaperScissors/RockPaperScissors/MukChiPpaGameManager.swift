@@ -8,7 +8,6 @@
 import Foundation
 
 struct MukChiPpaGameManager {
-    
     func playMukChiPpa(turn: MuckChiPpaGameTurn) {
         var currentTurn = turn
         while true {
