@@ -17,7 +17,7 @@ final class Game {
     
     private var currentPlayerTurn: PlayerTurn = .human
     
-    private let MookZziBbaDictionary: [Int: String] = [1: "묵", 2: "찌", 3: "빠"]
+    private let mookZziBbaDictionary: [Int: String] = [1: "묵", 2: "찌", 3: "빠"]
     
     private var isPlayingMookZziBba: Bool = false
     
@@ -29,11 +29,11 @@ final class Game {
     private func playRockScissorsPaper() {
         while loopState {
             
-            print(Prompt.rockScissorsPaperChoice, terminator: " ")
+            print(Prompt.rockScissorsPaperMenu, terminator: " ")
             
             receiveUserInput() {
                 print(Prompt.badInput)
-                print(Prompt.rockScissorsPaperChoice, terminator: " ")
+                print(Prompt.rockScissorsPaperMenu, terminator: " ")
             }
             
             switch userInput {
@@ -102,14 +102,14 @@ final class Game {
     // MARK: MookZziBba
     private func playMookZziBba() {
         while true {
-            print(Prompt.MookZziBbaChoice(currentPlayerTurn), terminator: " ")
+            print(Prompt.mookZziBbaMenu(currentPlayerTurn), terminator: " ")
             
             receiveUserInput() {
                 if self.currentPlayerTurn == .human {
                     self.changePlayerTurn()
                 }
                 print(Prompt.badInput)
-                print(Prompt.MookZziBbaChoice(self.currentPlayerTurn), terminator: " ")
+                print(Prompt.mookZziBbaMenu(self.currentPlayerTurn), terminator: " ")
             }
             
             switch userInput {
@@ -141,9 +141,9 @@ final class Game {
         
         let randomInt: Int = Int.random(in: 1...3)
         
-        let computerChoice: String = MookZziBbaDictionary[randomInt] ?? ""
+        let computerChoice: String = mookZziBbaDictionary[randomInt] ?? ""
         
-        let userChoice: String = MookZziBbaDictionary[userInput] ?? ""
+        let userChoice: String = mookZziBbaDictionary[userInput] ?? ""
         
         print(Prompt.makeAllChoicesMessage(computerChoice, userChoice))
         
@@ -165,7 +165,7 @@ final class Game {
         if currentPlayerTurn == loser {
             changePlayerTurn()
         }
-        print(Prompt.currentTurn(currentPlayerTurn))
+        print(Prompt.currentTurnMessage(currentPlayerTurn))
         playMookZziBba()
     }
     
