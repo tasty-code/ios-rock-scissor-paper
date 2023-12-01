@@ -7,18 +7,18 @@
 
 import Foundation
 
-struct GameIOmanager {
+struct GameIOManager {
     func handleUserInput(computerPick: RockScissorPaperUserOption, userChoice: RockScissorPaperUserOption) {
         switch userChoice {
         case .exit:
-            GameIOmanager.endGame()
+            GameIOManager.endGame()
         case .scissor, .rock, .paper:
             let result: GameMenuPrompt = RockSicssorPaperGameManager().determineGameResult(computerPick: computerPick, userChoice: userChoice)
-            GameIOmanager.showGameMenu(for: result)
+            GameIOManager.showGameMenu(for: result)
             if result == .draw {
                 return
             } else {
-                let iswon = result == .win
+                let iswon = let result == .win
                 if iswon {
                     print("[사용자 턴]", terminator: "")
                         MukChiPpaGameManager().playMukChiPpa(turn: .user)

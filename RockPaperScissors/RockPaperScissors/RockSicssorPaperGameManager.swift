@@ -1,5 +1,5 @@
 //
-//  rockSicssorPaperManager.swift
+//  RockSicssorPaperGameManager.swift
 //  RockPaperScissors
 //
 //  Created by 권태호 on 29/11/2023.
@@ -9,7 +9,11 @@ import Foundation
 
 struct RockSicssorPaperGameManager {
     func determineGameResult(computerPick: RockScissorPaperUserOption, userChoice: RockScissorPaperUserOption) -> GameMenuPrompt {
-        switch (computerPick, userChoice) {
+        if computerPick == userChoice {
+            return .draw
+        }
+        
+        switch(computerPick , userChoice){
         case (let computerPick, let userChoice) where computerPick == userChoice:
             return.draw
         case (.scissor, .rock), (.rock, .paper), (.paper, .scissor):

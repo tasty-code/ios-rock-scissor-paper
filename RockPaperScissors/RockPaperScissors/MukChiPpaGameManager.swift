@@ -12,29 +12,29 @@ struct MukChiPpaGameManager {
     func playMukChiPpa(turn: MuckChiPpaGameTurn) {
         var currentTurn = turn
         while true {
-            GameIOmanager.showGameMenu(for: .mukChiPpaMenu)
+            GameIOManager.showGameMenu(for: .mukChiPpaMenu)
             guard
                 let input = readLine(),
                 let userInput = Int(input),
                 let userChoice = MukChiPpaUserOption(rawValue: userInput)
             else {
-                GameIOmanager.showGameMenu(for: .error)
+                GameIOManager.showGameMenu(for: .error)
                 print("[컴퓨터 턴]", terminator: "")
                 continue
             }
             if userChoice == .exit {
-                GameIOmanager.endGame()
+                GameIOManager.endGame()
                 break
             }
             guard let randomComputerPick = MukChiPpaUserOption.allCases.filter({ $0 != .exit }).randomElement()
             else { continue }
             if userChoice == randomComputerPick {
                 if currentTurn == .user {
-                    GameIOmanager.showGameMenu(for: .mukchippaUserWin)
+                    GameIOManager.showGameMenu(for: .mukchippaUserWin)
                 } else {
-                    GameIOmanager.showGameMenu(for: .mukchippaComputerWin)
+                    GameIOManager.showGameMenu(for: .mukchippaComputerWin)
                 }
-                GameIOmanager.endGame()
+                GameIOManager.endGame()
                 break
             } else {
                 currentTurn.toggle()
