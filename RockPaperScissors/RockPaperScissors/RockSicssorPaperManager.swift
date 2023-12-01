@@ -9,9 +9,6 @@ import Foundation
 
 struct RockSicssorPaperGameManager {
     func determineGameResult(computerPick: RockScissorPaperUserOption, userChoice: RockScissorPaperUserOption) -> GameMenuPrompt {
-//        if comPick == userChoice {
-//            return .draw
-//        }
         switch (computerPick, userChoice) {
         case (let computerPick, let userChoice) where computerPick == userChoice:
             return.draw
