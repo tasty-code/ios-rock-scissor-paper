@@ -76,7 +76,6 @@
 			isa = PBXGroup;
 			children = (
 				22D0210D2B0F4008006F0280 /* RockPaperScissors */,
-				22097ABD2B149B37009D66D5 /* main.swift */,
 				22D0210C2B0F4008006F0280 /* Products */,
 			);
 			sourceTree = "<group>";
@@ -92,6 +91,7 @@
 		22D0210D2B0F4008006F0280 /* RockPaperScissors */ = {
 			isa = PBXGroup;
 			children = (
+				22097ABD2B149B37009D66D5 /* main.swift */,
 				C77120BE2B14939400D155EE /* Enum */,
 				22097ABF2B149C21009D66D5 /* Role */,
 				C77120C32B14B56500D155EE /* Handler */,
