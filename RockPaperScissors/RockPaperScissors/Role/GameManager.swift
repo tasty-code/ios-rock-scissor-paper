@@ -8,7 +8,7 @@ struct GameManager {
     
     public mutating func playGame() {
         showOptions()
-        referee.determineGameOutcome(user.chooseOption(), computer.chooseOption())
+        referee.determineGameOutcome(between: user.chooseOption(), and: computer.chooseOption())
         
         if referee.isGameOver {
             endGame()
