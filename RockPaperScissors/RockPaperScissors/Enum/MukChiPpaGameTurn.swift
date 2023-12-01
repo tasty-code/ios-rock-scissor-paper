@@ -7,7 +7,7 @@
 
 import Foundation
 
-enum MuckChiPpaGameTurn {
+enum MukChiPpaGameTurn {
     case user
     case computer
     mutating func toggle() {
@@ -18,6 +18,25 @@ enum MuckChiPpaGameTurn {
         case .computer:
             self = .user
             print("사용자의 턴입니다.")
+        }
+    }
+}
+
+enum WonrockScissorPaper {
+    case didWon
+    case didLose
+    case didDraw
+    case `default`
+    func runMCP() -> Bool {
+        switch self {
+        case .didWon:
+            return true
+        case .didLose:
+            return true
+        case .didDraw:
+            return false
+        case .default:
+            return true
         }
     }
 }

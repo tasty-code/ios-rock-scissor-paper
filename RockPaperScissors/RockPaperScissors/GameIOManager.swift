@@ -13,7 +13,7 @@ struct GameIOManager {
         case .exit:
             GameIOManager.endGame()
         case .scissor, .rock, .paper:
-            let result: GameMenuPrompt = RockSicssorPaperGameManager().determineGameResult(computerPick: computerPick, userChoice: userChoice)
+            let result: GameMenuPrompt = RockScissorPaperGameManager().determineGameResult(computerPick: computerPick, userChoice: userChoice)
             GameIOManager.showGameMenu(for: result)
             if result == .draw {
                 return
@@ -21,7 +21,7 @@ struct GameIOManager {
                 let didWon: Bool = result == .win
                 if didWon {
                     print("[사용자 턴]", terminator: "")
-                        MukChiPpaGameManager().playMukChiPpa(turn: .user)
+                    MukChiPpaGameManager().playMukChiPpa(turn: .user)
                 } else {
                     print("[컴퓨터 턴]", terminator: "")
                     MukChiPpaGameManager().playMukChiPpa(turn: .computer)
@@ -40,5 +40,12 @@ struct GameIOManager {
     static func endGame() {
         GameIOManager.showGameMenu(for: .exit)
         isGameRunning = false
-    } 
+    }
+    
+    static func didWinOrLose(result: GameMenuPrompt) -> Bool {
+        return result == .win || result == .lose
+    }
+    
 }
+
+

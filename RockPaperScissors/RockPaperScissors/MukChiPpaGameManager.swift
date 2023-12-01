@@ -8,16 +8,10 @@
 import Foundation
 
 struct MukChiPpaGameManager {
-
-    func playMukChiPpa(turn: MuckChiPpaGameTurn) {
+    func playMukChiPpa(turn: MukChiPpaGameTurn) {
         var currentTurn = turn
-        
-        while true {
-            
-            // 메뉴 프린트
+        while currentTurn == .computer || currentTurn == .computer {
             GameIOManager.showGameMenu(for: .mukChiPpaMenu)
-            
-            // 사용자 입력 받음
             guard
                 let input = readLine(),
                 let userInput = Int(input),
@@ -42,7 +36,6 @@ struct MukChiPpaGameManager {
                 currentTurn.toggle()
                 print(currentTurn == .user ? "[사용자 턴]" : "[컴퓨터 턴]" ,terminator: "" )
             }
-            
         }
     }
 }
