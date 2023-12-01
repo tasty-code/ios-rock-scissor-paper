@@ -1,5 +1,5 @@
 //
-//  MukChiPpaGameManager.swift
+//  mukChiPpaGameManager.swift
 //  RockPaperScissors
 //
 //  Created by 권태호 on 29/11/2023.
@@ -8,11 +8,16 @@
 import Foundation
 
 struct MukChiPpaGameManager {
+    
     func playMukChiPpa(turn: MuckChiPpaGameTurn) {
         var currentTurn = turn
         while true {
             GameIOmanager.showGameMenu(for: .mukChiPpaMenu)
-            guard let input = readLine(), let userChoice = MukChiPpaUserOption(rawValue: input) else {
+            guard
+                let input = readLine(),
+                let userInput = Int(input),
+                let userChoice = MukChiPpaUserOption(rawValue: userInput)
+            else {
                 GameIOmanager.showGameMenu(for: .error)
                 print("[컴퓨터 턴]", terminator: "")
                 continue

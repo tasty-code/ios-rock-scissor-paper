@@ -5,8 +5,11 @@ var  isGameRunning: Bool = true
 while isGameRunning {
     GameIOmanager.showGameMenu(for: .menu)
     guard let randomComputerPick = RockScissorPaperUserOption.allCases.filter({ $0 != .exit }).randomElement() else { continue }
-    guard let input = readLine(), let userInput = Int(input),
-          let userPick = (RockScissorPaperUserOption(rawValue: userInput)) else {
+    guard 
+        let input = readLine(),
+        let userInput = Int(input),
+        let userPick = (RockScissorPaperUserOption(rawValue: userInput))
+    else {
         GameIOmanager.showGameMenu(for: .error)
         continue
     }
