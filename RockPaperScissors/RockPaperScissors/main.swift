@@ -10,13 +10,13 @@ while isGameRunning {
     guard
         let input = readLine(),
         let userInput = Int(input),
-        let userPick = (RockScissorPaperUserOption(rawValue: userInput))
+        let userChoice = (RockScissorPaperUserOption(rawValue: userInput))
     else {
         GameIOManager.showGameMenu(for: .error)
         continue
     }
     let gameIOManager =  GameIOManager()
-    gameIOManager.handleUserInput(computerPick: randomComputerPick, userChoice: userPick)
+    gameIOManager.handleUserInput(computerPick: randomComputerPick, userChoice: userChoice)
 }
 
 

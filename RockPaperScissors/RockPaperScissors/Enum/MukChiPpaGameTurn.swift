@@ -10,6 +10,7 @@ import Foundation
 enum MukChiPpaGameTurn {
     case user
     case computer
+    
     mutating func toggle() {
         switch self {
         case .user:

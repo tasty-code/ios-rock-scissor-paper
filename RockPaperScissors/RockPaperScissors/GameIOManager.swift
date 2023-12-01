@@ -18,8 +18,8 @@ struct GameIOManager {
             if result == .draw {
                 return
             } else {
-                let didWon: Bool = result == .win
-                if didWon {
+                let didwin: Bool = result == .win
+                if didwin {
                     print("[사용자 턴]", terminator: "")
                     MukChiPpaGameManager().playMukChiPpa(turn: .user)
                 } else {
