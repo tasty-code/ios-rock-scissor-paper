@@ -37,7 +37,7 @@ struct RockPaperScissorsManager {
         if !isNextRound {
             print("가위(1), 바위(2), 보(3)! <종료: 0> : ", terminator: "")
         } else {
-            let turnMessage = currentTurn == MukchippaResult.user ? "[사용자 턴]" : "[컴퓨터 턴]"
+            let turnMessage = currentTurn.turnMessage
             let mukchippaMessage = "묵(1),찌(2),빠(3)! <종료 : 0> : "
             print(turnMessage, mukchippaMessage , terminator: "")
         }
@@ -81,12 +81,12 @@ struct RockPaperScissorsManager {
         switch MukchippaResult(rawValue: gameValue) {
         case .computer:
             currentTurn = .computer
-            print("컴퓨터의 턴입니다.")
+            print(currentTurn.turnStartMessage)
         case .user:
             currentTurn = .user
-            print("사용자의 턴입니다")
+            print(currentTurn.turnStartMessage)
         case .draw:
-            print(currentTurn == .user ? "사용자의 승리" : "컴퓨터의 승리")
+            print(currentTurn.winMessage)
             status = false
         case .none:
             break
