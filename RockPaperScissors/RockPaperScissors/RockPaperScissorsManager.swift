@@ -13,7 +13,7 @@ struct RockPaperScissorsManager {
     private var status: Bool = true
     private var currentTurn: MukchippaResult = .draw
     private var isNextRound: Bool = false
-    
+
     mutating func play() {
         while status {
             checkStepPrint()
@@ -33,7 +33,7 @@ struct RockPaperScissorsManager {
         }
     }
     
-    mutating func checkStepPrint() {
+    private mutating func checkStepPrint() {
         if !isNextRound {
             print("가위(1), 바위(2), 보(3)! <종료: 0> : ", terminator: "")
         } else {
@@ -43,7 +43,7 @@ struct RockPaperScissorsManager {
         }
     }
     
-    mutating func checkStepType(userChoice: Int) {
+    private mutating func checkStepType(userChoice: Int) {
         if !isNextRound {
             getRockPaperScissorsResult(userValue: userChoice)
         } else {
@@ -51,12 +51,12 @@ struct RockPaperScissorsManager {
         }
     }
     
-    mutating func calculateValue(userValue: Int) -> Int {
+    private mutating func calculateValue(userValue: Int) -> Int {
         let randomValue = Int.random(in: 1...3)
         return (userValue - randomValue + 3) % 3
     }
 
-    mutating func getRockPaperScissorsResult(userValue: Int) {
+    private mutating func getRockPaperScissorsResult(userValue: Int) {
         let gameValue = calculateValue(userValue: userValue)
         
         switch RockPaperScissorsResult(rawValue: gameValue) {
@@ -75,7 +75,7 @@ struct RockPaperScissorsManager {
         }
     }
     
-    mutating func getMukchippaResult(userValue: Int) {
+    private mutating func getMukchippaResult(userValue: Int) {
         let gameValue = calculateValue(userValue: userValue)
             
         switch MukchippaResult(rawValue: gameValue) {
