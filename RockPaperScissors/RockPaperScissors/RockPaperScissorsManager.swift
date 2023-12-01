@@ -37,7 +37,7 @@ struct RockPaperScissorsManager {
         if !isNextRound {
             print("가위(1), 바위(2), 보(3)! <종료: 0> : ", terminator: "")
         } else {
-            let turnMessage = currentTurn == MukchippaResult.computerLose ? "[사용자 턴]" : "[컴퓨터 턴]"
+            let turnMessage = currentTurn == MukchippaResult.user ? "[사용자 턴]" : "[컴퓨터 턴]"
             let mukchippaMessage = "묵(1),찌(2),빠(3)! <종료 : 0> : "
             print(turnMessage, mukchippaMessage , terminator: "")
         }
@@ -64,10 +64,10 @@ struct RockPaperScissorsManager {
             print(GameResult.draw.rawValue)
         case .userWin:
             print(GameResult.win.rawValue)
-            currentTurn = .computerLose
+            currentTurn = .user
             isNextRound = true
         case .userLose:
-            currentTurn = .computerWin
+            currentTurn = .computer
             print(GameResult.lose.rawValue)
             isNextRound = true
         case .none:
@@ -79,14 +79,14 @@ struct RockPaperScissorsManager {
         let gameValue = calculateValue(userValue: userValue)
             
         switch MukchippaResult(rawValue: gameValue) {
-        case .computerWin:
-            currentTurn = .computerWin
+        case .computer:
+            currentTurn = .computer
             print("컴퓨터의 턴입니다.")
-        case .computerLose:
-            currentTurn = .computerLose
+        case .user:
+            currentTurn = .user
             print("사용자의 턴입니다")
         case .draw:
-            print(currentTurn == .computerLose ? "사용자의 승리" : "컴퓨터의 승리")
+            print(currentTurn == .user ? "사용자의 승리" : "컴퓨터의 승리")
             status = false
         case .none:
             break

@@ -9,6 +9,6 @@ import Foundation
 
 enum MukchippaResult: Int {
     case draw = 0
-    case computerWin = 1
-    case computerLose = 2
+    case computer = 1
+    case user = 2
 }
