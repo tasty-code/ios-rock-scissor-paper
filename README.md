@@ -53,7 +53,7 @@ enum RPS: Int {
     
     var winningLogic: [RPS:RPS] {
         get {
-            let dictionary: [ RPS : RPS ] = [
+            let dictionary: [RPS:RPS] = [
                 .rock : .scissors,
                 .scissors : .paper,
                 .paper : .rock
