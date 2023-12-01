@@ -7,9 +7,9 @@
 
 import Foundation
 
-enum RockScissorPaperUserOption: String, CaseIterable {
-    case exit = "0"
-    case scissor = "1"
-    case rock = "2"
-    case paper = "3"
+enum RockScissorPaperUserOption: Int, CaseIterable {
+    case exit = 0
+    case scissor = 1
+    case rock = 2
+    case paper = 3
 }
