@@ -1,6 +1,6 @@
 import Foundation
 
-enum GameOutcome: CustomStringConvertible {
+enum RPSOutcome: CustomStringConvertible {
     case draw, win, loss
     
     var description: String {

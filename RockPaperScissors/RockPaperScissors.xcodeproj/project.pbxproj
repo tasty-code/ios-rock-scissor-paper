@@ -11,13 +11,15 @@
 		22097AC12B149C34009D66D5 /* Computer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22097AC02B149C34009D66D5 /* Computer.swift */; };
 		22097AC32B149C40009D66D5 /* Referee.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22097AC22B149C40009D66D5 /* Referee.swift */; };
 		22097AC62B149C6F009D66D5 /* Player.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22097AC52B149C6F009D66D5 /* Player.swift */; };
+		223E0E0D2B199E6A00F44BC2 /* Game.swift in Sources */ = {isa = PBXBuildFile; fileRef = 223E0E0C2B199E6A00F44BC2 /* Game.swift */; };
 		22D021182B0F4136006F0280 /* GameManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22D021172B0F4136006F0280 /* GameManager.swift */; };
 		22D0211A2B0F4147006F0280 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22D021192B0F4147006F0280 /* User.swift */; };
 		C77120C02B1493BF00D155EE /* RockPaperScissors.swift in Sources */ = {isa = PBXBuildFile; fileRef = C77120BF2B1493BF00D155EE /* RockPaperScissors.swift */; };
-		C77120C22B1494F600D155EE /* GameOutcome.swift in Sources */ = {isa = PBXBuildFile; fileRef = C77120C12B1494F500D155EE /* GameOutcome.swift */; };
+		C77120C22B1494F600D155EE /* RPSOutcome.swift in Sources */ = {isa = PBXBuildFile; fileRef = C77120C12B1494F500D155EE /* RPSOutcome.swift */; };
 		C77120C52B14B58B00D155EE /* InputHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = C77120C42B14B58B00D155EE /* InputHandler.swift */; };
 		C77120C72B14B5A700D155EE /* PrintingHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = C77120C62B14B5A700D155EE /* PrintingHandler.swift */; };
 		C77120C92B14B70000D155EE /* Option.swift in Sources */ = {isa = PBXBuildFile; fileRef = C77120C82B14B70000D155EE /* Option.swift */; };
+		C7E255F52B15C0DE0055F241 /* PlayerTurn.swift in Sources */ = {isa = PBXBuildFile; fileRef = C7E255F42B15C0DE0055F241 /* PlayerTurn.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -37,14 +39,16 @@
 		22097AC02B149C34009D66D5 /* Computer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Computer.swift; sourceTree = "<group>"; };
 		22097AC22B149C40009D66D5 /* Referee.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Referee.swift; sourceTree = "<group>"; };
 		22097AC52B149C6F009D66D5 /* Player.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Player.swift; sourceTree = "<group>"; };
+		223E0E0C2B199E6A00F44BC2 /* Game.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Game.swift; sourceTree = "<group>"; };
 		22D0210B2B0F4008006F0280 /* RockPaperScissors */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = RockPaperScissors; sourceTree = BUILT_PRODUCTS_DIR; };
 		22D021172B0F4136006F0280 /* GameManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameManager.swift; sourceTree = "<group>"; };
 		22D021192B0F4147006F0280 /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
 		C77120BF2B1493BF00D155EE /* RockPaperScissors.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RockPaperScissors.swift; sourceTree = "<group>"; };
-		C77120C12B1494F500D155EE /* GameOutcome.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameOutcome.swift; sourceTree = "<group>"; };
+		C77120C12B1494F500D155EE /* RPSOutcome.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RPSOutcome.swift; sourceTree = "<group>"; };
 		C77120C42B14B58B00D155EE /* InputHandler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InputHandler.swift; sourceTree = "<group>"; };
 		C77120C62B14B5A700D155EE /* PrintingHandler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PrintingHandler.swift; sourceTree = "<group>"; };
 		C77120C82B14B70000D155EE /* Option.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Option.swift; sourceTree = "<group>"; };
+		C7E255F42B15C0DE0055F241 /* PlayerTurn.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlayerTurn.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -74,7 +78,6 @@
 			isa = PBXGroup;
 			children = (
 				22D0210D2B0F4008006F0280 /* RockPaperScissors */,
-				22097ABD2B149B37009D66D5 /* main.swift */,
 				22D0210C2B0F4008006F0280 /* Products */,
 			);
 			sourceTree = "<group>";
@@ -90,6 +93,7 @@
 		22D0210D2B0F4008006F0280 /* RockPaperScissors */ = {
 			isa = PBXGroup;
 			children = (
+				22097ABD2B149B37009D66D5 /* main.swift */,
 				C77120BE2B14939400D155EE /* Enum */,
 				22097ABF2B149C21009D66D5 /* Role */,
 				C77120C32B14B56500D155EE /* Handler */,
@@ -100,9 +104,11 @@
 		C77120BE2B14939400D155EE /* Enum */ = {
 			isa = PBXGroup;
 			children = (
-				C77120BF2B1493BF00D155EE /* RockPaperScissors.swift */,
 				C77120C82B14B70000D155EE /* Option.swift */,
-				C77120C12B1494F500D155EE /* GameOutcome.swift */,
+				C77120BF2B1493BF00D155EE /* RockPaperScissors.swift */,
+				C77120C12B1494F500D155EE /* RPSOutcome.swift */,
+				C7E255F42B15C0DE0055F241 /* PlayerTurn.swift */,
+				223E0E0C2B199E6A00F44BC2 /* Game.swift */,
 			);
 			path = Enum;
 			sourceTree = "<group>";
@@ -175,12 +181,14 @@
 			buildActionMask = 2147483647;
 			files = (
 				22097AC12B149C34009D66D5 /* Computer.swift in Sources */,
+				C7E255F52B15C0DE0055F241 /* PlayerTurn.swift in Sources */,
 				C77120C52B14B58B00D155EE /* InputHandler.swift in Sources */,
+				223E0E0D2B199E6A00F44BC2 /* Game.swift in Sources */,
 				22D021182B0F4136006F0280 /* GameManager.swift in Sources */,
 				22097ABE2B149B37009D66D5 /* main.swift in Sources */,
 				C77120C02B1493BF00D155EE /* RockPaperScissors.swift in Sources */,
 				22097AC62B149C6F009D66D5 /* Player.swift in Sources */,
-				C77120C22B1494F600D155EE /* GameOutcome.swift in Sources */,
+				C77120C22B1494F600D155EE /* RPSOutcome.swift in Sources */,
 				C77120C72B14B5A700D155EE /* PrintingHandler.swift in Sources */,
 				22097AC32B149C40009D66D5 /* Referee.swift in Sources */,
 				22D0211A2B0F4147006F0280 /* User.swift in Sources */,
