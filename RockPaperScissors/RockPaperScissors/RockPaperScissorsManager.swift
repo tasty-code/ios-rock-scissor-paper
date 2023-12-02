@@ -37,7 +37,7 @@ struct RockPaperScissorsManager {
         if !isNextRound {
             print("가위(1), 바위(2), 보(3)! <종료: 0> : ", terminator: "")
         } else {
-            let turnMessage = currentTurn.turnMessage
+            guard let turnMessage = currentTurn.turnMessage else { return }
             let mukchippaMessage = "묵(1),찌(2),빠(3)! <종료 : 0> : "
             print(turnMessage, mukchippaMessage , terminator: "")
         }
@@ -81,12 +81,18 @@ struct RockPaperScissorsManager {
         switch MukchippaResult(rawValue: gameValue) {
         case .computer:
             currentTurn = .computer
-            print(currentTurn.turnStartMessage)
+            if let message = currentTurn.turnStartMessage {
+                print(message)
+            }
         case .user:
             currentTurn = .user
-            print(currentTurn.turnStartMessage)
+            if let message = currentTurn.turnStartMessage {
+                print(message)
+            }
         case .draw:
-            print(currentTurn.winMessage)
+            if let message = currentTurn.winMessage {
+                print(message)
+            }
             status = false
         case .none:
             break
