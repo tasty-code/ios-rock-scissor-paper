@@ -18,9 +18,3 @@ final class ComputerPlayer: HandGamePlayable {
         return MJBHand(hand: hand, owner: self)
     }
 }
-
-extension ComputerPlayer: CallablePlayer {
-    func getName() -> String {
-        return self.name
-    }
-}

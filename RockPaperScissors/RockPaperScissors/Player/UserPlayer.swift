@@ -88,13 +88,6 @@ extension UserPlayer: RPSResultDisplayable {
     }
 }
 
-// MARK: - CallablePlayer
-extension UserPlayer: CallablePlayer {
-    func getName() -> String {
-        return self.name
-    }
-}
-
 // MARK: - MJBResultDisplayable
 extension UserPlayer: MJBResultDisplayable {
     func display(result: MJBResult) {
