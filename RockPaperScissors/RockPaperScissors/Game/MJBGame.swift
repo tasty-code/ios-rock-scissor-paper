@@ -16,9 +16,7 @@ struct MJBGame {
         return self.turn === leftPlayer ? rightPlayer : leftPlayer
     }
     
-    init?(rpsWinner: RPSPlayable,rpsLoser: RPSPlayable) {
-        guard let turn = rpsWinner as? MJBPlayable,
-              let other = rpsLoser as? MJBPlayable else { return nil }
+    init(turn: MJBPlayable, other: MJBPlayable) {
         self.turn = turn
         self.leftPlayer = self.turn
         self.rightPlayer = other
