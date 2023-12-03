@@ -26,7 +26,7 @@ struct MJBGame {
         self.rightPlayer = other
     }
     
-    private func getPlayerGestures() throws -> (MJBGesture, MJBGesture) {
+    private func getPlayerGestures() throws -> (MJBHand, MJBHand) {
         let turnGesture = try turn.makeMJBGesture(currentTurn: self.turn)
         let otherGesture = try other.makeMJBGesture(currentTurn: self.turn)
         return (turnGesture, otherGesture)

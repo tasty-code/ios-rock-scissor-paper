@@ -17,7 +17,7 @@ struct RPSGame {
         self.rightPlayer = rightPlayer
     }
     
-    private func getPlayerGestures() throws -> (RPSGesture, RPSGesture) {
+    private func getPlayerGestures() throws -> (RPSHand, RPSHand) {
         let leftGesture = try leftPlayer.makeRPSGesture()
         let rightGesture = try rightPlayer.makeRPSGesture()
         return (leftGesture, rightGesture)

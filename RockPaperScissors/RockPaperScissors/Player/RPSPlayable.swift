@@ -8,7 +8,7 @@
 import Foundation
 
 protocol RPSPlayable: AnyObject {
-    func makeRPSGesture() throws -> RPSGesture
+    func makeRPSGesture() throws -> RPSHand
 }
 
 protocol RPSResultDisplayable {

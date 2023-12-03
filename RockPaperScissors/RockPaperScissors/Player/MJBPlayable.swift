@@ -8,7 +8,7 @@
 import Foundation
 
 protocol MJBPlayable: AnyObject, CallablePlayer {
-    func makeMJBGesture(currentTurn: MJBPlayable) throws -> MJBGesture
+    func makeMJBGesture(currentTurn: MJBPlayable) throws -> MJBHand
 }
 
 protocol MJBResultDisplayable {
