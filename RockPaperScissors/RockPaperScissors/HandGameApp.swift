@@ -13,8 +13,9 @@ struct HandGameApp {
     }
     
     private func prepareUsers() -> (HandGamePlayable, HandGamePlayable) {
-        let leftPlayer: HandGamePlayable = UserPlayer(io: console, name: "에피")
+        let leftPlayer: HandGamePlayable = UserPlayer(io: Console(), name: "에피")
         let rightPlayer: HandGamePlayable = ComputerPlayer()
+//        let rightPlayer: HandGamePlayable = UserPlayer(io: Console(), name: "노움")
         return (leftPlayer, rightPlayer)
     }
     
