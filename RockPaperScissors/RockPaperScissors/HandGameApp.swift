@@ -23,10 +23,10 @@ struct HandGameApp {
             
             var mjbGame = MJBGame(turn: turn, other: other)
             try mjbGame.start()
-        } catch HandGameError.someoneWantsToExit {
+        } catch HandGameError.exitGame {
             [leftPlayer, rightPlayer].forEach { player in
                 if let errorDisplayablePlayer = player as? HandGameErrorDisplayblePlayer {
-                    errorDisplayablePlayer.displayRPSError(HandGameError.someoneWantsToExit)
+                    errorDisplayablePlayer.displayRPSError(HandGameError.exitGame)
                 }
             }
         } catch { return }

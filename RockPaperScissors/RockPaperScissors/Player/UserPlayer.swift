@@ -27,7 +27,7 @@ final class UserPlayer {
         if let hand = Hand(rpsNumber: number) {
             return RPSHand(hand: hand, owner: self)
         } else if number == 0 {
-            throw HandGameError.someoneWantsToExit
+            throw HandGameError.exitGame
         } else {
             throw HandGameError.invalidInput
         }
@@ -39,7 +39,7 @@ final class UserPlayer {
         if let hand = Hand(mjbNumber: number) {
             return MJBHand(hand: hand, owner: self)
         } else if number == 0 {
-            throw HandGameError.someoneWantsToExit
+            throw HandGameError.exitGame
         } else {
             throw HandGameError.invalidInput
         }
