@@ -7,7 +7,9 @@
 
 import Foundation
 
-final class Console: InputGettable {
+struct Console { }
+
+extension Console: InputGettable {
     func getInput() throws -> String {
         guard let pureInput = readLine() else { throw HandGameError.invalidInput }
         let refinedInput = pureInput.trimmingCharacters(in: .whitespacesAndNewlines)
