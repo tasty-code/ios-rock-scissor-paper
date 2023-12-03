@@ -5,8 +5,6 @@
 //  Created by Effie on 11/28/23.
 //
 
-import Foundation
-
 struct RPSGame {
     private let leftPlayer: RPSPlayable
     

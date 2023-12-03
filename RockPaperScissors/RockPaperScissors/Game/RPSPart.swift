@@ -5,8 +5,6 @@
 //  Created by Effie on 11/29/23.
 //
 
-import Foundation
-
 struct RPSPart {
     private let leftGesture: RPSHand
     
