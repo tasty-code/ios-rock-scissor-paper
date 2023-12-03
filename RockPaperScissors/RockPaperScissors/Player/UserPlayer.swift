@@ -5,8 +5,6 @@
 //  Created by Effie on 11/28/23.
 //
 
-import Foundation
-
 final class UserPlayer {
     let name: String
     
@@ -23,25 +21,25 @@ final class UserPlayer {
         return number
     }
     
-    private func getRPSGesture() throws -> RPSGesture {
+    private func getRPSGesture() throws -> RPSHand {
         io.displayPrompt("\(self.name) - 가위(1), 바위(2), 보(3)! <종료 : 0> :")
         let number = try getNumber()
         if let hand = Hand(rpsNumber: number) {
-            return RPSGesture(hand: hand, owner: self)
+            return RPSHand(hand: hand, owner: self)
         } else if number == 0 {
-            throw HandGameError.someoneWantsToExit
+            throw HandGameError.exitGame
         } else {
             throw HandGameError.invalidInput
         }
     }
     
-    private func getMJBGesture(currentTurn: MJBPlayable) throws -> MJBGesture {
+    private func getMJBGesture(currentTurn: MJBPlayable) throws -> MJBHand {
         io.displayPrompt("[\(currentTurn.name) 턴] \(self.name) - 묵(1), 찌(2), 빠(3)! <종료 : 0> :")
         let number = try getNumber()
         if let hand = Hand(mjbNumber: number) {
-            return MJBGesture(hand: hand, owner: self)
+            return MJBHand(hand: hand, owner: self)
         } else if number == 0 {
-            throw HandGameError.someoneWantsToExit
+            throw HandGameError.exitGame
         } else {
             throw HandGameError.invalidInput
         }
@@ -50,7 +48,7 @@ final class UserPlayer {
 
 // MARK: - RPSPlayable
 extension UserPlayer: RPSPlayable {
-    func makeRPSGesture() throws -> RPSGesture {
+    func makeRPSGesture() throws -> RPSHand {
         while true {
             do {
                 return try getRPSGesture()
@@ -64,7 +62,7 @@ extension UserPlayer: RPSPlayable {
 
 // MARK: - MJBPlayable
 extension UserPlayer: MJBPlayable {
-    func makeMJBGesture(currentTurn: MJBPlayable) throws -> MJBGesture {
+    func makeMJBGesture(currentTurn: MJBPlayable) throws -> MJBHand {
         while true {
             do {
                 return try getMJBGesture(currentTurn: currentTurn)
@@ -90,16 +88,16 @@ extension UserPlayer: RPSResultDisplayable {
     }
 }
 
-// MARK: - CallablePlayer
-extension UserPlayer: CallablePlayer {
-    func getName() -> String {
-        return self.name
-    }
-}
-
 // MARK: - MJBResultDisplayable
 extension UserPlayer: MJBResultDisplayable {
     func display(result: MJBResult) {
         io.displayOutput(result.description)
+    }
+}
+
+// MARK: - HandGameErrorDisplayblePlayer
+extension UserPlayer: HandGameErrorDisplayblePlayer {
+    func displayRPSError(_ error: HandGameError) {
+        io.displayRPSError(error)
     }
 }

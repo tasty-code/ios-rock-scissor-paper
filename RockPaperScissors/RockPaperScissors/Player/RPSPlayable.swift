@@ -5,10 +5,8 @@
 //  Created by Effie on 11/28/23.
 //
 
-import Foundation
-
 protocol RPSPlayable: AnyObject {
-    func makeRPSGesture() throws -> RPSGesture
+    func makeRPSGesture() throws -> RPSHand
 }
 
 protocol RPSResultDisplayable {

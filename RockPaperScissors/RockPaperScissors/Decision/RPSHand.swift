@@ -1,13 +1,11 @@
 //
-//  MJBGesture.swift
+//  RPSHand.swift
 //  RockPaperScissors
 //
 //  Created by Effie on 11/28/23.
 //
 
-import Foundation
-
-struct MJBGesture {
+struct RPSHand {
     let hand: Hand
-    let owner: MJBPlayable
+    let owner: RPSPlayable
 }

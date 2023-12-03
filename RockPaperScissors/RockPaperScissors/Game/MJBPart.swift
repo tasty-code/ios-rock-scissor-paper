@@ -5,13 +5,11 @@
 //  Created by Effie on 11/29/23.
 //
 
-import Foundation
-
 struct MJBPart {
-    private let turn: MJBGesture
-    private let other: MJBGesture
+    private let turn: MJBHand
+    private let other: MJBHand
     
-    init(turn: MJBGesture, other: MJBGesture) {
+    init(turn: MJBHand, other: MJBHand) {
         self.turn = turn
         self.other = other
     }

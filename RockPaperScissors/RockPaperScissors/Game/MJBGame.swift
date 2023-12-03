@@ -5,8 +5,6 @@
 //  Created by Effie on 11/28/23.
 //
 
-import Foundation
-
 struct MJBGame {
     private let leftPlayer: MJBPlayable
     
@@ -18,15 +16,13 @@ struct MJBGame {
         return self.turn === leftPlayer ? rightPlayer : leftPlayer
     }
     
-    init?(rpsWinner: RPSPlayable,rpsLoser: RPSPlayable) {
-        guard let turn = rpsWinner as? MJBPlayable,
-              let other = rpsLoser as? MJBPlayable else { return nil }
+    init(turn: MJBPlayable, other: MJBPlayable) {
         self.turn = turn
         self.leftPlayer = self.turn
         self.rightPlayer = other
     }
     
-    private func getPlayerGestures() throws -> (MJBGesture, MJBGesture) {
+    private func getPlayerGestures() throws -> (MJBHand, MJBHand) {
         let turnGesture = try turn.makeMJBGesture(currentTurn: self.turn)
         let otherGesture = try other.makeMJBGesture(currentTurn: self.turn)
         return (turnGesture, otherGesture)

@@ -5,14 +5,12 @@
 //  Created by Effie on 11/29/23.
 //
 
-import Foundation
-
 struct RPSPart {
-    private let leftGesture: RPSGesture
+    private let leftGesture: RPSHand
     
-    private let rightGesture: RPSGesture
+    private let rightGesture: RPSHand
     
-    init(between leftGesture: RPSGesture, and rightGesture: RPSGesture) {
+    init(between leftGesture: RPSHand, and rightGesture: RPSHand) {
         self.leftGesture = leftGesture
         self.rightGesture = rightGesture
     }

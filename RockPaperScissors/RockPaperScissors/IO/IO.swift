@@ -5,8 +5,6 @@
 //  Created by Effie on 11/28/23.
 //
 
-import Foundation
-
 protocol PromptDisplayable {
     func displayPrompt(_ prompt: String)
 }
