@@ -6,12 +6,6 @@
 //
 
 struct HandGameApp {
-    private let errorDisplay: HandGameErrorDisplayble
-    
-    init(errorDisplay: HandGameErrorDisplayble) {
-        self.errorDisplay = errorDisplay
-    }
-    
     private func prepareUsers() -> (HandGamePlayable, HandGamePlayable) {
         let leftPlayer: HandGamePlayable = UserPlayer(io: Console(), name: "에피")
         let rightPlayer: HandGamePlayable = ComputerPlayer()
@@ -30,7 +24,11 @@ struct HandGameApp {
             var mjbGame = MJBGame(turn: turn, other: other)
             try mjbGame.start()
         } catch HandGameError.someoneWantsToExit {
-            errorDisplay.displayRPSError(HandGameError.someoneWantsToExit)
+            [leftPlayer, rightPlayer].forEach { player in
+                if let errorDisplayablePlayer = player as? HandGameErrorDisplayblePlayer {
+                    errorDisplayablePlayer.displayRPSError(HandGameError.someoneWantsToExit)
+                }
+            }
         } catch { return }
     }
     

@@ -94,3 +94,10 @@ extension UserPlayer: MJBResultDisplayable {
         io.displayOutput(result.description)
     }
 }
+
+// MARK: - HandGameErrorDisplayblePlayer
+extension UserPlayer: HandGameErrorDisplayblePlayer {
+    func displayRPSError(_ error: HandGameError) {
+        io.displayRPSError(error)
+    }
+}

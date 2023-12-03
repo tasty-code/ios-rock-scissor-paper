@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		C7ABA0E1254EA63000B2367D /* main.swift in Sources */ = {isa = PBXBuildFile; fileRef = C7ABA0E0254EA63000B2367D /* main.swift */; };
+		F42621112B1C29FF00C6423A /* HandGameErrorDisplayblePlayer.swift in Sources */ = {isa = PBXBuildFile; fileRef = F42621102B1C29FF00C6423A /* HandGameErrorDisplayblePlayer.swift */; };
 		F47327D22B1589E3000849B1 /* IO.swift in Sources */ = {isa = PBXBuildFile; fileRef = F47327D12B1589E3000849B1 /* IO.swift */; };
 		F47327D42B1589F1000849B1 /* Hand.swift in Sources */ = {isa = PBXBuildFile; fileRef = F47327D32B1589F1000849B1 /* Hand.swift */; };
 		F47327E02B158A49000849B1 /* HandGameError.swift in Sources */ = {isa = PBXBuildFile; fileRef = F47327DF2B158A49000849B1 /* HandGameError.swift */; };
@@ -42,6 +43,7 @@
 /* Begin PBXFileReference section */
 		C7ABA0DD254EA63000B2367D /* RockPaperScissors */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = RockPaperScissors; sourceTree = BUILT_PRODUCTS_DIR; };
 		C7ABA0E0254EA63000B2367D /* main.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = main.swift; sourceTree = "<group>"; };
+		F42621102B1C29FF00C6423A /* HandGameErrorDisplayblePlayer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HandGameErrorDisplayblePlayer.swift; sourceTree = "<group>"; };
 		F47327D12B1589E3000849B1 /* IO.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IO.swift; sourceTree = "<group>"; };
 		F47327D32B1589F1000849B1 /* Hand.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Hand.swift; sourceTree = "<group>"; };
 		F47327DF2B158A49000849B1 /* HandGameError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HandGameError.swift; sourceTree = "<group>"; };
@@ -109,6 +111,7 @@
 			children = (
 				F47327E32B15C4F9000849B1 /* RPSPlayable.swift */,
 				F47327F72B160E21000849B1 /* MJBPlayable.swift */,
+				F42621102B1C29FF00C6423A /* HandGameErrorDisplayblePlayer.swift */,
 				F47327F12B160737000849B1 /* UserPlayer.swift */,
 				F47327F32B160749000849B1 /* ComputerPlayer.swift */,
 			);
@@ -223,6 +226,7 @@
 				F47327D22B1589E3000849B1 /* IO.swift in Sources */,
 				F47328022B16F114000849B1 /* MJBResult.swift in Sources */,
 				F47328042B16F128000849B1 /* RPSPart.swift in Sources */,
+				F42621112B1C29FF00C6423A /* HandGameErrorDisplayblePlayer.swift in Sources */,
 				F47327D42B1589F1000849B1 /* Hand.swift in Sources */,
 				F47327E22B158A5E000849B1 /* HandGameApp.swift in Sources */,
 				F47327E02B158A49000849B1 /* HandGameError.swift in Sources */,
