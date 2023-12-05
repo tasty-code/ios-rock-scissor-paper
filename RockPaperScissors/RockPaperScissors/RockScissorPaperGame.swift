@@ -6,60 +6,61 @@
 //
 
 struct RockScissorPaperGame {
-    func play() {
-        let isRunning: Bool = true
-        
-        while isRunning {
-            guard start() else { return }
+    mutating func play() -> GameResult? {
+        while true {
+            guard
+                let result = continueGame()
+            else {
+                return nil
+            }
+            
+            guard result != .draw else {
+                continue
+            }
+            
+            return result
         }
     }
     
-    private func start() -> Bool {
+    private mutating func continueGame() -> GameResult? {
         print("가위(1), 바위(2), 보(3)! <종료: 0> :", terminator: " ")
         
         let userInput = readLine()
-        
-        guard let validator = Validator(value: userInput) else {
-            print(ApplicationStatus.error.message)
-            return true
-        }
-        
-        guard !validator.isQuit else {
-            print(ApplicationStatus.quit.message)
-            return false
-        }
-        
-        let userChoice = validator.userChoice
-        let computerChoice = Int.random(in: 1...3)
-        
-        return makeResult(user: userChoice, computer: computerChoice)
-    }
-    
-    private func makeResult(user: Int, computer: Int) -> Bool {
         guard
-            let userChoice = GameChoice(rawValue: user),
-            let computerChoice = GameChoice(rawValue: computer)
+            let command = Command(value: userInput)
         else {
-            print(ApplicationStatus.error.message)
-            return true
+            print(GameGuideMessage.error)
+            return .draw
+        }
+        
+        guard
+            !command.isQuit
+        else {
+            print(GameGuideMessage.quit)
+            return nil
+        }
+        
+        guard
+            let userChoice = RockScissorPaperChoice(rawValue: command.userChoice),
+            let computerChoice = RockScissorPaperChoice.allCases.randomElement()
+        else {
+            return .none
         }
         
         return compareChoice(user: userChoice, computer: computerChoice)
     }
     
-    private func compareChoice(user: GameChoice, computer: GameChoice) -> Bool {
+    private mutating func compareChoice(user: RockScissorPaperChoice, computer: RockScissorPaperChoice) -> GameResult {
         switch (user, computer) {
-        case (.scissor,.rock),(.rock,.paper),(.paper,.scissor):
+        case (.scissor, .rock),(.rock, .paper),(.paper, .scissor):
             print(GameResult.lose.message)
-            print(ApplicationStatus.quit.message)
-            return false
-        case (.scissor,.paper),(.rock,.scissor),(.paper,.rock):
+            return .lose
+        case (.scissor, .paper),(.rock, .scissor),(.paper, .rock):
             print(GameResult.win.message)
-            print(ApplicationStatus.quit.message)
-            return false
+            return .win
         default:
             print(GameResult.draw.message)
-            return true
+            return .draw
         }
     }
 }
